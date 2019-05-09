@@ -6,6 +6,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour{
 
     public float moveSpeed;
+    public int health;
  
     // Start is called before the first frame update
     void Start()
@@ -25,5 +26,32 @@ public class playerMovement : MonoBehaviour{
         }
 
        
+    }
+
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(100);
+        }
+        //Instantiate(impactEffect, transform.position, transform.rotation);
+        TakeDamage(100);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
+        Destroy(gameObject);
     }
 }
