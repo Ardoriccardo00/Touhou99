@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellWeapon : MonoBehaviour
+public class BombWeapon : MonoBehaviour
 {
     public Transform firePoint;
-    public GameObject spellPrefab;
+    public GameObject bombPrefab;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Spell();
+            Bomb();
         }
     }
 
-    void Spell()
+    void Bomb()
     {
-        Instantiate(spellPrefab, firePoint.position, firePoint.rotation);
+        Instantiate(bombPrefab, firePoint.position, firePoint.rotation);
     }
 
 }

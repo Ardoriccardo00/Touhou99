@@ -14,8 +14,6 @@ public class projectileBehaviour : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
