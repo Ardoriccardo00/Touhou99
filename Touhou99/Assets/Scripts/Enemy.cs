@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //Altre variabili
     public int health = 100;
-
     public GameObject deathEffect;
     private Rigidbody2D myRigidBody;
     public int speed = 5;
 
-    private Vector3 moveDirection;
-    public string Direction;
-    private Vector3 directionRight;
-    private Vector3 directionLeft;
-    private Vector3 directionUp;
-    private Vector3 directionDown;
+   //Direzioni
+    //public string Direction; //Stringa per la direzione nell'editor
+    public Vector3 moveDirection; //Vettore per la direzione
 
-    private bool moving = true;
+    public Vector3 directionRight;
+    public Vector3 directionLeft;
+    public Vector3 directionUp;
+    public Vector3 directionDown;
+
+    //Timer per il movimento
+    //private bool moving = true;
     public float timeBetweenMove;
     private float timeBetweenMoveCounter;
     public float timeToMove;
@@ -26,6 +29,10 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        moveDirection = new Vector3(0f, 0f);
+
+        EnemySpawner spawner = GetComponent<EnemySpawner>();
+
         myRigidBody = GetComponent<Rigidbody2D>();
 
         directionRight = new Vector3(1f * speed, 0f);
@@ -33,7 +40,7 @@ public class Enemy : MonoBehaviour
         directionUp = new Vector3(0f * speed, 1f);
         directionDown = new Vector3(0f * speed, -1f);
 
-        switch (Direction)
+        switch (spawner.Direction)
         {
           case "right":
                 moveDirection = directionRight;
@@ -55,16 +62,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-       if (moving)
-        {
-            timeToMoveCounter -= Time.deltaTime;
-            myRigidBody.velocity = moveDirection;
-           
-        }
-       /* else
-        {
-            timeBetweenMoveCounter -= Time.deltaTime;
-        }*/
+           timeToMoveCounter -= Time.deltaTime;
+           myRigidBody.velocity = moveDirection;
     }
 
     public void TakeDamage(int damage)
