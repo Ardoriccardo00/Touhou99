@@ -10,14 +10,14 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D myRigidBody;
     public int speed = 5;
 
-   //Direzioni
-    //public string Direction; //Stringa per la direzione nell'editor
-    public Vector3 moveDirection; //Vettore per la direzione
+    //Direzioni
+    public string Direction; //Stringa per la direzione nell'editor
+    private Vector3 moveDirection; //Vettore per la direzione
 
-    public Vector3 directionRight;
-    public Vector3 directionLeft;
-    public Vector3 directionUp;
-    public Vector3 directionDown;
+    private Vector3 directionRight;
+    private Vector3 directionLeft;
+    private Vector3 directionUp;
+    private Vector3 directionDown;
 
     //Timer per il movimento
     //private bool moving = true;
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         directionUp = new Vector3(0f * speed, 1f);
         directionDown = new Vector3(0f * speed, -1f);
 
-        switch (spawner.Direction)
+        switch (Direction)
         {
           case "right":
                 moveDirection = directionRight;

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -11,17 +12,19 @@ public class EnemySpawner : MonoBehaviour
     //Timer per lo spawn
     public float timeToSpawn;
     private float timeToSpawnCounter;
+    private float spawnDelay;
+    private float Delay = 1;
+    public int enemiesToSpawn;
 
     //Direzione nemici
-	public Vector3 enemyDirection;
-    public string Direction;
+	//public Vector3 enemyDirection;
+    //public string Direction;
 
 
     void Start()
     {
-        Direction = "";
-        enemyDirection = new Vector3(0f, 0f);
-
+        //enemyDirection = new Vector3(0f, 0f);
+        spawnDelay = Delay;
         Enemy enemy = GetComponent<Enemy>();
 
        /* switch (Direction)
@@ -47,12 +50,25 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         timeToSpawnCounter -= Time.deltaTime;
+        
 
-        if (timeToSpawnCounter < 0f) { Spawn(); timeToSpawnCounter = timeToSpawn; }
+          if (timeToSpawnCounter < 0f)
+            {
+            Spawn();
+            timeToSpawnCounter = timeToSpawn;
+            }
     }
 
     void Spawn()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        spawnDelay -= Time.deltaTime;
+        for (int i = 0; i < enemiesToSpawn; i++) {
+            spawnDelay -= Time.deltaTime;
+            if (spawnDelay < 0f)
+            {
+                Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+                spawnDelay = Delay;
+            }
+         }
     }
 }

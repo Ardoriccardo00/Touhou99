@@ -123,12 +123,7 @@ MonoBehaviour:
   health: 100
   deathEffect: {fileID: 0}
   speed: 10
-  Direction: 
-  moveDirection: {x: 0, y: 0, z: 0}
-  directionRight: {x: 0, y: 0, z: 0}
-  directionLeft: {x: 0, y: 0, z: 0}
-  directionUp: {x: 0, y: 0, z: 0}
-  directionDown: {x: 0, y: 0, z: 0}
+  Direction: up
   timeBetweenMove: 1
   timeToMove: 1000
 --- !u!50 &6749739772010886249
