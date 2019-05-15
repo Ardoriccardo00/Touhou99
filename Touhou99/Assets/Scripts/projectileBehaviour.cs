@@ -18,16 +18,18 @@ public class projectileBehaviour : MonoBehaviour
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         playerMovement player = hitInfo.GetComponent<playerMovement>();
-        
-         if (enemy != null)
+
+        if (enemy != null)
          {
              enemy.TakeDamage(damage);
+             Debug.Log("Colpito nemico");
          }
          else if (player != null)
         {
-            player.TakeDamage(0);
+            player.TakeDamage(1);
+            Debug.Log("Colpito giocatore");
         }
         //Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(gameObject);
+        Destroy(gameObject); 
     }
 }

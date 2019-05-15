@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class enemyBullet : MonoBehaviour
 {
-    //
+    public float speed = 20f;
+    public int damage = 100;
+    public Rigidbody2D rb;
+    public GameObject impactEffect;
 
     void Start()
     {
-        
+        rb.velocity = transform.up * speed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        playerMovement player = hitInfo.GetComponent<playerMovement>();
+
+        if (enemy != null) {Debug.Log("colpito nemico") ; }
+
+        else if (player != null)
+        {
+            player.TakeDamage(1);
+            Debug.Log("Colpito giocatore");
+            Destroy(gameObject);
+        }
+        //Instantiate(impactEffect, transform.position, transform.rotation);
+
     }
 }

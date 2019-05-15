@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class enemyWeapon : MonoBehaviour
 {
-    private float timeToShoot;
+    public Transform firePoint;
+    public GameObject bulletPrefab;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Shoot();
+        }
+
+    }
+
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }
