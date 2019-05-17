@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class enemyBullet : MonoBehaviour
 {
-    public float speed = 20f;
-    public int damage = 100;
+    public float speed;
+    public int damage;
     public Rigidbody2D rb;
-    public GameObject impactEffect;
+    private Vector3 moveDirection;
+    //public GameObject impactEffect;
+    public Transform playerPosition;
+    playerMovement player;
+    private int timeToSurvive = 150;
+
 
     void Start()
     {
-        rb.velocity = transform.up * speed;
+        player = GameObject.FindObjectOfType<playerMovement>();
+        moveDirection = (player.transform.position - transform.position).normalized * speed;
+        rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
+    }
+
+    void Update()
+    {
+        timeToSurvive--;
+        if (timeToSurvive <= 0) { Destroy(gameObject); }
     }
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
@@ -19,14 +32,18 @@ public class enemyBullet : MonoBehaviour
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         playerMovement player = hitInfo.GetComponent<playerMovement>();
 
-        if (enemy != null) {Debug.Log("colpito nemico") ; }
-
-        else if (player != null)
+        if (player != null)
         {
-            player.TakeDamage(1);
+            player.TakeDamage(damage);
             Debug.Log("Colpito giocatore");
             Destroy(gameObject);
         }
+        else if (enemy != null)
+        {
+            Debug.Log("Colpito nemico");
+
+        }
+       
         //Instantiate(impactEffect, transform.position, transform.rotation);
 
     }

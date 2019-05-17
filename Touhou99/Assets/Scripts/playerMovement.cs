@@ -34,9 +34,9 @@ public class playerMovement : MonoBehaviour{
         if (enemy != null)
         {
             enemy.TakeDamage(100);
+            TakeDamage(100);
         }
         //Instantiate(impactEffect, transform.position, transform.rotation);
-        TakeDamage(100);
     }
 
     public void TakeDamage(int damage)

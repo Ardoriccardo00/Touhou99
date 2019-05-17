@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class projectileBehaviour : MonoBehaviour
 {
-    public float speed = 20f;
-    public int damage = 100;
+    public float speed;
+    public int damage;
     public Rigidbody2D rb;
-    public GameObject impactEffect;
+    //public GameObject impactEffect;
 
     void Start()
     {
@@ -26,7 +26,6 @@ public class projectileBehaviour : MonoBehaviour
          }
          else if (player != null)
         {
-            player.TakeDamage(1);
             Debug.Log("Colpito giocatore");
         }
         //Instantiate(impactEffect, transform.position, transform.rotation);

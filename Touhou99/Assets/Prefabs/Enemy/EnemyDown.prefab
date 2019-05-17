@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 422489337157743954, guid: 7d12e7c59decdf94fac624a822ac0ea5,
     type: 3}
-  bulletPrefab: {fileID: 3308150273108967298, guid: 2a4874d6fad4e0e44a84d45ea3896163,
+  bulletPrefab: {fileID: 8614196702933975922, guid: 356997888055ee343b6e9437fe21160c,
     type: 3}
 --- !u!1001 &7836735938367167029
 PrefabInstance:
@@ -180,12 +180,12 @@ PrefabInstance:
     - target: {fileID: 422489337157743954, guid: 7d12e7c59decdf94fac624a822ac0ea5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.004
+      value: -0.008
       objectReference: {fileID: 0}
     - target: {fileID: 422489337157743954, guid: 7d12e7c59decdf94fac624a822ac0ea5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.134
+      value: 0.585
       objectReference: {fileID: 0}
     - target: {fileID: 422489337157743954, guid: 7d12e7c59decdf94fac624a822ac0ea5,
         type: 3}

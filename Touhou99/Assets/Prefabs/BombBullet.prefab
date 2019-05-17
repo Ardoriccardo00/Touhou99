@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4530877630434735780}
   - component: {fileID: 2774468711007593519}
   - component: {fileID: 8186389001446673325}
-  - component: {fileID: 5287576063987831093}
+  - component: {fileID: -8663122143064045391}
   m_Layer: 0
   m_Name: BombBullet
   m_TagString: Untagged
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d1c43ee6ee071824fbac31c0a2f939e5, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e4ab0a63867358441a7c74b34adb3b0c, type: 3}
+  m_Color: {r: 1, g: 0.995283, b: 0.995283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.013533238}
+  m_Offset: {x: 0.0005123727, y: 0.003785193}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 0.17311892, y: 0.17479455}
   m_EdgeRadius: 0
 --- !u!50 &8186389001446673325
 Rigidbody2D:
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5287576063987831093
+--- !u!114 &-8663122143064045391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,10 +138,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 519350734164162524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5651ab4cb5229a4a8e12e4b8e7d81dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 28e18de7b787fbd4e9b1896a584a369e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 10
   damage: 100
   rb: {fileID: 8186389001446673325}
-  impactEffect: {fileID: 0}
+  timeToSurvive: 75
