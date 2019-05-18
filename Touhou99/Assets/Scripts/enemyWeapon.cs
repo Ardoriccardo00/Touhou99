@@ -9,28 +9,37 @@ public class enemyWeapon : MonoBehaviour
 
     float fireRate;
     float nextFire;
+    private float timeBetweenShoot;
+    private float timeBetweenShootCounter;
+
+    playerMovement player;
 
     void Start()
     {
-        fireRate = 5f;
+        player = GameObject.FindObjectOfType<playerMovement>();
+        timeBetweenShoot = Random.Range(1f, 5f);
+        timeBetweenShootCounter = timeBetweenShoot;
         nextFire = Time.time;
     }
 
     void Update()
     {
-        /* if (Input.GetKeyDown(KeyCode.C))
-         {
-             Shoot();
-         }*/
+        //timeBetweenShoot = Random.Range(1f, 5f);
+        timeBetweenShootCounter -= Time.deltaTime;
         CheckIfTimeToFire();
-
     }
 
     void CheckIfTimeToFire()
     {
-        if (Time.time > nextFire)
+        if (player != null)
         {
-            Shoot();
+            if (timeBetweenShootCounter <= 0)
+            {
+                Shoot();
+                timeBetweenShoot = Random.Range(1f, 5f);
+                //Debug.Log(timeBetweenShoot);
+                timeBetweenShootCounter = timeBetweenShoot;
+            }
         }
     }
 

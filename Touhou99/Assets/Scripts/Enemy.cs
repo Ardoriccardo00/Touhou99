@@ -12,12 +12,12 @@ public class Enemy : MonoBehaviour
 
     //Direzioni
     public string Direction; //Stringa per la direzione nell'editor
-    private Vector3 moveDirection; //Vettore per la direzione
+    private Vector2 direction; //Vettore per la direzione
 
-    private Vector3 directionRight;
-    private Vector3 directionLeft;
-    private Vector3 directionUp;
-    private Vector3 directionDown;
+    private Vector2 directionRight;
+    private Vector2 directionLeft;
+    private Vector2 directionUp;
+    private Vector2 directionDown;
 
     //Timer per il movimento
     //private bool moving = true;
@@ -29,32 +29,18 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        moveDirection = new Vector3(0f, 0f);
+        //direction = new Vector3(0f, 0f);
 
         EnemySpawner spawner = GetComponent<EnemySpawner>();
 
         myRigidBody = GetComponent<Rigidbody2D>();
 
-        directionRight = new Vector3(1f * speed, 0f);
-        directionLeft = new Vector3(-1f * speed, 0f);
-        directionUp = new Vector3(0f * speed, 1f);
-        directionDown = new Vector3(0f * speed, -1f);
+        //directionRight = new Vector2(1f * speed, 0f);
+        //directionLeft = new Vector2(-1f * speed, 0f);
+        //directionUp = new Vector2(0f * speed, 1f);
+        //directionDown = new Vector2(0f * speed, -1f);
 
-        switch (Direction)
-        {
-          case "right":
-                moveDirection = directionRight;
-                break;
-            case "left":
-                moveDirection = directionLeft;
-                break;
-            case "up":
-                moveDirection = directionUp;
-                break;
-            case "down":
-                moveDirection = directionDown;
-                break;
-        }
+        
 
         timeBetweenMoveCounter = timeBetweenMove;
         timeToMoveCounter = timeToMove;
@@ -63,7 +49,36 @@ public class Enemy : MonoBehaviour
     void Update()
     {
            timeToMoveCounter -= Time.deltaTime;
-           myRigidBody.velocity = moveDirection;
+        //myRigidBody.velocity = direction;
+        GetUpdate();
+        Move();
+    }
+
+    private void Move()
+    {
+        transform.Translate(direction * speed * Time.deltaTime);
+    }
+
+    private void GetUpdate()
+    {
+        direction = Vector2.zero;
+
+        switch (Direction)
+        {
+            case "right":
+                direction += Vector2.right;
+                break;
+            case "left":
+                direction += Vector2.left;
+                break;
+            case "up":
+                direction += Vector2.up;
+                break;
+            case "down":
+                direction += Vector2.down;
+                break;
+        }
+
     }
 
     public void TakeDamage(int damage)

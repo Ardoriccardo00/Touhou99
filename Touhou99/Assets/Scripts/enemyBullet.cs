@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,10 @@ public class enemyBullet : MonoBehaviour
     void Start()
     {
         player = GameObject.FindObjectOfType<playerMovement>();
-        moveDirection = (player.transform.position - transform.position).normalized * speed;
+        if (player != null) { moveDirection = (player.transform.position - transform.position).normalized * speed; }
+        //try{moveDirection = (player.transform.position - transform.position).normalized * speed;}
+        //catch(NullReferenceException) { throw new NullReferenceException("Nemico non trovato"); }
+
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
     }
 
@@ -35,13 +39,10 @@ public class enemyBullet : MonoBehaviour
         if (player != null)
         {
             player.TakeDamage(damage);
-            Debug.Log("Colpito giocatore");
             Destroy(gameObject);
         }
         else if (enemy != null)
         {
-            Debug.Log("Colpito nemico");
-
         }
        
         //Instantiate(impactEffect, transform.position, transform.rotation);
