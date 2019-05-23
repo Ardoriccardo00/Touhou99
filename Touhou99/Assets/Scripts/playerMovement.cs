@@ -2,26 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class playerMovement : MonoBehaviour{
+[Obsolete]
+public class playerMovement : NetworkBehaviour{
 
     public int health;
 
     [SerializeField]
     private float moveSpeed;
     private Vector2 direction;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        GetInput();
-        Move();  
+      
+    }
+
+    void FixedUpdate()
+    {
+        //GetInput();
+        //Move();
+
+        if (this.isLocalPlayer)
+        {
+            GetInput();
+            Move();
+        }
     }
 
     public void Move()

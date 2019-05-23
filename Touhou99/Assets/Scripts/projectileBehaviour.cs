@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class projectileBehaviour : MonoBehaviour
+[System.Obsolete]
+public class projectileBehaviour : NetworkBehaviour
 {
     public float speed;
     public int damage;
@@ -32,3 +34,4 @@ public class projectileBehaviour : MonoBehaviour
         Destroy(gameObject); 
     }
 }
+//caio

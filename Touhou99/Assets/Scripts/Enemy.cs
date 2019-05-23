@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Enemy : MonoBehaviour
+[System.Obsolete]
+public class Enemy : NetworkBehaviour
 {
     //Altre variabili
     public int health = 100;
