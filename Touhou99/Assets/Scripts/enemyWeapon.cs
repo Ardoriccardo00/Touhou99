@@ -11,9 +11,10 @@ public class enemyWeapon : MonoBehaviour
     float nextFire;
     private float timeBetweenShoot;
     private float timeBetweenShootCounter;
-
+    [System.Obsolete]
     playerMovement player;
 
+    [System.Obsolete]
     void Start()
     {
         player = GameObject.FindObjectOfType<playerMovement>();
@@ -26,7 +27,8 @@ public class enemyWeapon : MonoBehaviour
     {
         //timeBetweenShoot = Random.Range(1f, 5f);
         timeBetweenShootCounter -= Time.deltaTime;
-        CheckIfTimeToFire();
+        if (player != null) { CheckIfTimeToFire(); }
+        
     }
 
     void CheckIfTimeToFire()

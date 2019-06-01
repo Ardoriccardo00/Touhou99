@@ -11,6 +11,7 @@ public class Enemy : NetworkBehaviour
     public GameObject deathEffect;
     private Rigidbody2D myRigidBody;
     public int speed = 5;
+    playerMovement player;
 
     //Direzioni
     public string Direction; //Stringa per la direzione nell'editor
@@ -31,27 +32,16 @@ public class Enemy : NetworkBehaviour
 
     void Start()
     {
-        //direction = new Vector3(0f, 0f);
-
         EnemySpawner spawner = GetComponent<EnemySpawner>();
 
         myRigidBody = GetComponent<Rigidbody2D>();
-
-        //directionRight = new Vector2(1f * speed, 0f);
-        //directionLeft = new Vector2(-1f * speed, 0f);
-        //directionUp = new Vector2(0f * speed, 1f);
-        //directionDown = new Vector2(0f * speed, -1f);
-
-        
-
         timeBetweenMoveCounter = timeBetweenMove;
         timeToMoveCounter = timeToMove;
     }
 
     void Update()
     {
-           timeToMoveCounter -= Time.deltaTime;
-        //myRigidBody.velocity = direction;
+        timeToMoveCounter -= Time.deltaTime;
         GetUpdate();
         Move();
     }
@@ -95,8 +85,8 @@ public class Enemy : NetworkBehaviour
 
     void Die()
     {
-        //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
         Destroy(gameObject);
+        //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
     }
 
 }

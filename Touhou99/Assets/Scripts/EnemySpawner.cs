@@ -15,23 +15,21 @@ public class EnemySpawner : NetworkBehaviour
     playerMovement player;
 
     //Timer per lo spawn
+    private float spawnDelay = 1f;
+    private float spawnDelayCounter;
     [SerializeField]
     public float timeBetweenSpawn;
     private float timeBetweenSpawnCounter;
-
-    public float spawnDelay;
-    private float spawnDelayCounter;
-
     public float enemiesToSpawn;
 
     private int i = 0;
 
-    void Start()
+    public override void OnStartServer()
     {
         player = GameObject.FindObjectOfType<playerMovement>();
         timeBetweenSpawn = UnityEngine.Random.Range(1f, 5f);
         timeBetweenSpawnCounter = timeBetweenSpawn;
-        Enemy enemy = GetComponent<Enemy>();
+        //Enemy enemy = GetComponent<Enemy>();
         spawnDelayCounter = spawnDelay;
     }
 
@@ -71,7 +69,9 @@ public class EnemySpawner : NetworkBehaviour
     }
     void Spawn()
     {
-      Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);       
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        NetworkServer.Spawn(enemy);
+        //Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);       
     }
 }
 
@@ -93,3 +93,11 @@ public class EnemySpawner : NetworkBehaviour
 //CheckIfTimeToSpawn();
 //timeBetweenSpawn = UnityEngine.Random.Range(1f, 5f);
 //timeBetweenSpawnCounter = timeBetweenSpawn;
+//void Start()
+//{
+//    player = GameObject.FindObjectOfType<playerMovement>();
+//    timeBetweenSpawn = UnityEngine.Random.Range(1f, 5f);
+//    timeBetweenSpawnCounter = timeBetweenSpawn;
+//    Enemy enemy = GetComponent<Enemy>();
+//    spawnDelayCounter = spawnDelay;
+//}

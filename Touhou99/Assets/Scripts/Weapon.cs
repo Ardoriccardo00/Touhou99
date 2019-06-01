@@ -7,9 +7,21 @@ public class Weapon : MonoBehaviour
 
     public Transform firePoint;
     public Transform firePoint2;
+    public Transform bombFirePoint;
 
     public GameObject bulletPrefab;
+    public GameObject bombPrefab;
 
+    [System.Obsolete]
+    public playerMovement player;
+
+    [System.Obsolete]
+    void start()
+    {
+        player = FindObjectOfType<playerMovement>();
+    }
+
+    [System.Obsolete]
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
@@ -17,6 +29,21 @@ public class Weapon : MonoBehaviour
             Shoot();
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (player.bombPower >= 40f)
+            {
+                Bomb();
+                player.bombPower = player.bombPower - 40f;
+            }
+            else { Debug.Log("no"); }
+        }
+
+    }
+
+    void Bomb()
+    {
+        Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
     }
 
     void Shoot()

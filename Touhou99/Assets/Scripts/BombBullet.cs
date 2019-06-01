@@ -19,6 +19,7 @@ public class BombBullet : MonoBehaviour {
         if (timeToSurvive <= 0) { Destroy(gameObject); }
     }
 
+    [System.Obsolete]
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();

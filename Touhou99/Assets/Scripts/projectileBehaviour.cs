@@ -23,9 +23,11 @@ public class projectileBehaviour : NetworkBehaviour
 
         if (enemy != null)
          {
-             enemy.TakeDamage(damage);
-             Debug.Log("Colpito nemico");
-         }
+            player = FindObjectOfType<playerMovement>();
+            enemy.TakeDamage(damage);
+            player.bombPower = player.bombPower + UnityEngine.Random.Range(1f, 5f);
+            Debug.Log(player.bombPower);
+        }
          else if (player != null)
         {
             Debug.Log("Colpito giocatore");
@@ -34,4 +36,3 @@ public class projectileBehaviour : NetworkBehaviour
         Destroy(gameObject); 
     }
 }
-//caio
