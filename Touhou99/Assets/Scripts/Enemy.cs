@@ -29,10 +29,12 @@ public class Enemy : NetworkBehaviour
     public float timeToMove;
     private float timeToMoveCounter;
 
+    //public EnemySpawner spawner;
+
 
     void Start()
     {
-        EnemySpawner spawner = GetComponent<EnemySpawner>();
+        //spawner = FindObjectOfType<EnemySpawner>();
 
         myRigidBody = GetComponent<Rigidbody2D>();
         timeBetweenMoveCounter = timeBetweenMove;

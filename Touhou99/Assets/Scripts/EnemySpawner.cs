@@ -29,14 +29,12 @@ public class EnemySpawner : NetworkBehaviour
         player = GameObject.FindObjectOfType<playerMovement>();
         timeBetweenSpawn = UnityEngine.Random.Range(1f, 5f);
         timeBetweenSpawnCounter = timeBetweenSpawn;
-        //Enemy enemy = GetComponent<Enemy>();
         spawnDelayCounter = spawnDelay;
     }
 
     void Update()
     {
 
-       
         if (timeBetweenSpawnCounter > 0)
         {
             timeBetweenSpawnCounter -= Time.deltaTime;

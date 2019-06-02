@@ -163,7 +163,7 @@ MonoBehaviour:
   health: 100
   deathEffect: {fileID: 0}
   speed: 3
-  Direction: right
+  Direction: up
   timeBetweenMove: 0
   timeToMove: 0
 --- !u!114 &2402163958952872545

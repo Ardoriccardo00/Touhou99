@@ -11,10 +11,11 @@ public class enemyBullet : MonoBehaviour
     private Vector3 moveDirection;
     //public GameObject impactEffect;
     public Transform playerPosition;
+    [Obsolete]
     playerMovement player;
     private int timeToSurvive = 150;
 
-
+    [Obsolete]
     void Start()
     {
         player = GameObject.FindObjectOfType<playerMovement>();
@@ -31,6 +32,7 @@ public class enemyBullet : MonoBehaviour
         if (timeToSurvive <= 0) { Destroy(gameObject); }
     }
 
+    [Obsolete]
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();

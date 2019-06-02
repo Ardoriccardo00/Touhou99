@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 [Obsolete]
 public class playerMovement : NetworkBehaviour{
 
+    public int maxHealth;
     public int health;
     private Rigidbody2D rb;
     public float bombPower;
@@ -20,6 +21,7 @@ public class playerMovement : NetworkBehaviour{
 
     void Start()
     {
+        //health = maxHealth;
         originalMoveSpeed = moveSpeed;
         bombPower = 0;
         rb = GetComponent<Rigidbody2D>();

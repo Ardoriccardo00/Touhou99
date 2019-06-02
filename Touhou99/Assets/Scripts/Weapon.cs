@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+[System.Obsolete]
+public class Weapon : NetworkBehaviour
 {
 
     public Transform firePoint;
@@ -26,7 +28,11 @@ public class Weapon : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Shoot();
+            if (this.isLocalPlayer)
+            {
+                Shoot();
+            }
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

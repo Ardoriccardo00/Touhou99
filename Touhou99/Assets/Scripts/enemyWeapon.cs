@@ -7,7 +7,7 @@ public class enemyWeapon : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
-    float fireRate;
+    float fireRate = 0;
     float nextFire;
     private float timeBetweenShoot;
     private float timeBetweenShootCounter;
@@ -23,6 +23,7 @@ public class enemyWeapon : MonoBehaviour
         nextFire = Time.time;
     }
 
+    [System.Obsolete]
     void Update()
     {
         //timeBetweenShoot = Random.Range(1f, 5f);
@@ -31,6 +32,7 @@ public class enemyWeapon : MonoBehaviour
         
     }
 
+    [System.Obsolete]
     void CheckIfTimeToFire()
     {
         if (player != null)

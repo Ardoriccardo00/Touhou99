@@ -2,11 +2,10 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - BombBullet
-    - BombWeapon
+    - CameraController
     - ChangeText
     - Enemy
     - EnemySpawner
-    - PlayerSetup
     - PlayerSpawner
     - Wall
     - Weapon
@@ -88,8 +87,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9478}
     - Class: 114
-      Script: {instanceID: 9582}
-    - Class: 114
       Script: {instanceID: 9668}
     - Class: 114
       Script: {instanceID: 9720}
@@ -110,21 +107,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10106}
     - Class: 114
-      Script: {instanceID: 10164}
+      Script: {instanceID: 10170}
     - Class: 114
-      Script: {instanceID: 10168}
+      Script: {instanceID: 10198}
     - Class: 114
-      Script: {instanceID: 10196}
+      Script: {instanceID: 10390}
     - Class: 114
-      Script: {instanceID: 10388}
+      Script: {instanceID: 10474}
     - Class: 114
-      Script: {instanceID: 10680}
+      Script: {instanceID: 10684}
     - Class: 114
-      Script: {instanceID: 10734}
+      Script: {instanceID: 10738}
     - Class: 114
-      Script: {instanceID: 10828}
+      Script: {instanceID: 10832}
     - Class: 114
-      Script: {instanceID: 10834}
+      Script: {instanceID: 10838}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -598,7 +595,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 06858971ec880352d295bde355c55663
+      Hash: 94eb4627fd76e54831acc66d38f10d80
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BombWeapon
@@ -646,7 +643,7 @@ ScriptsOnlyBuild:
     className: enemyWeapon
   - hash:
       serializedVersion: 2
-      Hash: 21958701136712678a035bd61f8aa258
+      Hash: 524c12ff4d04933316a5d64cc5565301
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: playerMovement
@@ -718,7 +715,7 @@ ScriptsOnlyBuild:
     className: NetworkTransformVisualizer
   - hash:
       serializedVersion: 2
-      Hash: c0619ca1c8df57afe2863da01c559bd0
+      Hash: 8eb0ce345de5d6e3a21a1b104ad2b8f6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Weapon
@@ -778,13 +775,19 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 6d0c4b8961d99f2ef0bb8a22c18cc7c5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SimpleEnemySpawner
+  - hash:
+      serializedVersion: 2
       Hash: b93532430f519ca6f8a812b1c210423c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSetup
   - hash:
       serializedVersion: 2
-      Hash: 35c0fd126099fc56f2459d1f427af945
+      Hash: b3c10f4c922274928c20eeeeba5f9b44
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemySpawner
@@ -878,6 +881,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraController
   - hash:
       serializedVersion: 2
       Hash: 516824a435828eadd660ef2f1658a48e
