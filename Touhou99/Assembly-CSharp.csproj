@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\BombBullet.cs" />
      <Compile Include="Assets\Scripts\BombWeapon.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CameraView.cs" />
      <Compile Include="Assets\Scripts\ChangeText.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\enemyBullet.cs" />

@@ -26,15 +26,6 @@ public class playerMovement : NetworkBehaviour{
         bombPower = 0;
         rb = GetComponent<Rigidbody2D>();
     }
-
-    public override void OnStartLocalPlayer()
-    {
-        //myCamera = Instantiate(Camera.main);
-        //myCamera.transform.rotation = transform.rotation;
-       // myCamera.transform.position = transform.position + new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        //myCamera.transform.SetParent(transform);
-    }
-
     void FixedUpdate()
     {
         if (this.isLocalPlayer)
@@ -203,4 +194,12 @@ public class playerMovement : NetworkBehaviour{
 //if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
 //{
 //    rb.velocity = new Vector2(rb.velocity.x, 0f);
+//}
+
+//public override void OnStartLocalPlayer()
+//{
+//    //myCamera = Instantiate(Camera.main);
+//    //myCamera.transform.rotation = transform.rotation;
+//    // myCamera.transform.position = transform.position + new Vector3(transform.position.x, transform.position.y, transform.position.z);
+//    //myCamera.transform.SetParent(transform);
 //}
