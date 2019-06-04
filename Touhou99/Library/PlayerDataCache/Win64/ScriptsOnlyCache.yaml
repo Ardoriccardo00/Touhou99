@@ -6,7 +6,6 @@ ScriptsOnlyBuild:
     - ChangeText
     - Enemy
     - EnemySpawner
-    - PlayerSetup
     - PlayerSpawner
     - Wall
     - Weapon
@@ -28,6 +27,10 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Text
+    com.unity.multiplayer-hlapi.Editor.dll:
+    - UnityEditor.NetworkBehaviourInspector
+    - UnityEditor.NetworkIdentityEditor
+    - UnityEditor.NetworkTransformEditor
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
@@ -109,8 +112,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10094}
     - Class: 114
       Script: {instanceID: 10106}
-    - Class: 114
-      Script: {instanceID: 10164}
     - Class: 114
       Script: {instanceID: 10168}
     - Class: 114
@@ -977,4 +978,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/Main.unity
-  playerPath: D:/Repository/Touhou99/Touhou99/Builds/Touhou99.exe
+  playerPath: H:/ARCHIVIO RICHI/Unity projects/Progetti/Touhou99/Touhou99/Builds/Touhou99.exe

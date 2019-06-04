@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 8538543870957673100}
   - component: {fileID: 8181674438632368627}
   - component: {fileID: 8261579231509275136}
-  - component: {fileID: -5271136847903580731}
   - component: {fileID: -6810932773427431274}
   - component: {fileID: -7316733224936922177}
   m_Layer: 0
@@ -190,21 +189,6 @@ MonoBehaviour:
     type: 3}
   bombPrefab: {fileID: 519350734164162524, guid: 2e8e76824837a684d8812d90bf2b1f2b,
     type: 3}
---- !u!114 &-5271136847903580731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7103845481108088958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76917c092a3643e4586bfa9e2fed0b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  componentsToDisable:
-  - {fileID: 8181674438632368627}
-  - {fileID: 8261579231509275136}
 --- !u!114 &-6810932773427431274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.083333336
+  m_SendInterval: 0.1
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0

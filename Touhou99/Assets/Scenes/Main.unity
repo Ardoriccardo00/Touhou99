@@ -2682,11 +2682,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 140131005094499288, guid: ea258e564407cec4195ad0025b76946f,
-        type: 3}
-      propertyPath: m_Name
-      value: BombFirePoint
-      objectReference: {fileID: 0}
     - target: {fileID: 140131005094499289, guid: ea258e564407cec4195ad0025b76946f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2741,6 +2736,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140131005094499288, guid: ea258e564407cec4195ad0025b76946f,
+        type: 3}
+      propertyPath: m_Name
+      value: BombFirePoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea258e564407cec4195ad0025b76946f, type: 3}
