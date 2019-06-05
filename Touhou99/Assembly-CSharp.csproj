@@ -64,6 +64,8 @@
      <Compile Include="Assets\Scripts\enemyBullet.cs" />
      <Compile Include="Assets\Scripts\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\enemyWeapon.cs" />
+     <Compile Include="Assets\Scripts\HostGame.cs" />
+     <Compile Include="Assets\Scripts\JoinGame.cs" />
      <Compile Include="Assets\Scripts\playerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerSpawner.cs" />
      <Compile Include="Assets\Scripts\projectileBehaviour.cs" />
