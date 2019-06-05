@@ -88,7 +88,7 @@ public class playerMovement : NetworkBehaviour{
     void Die()
     {
         //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
-        Destroy(gameObject);
+        Destroy(gameObject); //go commit die
     }
 }
 
