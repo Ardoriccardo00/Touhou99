@@ -6,6 +6,8 @@ ScriptsOnlyBuild:
     - CameraView
     - Enemy
     - EnemySpawner
+    - HostGame
+    - JoinGame
     - UIManager
     - Wall
     - Weapon
@@ -24,9 +26,18 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
+    - UnityEngine.UI.LayoutElement
+    - UnityEngine.UI.Mask
+    - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
+    - UnityEngine.UI.VerticalLayoutGroup
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
@@ -35,7 +46,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Networking.NetworkStartPosition
     - UnityEngine.Networking.NetworkTransform
   sceneClasses:
-    Assets/Scenes/Main.unity:
+    Assets/Scenes/Lobby.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -73,55 +84,65 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9334}
     - Class: 114
-      Script: {instanceID: 9352}
+      Script: {instanceID: 9336}
+    - Class: 114
+      Script: {instanceID: 9354}
     - Class: 114
       Script: {instanceID: 9382}
     - Class: 114
-      Script: {instanceID: 9388}
+      Script: {instanceID: 9384}
     - Class: 114
-      Script: {instanceID: 9394}
+      Script: {instanceID: 9386}
     - Class: 114
-      Script: {instanceID: 9438}
+      Script: {instanceID: 9390}
+    - Class: 114
+      Script: {instanceID: 9396}
+    - Class: 114
+      Script: {instanceID: 9404}
+    - Class: 114
+      Script: {instanceID: 9406}
+    - Class: 114
+      Script: {instanceID: 9408}
+    - Class: 114
+      Script: {instanceID: 9412}
+    - Class: 114
+      Script: {instanceID: 9430}
+    - Class: 114
+      Script: {instanceID: 9432}
     - Class: 114
       Script: {instanceID: 9440}
     - Class: 114
-      Script: {instanceID: 9478}
+      Script: {instanceID: 9442}
     - Class: 114
-      Script: {instanceID: 9668}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9720}
+      Script: {instanceID: 9480}
     - Class: 114
-      Script: {instanceID: 9726}
+      Script: {instanceID: 9670}
     - Class: 114
-      Script: {instanceID: 9822}
+      Script: {instanceID: 9722}
     - Class: 114
-      Script: {instanceID: 9878}
+      Script: {instanceID: 9728}
     - Class: 114
-      Script: {instanceID: 9924}
+      Script: {instanceID: 9824}
     - Class: 114
-      Script: {instanceID: 10068}
+      Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 10094}
+      Script: {instanceID: 9928}
     - Class: 114
-      Script: {instanceID: 10106}
+      Script: {instanceID: 10072}
     - Class: 114
-      Script: {instanceID: 10168}
+      Script: {instanceID: 10098}
     - Class: 114
-      Script: {instanceID: 10196}
+      Script: {instanceID: 10110}
     - Class: 114
-      Script: {instanceID: 10388}
+      Script: {instanceID: 10392}
     - Class: 114
-      Script: {instanceID: 10472}
+      Script: {instanceID: 10686}
     - Class: 114
-      Script: {instanceID: 10682}
+      Script: {instanceID: 10826}
     - Class: 114
-      Script: {instanceID: 10824}
-    - Class: 114
-      Script: {instanceID: 10832}
-    - Class: 114
-      Script: {instanceID: 10838}
-    - Class: 114
-      Script: {instanceID: 13570}
+      Script: {instanceID: 10844}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -129,6 +150,89 @@ ScriptsOnlyBuild:
     - Class: 135
       Script: {instanceID: 0}
     - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Main.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 50
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9334}
+    - Class: 114
+      Script: {instanceID: 9384}
+    - Class: 114
+      Script: {instanceID: 9390}
+    - Class: 114
+      Script: {instanceID: 9396}
+    - Class: 114
+      Script: {instanceID: 9440}
+    - Class: 114
+      Script: {instanceID: 9442}
+    - Class: 114
+      Script: {instanceID: 9480}
+    - Class: 114
+      Script: {instanceID: 9722}
+    - Class: 114
+      Script: {instanceID: 9728}
+    - Class: 114
+      Script: {instanceID: 9824}
+    - Class: 114
+      Script: {instanceID: 9880}
+    - Class: 114
+      Script: {instanceID: 9896}
+    - Class: 114
+      Script: {instanceID: 9928}
+    - Class: 114
+      Script: {instanceID: 10072}
+    - Class: 114
+      Script: {instanceID: 10098}
+    - Class: 114
+      Script: {instanceID: 10172}
+    - Class: 114
+      Script: {instanceID: 10200}
+    - Class: 114
+      Script: {instanceID: 10476}
+    - Class: 114
+      Script: {instanceID: 10686}
+    - Class: 114
+      Script: {instanceID: 10826}
+    - Class: 114
+      Script: {instanceID: 10830}
+    - Class: 114
+      Script: {instanceID: 10838}
+    - Class: 114
+      Script: {instanceID: 10844}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -197,6 +301,12 @@ ScriptsOnlyBuild:
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
     className: NetworkIdentity
+  - hash:
+      serializedVersion: 2
+      Hash: 1f04a17dff882d791bf5dcb5be6af75d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: JoinGame
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -703,6 +813,12 @@ ScriptsOnlyBuild:
     className: Enemy
   - hash:
       serializedVersion: 2
+      Hash: 8d26cf3ede9829e4260702213c2a2614
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraView
+  - hash:
+      serializedVersion: 2
       Hash: 265cf27ba050d55ff33a8acab4ded6c0
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
@@ -949,6 +1065,12 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
+      Hash: 07b0bf8a378cdb99c54b545d63ec85eb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HostGame
+  - hash:
+      serializedVersion: 2
       Hash: 2c365c83bcbfe3dffadeb08626f45d38
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -983,13 +1105,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 8d26cf3ede9829e4260702213c2a2614
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CameraView
   platform: 19
   scenePathNames:
+  - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Main.unity
-  playerPath: D:/Repository/Touhou99/Touhou99/Builds/Touhou99.exe
+  playerPath: H:/ARCHIVIO RICHI/Unity projects/Progetti/Touhou99/Touhou99/Builds/Touhou99.exe

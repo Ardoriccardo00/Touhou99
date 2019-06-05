@@ -1517,8 +1517,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.1, y: 77.2}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -5.5499973, y: 77.2}
+  m_SizeDelta: {x: 171.1, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1520835154
 MonoBehaviour:
@@ -1870,6 +1870,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7e9ea1bc9f35e42ac981fb12f15129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: {fileID: 1520835154}
+  roomListItemPrefab: {fileID: 5866652827225378495, guid: 1c1a6c3b85a1d6e47907bca693bc118d,
+    type: 3}
+  roomListParent: {fileID: 2129646203}
 --- !u!4 &1777821527
 Transform:
   m_ObjectHideFlags: 0
@@ -2226,7 +2230,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2137038763}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1777821526}
+        m_MethodName: RefreshRoomList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2137038763
