@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - EnemySpawner
     - HostGame
     - JoinGame
+    - RoomListItem
     - UIManager
     - Wall
     - Weapon
@@ -134,15 +135,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10098}
     - Class: 114
-      Script: {instanceID: 10110}
+      Script: {instanceID: 10100}
     - Class: 114
-      Script: {instanceID: 10392}
+      Script: {instanceID: 10112}
     - Class: 114
-      Script: {instanceID: 10686}
+      Script: {instanceID: 10394}
     - Class: 114
-      Script: {instanceID: 10826}
+      Script: {instanceID: 10688}
     - Class: 114
-      Script: {instanceID: 10844}
+      Script: {instanceID: 10828}
+    - Class: 114
+      Script: {instanceID: 10846}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -215,21 +218,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10098}
     - Class: 114
-      Script: {instanceID: 10172}
+      Script: {instanceID: 10174}
     - Class: 114
-      Script: {instanceID: 10200}
+      Script: {instanceID: 10202}
     - Class: 114
-      Script: {instanceID: 10476}
+      Script: {instanceID: 10478}
     - Class: 114
-      Script: {instanceID: 10686}
+      Script: {instanceID: 10688}
     - Class: 114
-      Script: {instanceID: 10826}
+      Script: {instanceID: 10828}
     - Class: 114
-      Script: {instanceID: 10830}
+      Script: {instanceID: 10832}
     - Class: 114
-      Script: {instanceID: 10838}
+      Script: {instanceID: 10840}
     - Class: 114
-      Script: {instanceID: 10844}
+      Script: {instanceID: 10846}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -883,6 +886,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BombBullet
+  - hash:
+      serializedVersion: 2
+      Hash: c965556d67c8fce13ce08cc0bface400
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RoomListItem
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a

@@ -8,8 +8,10 @@ public class HostGame : MonoBehaviour
     private uint roomSize = 6;
     private string roomName;
 
+    [System.Obsolete]
     private NetworkManager nm;
 
+    [System.Obsolete]
     void Start()
     {
         nm = NetworkManager.singleton;

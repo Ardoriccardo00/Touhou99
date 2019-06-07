@@ -34,7 +34,6 @@ public class JoinGame : MonoBehaviour
         RefreshRoomList();
     }
 
-    //[System.Obsolete]
     public void RefreshRoomList()
     {
         nm.matchMaker.ListMatches(0, 20, "", false, 0, 0, OnMatchList);
@@ -59,11 +58,11 @@ public class JoinGame : MonoBehaviour
             GameObject _roomListItemGO = Instantiate(roomListItemPrefab);
             _roomListItemGO.transform.SetParent(roomListParent);
 
-            RoomListItem _roomListItem = GetComponent<RoomListItem>();
+            RoomListItem _roomListItem = _roomListItemGO.GetComponent<RoomListItem>();
 
             if(_roomListItem != null)
             {
-                _roomListItem.Setup(match);
+                _roomListItem.Setup(match, JoinRoom);
             }
             //bla bla bla tutorial
             roomList.Add(_roomListItemGO);
@@ -84,5 +83,13 @@ public class JoinGame : MonoBehaviour
 
         roomList.Clear();
 
+    }
+
+    public void JoinRoom(MatchInfoSnapshot _match)
+    {
+        Debug.Log("joining " + _match.name);
+        nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
+        ClearRoomList();
+        status.text = "Joining...";
     }
 }
