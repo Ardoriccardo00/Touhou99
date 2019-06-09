@@ -10,14 +10,17 @@ public class UIManager : NetworkBehaviour
 {
     public Text hpText;
     public Text bombText;
+    public Text nameText;
     public playerMovement player;
+    public HostGame hg;
+
     [Obsolete]
     //public playerMovement player;
 
-    //void Start()
-    //{
-    //    player = GameObject.FindObjectOfType<playerMovement>();
-    //}
+    void Start()
+    {
+        hg = GetComponent<HostGame>();
+    }
     void Update()
     {
         //playerMovement player = GetComponent<playerMovement>();

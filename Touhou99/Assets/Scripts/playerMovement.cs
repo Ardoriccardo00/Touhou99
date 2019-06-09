@@ -66,6 +66,7 @@ public class playerMovement : NetworkBehaviour{
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        Debug.Log("muro");
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         if (enemy != null)
         {

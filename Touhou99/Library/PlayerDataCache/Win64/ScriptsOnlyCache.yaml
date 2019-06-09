@@ -3,14 +3,12 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - BombBullet
     - CameraController
-    - CameraView
     - Enemy
     - EnemySpawner
     - HostGame
     - JoinGame
     - RoomListItem
     - UIManager
-    - Wall
     - Weapon
     - enemyBullet
     - enemyWeapon
@@ -141,11 +139,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10394}
     - Class: 114
-      Script: {instanceID: 10688}
+      Script: {instanceID: 10686}
     - Class: 114
-      Script: {instanceID: 10828}
+      Script: {instanceID: 10826}
     - Class: 114
-      Script: {instanceID: 10846}
+      Script: {instanceID: 10844}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -210,8 +208,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 9896}
-    - Class: 114
       Script: {instanceID: 9928}
     - Class: 114
       Script: {instanceID: 10072}
@@ -222,17 +218,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10202}
     - Class: 114
-      Script: {instanceID: 10478}
+      Script: {instanceID: 10686}
     - Class: 114
-      Script: {instanceID: 10688}
+      Script: {instanceID: 10826}
     - Class: 114
-      Script: {instanceID: 10828}
+      Script: {instanceID: 10830}
     - Class: 114
-      Script: {instanceID: 10832}
+      Script: {instanceID: 10844}
     - Class: 114
-      Script: {instanceID: 10840}
-    - Class: 114
-      Script: {instanceID: 10846}
+      Script: {instanceID: 15218}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1002,12 +996,6 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CameraController
-  - hash:
-      serializedVersion: 2
       Hash: 516824a435828eadd660ef2f1658a48e
     assemblyName: Unity.Analytics.DataPrivacy.dll
     namespaceName: UnityEngine.Analytics
@@ -1114,8 +1102,14 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 5fa4dd2457fda37f1a6b09a185d31cc0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraController
   platform: 19
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Main.unity
-  playerPath: D:/Repository/Touhou99/Touhou99/Builds/Touhou99.exe
+  playerPath: H:/ARCHIVIO RICHI/Unity projects/Progetti/Touhou99/Touhou99/Builds/Touhou99.exe
