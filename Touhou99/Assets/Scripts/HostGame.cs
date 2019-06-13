@@ -38,6 +38,7 @@ public class HostGame : MonoBehaviour
         userText.text = _host;
     }
 
+    [System.Obsolete] //test
     public void createRoom()
     {
         //if(hosterName != "" && hosterName != null)

@@ -24,7 +24,7 @@ public class UIManager : NetworkBehaviour
     void Update()
     {
         //playerMovement player = GetComponent<playerMovement>();
-        hpText.text = "HP: " + player.health + "/" + player.maxHealth;
-        bombText.text = "Power: " + player.bombPower;
+        //hpText.text = "HP: " + player.health + "/" + player.maxHealth;
+        //bombText.text = "Power: " + player.bombPower;
     }
 }

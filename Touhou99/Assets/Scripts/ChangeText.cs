@@ -22,6 +22,6 @@ public class ChangeText : MonoBehaviour
     {
         playerMovement player = GetComponent<playerMovement>();
         Text myText = GameObject.Find("Canvas/Text").GetComponent<Text>();
-        myText.text = Convert.ToString(player.health);
+        //myText.text = Convert.ToString(player.health);
     }
 }

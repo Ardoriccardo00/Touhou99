@@ -20,6 +20,8 @@ public class projectileBehaviour : NetworkBehaviour
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         playerMovement player = hitInfo.GetComponent<playerMovement>();
+        NetworkIdentity ni = GetComponent<NetworkIdentity>();
+        projectileBehaviour pb = GetComponent<projectileBehaviour>();
 
         if (enemy != null)
          {
@@ -35,4 +37,16 @@ public class projectileBehaviour : NetworkBehaviour
         //Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject); 
     }
+
+    //[Command]
+    //void CmdEnemyShot(string _ID)
+    //{
+    //    Debug.Log(_ID + "has been shot");
+    //}
+
+    //[Command]
+    //void CmdPlayerShot(string _ID)
+    //{
+    //    Debug.Log(_ID + "has been shot");
+    //}
 }

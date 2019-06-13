@@ -47,13 +47,19 @@ public class Weapon : NetworkBehaviour
 
     }
 
+    [Client]
     void Bomb()
     {
         Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
     }
 
+    [Client]
     void Shoot()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Instantiate(bulletPrefab, firePoint2.position, firePoint2.rotation);
     }

@@ -7,8 +7,18 @@ using UnityEngine.Networking;
 [Obsolete]
 public class playerMovement : NetworkBehaviour{
 
-    public int maxHealth;
-    public int health;
+    [SerializeField]
+    private int maxHealth = 500;
+
+    [SyncVar]
+    private int health;
+
+    [SyncVar]
+    public int kills;
+
+    [SyncVar]
+    public int deaths;
+
     private Rigidbody2D rb;
     public float bombPower;
     private float originalMoveSpeed;
@@ -17,7 +27,30 @@ public class playerMovement : NetworkBehaviour{
     private float moveSpeed;
     private Vector2 direction;
 
-    private Camera myCamera; // Copy of the main camera, attached to the player
+    private Camera myCamera;
+
+    [Header ("Arma")]
+    public Transform firePoint;
+    public Transform firePoint2;
+    public Transform bombFirePoint;
+
+    public GameObject bulletPrefab;
+    public GameObject bombPrefab;
+
+    [System.Obsolete]
+    public playerMovement player;
+
+    public float distance = 100f;
+
+    void Awake()
+    {
+        SetDefaults();
+    }
+
+    public void SetDefaults()
+    {
+        health = maxHealth;
+    }
 
     void Start()
     {
@@ -34,6 +67,45 @@ public class playerMovement : NetworkBehaviour{
         }
     }
 
+    [Client]
+    void Bomb()
+    {
+        Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
+    }
+
+    [Client]
+    void Shoot()
+    {
+        //GameObject bullet1 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        //GameObject bullet2 =  Instantiate(bulletPrefab, firePoint2.position, firePoint2.rotation);
+        Debug.DrawLine(transform.position, transform.position + transform.up);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.position + transform.up * distance, Mathf.Infinity);
+        //if (hit.collider != null)
+        //{
+        //    Debug.Log("hit: " + hit.collider.name);
+        //}
+        if (hit.collider.tag == "Player")
+        {
+            CmdPlayerShot(hit.collider.name);
+        }
+
+        if (hit.collider.tag == "Enemy")
+        {
+            CmdEnemyShot(hit.collider.name);
+        }
+    }
+
+    [Command]
+    void CmdEnemyShot(string _ID)
+    {
+        Debug.Log(_ID + " has been shot");
+    }
+
+    [Command]
+    void CmdPlayerShot(string _ID)
+    {
+        Debug.Log(_ID + " enemy has been shot");
+    }
     private void GetInput()
     {
         if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
@@ -62,11 +134,30 @@ public class playerMovement : NetworkBehaviour{
         {
             moveSpeed = originalMoveSpeed;
         }
+
+        //Weapon
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (this.isLocalPlayer)
+            {
+                Shoot();
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (player.bombPower >= 40f)
+            {
+                Bomb();
+                player.bombPower = player.bombPower - 40f;
+            }
+            else { Debug.Log("no"); }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log("muro");
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         if (enemy != null)
         {

@@ -24,6 +24,7 @@ public class RoomListItem : MonoBehaviour
         roomNameText.text = match.name + "(" + match.currentSize + "/" + match.maxSize + ")";
     }
 
+    [System.Obsolete] //test
     public void JoinRoom()
     {
         joinRoomCallback.Invoke(match);

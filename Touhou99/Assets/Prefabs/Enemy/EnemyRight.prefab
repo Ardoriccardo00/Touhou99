@@ -95,9 +95,10 @@ GameObject:
   - component: {fileID: 6741778404498238005}
   - component: {fileID: 6741778404498238030}
   - component: {fileID: 6741778404498238019}
+  - component: {fileID: 6172290786871164087}
   m_Layer: 0
   m_Name: EnemyRight
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,11 +242,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   deathEffect: {fileID: 0}
-  speed: 3
+  moveSpeed: 5
   Direction: right
   timeBetweenMove: 0
   timeToMove: 0
-  spawner: {fileID: 0}
 --- !u!114 &6741778404498238030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,3 +301,15 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &6172290786871164087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6741778404498238055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868f5e21e4b047941ac9e8bbbfa6150f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

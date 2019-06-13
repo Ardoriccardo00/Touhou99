@@ -34,6 +34,7 @@ public class JoinGame : MonoBehaviour
         RefreshRoomList();
     }
 
+    [System.Obsolete] //test
     public void RefreshRoomList()
     {
         nm.matchMaker.ListMatches(0, 20, "", false, 0, 0, OnMatchList);
@@ -83,8 +84,9 @@ public class JoinGame : MonoBehaviour
 
         roomList.Clear();
 
-    }
+    }//a
 
+    [System.Obsolete] //test
     public void JoinRoom(MatchInfoSnapshot _match)
     {
         Debug.Log("joining " + _match.name);
