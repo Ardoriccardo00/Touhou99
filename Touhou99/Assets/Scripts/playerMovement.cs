@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 [Obsolete]
-public class playerMovement : NetworkBehaviour{
-
+public class playerMovement : NetworkBehaviour {
+    //Creare uno script per il network manager in modo che instanzi le 50 arene con id assegnato
+    [Header("Official")]
     [SerializeField]
     private int maxHealth = 500;
 
@@ -29,20 +30,21 @@ public class playerMovement : NetworkBehaviour{
 
     private Camera myCamera;
 
-    [Header ("Arma")]
+    private const string PLAYER_TAG = "Player";
+
+    [Header("Weapon")]
     public Transform firePoint;
-    public Transform firePoint2;
+    public Transform firePoint1;
     public Transform bombFirePoint;
 
     public GameObject bulletPrefab;
     public GameObject bombPrefab;
 
-    [System.Obsolete]
-    public playerMovement player;
-
     public float distance = 100f;
 
-    void Awake()
+    public float fireRate = 0f;
+
+    public void Setup()
     {
         SetDefaults();
     }
@@ -59,52 +61,12 @@ public class playerMovement : NetworkBehaviour{
         bombPower = 0;
         rb = GetComponent<Rigidbody2D>();
     }
-    void FixedUpdate()
+    void Update()
     {
         if (this.isLocalPlayer)
         {
             GetInput();
         }
-    }
-
-    [Client]
-    void Bomb()
-    {
-        Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
-    }
-
-    [Client]
-    void Shoot()
-    {
-        //GameObject bullet1 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        //GameObject bullet2 =  Instantiate(bulletPrefab, firePoint2.position, firePoint2.rotation);
-        Debug.DrawLine(transform.position, transform.position + transform.up);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.position + transform.up * distance, Mathf.Infinity);
-        //if (hit.collider != null)
-        //{
-        //    Debug.Log("hit: " + hit.collider.name);
-        //}
-        if (hit.collider.tag == "Player")
-        {
-            CmdPlayerShot(hit.collider.name);
-        }
-
-        if (hit.collider.tag == "Enemy")
-        {
-            CmdEnemyShot(hit.collider.name);
-        }
-    }
-
-    [Command]
-    void CmdEnemyShot(string _ID)
-    {
-        Debug.Log(_ID + " has been shot");
-    }
-
-    [Command]
-    void CmdPlayerShot(string _ID)
-    {
-        Debug.Log(_ID + " enemy has been shot");
     }
     private void GetInput()
     {
@@ -135,27 +97,80 @@ public class playerMovement : NetworkBehaviour{
             moveSpeed = originalMoveSpeed;
         }
 
-        //Weapon
-        if (Input.GetKeyDown(KeyCode.Z))
+        //weapon
+        if (fireRate <= 0f)
         {
-            if (this.isLocalPlayer)
+            if (Input.GetButtonDown("Fire1"))
             {
                 Shoot();
             }
-
         }
+        else
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                InvokeRepeating("Shoot", 0f, 1f / fireRate);
+            }
+            else if (Input.GetButtonUp("Fire1"))
+            {
+                CancelInvoke("Shoot");
+            }
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (player.bombPower >= 40f)
+            if (bombPower >= 40f)
             {
                 Bomb();
-                player.bombPower = player.bombPower - 40f;
+                bombPower = bombPower - 40f;
             }
             else { Debug.Log("no"); }
         }
     }
 
+    [Client]
+    void Bomb()
+    {
+        Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
+    }
+
+    [Client]
+    void Shoot()
+    {
+        //Debug.Log("shoot");
+        //GameObject bullet1 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        //GameObject bullet2 =  Instantiate(bulletPrefab, firePoint2.position, firePoint2.rotation);
+        Debug.DrawLine(transform.position, transform.position + transform.up);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.position + transform.up * distance, Mathf.Infinity);
+        if (hit.collider != null)
+        {
+            Debug.Log(hit.collider.name);
+        }
+        if (hit.collider.tag == PLAYER_TAG)
+        {
+            CmdPlayerShot(hit.collider.name);
+        }
+
+        //if (hit.collider.tag == "Enemy")
+        //{
+        //    CmdEnemyShot(hit.collider.name);
+        //}
+    }
+
+    [Command]
+    void CmdPlayerShot(string _ID)
+    {
+        Debug.Log(_ID + " has been shot");
+    }
+
+    [Command]
+    void CmdEnemyShot(string _ID)
+    {
+        Debug.Log(_ID + " enemy has been shot");
+    }
+
+    
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
@@ -167,6 +182,7 @@ public class playerMovement : NetworkBehaviour{
         //Instantiate(impactEffect, transform.position, transform.rotation);
     }
 
+    //[ClientRpc]
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -177,10 +193,10 @@ public class playerMovement : NetworkBehaviour{
         }
     }
 
-    void Die()
+    private void Die()
     {
         //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
-        Destroy(gameObject); //go commit die
+        Destroy(gameObject);
     }
 }
 
@@ -295,3 +311,98 @@ public class playerMovement : NetworkBehaviour{
 //    // myCamera.transform.position = transform.position + new Vector3(transform.position.x, transform.position.y, transform.position.z);
 //    //myCamera.transform.SetParent(transform);
 //}
+/*[SerializeField]
+private Behaviour[] disableOnDeath;
+private bool[] wasEnabled;*/
+/*    [SyncVar]
+    private bool _isDead = false;
+    public bool isDead
+    {
+        get { return _isDead; }
+        protected set { _isDead = value; }
+    }*/
+/*    public void SetDefaults()
+    {
+        isDead = false;
+        health = maxHealth;
+
+        for (int i = 0; i < disableOnDeath.Length; i++)
+        {
+            disableOnDeath[i].enabled = wasEnabled[i];
+        }
+
+        Collider _col = GetComponent<Collider>();
+        if (_col != null)
+            _col.enabled = true;
+    }*/
+/*    public void Setup()
+{
+    wasEnabled = new bool[disableOnDeath.Length];
+
+    for (int i = 0; i < wasEnabled.Length; i++)
+    {
+        wasEnabled[i] = disableOnDeath[i].enabled;
+    }
+    SetDefaults();
+}*/
+/*   public void TakeDamage(int damage)
+    {
+        if (isDead)
+            return;
+
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }*/
+/*private void Die()
+    {
+        //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
+        isDead = true;
+
+        for (int i = 0; i < disableOnDeath.Length; i++)
+        {
+            disableOnDeath[i].enabled = false;
+        }
+
+        Collider _col = GetComponent<Collider>();
+        if (_col != null)
+            _col.enabled = false;
+
+        Debug.Log(transform.name + "is dead");
+    }
+*/
+//weapon
+/*if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (this.isLocalPlayer)
+            {
+                Shoot();
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (player.bombPower >= 40f)
+            {
+                Bomb();
+                player.bombPower = player.bombPower - 40f;
+            }
+            else { Debug.Log("no"); }
+        }
+*/
+/*    [Command]
+    void CmdEnemyShot(string _ID)
+    {
+        Debug.Log(_ID + " has been shot");
+    }
+
+    [Command]
+    void CmdPlayerShot(string _ID)
+    {
+        Debug.Log(_ID + " enemy has been shot");
+    }
+*/

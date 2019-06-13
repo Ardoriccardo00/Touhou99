@@ -8,7 +8,7 @@ public class Weapon : NetworkBehaviour
 {
 
     public Transform firePoint;
-    public Transform firePoint2;
+    public Transform firePoint1;
     public Transform bombFirePoint;
 
     public GameObject bulletPrefab;
@@ -16,6 +16,10 @@ public class Weapon : NetworkBehaviour
 
     [System.Obsolete]
     public playerMovement player;
+
+    public float distance = 100f;
+
+    public float fireRate = 0f;
 
     [System.Obsolete]
     void start()
@@ -26,14 +30,29 @@ public class Weapon : NetworkBehaviour
     [System.Obsolete]
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if(fireRate <= 0f)
         {
-            if (this.isLocalPlayer)
+            if (Input.GetButtonDown("Fire1"))
             {
-                Shoot();
+                if (this.isLocalPlayer)
+                {
+                    Shoot();
+                }
+
             }
-            
         }
+        else
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                InvokeRepeating ("Shoot", 0f, 1f/fireRate);
+            }
+            else if (Input.GetButtonDown("Fire1"))
+            {
+                CancelInvoke("Shoot");
+            }
+        }
+        
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -56,11 +75,31 @@ public class Weapon : NetworkBehaviour
     [Client]
     void Shoot()
     {
-        if (!isLocalPlayer)
+        Debug.Log("shoot");
+        //GameObject bullet1 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        //GameObject bullet2 =  Instantiate(bulletPrefab, firePoint2.position, firePoint2.rotation);
+        Debug.DrawLine(transform.position, transform.position + transform.up);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.position + transform.up * distance, Mathf.Infinity);
+        if (hit.collider.tag == "Player")
         {
-            return;
+            CmdPlayerShot(hit.collider.name);
         }
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Instantiate(bulletPrefab, firePoint2.position, firePoint2.rotation);
+
+        if (hit.collider.tag == "Enemy")
+        {
+            CmdEnemyShot(hit.collider.name);
+        }
+    }
+
+    [Command]
+    void CmdEnemyShot(string _ID)
+    {
+        Debug.Log(_ID + " has been shot");
+    }
+
+    [Command]
+    void CmdPlayerShot(string _ID)
+    {
+        Debug.Log(_ID + " enemy has been shot");
     }
 }
