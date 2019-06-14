@@ -24,7 +24,7 @@ public class PlayerSetup : NetworkBehaviour
             AssignRemoteLayer();  
         }
         RegisterPlayer();
-        PositionCamera();
+        //PositionCamera();
     }
 
     void RegisterPlayer()
