@@ -37,16 +37,4 @@ public class projectileBehaviour : NetworkBehaviour
         //Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject); 
     }
-
-    //[Command]
-    //void CmdEnemyShot(string _ID)
-    //{
-    //    Debug.Log(_ID + "has been shot");
-    //}
-
-    //[Command]
-    //void CmdPlayerShot(string _ID)
-    //{
-    //    Debug.Log(_ID + "has been shot");
-    //}
 }

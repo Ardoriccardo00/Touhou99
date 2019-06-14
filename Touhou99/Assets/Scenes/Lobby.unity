@@ -350,6 +350,21 @@ PrefabInstance:
       propertyPath: hosterName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1138141694006286376, guid: 3baf195a074d2644ba51d562cffea3f3,
+        type: 3}
+      propertyPath: roomSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886969536835064862, guid: 3baf195a074d2644ba51d562cffea3f3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791886645312824395, guid: 3baf195a074d2644ba51d562cffea3f3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3baf195a074d2644ba51d562cffea3f3, type: 3}
 --- !u!1 &231199810

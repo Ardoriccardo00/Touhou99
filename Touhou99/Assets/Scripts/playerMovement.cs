@@ -6,7 +6,6 @@ using UnityEngine.Networking;
 
 [Obsolete]
 public class playerMovement : NetworkBehaviour {
-    //Creare uno script per il network manager in modo che instanzi le 50 arene con id assegnato
     [Header("Official")]
     [SerializeField]
     private int maxHealth = 500;
@@ -139,23 +138,24 @@ public class playerMovement : NetworkBehaviour {
     void Shoot()
     {
         //Debug.Log("shoot");
-        //GameObject bullet1 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        //GameObject bullet2 =  Instantiate(bulletPrefab, firePoint2.position, firePoint2.rotation);
-        Debug.DrawLine(transform.position, transform.position + transform.up);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.position + transform.up * distance, Mathf.Infinity);
-        if (hit.collider != null)
-        {
-            Debug.Log(hit.collider.name);
-        }
-        if (hit.collider.tag == PLAYER_TAG)
-        {
-            CmdPlayerShot(hit.collider.name);
-        }
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
 
-        //if (hit.collider.tag == "Enemy")
+        //Debug.DrawLine(firePoint.position, firePoint.position + firePoint.up);
+        //RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.position + firePoint.up * distance, Mathf.Infinity);
+        //if (hit.collider != null)
         //{
-        //    CmdEnemyShot(hit.collider.name);
+        //    Debug.Log(hit.collider.name);
         //}
+        //if (hit.collider.tag == PLAYER_TAG)
+        //{
+        //    CmdPlayerShot(hit.collider.name);
+        //}
+
+        ////if (hit.collider.tag == "Enemy")
+        ////{
+        ////    CmdEnemyShot(hit.collider.name);
+        ////}
     }
 
     [Command]

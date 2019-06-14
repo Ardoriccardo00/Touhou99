@@ -10,13 +10,21 @@ public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
     string remoteLayerName = "RemotePlayer";
+
+    public GameObject cameraPrefab;
+    //private Transform cameraSpawnPoint;
+    public Transform player;
+    private GameObject playerCamera;
+
     void Start()
     {
+        player = GetComponent<Transform>();
         if (!isLocalPlayer)
         {
             AssignRemoteLayer();  
         }
         RegisterPlayer();
+        PositionCamera();
     }
 
     void RegisterPlayer()
@@ -28,5 +36,10 @@ public class PlayerSetup : NetworkBehaviour
     void AssignRemoteLayer()
     {
         gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
+    }
+
+    void PositionCamera()
+    {
+        playerCamera = Instantiate(cameraPrefab, new Vector3(player.position.x, player.position.y, -3), player.rotation);
     }
 }
