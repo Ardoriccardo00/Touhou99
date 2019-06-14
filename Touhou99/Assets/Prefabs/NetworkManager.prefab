@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 450741495165745256}
   - component: {fileID: 450741495165745259}
   - component: {fileID: 1138141694006286376}
+  - component: {fileID: 8301759340469957756}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -154,3 +155,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomSize: 6
   userText: {fileID: 0}
+--- !u!114 &8301759340469957756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450741495165745258}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0d9ce9b7c5ebc428b506d596c33dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arenaPrefab: {fileID: 6131945459548112599, guid: bcc42f68a2cf3b240b33d23d98d5e214,
+    type: 3}
+  cameraPrefab: {fileID: 8938421997919836169, guid: 8c47be8a05e7b134d940bcca1ee300fb,
+    type: 3}
+  posX: 0
+  posY: 0

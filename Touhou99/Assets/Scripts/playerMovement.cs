@@ -11,7 +11,7 @@ public class playerMovement : NetworkBehaviour {
     private int maxHealth = 500;
 
     [SyncVar]
-    private int health;
+    private int currentHealth;
 
     [SyncVar]
     public int kills;
@@ -43,14 +43,16 @@ public class playerMovement : NetworkBehaviour {
 
     public float fireRate = 0f;
 
-    public void Setup()
+    public int damage = 100;
+
+    public void Awake() //cambiare con setup se tutto va male
     {
         SetDefaults();
     }
 
     public void SetDefaults()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
     }
 
     void Start()
@@ -138,30 +140,33 @@ public class playerMovement : NetworkBehaviour {
     void Shoot()
     {
         //Debug.Log("shoot");
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
+        //Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        //Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
 
-        //Debug.DrawLine(firePoint.position, firePoint.position + firePoint.up);
-        //RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.position + firePoint.up * distance, Mathf.Infinity);
-        //if (hit.collider != null)
-        //{
-        //    Debug.Log(hit.collider.name);
-        //}
-        //if (hit.collider.tag == PLAYER_TAG)
-        //{
-        //    CmdPlayerShot(hit.collider.name);
-        //}
+        Debug.DrawLine(firePoint.position, firePoint.position + firePoint.up);
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.position + firePoint.up * distance, Mathf.Infinity);
+        if (hit.collider != null)
+        {
+            Debug.Log(hit.collider.name);
+        }
+        if (hit.collider.tag == PLAYER_TAG)
+        {
+            CmdPlayerShot(hit.collider.name, damage);
+        }
 
-        ////if (hit.collider.tag == "Enemy")
-        ////{
-        ////    CmdEnemyShot(hit.collider.name);
-        ////}
+        if (hit.collider.tag == "Enemy")
+        {
+            CmdEnemyShot(hit.collider.name);
+        }
     }
 
     [Command]
-    void CmdPlayerShot(string _ID)
+    void CmdPlayerShot(string _playerID, int _damage)
     {
-        Debug.Log(_ID + " has been shot");
+        Debug.Log(_playerID + " has been shot");
+
+        playerMovement _player = GameManager.GetPlayer(_playerID);
+        _player.TakeDamage(_damage);
     }
 
     [Command]
@@ -183,11 +188,13 @@ public class playerMovement : NetworkBehaviour {
     }
 
     //[ClientRpc]
-    public void TakeDamage(int damage)
+    public void TakeDamage(int _amount)
     {
-        health -= damage;
+        currentHealth -= _amount;
 
-        if (health <= 0)
+        Debug.Log(transform.name + " now has " + currentHealth + " health ");
+
+        if (currentHealth <= 0)
         {
             Die();
         }

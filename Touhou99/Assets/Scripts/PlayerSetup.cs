@@ -23,14 +23,16 @@ public class PlayerSetup : NetworkBehaviour
         {
             AssignRemoteLayer();  
         }
-        RegisterPlayer();
-        //PositionCamera();
     }
 
-    void RegisterPlayer()
+    public override void OnStartClient()
     {
-        string _ID = "Player " + GetComponent<NetworkIdentity>().netId;
-        transform.name = _ID;
+        base.OnStartClient();
+
+        string _netID = GetComponent<NetworkIdentity>().netId.ToString();
+        playerMovement _player = GetComponent<playerMovement>();
+
+        GameManager.RegisterPlayer(_netID, _player);
     }
 
     void AssignRemoteLayer()
@@ -38,8 +40,8 @@ public class PlayerSetup : NetworkBehaviour
         gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
     }
 
-    void PositionCamera()
+    private void OnDisable()
     {
-        playerCamera = Instantiate(cameraPrefab, new Vector3(player.position.x, player.position.y, -3), player.rotation);
+        GameManager.UnRegisterPlayer(transform.name);
     }
 }
