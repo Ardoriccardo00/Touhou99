@@ -31,6 +31,8 @@ public class playerMovement : NetworkBehaviour {
 
     private const string PLAYER_TAG = "Player";
 
+    private Animator animator;
+
     [Header("Weapon")]
     public Transform firePoint;
     public Transform firePoint1;
@@ -61,6 +63,7 @@ public class playerMovement : NetworkBehaviour {
         originalMoveSpeed = moveSpeed;
         bombPower = 0;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     void Update()
     {
@@ -74,6 +77,7 @@ public class playerMovement : NetworkBehaviour {
         if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
+            //animator.SetFloat("direction", 0.2f);
         }
         if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
         {
@@ -88,6 +92,8 @@ public class playerMovement : NetworkBehaviour {
         {
             rb.velocity = new Vector2(rb.velocity.x, 0f);
         }
+
+        animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -140,8 +146,8 @@ public class playerMovement : NetworkBehaviour {
     void Shoot()
     {
         //Debug.Log("shoot");
-        //Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        //Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
 
         Debug.DrawLine(firePoint.position, firePoint.position + firePoint.up);
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.position + firePoint.up * distance, Mathf.Infinity);
