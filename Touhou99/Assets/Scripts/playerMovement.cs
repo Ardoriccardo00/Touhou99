@@ -31,6 +31,7 @@ public class playerMovement : NetworkBehaviour {
 
     private const string PLAYER_TAG = "Player";
 
+    [SerializeField]
     private Animator animator;
 
     [Header("Weapon")]

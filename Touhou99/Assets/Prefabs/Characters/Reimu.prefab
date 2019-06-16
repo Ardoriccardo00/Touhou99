@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!95 &5894605106330621928
+--- !u!95 &6740665149771057310
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -213,8 +213,7 @@ PrefabInstance:
       propertyPath: m_AssetId.i15
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -5051407584235827274, guid: b8af716ea064bae4c8de68cf5186a520, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8af716ea064bae4c8de68cf5186a520, type: 3}
 --- !u!1 &3442555412545888522 stripped
 GameObject:

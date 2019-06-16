@@ -16,7 +16,7 @@ TagManager:
   - 
   - LocalPlayer
   - RemotePlayer
-  - 
+  - Background
   - 
   - 
   - 
@@ -39,9 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Player
-    uniqueID: 3438839285
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2931839321
+    locked: 0
+  - name: Player
+    uniqueID: 3438839285
     locked: 0
