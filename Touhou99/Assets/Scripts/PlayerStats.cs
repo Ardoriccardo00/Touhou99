@@ -17,7 +17,7 @@ public class PlayerStats : MonoBehaviour
 
     void OnReceivedData(string data)
     {
-        //killCount.text = DataTranslator.DataToKills(data).ToString() + "Kills";
-        //deathCount.text = DataTranslator.DataToDeaths(data).ToString() + "Deaths";
+        killCount.text = DataTranslator.DataToKills(data).ToString() + " Kills";
+        deathCount.text = DataTranslator.DataToDeaths(data).ToString() + " Deaths";
     }
 }

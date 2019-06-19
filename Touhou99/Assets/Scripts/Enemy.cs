@@ -84,6 +84,15 @@ public class Enemy : NetworkBehaviour
         //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
     }
 
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        if (hitInfo.tag != "Enemy")
+        {
+            Destroy(gameObject);
+        }
+            
+    }
+
 }
 
 /*    //Altre variabili

@@ -20,6 +20,11 @@ public class UserAccountManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     public static string LoggedIn_Username { get; protected set; } //stores username once logged in
     private static string LoggedIn_Password = ""; //stores password once logged in
 

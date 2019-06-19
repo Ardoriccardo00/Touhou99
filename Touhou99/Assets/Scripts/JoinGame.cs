@@ -18,6 +18,9 @@ public class JoinGame : MonoBehaviour
     [SerializeField]
     private Transform roomListParent;
 
+    //[SerializeField]
+    //private Text girlError;
+
     [System.Obsolete]
     private NetworkManager nm;
 
@@ -32,29 +35,34 @@ public class JoinGame : MonoBehaviour
         }
 
         RefreshRoomList();
-    }
 
-    [System.Obsolete] //test
+        //girlError.enabled = false;
+    }
     public void RefreshRoomList()
     {
-        nm.matchMaker.ListMatches(0, 20, "", false, 0, 0, OnMatchList);
+        ClearRoomList();
+
+        if (nm.matchMaker == null)
+        {
+            nm.StartMatchMaker();
+        }
+
+        nm.matchMaker.ListMatches(0, 20, "", true, 0, 0, OnMatchList);
         status.text = "Loading...";
     }
 
     [System.Obsolete]
-    public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matches)
+    public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
     {
         status.text = "";
 
-        //if(matchList = null)
-        //{
-        //    status.text = "Couldn't get room list";
-        //    return;
-        //}
+        if (!success || matchList == null)
+        {
+            status.text = "Couldn't get room list.";
+            return;
+        }
 
-        ClearRoomList();
-
-        foreach (MatchInfoSnapshot match in matches)
+        foreach (MatchInfoSnapshot match in matchList)
         {
             GameObject _roomListItemGO = Instantiate(roomListItemPrefab);
             _roomListItemGO.transform.SetParent(roomListParent);
@@ -65,7 +73,6 @@ public class JoinGame : MonoBehaviour
             {
                 _roomListItem.Setup(match, JoinRoom);
             }
-            //bla bla bla tutorial
             roomList.Add(_roomListItemGO);
         }
 
@@ -84,14 +91,19 @@ public class JoinGame : MonoBehaviour
 
         roomList.Clear();
 
-    }//a
+    }
 
-    [System.Obsolete] //test
+    [System.Obsolete]
     public void JoinRoom(MatchInfoSnapshot _match)
     {
-        Debug.Log("joining " + _match.name);
-        nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
-        ClearRoomList();
-        status.text = "Joining...";
+        if(ChooseGirl.girlChosen == true)
+        {
+            Debug.Log("joining " + _match.name);
+            nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
+            ClearRoomList();
+            status.text = "Joining...";
+        }
+
+        //else girlError.enabled = true;
     }
 }

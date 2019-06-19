@@ -13,7 +13,7 @@ public class RoomListItem : MonoBehaviour
     private Text roomNameText;
 
     [System.Obsolete]
-    private MatchInfoSnapshot match;
+    public MatchInfoSnapshot match;
 
     [System.Obsolete]
     public void Setup(MatchInfoSnapshot _match, JoinRoomDelegate _joinRoomCallback)

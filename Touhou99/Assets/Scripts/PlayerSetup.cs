@@ -9,7 +9,14 @@ using UnityEngine.Networking;
 public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
+    Behaviour[] componentsToDisable;
+
+    [SerializeField]
     string remoteLayerName = "RemotePlayer";
+
+    [SerializeField]
+    GameObject playerUIPrefab;
+    private GameObject playerUIInstance;
 
     public GameObject cameraPrefab;
     //private Transform cameraSpawnPoint;
@@ -21,8 +28,12 @@ public class PlayerSetup : NetworkBehaviour
         player = GetComponent<Transform>();
         if (!isLocalPlayer)
         {
+            DisableComponents();
             AssignRemoteLayer();  
         }
+
+        playerUIInstance = Instantiate(playerUIPrefab);
+        playerUIInstance.name = playerUIPrefab.name;
     }
 
     public override void OnStartClient()
@@ -35,6 +46,15 @@ public class PlayerSetup : NetworkBehaviour
         GameManager.RegisterPlayer(_netID, _player);
     }
 
+    void DisableComponents()
+    {
+        for (int i = 0; i < componentsToDisable.Length; i++)
+        {
+            componentsToDisable[i].enabled = false;
+        }
+    }
+
+
     void AssignRemoteLayer()
     {
         gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
@@ -42,6 +62,7 @@ public class PlayerSetup : NetworkBehaviour
 
     private void OnDisable()
     {
+        Destroy(playerUIInstance);
         GameManager.UnRegisterPlayer(transform.name);
     }
 }

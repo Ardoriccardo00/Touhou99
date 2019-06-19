@@ -30,10 +30,6 @@ public class ArenaSpawner : MonoBehaviour
                 arena = Instantiate(arenaPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
                 arena.transform.name = "Arena" + arenaNumber;
 
-                //playerCamera = Instantiate(cameraPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
-                //playerCamera.transform.name = "Camera" + arenaNumber;
-                //playerCamera.transform.parent = arena.transform;
-
                 arenaNumber += 1;
                 posX += 17;
 
@@ -43,8 +39,10 @@ public class ArenaSpawner : MonoBehaviour
         }
     }
 
-    //void SpawnArena()
-    //{
-
-    //}
 }
+
+
+
+/*                //playerCamera = Instantiate(cameraPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
+            //playerCamera.transform.name = "Camera" + arenaNumber;
+            //playerCamera.transform.parent = arena.transform;*/

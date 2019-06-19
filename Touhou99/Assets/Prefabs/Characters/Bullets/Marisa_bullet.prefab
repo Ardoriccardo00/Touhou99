@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3206715318951763702
+--- !u!1001 &5996536915886691525
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -76,12 +76,12 @@ PrefabInstance:
     - target: {fileID: 7625204189543060799, guid: 19fa527f2367a3b478c1c0dd0e658740,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
+      value: 0.6666667
       objectReference: {fileID: 0}
     - target: {fileID: 7625204189543060799, guid: 19fa527f2367a3b478c1c0dd0e658740,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.4375
+      value: 0.29166666
       objectReference: {fileID: 0}
     - target: {fileID: 6855296031980039114, guid: 19fa527f2367a3b478c1c0dd0e658740,
         type: 3}

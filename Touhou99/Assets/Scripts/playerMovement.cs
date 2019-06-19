@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
 
 [Obsolete]
-public class playerMovement : NetworkBehaviour {
+public class playerMovement : NetworkBehaviour { //per ogni giocatoe nel dictionary dei giocatori viene soawnata un'arena
     [Header("Official")]
+
     [SerializeField]
     private int maxHealth = 500;
 
     [SyncVar]
+    [SerializeField]
     private int currentHealth;
 
-    [SyncVar]
     public int kills;
-
-    [SyncVar]
     public int deaths;
 
     private Rigidbody2D rb;
@@ -30,9 +30,12 @@ public class playerMovement : NetworkBehaviour {
     private Camera myCamera;
 
     private const string PLAYER_TAG = "Player";
+    private const string ENEMY_TAG = "Enemy";
 
     [SerializeField]
     private Animator animator;
+
+    private NetworkManager networkManager;
 
     [Header("Weapon")]
     public Transform firePoint;
@@ -65,9 +68,13 @@ public class playerMovement : NetworkBehaviour {
         bombPower = 0;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        networkManager = NetworkManager.singleton;
     }
     void Update()
     {
+        if (PauseMenu.IsOn)
+            return;
+
         if (this.isLocalPlayer)
         {
             GetInput();
@@ -152,34 +159,40 @@ public class playerMovement : NetworkBehaviour {
 
         Debug.DrawLine(firePoint.position, firePoint.position + firePoint.up);
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.position + firePoint.up * distance, Mathf.Infinity);
-        if (hit.collider != null)
+        Debug.DrawLine(firePoint1.position, firePoint1.position + firePoint1.up);
+        RaycastHit2D hit1 = Physics2D.Raycast(firePoint1.position, firePoint1.position + firePoint1.up * distance, Mathf.Infinity);
+        //if (hit.collider != null || hit1.collider != null)
+        //{
+        //    Debug.Log(hit.collider.name);
+        //}
+        if (hit.collider.tag == PLAYER_TAG || hit1.collider.tag == PLAYER_TAG)
         {
-            Debug.Log(hit.collider.name);
-        }
-        if (hit.collider.tag == PLAYER_TAG)
-        {
-            CmdPlayerShot(hit.collider.name, damage);
+            CmdPlayerShot(hit.collider.name, damage, transform.name);
+            CmdPlayerShot(hit1.collider.name, damage, transform.name);
         }
 
-        if (hit.collider.tag == "Enemy")
+        if (hit.collider.tag == ENEMY_TAG || hit1.collider.tag == ENEMY_TAG)
         {
-            CmdEnemyShot(hit.collider.name);
+            CmdEnemyShot(hit.collider.name, damage, transform.name);
+            CmdEnemyShot(hit1.collider.name, damage, transform.name);
         }
     }
 
     [Command]
-    void CmdPlayerShot(string _playerID, int _damage)
+    void CmdPlayerShot(string _playerID, int _damage, string _sourceID)
     {
         Debug.Log(_playerID + " has been shot");
 
         playerMovement _player = GameManager.GetPlayer(_playerID);
-        _player.TakeDamage(_damage);
+        _player.RpcTakeDamage(_damage, _sourceID);
     }
 
     [Command]
-    void CmdEnemyShot(string _ID)
+    void CmdEnemyShot(string _enemyID, int _damage, string _sourceID)
     {
-        Debug.Log(_ID + " enemy has been shot");
+        Debug.Log(_enemyID + " enemy has been shot");
+
+        Destroy(GameObject.Find(_enemyID));
     }
 
     
@@ -188,14 +201,13 @@ public class playerMovement : NetworkBehaviour {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.TakeDamage(100);
-            TakeDamage(100);
+            RpcTakeDamage(100, "Enemy hit");
         }
         //Instantiate(impactEffect, transform.position, transform.rotation);
     }
 
-    //[ClientRpc]
-    public void TakeDamage(int _amount)
+    [ClientRpc]
+    public void RpcTakeDamage(int _amount, string _sourceID)
     {
         currentHealth -= _amount;
 
@@ -203,14 +215,28 @@ public class playerMovement : NetworkBehaviour {
 
         if (currentHealth <= 0)
         {
-            Die();
+            Die(_sourceID);
         }
     }
 
-    private void Die()
+    private void Die(string _sourceID)
     {
+        //playerMovement sourcePlayer = GameManager.GetPlayer(_sourceID);
+        //if(sourcePlayer != null)
+        //{
+        //    sourcePlayer.kills++;
+        //}
+
+        deaths++;
         //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
         Destroy(gameObject);
+        //LeaveRoom();
+    }
+    public void LeaveRoom()
+    {
+        MatchInfo matchInfo = networkManager.matchInfo;
+        networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
+        networkManager.StopHost();
     }
 }
 

@@ -38,9 +38,28 @@ public class enemyBullet : MonoBehaviour
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         playerMovement player = hitInfo.GetComponent<playerMovement>();
 
+        if (hitInfo.tag == "Player")
+        {
+            player.RpcTakeDamage(damage, "Enemy bullet");
+            Destroy(gameObject);
+            //Instantiate(impactEffect, transform.position, transform.rotation);
+        }
+
+        else if (hitInfo.tag == "Arena")
+        {
+            Destroy(gameObject);
+        }
+    }
+}
+
+/*private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        playerMovement player = hitInfo.GetComponent<playerMovement>();
+
         if (player != null)
         {
-            player.TakeDamage(damage);
+            player.RpcTakeDamage(damage, "Enemy bullet");
             Destroy(gameObject);
         }
         else if (enemy != null)
@@ -49,5 +68,4 @@ public class enemyBullet : MonoBehaviour
        
         //Instantiate(impactEffect, transform.position, transform.rotation);
 
-    }
-}
+    }*/

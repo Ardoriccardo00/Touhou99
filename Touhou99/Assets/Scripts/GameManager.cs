@@ -6,8 +6,8 @@ using UnityEngine.Networking;
 public class GameManager : MonoBehaviour
 {
     private const string PLAYER_ID_PREFIX = "Player ";
-    [System.Obsolete]
-    private static Dictionary<string, playerMovement> players = new Dictionary<string, playerMovement>();
+
+    public static Dictionary<string, playerMovement> players = new Dictionary<string, playerMovement>();
 
     [System.Obsolete]
     public static void RegisterPlayer(string _netID, playerMovement _player)

@@ -6,19 +6,23 @@ public class HostGame : MonoBehaviour
 {
 
     [SerializeField]
-    private uint roomSize = 6;
+    private uint roomSize;
     private string roomName;
 
     public static string hosterName;
 
     public Text userText;
-   
+
+    //[SerializeField]
+    //private Text girlError;
+
     [System.Obsolete]
     private NetworkManager nm;
 
     [System.Obsolete]
     void Start()
     {
+        //girlError.enabled = false;
         nm = NetworkManager.singleton;
 
         if(nm.matchMaker == null)
@@ -38,18 +42,17 @@ public class HostGame : MonoBehaviour
         userText.text = _host;
     }
 
-    [System.Obsolete] //test
+    [System.Obsolete]
     public void createRoom()
     {
-        //if(hosterName != "" && hosterName != null)
-        //{
+        if (ChooseGirl.girlChosen == true)
+        {
             if (roomName != "" && roomName != null)
             {
                 Debug.Log("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
                 nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
             }
-        //}
-        //else { Debug.Log("impossibile"); }
-        
+        }
+        //else girlError.enabled = true;
     }
 }
