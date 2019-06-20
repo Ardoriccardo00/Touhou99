@@ -13,26 +13,22 @@ public class EndGame : NetworkBehaviour
     int numberOfPlayers;
 
     [System.Obsolete]
-    NetworkManager nm;
-
-    [System.Obsolete]
     void Start()
     {
-        //nm = FindObjectOfType<NetworkManager>();
-        nm = NetworkManager.singleton;
         gameOverText.enabled = false;
-        numberOfPlayers = nm.numPlayers; 
     }
 
     void Update()
     {
-        Debug.Log("numero giocatori" + nm.numPlayers);
-        //if (numberOfPlayers == 1)
-        //{
-        //    gameOverText.enabled = true;
-        //}
+        numberOfPlayers = NetworkManager.singleton.numPlayers;
 
-        //else
-        //    gameOverText.enabled = false;
+        if (numberOfPlayers == 1)
+        {
+            gameOverText.enabled = true;
+        }
+
+        else
+            gameOverText.enabled = false;
+
     }
 }

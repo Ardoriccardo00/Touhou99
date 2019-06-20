@@ -14,6 +14,7 @@ public class NetworkCustom : NetworkManager
         public int chosenClass;
     }
 
+
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
     {
         NetworkMessage message = extraMessageReader.ReadMessage<NetworkMessage>();

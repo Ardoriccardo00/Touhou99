@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - BombBullet
     - CameraController
     - ChooseGirl
+    - DontDestroy
     - EndGame
     - Enemy
     - EnemySetup
@@ -21,6 +22,7 @@ ScriptsOnlyBuild:
     - PlayerUI
     - RoomListItem
     - RotatingBackground
+    - StartGame
     - UIManager
     - UserAccountManager
     - UserAccount_Lobby
@@ -34,8 +36,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -93,6 +97,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 9226}
+    - Class: 114
+      Script: {instanceID: 9260}
     - Class: 114
       Script: {instanceID: 9302}
     - Class: 114
@@ -154,19 +160,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10194}
     - Class: 114
-      Script: {instanceID: 10468}
+      Script: {instanceID: 10208}
     - Class: 114
-      Script: {instanceID: 10668}
+      Script: {instanceID: 10236}
     - Class: 114
-      Script: {instanceID: 10730}
+      Script: {instanceID: 10288}
     - Class: 114
-      Script: {instanceID: 10870}
+      Script: {instanceID: 10470}
     - Class: 114
-      Script: {instanceID: 10874}
+      Script: {instanceID: 10670}
     - Class: 114
-      Script: {instanceID: 10890}
+      Script: {instanceID: 10732}
     - Class: 114
-      Script: {instanceID: 10924}
+      Script: {instanceID: 10872}
+    - Class: 114
+      Script: {instanceID: 10876}
+    - Class: 114
+      Script: {instanceID: 10894}
+    - Class: 114
+      Script: {instanceID: 10928}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -253,9 +265,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10142}
     - Class: 114
-      Script: {instanceID: 10432}
+      Script: {instanceID: 10434}
     - Class: 114
-      Script: {instanceID: 10476}
+      Script: {instanceID: 10478}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -354,19 +366,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10236}
     - Class: 114
-      Script: {instanceID: 10286}
+      Script: {instanceID: 10252}
     - Class: 114
-      Script: {instanceID: 10468}
+      Script: {instanceID: 10288}
     - Class: 114
-      Script: {instanceID: 10668}
+      Script: {instanceID: 10470}
     - Class: 114
-      Script: {instanceID: 10730}
+      Script: {instanceID: 10670}
     - Class: 114
-      Script: {instanceID: 10874}
+      Script: {instanceID: 10732}
     - Class: 114
       Script: {instanceID: 10876}
     - Class: 114
-      Script: {instanceID: 10890}
+      Script: {instanceID: 10878}
+    - Class: 114
+      Script: {instanceID: 10894}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1130,7 +1144,13 @@ ScriptsOnlyBuild:
     className: NetworkStartPosition
   - hash:
       serializedVersion: 2
-      Hash: 54bcdd360917522fd0d74ea4585e56b7
+      Hash: 3c45afa71cf37719fcce1654d2858056
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartGame
+  - hash:
+      serializedVersion: 2
+      Hash: 8fd30f50aebc53c55bcac7dbc548c675
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ArenaSpawner
@@ -1320,6 +1340,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
+  - hash:
+      serializedVersion: 2
+      Hash: 34adf80c4c498180a500e924e42dad3b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DontDestroy
   - hash:
       serializedVersion: 2
       Hash: 2a2d7b828da8a3c9b45cde8b8c2e6fa1

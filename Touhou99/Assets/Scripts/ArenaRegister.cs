@@ -14,7 +14,7 @@ public class ArenaRegister : NetworkBehaviour
 
     void RegisterArena()
     {
-        string _ID = "Arena " + ArenaSpawner.arenaNumber;
+        string _ID = "Spawn " + ArenaSpawner.spawnNumber;
         transform.name = _ID;
     }
 }
