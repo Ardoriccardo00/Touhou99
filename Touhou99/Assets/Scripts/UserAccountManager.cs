@@ -94,6 +94,9 @@ public class UserAccountManager : MonoBehaviour
 
         if (IsLoggedIn)
         {
+            if (this == null) //eliminare se non funziona
+                return;
+
             //ready to send request
             StartCoroutine(sendGetDataRequest(LoggedIn_Username, LoggedIn_Password, onDataReceived)); //calls function to send get data request
         }

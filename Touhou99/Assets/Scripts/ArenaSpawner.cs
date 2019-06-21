@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 [System.Obsolete]
-public class ArenaSpawner : MonoBehaviour
+public class ArenaSpawner : NetworkBehaviour
 {
     //public GameObject arenaPrefab;
     public GameObject cameraPrefab;
@@ -28,6 +29,9 @@ public class ArenaSpawner : MonoBehaviour
     public static int arenaNumber = 1;
 
     private GameObject arena;
+
+    [SerializeField]
+    private GameObject spawnButton;
 
 
     void Awake()
@@ -54,7 +58,39 @@ public class ArenaSpawner : MonoBehaviour
             posX = 0;
         }
     }
-    public void SpawnArenas()
+    
+    [Command]
+    void CmdSpawnArenas()
+    {
+            GameObject owner = this.gameObject;
+            for (int i = 0; i < 5; i++)
+            {
+                for (int y = 0; y < 5; y++)
+                {
+                    arena = Instantiate(arenaPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
+                    arena.transform.name = "Arena" + arenaNumber;
+                    NetworkServer.Spawn(arena);
+                    //NetworkServer.SpawnWithClientAuthority(arena, owner);
+
+                    arenaNumber += 1;
+                    posX += 17;
+
+                }
+                posY += 20;
+                posX = 0;
+            }
+
+            spawnButton.SetActive(false);   
+    }
+
+}
+
+
+
+/*                //playerCamera = Instantiate(cameraPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
+            //playerCamera.transform.name = "Camera" + arenaNumber;
+            //playerCamera.transform.parent = arena.transform;*/
+/*public void SpawnArenas()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -72,11 +108,4 @@ public class ArenaSpawner : MonoBehaviour
             posX = 0;
         }
     }
-
-}
-
-
-
-/*                //playerCamera = Instantiate(cameraPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
-            //playerCamera.transform.name = "Camera" + arenaNumber;
-            //playerCamera.transform.parent = arena.transform;*/
+*/

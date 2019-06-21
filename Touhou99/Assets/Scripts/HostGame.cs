@@ -41,8 +41,6 @@ public class HostGame : MonoBehaviour
         hosterName = _host;
         userText.text = _host;
     }
-
-    [System.Obsolete]
     public void createRoom()
     {
         if (ChooseGirl.girlChosen == true)

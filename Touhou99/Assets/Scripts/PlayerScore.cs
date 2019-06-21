@@ -6,6 +6,10 @@ using UnityEngine;
 [System.Obsolete]
 public class PlayerScore : MonoBehaviour
 {
+
+    int lastKills = 0;
+    int lastDeaths = 0;
+
     playerMovement player;
     void Start()
     {
@@ -40,21 +44,24 @@ public class PlayerScore : MonoBehaviour
 
     void OnDataReceived(string data)
     {
-        if (player.kills == 0 && player.deaths == 0)
+        if (player.kills <= lastKills && player.deaths <= lastDeaths)
             return;
-
+ 
         int kills = DataTranslator.DataToKills(data);
         int deaths = DataTranslator.DataToDeaths(data);
 
-        int newKills = player.kills + kills;
-        int newDeaths = player.deaths + deaths;
+        int killsSinceLast = player.kills - lastKills;
+        int deathsSinceLast = player.deaths - lastDeaths;
+
+        int newKills = killsSinceLast + kills;
+        int newDeaths = deathsSinceLast + deaths;
 
         string newData = DataTranslator.ValuesToData(newKills, newDeaths);
 
         Debug.Log("Syncing: " + newData);
 
-        player.kills = 0;
-        player.deaths = 0;
+        lastKills = player.kills;
+        lastDeaths = player.deaths;
 
         UserAccountManager.instance.SendData(newData);
     }

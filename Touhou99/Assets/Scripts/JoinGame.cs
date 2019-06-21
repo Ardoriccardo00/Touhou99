@@ -42,6 +42,11 @@ public class JoinGame : MonoBehaviour
     {
         ClearRoomList();
 
+        if(nm.matchMaker == null)
+        {
+            nm.StartMatchMaker();
+        }
+
         if (nm.matchMaker == null)
         {
             nm.StartMatchMaker();
@@ -100,10 +105,36 @@ public class JoinGame : MonoBehaviour
         {
             Debug.Log("joining " + _match.name);
             nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
-            ClearRoomList();
-            status.text = "Joining...";
+            StartCoroutine(WaitForJoin());
         }
 
         //else girlError.enabled = true;
+    }
+
+    IEnumerator WaitForJoin()
+    {
+        ClearRoomList();
+
+        int countdown = 5;
+        while (countdown > 0)
+        {
+            status.text = "Joining...(" + countdown + ")";
+
+            yield return new WaitForSeconds(1);
+
+            countdown--;
+        }
+
+        status.text = "Failed to connect";
+        yield return new WaitForSeconds(1);
+
+        MatchInfo matchInfo = nm.matchInfo;
+        if(matchInfo != null)
+        {
+            nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
+            nm.StopHost();
+        } 
+
+        RefreshRoomList();
     }
 }

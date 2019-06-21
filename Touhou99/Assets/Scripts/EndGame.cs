@@ -21,6 +21,7 @@ public class EndGame : NetworkBehaviour
     void Update()
     {
         numberOfPlayers = NetworkManager.singleton.numPlayers;
+        //Debug.Log(numberOfPlayers);
 
         if (numberOfPlayers == 1)
         {

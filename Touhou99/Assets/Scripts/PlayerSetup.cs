@@ -34,6 +34,25 @@ public class PlayerSetup : NetworkBehaviour
 
         playerUIInstance = Instantiate(playerUIPrefab);
         playerUIInstance.name = playerUIPrefab.name;
+
+        string _username = "loading...";
+        if (UserAccountManager.IsLoggedIn)
+            _username = UserAccountManager.LoggedIn_Username;
+        else
+            _username = transform.name;
+
+        CmdSetUserName(transform.name, _username);
+    }
+
+    [Command]
+    void CmdSetUserName(string playerID, string username)
+    {
+        playerMovement player = GameManager.GetPlayer(playerID);
+        if(player != null)
+        {
+            Debug.Log(username + " Has joined");
+            player.username = username;
+        }
     }
 
     public override void OnStartClient()

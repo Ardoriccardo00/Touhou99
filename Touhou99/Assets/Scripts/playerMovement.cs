@@ -6,15 +6,17 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 
 [Obsolete]
-public class playerMovement : NetworkBehaviour { //per ogni giocatoe nel dictionary dei giocatori viene soawnata un'arena
+public class playerMovement : NetworkBehaviour {
     [Header("Official")]
 
     [SerializeField]
     private int maxHealth = 500;
 
     [SyncVar]
-    [SerializeField]
     private int currentHealth;
+
+    [SyncVar]
+    public string username = "loading...";
 
     public int kills;
     public int deaths;
@@ -230,8 +232,10 @@ public class playerMovement : NetworkBehaviour { //per ogni giocatoe nel diction
         deaths++;
         //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
         Destroy(gameObject);
-        //LeaveRoom();
+        LeaveRoom();
     }
+
+    [Client]
     public void LeaveRoom()
     {
         MatchInfo matchInfo = networkManager.matchInfo;

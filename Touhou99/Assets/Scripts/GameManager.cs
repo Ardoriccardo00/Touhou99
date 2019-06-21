@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class GameManager : MonoBehaviour
     public static playerMovement GetPlayer(string _playerID)
     {
         return players[_playerID];
+    }
+
+    public static playerMovement[] GetAllPlayers()
+    {
+        return players.Values.ToArray();
     }
 
     //private void OnGUI()
