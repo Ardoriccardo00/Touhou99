@@ -47,6 +47,14 @@ public class PlayerUI : MonoBehaviour
         {
             scoreBoard.SetActive(false);
         }
+
+        else if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            foreach (KeyValuePair<string, playerMovement> entry in GameManager.playersAlive)
+            {
+                Debug.Log(GameManager.playersAlive.Count);
+            }
+        }
     }
 
     public void TogglePauseMenu()

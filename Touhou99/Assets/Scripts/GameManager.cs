@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private const string PLAYER_ID_PREFIX = "Player ";
 
     public static Dictionary<string, playerMovement> players = new Dictionary<string, playerMovement>();
+    public static Dictionary<string, playerMovement> playersAlive = new Dictionary<string, playerMovement>();
 
     public delegate void OnPlayerKilledCallBack(string player, string source);
     public OnPlayerKilledCallBack onPlayerKilledCallBack;
@@ -52,19 +53,17 @@ public class GameManager : MonoBehaviour
         return players.Values.ToArray();
     }
 
-    //private void OnGUI()
-    //{
-    //    GUILayout.BeginArea(new Rect(200,200,200,500));
+    public static void AddAlivePlayer(string _netID, playerMovement _player)
+    {
+        string _playerID = PLAYER_ID_PREFIX + _netID;
+        playersAlive.Add(_playerID, _player);
+        _player.transform.name = _playerID;
+        Debug.Log("Aggiunto " + _player + " tra i vivi");
+    }
 
-    //    GUILayout.BeginVertical();
-
-    //    foreach(string _playerID in players.Keys)
-    //    {
-    //        GUILayout.Label(_playerID + "  -  " + players[_playerID].transform.name);
-    //    }
-
-    //    GUILayout.EndVertical();
-
-    //    GUILayout.EndArea();
-    //}
+    public static void RemoveDeadPlayer(string _playerID)
+    {
+        playersAlive.Remove(_playerID);
+        Debug.Log("Rimosso " + _playerID + " tra i vivi");
+    }
 }

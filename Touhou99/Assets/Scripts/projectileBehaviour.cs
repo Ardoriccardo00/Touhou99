@@ -13,7 +13,8 @@ public class projectileBehaviour : NetworkBehaviour
 
     void Start()
     {
-        rb.velocity = transform.up * speed;
+        rb.velocity = transform.right * speed;
+        //transform.rotation = Quaternion.LookRotation(transform.up) * transform.rotation;
     }
 
     private void OnTriggerEnter2D(Collider2D hitInfo)

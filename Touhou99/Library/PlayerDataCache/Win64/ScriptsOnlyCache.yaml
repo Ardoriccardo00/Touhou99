@@ -13,6 +13,8 @@ ScriptsOnlyBuild:
     - GameManager
     - HostGame
     - JoinGame
+    - KillFeedItem
+    - Killfeed
     - LoginMenu
     - NetworkCustom
     - PauseMenu
@@ -24,8 +26,6 @@ ScriptsOnlyBuild:
     - RoomListItem
     - RotatingBackground
     - Scoreboard
-    - StartGame
-    - UIManager
     - UserAccountManager
     - UserAccount_Lobby
     - Weapon
@@ -156,31 +156,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9954}
     - Class: 114
-      Script: {instanceID: 10128}
+      Script: {instanceID: 10068}
     - Class: 114
       Script: {instanceID: 10130}
     - Class: 114
-      Script: {instanceID: 10136}
+      Script: {instanceID: 10132}
     - Class: 114
-      Script: {instanceID: 10174}
+      Script: {instanceID: 10138}
     - Class: 114
-      Script: {instanceID: 10198}
+      Script: {instanceID: 10152}
     - Class: 114
-      Script: {instanceID: 10212}
+      Script: {instanceID: 10178}
     - Class: 114
-      Script: {instanceID: 10240}
+      Script: {instanceID: 10202}
     - Class: 114
-      Script: {instanceID: 10474}
+      Script: {instanceID: 10216}
     - Class: 114
-      Script: {instanceID: 10674}
+      Script: {instanceID: 10244}
     - Class: 114
-      Script: {instanceID: 10736}
+      Script: {instanceID: 10478}
     - Class: 114
-      Script: {instanceID: 10876}
+      Script: {instanceID: 10678}
+    - Class: 114
+      Script: {instanceID: 10740}
     - Class: 114
       Script: {instanceID: 10880}
     - Class: 114
-      Script: {instanceID: 10932}
+      Script: {instanceID: 10884}
+    - Class: 114
+      Script: {instanceID: 10936}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -263,13 +267,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9690}
     - Class: 114
-      Script: {instanceID: 10142}
+      Script: {instanceID: 10144}
     - Class: 114
-      Script: {instanceID: 10146}
+      Script: {instanceID: 10148}
     - Class: 114
-      Script: {instanceID: 10438}
+      Script: {instanceID: 10442}
     - Class: 114
-      Script: {instanceID: 10482}
+      Script: {instanceID: 10486}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -340,6 +344,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9414}
     - Class: 114
+      Script: {instanceID: 9418}
+    - Class: 114
       Script: {instanceID: 9422}
     - Class: 114
       Script: {instanceID: 9426}
@@ -366,29 +372,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9954}
     - Class: 114
-      Script: {instanceID: 10128}
+      Script: {instanceID: 10068}
     - Class: 114
-      Script: {instanceID: 10136}
+      Script: {instanceID: 10130}
     - Class: 114
-      Script: {instanceID: 10174}
+      Script: {instanceID: 10138}
     - Class: 114
-      Script: {instanceID: 10212}
+      Script: {instanceID: 10152}
     - Class: 114
-      Script: {instanceID: 10240}
+      Script: {instanceID: 10178}
     - Class: 114
-      Script: {instanceID: 10292}
+      Script: {instanceID: 10216}
     - Class: 114
-      Script: {instanceID: 10474}
+      Script: {instanceID: 10244}
     - Class: 114
-      Script: {instanceID: 10674}
+      Script: {instanceID: 10296}
     - Class: 114
-      Script: {instanceID: 10736}
+      Script: {instanceID: 10478}
     - Class: 114
-      Script: {instanceID: 10880}
+      Script: {instanceID: 10678}
     - Class: 114
-      Script: {instanceID: 10882}
+      Script: {instanceID: 10740}
     - Class: 114
-      Script: {instanceID: 10898}
+      Script: {instanceID: 10884}
+    - Class: 114
+      Script: {instanceID: 10902}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -912,7 +920,7 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
-      Hash: e5579abe155ea39e23f93829bf273048
+      Hash: b967a5371d3607adc092960fd33a0801
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EndGame
@@ -1074,6 +1082,12 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
+      Hash: 97d2795a7c06d1b03c7026f5118b36d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Killfeed
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
@@ -1126,6 +1140,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UserAccountManager
+  - hash:
+      serializedVersion: 2
+      Hash: 4ce15e99c635d2567873d27549d1f16f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KillFeedItem
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -1350,7 +1370,7 @@ ScriptsOnlyBuild:
     className: HostGame
   - hash:
       serializedVersion: 2
-      Hash: 51ac7e41e5c7192ce092b43970467eb4
+      Hash: 806877d0c749f9ed450d582d0ca4643d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerUI

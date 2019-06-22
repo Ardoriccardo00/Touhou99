@@ -10,26 +10,45 @@ public class EndGame : NetworkBehaviour
 {
     [SerializeField]
     private Text gameOverText;
+
+    [SerializeField]
+    private Button leaveButton;
+
     int numberOfPlayers;
+
+    private NetworkManager networkManager;
 
     [System.Obsolete]
     void Start()
     {
+        networkManager = NetworkManager.singleton;
         gameOverText.enabled = false;
+        leaveButton.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        numberOfPlayers = NetworkManager.singleton.numPlayers;
-        //Debug.Log(numberOfPlayers);
+        numberOfPlayers = GameManager.playersAlive.Count;
 
         if (numberOfPlayers == 1)
         {
             gameOverText.enabled = true;
+            leaveButton.gameObject.SetActive(true);
         }
 
         else
+        {
             gameOverText.enabled = false;
+            leaveButton.gameObject.SetActive(false);
+        }
+            
+    }
 
+    [Client]
+    public void LeaveRoom()
+    {
+        MatchInfo matchInfo = networkManager.matchInfo;
+        networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
+        networkManager.StopHost();
     }
 }

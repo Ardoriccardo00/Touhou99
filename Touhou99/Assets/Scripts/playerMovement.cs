@@ -161,8 +161,10 @@ public class playerMovement : NetworkBehaviour {
     void Shoot()
     {
         //Debug.Log("shoot");
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bullet1 = Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
+         //bullet.transform.Rotate(new Vector3(0, 0, -90));
+         
 
         Debug.DrawLine(firePoint.position, firePoint.position + firePoint.up);
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.position + firePoint.up * distance, Mathf.Infinity);
@@ -238,15 +240,7 @@ public class playerMovement : NetworkBehaviour {
         deaths++;
         //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
         Destroy(gameObject);
-        //LeaveRoom();
-    }
-
-    [Client]
-    public void LeaveRoom()
-    {
-        MatchInfo matchInfo = networkManager.matchInfo;
-        networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
-        networkManager.StopHost();
+        GameManager.RemoveDeadPlayer(transform.name);
     }
 }
 

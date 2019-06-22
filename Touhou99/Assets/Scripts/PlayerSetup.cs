@@ -68,6 +68,7 @@ public class PlayerSetup : NetworkBehaviour
         playerMovement _player = GetComponent<playerMovement>();
 
         GameManager.RegisterPlayer(_netID, _player);
+        GameManager.AddAlivePlayer(_netID, _player);
     }
 
     void DisableComponents()
