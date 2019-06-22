@@ -10,10 +10,15 @@ public class playerMovement : NetworkBehaviour {
     [Header("Official")]
 
     [SerializeField]
-    private int maxHealth = 500;
+    private int maxHealth = 50;
 
     [SyncVar]
     private int currentHealth;
+
+    public int GetHealth()
+    {
+        return currentHealth;
+    }
 
     [SyncVar]
     public string username = "loading...";
@@ -51,9 +56,9 @@ public class playerMovement : NetworkBehaviour {
 
     public float fireRate = 0f;
 
-    public int damage = 100;
+    public int damage = 10;
 
-    public void Awake() //cambiare con setup se tutto va male
+    public void Awake()
     {
         SetDefaults();
     }
@@ -203,7 +208,7 @@ public class playerMovement : NetworkBehaviour {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         if (enemy != null)
         {
-            RpcTakeDamage(100, "Enemy hit");
+            RpcTakeDamage(10, "Enemy hit");
         }
         //Instantiate(impactEffect, transform.position, transform.rotation);
     }
@@ -224,15 +229,16 @@ public class playerMovement : NetworkBehaviour {
     private void Die(string _sourceID)
     {
         //playerMovement sourcePlayer = GameManager.GetPlayer(_sourceID);
-        //if(sourcePlayer != null)
+        //if (sourcePlayer != null)
         //{
         //    sourcePlayer.kills++;
+        //    GameManager.instance.onPlayerKilledCallBack.Invoke(username, sourcePlayer.username);
         //}
 
         deaths++;
         //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
         Destroy(gameObject);
-        LeaveRoom();
+        //LeaveRoom();
     }
 
     [Client]

@@ -3741,6 +3741,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6131945459548112599, guid: bcc42f68a2cf3b240b33d23d98d5e214,
         type: 3}
+    - target: {fileID: 1670850289468588417, guid: 0a922e7a5d9834f43be37abaa077e185,
+        type: 3}
+      propertyPath: characters.Array.data[1]
+      value: 
+      objectReference: {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23,
+        type: 3}
+    - target: {fileID: 1670850289468588417, guid: 0a922e7a5d9834f43be37abaa077e185,
+        type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[9]
+      value: 
+      objectReference: {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 1670850289468588418, guid: 0a922e7a5d9834f43be37abaa077e185, type: 3}
     - {fileID: 2214130180363772353, guid: 0a922e7a5d9834f43be37abaa077e185, type: 3}

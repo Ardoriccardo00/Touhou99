@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  damage: 100
+  damage: 10
   rb: {fileID: 4010676800019323271}
   playerPosition: {fileID: 6547151962391453059, guid: b8af716ea064bae4c8de68cf5186a520,
     type: 3}

@@ -35,6 +35,11 @@ public class PlayerSetup : NetworkBehaviour
         playerUIInstance = Instantiate(playerUIPrefab);
         playerUIInstance.name = playerUIPrefab.name;
 
+        PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
+        if (ui == null)
+            Debug.LogError("no playerUI on playerui prefab");
+        ui.SetPlayer(GetComponent<playerMovement>());
+
         string _username = "loading...";
         if (UserAccountManager.IsLoggedIn)
             _username = UserAccountManager.LoggedIn_Username;
