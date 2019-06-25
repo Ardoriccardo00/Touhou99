@@ -7,7 +7,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6730385099516948102}
+  m_GameObject: {fileID: 3442555412545888522}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b6a5f448d5aa7464ba03aecbe734fdbf, type: 2}
@@ -265,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8af716ea064bae4c8de68cf5186a520, type: 3}
---- !u!1 &6730385099516948102 stripped
+--- !u!1 &3442555412545888522 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8259962898754785055, guid: b8af716ea064bae4c8de68cf5186a520,
     type: 3}

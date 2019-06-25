@@ -15,7 +15,7 @@ public class Wall : MonoBehaviour
 
         if (enemy != null)
         {
-            enemy.TakeDamage(damage);
+            Destroy(enemy);
         }
     }
 }

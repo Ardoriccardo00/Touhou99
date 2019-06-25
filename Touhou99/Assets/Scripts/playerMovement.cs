@@ -160,31 +160,10 @@ public class playerMovement : NetworkBehaviour {
     [Client]
     void Shoot()
     {
-        //Debug.Log("shoot");
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         GameObject bullet1 = Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
-         //bullet.transform.Rotate(new Vector3(0, 0, -90));
-         
-
-        Debug.DrawLine(firePoint.position, firePoint.position + firePoint.up);
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.position + firePoint.up * distance, Mathf.Infinity);
-        Debug.DrawLine(firePoint1.position, firePoint1.position + firePoint1.up);
-        RaycastHit2D hit1 = Physics2D.Raycast(firePoint1.position, firePoint1.position + firePoint1.up * distance, Mathf.Infinity);
-        //if (hit.collider != null || hit1.collider != null)
-        //{
-        //    Debug.Log(hit.collider.name);
-        //}
-        if (hit.collider.tag == PLAYER_TAG || hit1.collider.tag == PLAYER_TAG)
-        {
-            CmdPlayerShot(hit.collider.name, damage, transform.name);
-            CmdPlayerShot(hit1.collider.name, damage, transform.name);
-        }
-
-        if (hit.collider.tag == ENEMY_TAG || hit1.collider.tag == ENEMY_TAG)
-        {
-            CmdEnemyShot(hit.collider.name, damage, transform.name);
-            CmdEnemyShot(hit1.collider.name, damage, transform.name);
-        }
+        Destroy(bullet, 0.5f);
+        Destroy(bullet1, 0.5f);
     }
 
     [Command]
@@ -450,3 +429,34 @@ private bool[] wasEnabled;*/
         Debug.Log(_ID + " enemy has been shot");
     }
 */
+/*void Shoot()
+    {
+        //Debug.Log("shoot");
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bullet1 = Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
+        Destroy(bullet, 3f);
+        Destroy(bullet1, 3f);
+        //bullet.transform.Rotate(new Vector3(0, 0, -90));
+
+
+        //Debug.DrawLine(firePoint.position, firePoint.position + firePoint.up);
+        //RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.position + firePoint.up * distance, Mathf.Infinity);
+        //Debug.DrawLine(firePoint1.position, firePoint1.position + firePoint1.up);
+        //RaycastHit2D hit1 = Physics2D.Raycast(firePoint1.position, firePoint1.position + firePoint1.up * distance, Mathf.Infinity);
+
+        //if (hit.collider != null || hit1.collider != null)
+        //{
+        //    Debug.Log(hit.collider.name);
+        //}
+        //if (hit.collider.tag == PLAYER_TAG || hit1.collider.tag == PLAYER_TAG)
+        //{
+        //    CmdPlayerShot(hit.collider.name, damage, transform.name);
+        //    CmdPlayerShot(hit1.collider.name, damage, transform.name);
+        //}
+
+        //if (hit.collider.tag == ENEMY_TAG || hit1.collider.tag == ENEMY_TAG)
+        //{
+        //    CmdEnemyShot(hit.collider.name, damage, transform.name);
+        //    CmdEnemyShot(hit1.collider.name, damage, transform.name);
+        //}
+    }*/

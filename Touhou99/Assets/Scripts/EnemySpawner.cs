@@ -32,6 +32,7 @@ public class EnemySpawner : NetworkBehaviour
         spawnDelayCounter = spawnDelay;
     }
 
+
     void Update()
     {
 
@@ -67,9 +68,9 @@ public class EnemySpawner : NetworkBehaviour
     }
     void Spawn()
     {
+
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        NetworkServer.Spawn(enemy);
-        //Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);       
+        NetworkServer.Spawn(enemy);       
     }
 }
 

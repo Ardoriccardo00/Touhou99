@@ -8,15 +8,18 @@ public class BombBullet : MonoBehaviour {
     public Rigidbody2D rb;
     private int timeToSurvive = 75;
     //public GameObject impactEffect;
+    float scale = 1f;
     void Start()
     {
-        rb.velocity = transform.up * speed;
+        //rb.velocity = transform.up * speed;
     }
 
     void Update()
     {
+        transform.localScale += new Vector3(scale, scale, scale);
         timeToSurvive--;
         if (timeToSurvive <= 0) { Destroy(gameObject); }
+        scale += 1f;
     }
 
     [System.Obsolete]
@@ -27,9 +30,8 @@ public class BombBullet : MonoBehaviour {
 
         if (enemy != null)
         {
-            enemy.TakeDamage(damage);
-            Debug.Log("Colpito nemico");
-            //Destroy(gameObject);
+            Debug.Log("Colpito nemico con bomba");
+            Destroy(enemy);
         }
         else if (player != null)
         {

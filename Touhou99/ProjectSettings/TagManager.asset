@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Arena
+  - EnemyBullet
+  - Muro
   layers:
   - Default
   - TransparentFX
@@ -43,11 +45,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2931839321
+    locked: 0
   - name: Foreground
     uniqueID: 2444486393
     locked: 0
-  - name: Background
-    uniqueID: 2931839321
+  - name: Enemy
+    uniqueID: 1657684077
     locked: 0
   - name: Player
     uniqueID: 3438839285

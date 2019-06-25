@@ -8,13 +8,16 @@ public class projectileBehaviour : NetworkBehaviour
 {
     public float speed;
     public int damage;
-    public Rigidbody2D rb;
     //public GameObject impactEffect;
 
     void Start()
     {
-        rb.velocity = transform.right * speed;
         //transform.rotation = Quaternion.LookRotation(transform.up) * transform.rotation;
+    }
+
+    private void Update()
+    {
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
@@ -24,16 +27,16 @@ public class projectileBehaviour : NetworkBehaviour
         NetworkIdentity ni = GetComponent<NetworkIdentity>();
         projectileBehaviour pb = GetComponent<projectileBehaviour>();
 
-        if (enemy != null)
+        if (hitInfo.tag == "Enemy")
          {
             player = FindObjectOfType<playerMovement>();
-            enemy.TakeDamage(damage);
             player.bombPower = player.bombPower + UnityEngine.Random.Range(1f, 5f);
             Debug.Log(player.bombPower);
+            Destroy(enemy);
         }
-         else if (player != null)
+         else if (hitInfo.tag == "Muro")
         {
-            Debug.Log("Colpito giocatore");
+            Destroy(gameObject);
         }
         //Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(gameObject); 
