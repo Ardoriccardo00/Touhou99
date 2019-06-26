@@ -30,7 +30,7 @@ public class EndGame : NetworkBehaviour
     {
         numberOfPlayers = GameManager.playersAlive.Count;
 
-        if (numberOfPlayers == 1)
+        if (numberOfPlayers <= 1)
         {
             gameOverText.enabled = true;
             leaveButton.gameObject.SetActive(true);

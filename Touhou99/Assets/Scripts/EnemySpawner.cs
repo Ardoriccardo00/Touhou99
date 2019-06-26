@@ -9,41 +9,43 @@ using UnityEngine.Networking;
 [Obsolete]
 public class EnemySpawner : NetworkBehaviour
 {
-    //Miste
-    public Transform spawnPoint;
+    [Header("Oggetti")]
+    public Transform[] spawnPoints;
     public GameObject enemyPrefab;
-    playerMovement player;
+    private Transform placeToSpawn;
+    Transform spawnerToUse;
 
-    //Timer per lo spawn
-    private float spawnDelay = 1f;
+    [Header("Timers")]
+    private float spawnDelay = 0.5f;
     private float spawnDelayCounter;
-    [SerializeField]
-    public float timeBetweenSpawn;
+    private float timeBetweenSpawn;
     private float timeBetweenSpawnCounter;
     public float enemiesToSpawn;
 
     private int i = 0;
+    private int j;
 
     public override void OnStartServer()
     {
-        player = GameObject.FindObjectOfType<playerMovement>();
-        timeBetweenSpawn = UnityEngine.Random.Range(1f, 5f);
+        timeBetweenSpawn = UnityEngine.Random.Range(1f, 3f);
         timeBetweenSpawnCounter = timeBetweenSpawn;
-        spawnDelayCounter = spawnDelay;
-    }
 
+        spawnDelayCounter = spawnDelay; 
+    }
+    private void Start()
+    {
+        RandomizeSpawner();
+    }
 
     void Update()
     {
-
         if (timeBetweenSpawnCounter > 0)
         {
             timeBetweenSpawnCounter -= Time.deltaTime;
         }
-
         else if (timeBetweenSpawnCounter <= 0)
         {
-            if(i<enemiesToSpawn)
+            if (i < enemiesToSpawn)
             {
                 spawnDelayCounter -= Time.deltaTime;
 
@@ -53,26 +55,38 @@ public class EnemySpawner : NetworkBehaviour
                     spawnDelayCounter = spawnDelay;
                     i++;
                 }
-                
-            }
 
+            }
             if (i >= enemiesToSpawn)
             {
-                timeBetweenSpawn = UnityEngine.Random.Range(1f, 5f);
+                
+                timeBetweenSpawn = UnityEngine.Random.Range(1f, 3f);
                 timeBetweenSpawnCounter = timeBetweenSpawn;
+                RandomizeSpawner();
                 i = 0;
             }
-
         }
-   
     }
+
+
     void Spawn()
     {
-
-        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        NetworkServer.Spawn(enemy);       
+        
+        GameObject enemy = Instantiate(enemyPrefab, spawnerToUse.position, spawnerToUse.rotation);
+        NetworkServer.Spawn(enemy);
+        //Debug.Log("Spawnato nemico");
     }
+
+    void RandomizeSpawner()
+    {
+        j = UnityEngine.Random.Range(0, spawnPoints.Length);
+        spawnerToUse = spawnPoints[j];
+        //Debug.Log(j);
+    }
+
 }
+
+
 
 //private void CheckIfTimeToSpawn()
 //{
@@ -100,3 +114,74 @@ public class EnemySpawner : NetworkBehaviour
 //    Enemy enemy = GetComponent<Enemy>();
 //    spawnDelayCounter = spawnDelay;
 //}
+/*using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
+
+[Obsolete]
+public class EnemySpawner : NetworkBehaviour
+{
+    //Miste
+    public Transform spawnPoint;
+    public GameObject enemyPrefab;
+    playerMovement player;
+
+    //Timer per lo spawn
+    private float spawnDelay = 1f;
+    private float spawnDelayCounter;
+    public float timeBetweenSpawn;
+    private float timeBetweenSpawnCounter;
+    public float enemiesToSpawn;
+
+    private int i = 0;
+
+    public override void OnStartServer()
+    {
+        player = GameObject.FindObjectOfType<playerMovement>();
+        timeBetweenSpawn = UnityEngine.Random.Range(5f, 15f);
+        timeBetweenSpawnCounter = timeBetweenSpawn;
+        spawnDelayCounter = spawnDelay;
+    }
+
+    void Update()
+    {
+        if (timeBetweenSpawnCounter > 0)
+        {
+            timeBetweenSpawnCounter -= Time.deltaTime;
+        }
+        else if (timeBetweenSpawnCounter <= 0)
+        {
+            if (i < enemiesToSpawn)
+            {
+                spawnDelayCounter -= Time.deltaTime;
+
+                if (spawnDelayCounter <= 0)
+                {
+                    Spawn();
+                    spawnDelayCounter = spawnDelay;
+                    i++;
+                }
+
+            }
+            if (i >= enemiesToSpawn)
+            {
+                timeBetweenSpawn = UnityEngine.Random.Range(5f, 10f);
+                timeBetweenSpawnCounter = timeBetweenSpawn;
+                i = 0;
+            }
+        }
+    }
+
+
+    void Spawn()
+    {
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        NetworkServer.Spawn(enemy);
+    }
+
+}
+*/

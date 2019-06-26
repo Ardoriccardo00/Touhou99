@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4237742330016655531}
   - component: {fileID: 9175818124003877500}
   - component: {fileID: 2141597107303701012}
-  - component: {fileID: 4010676800019323271}
   - component: {fileID: 590703575789696301}
   - component: {fileID: -4894749084722480197}
   - component: {fileID: -4859554484684672542}
+  - component: {fileID: 1630851197108572924}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: EnemyBullet
@@ -110,27 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16255748, y: 0.16605604}
   m_EdgeRadius: 0
---- !u!50 &4010676800019323271
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8614196702933975922}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &590703575789696301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,11 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c204c47dd24626f4993a2b1bd0f4d334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   damage: 10
-  rb: {fileID: 4010676800019323271}
-  playerPosition: {fileID: 6547151962391453059, guid: b8af716ea064bae4c8de68cf5186a520,
-    type: 3}
+  rb: {fileID: 1630851197108572924}
 --- !u!114 &-4894749084722480197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +180,24 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!50 &1630851197108572924
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614196702933975922}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

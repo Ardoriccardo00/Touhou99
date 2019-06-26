@@ -24,7 +24,6 @@ ScriptsOnlyBuild:
     - PlayerStats
     - PlayerUI
     - RoomListItem
-    - RotatingBackground
     - Scoreboard
     - UserAccountManager
     - UserAccount_Lobby
@@ -38,10 +37,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -61,6 +58,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
+    com.unity.multiplayer-hlapi.Editor.dll:
+    - UnityEditor.NetworkBehaviourInspector
+    - UnityEditor.NetworkIdentityEditor
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
@@ -99,8 +99,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 9226}
-    - Class: 114
-      Script: {instanceID: 9260}
     - Class: 114
       Script: {instanceID: 9302}
     - Class: 114
@@ -156,35 +154,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9954}
     - Class: 114
-      Script: {instanceID: 10068}
-    - Class: 114
-      Script: {instanceID: 10130}
+      Script: {instanceID: 10070}
     - Class: 114
       Script: {instanceID: 10132}
     - Class: 114
-      Script: {instanceID: 10138}
+      Script: {instanceID: 10134}
     - Class: 114
-      Script: {instanceID: 10152}
+      Script: {instanceID: 10140}
     - Class: 114
-      Script: {instanceID: 10178}
+      Script: {instanceID: 10154}
     - Class: 114
-      Script: {instanceID: 10202}
+      Script: {instanceID: 10180}
     - Class: 114
-      Script: {instanceID: 10216}
+      Script: {instanceID: 10204}
     - Class: 114
-      Script: {instanceID: 10244}
+      Script: {instanceID: 10218}
     - Class: 114
-      Script: {instanceID: 10478}
+      Script: {instanceID: 10246}
     - Class: 114
-      Script: {instanceID: 10678}
+      Script: {instanceID: 10480}
     - Class: 114
-      Script: {instanceID: 10740}
+      Script: {instanceID: 10680}
     - Class: 114
-      Script: {instanceID: 10880}
+      Script: {instanceID: 10742}
     - Class: 114
-      Script: {instanceID: 10884}
+      Script: {instanceID: 10882}
     - Class: 114
-      Script: {instanceID: 10936}
+      Script: {instanceID: 10886}
+    - Class: 114
+      Script: {instanceID: 10938}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -267,13 +265,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9690}
     - Class: 114
-      Script: {instanceID: 10144}
+      Script: {instanceID: 10146}
     - Class: 114
-      Script: {instanceID: 10148}
+      Script: {instanceID: 10150}
     - Class: 114
-      Script: {instanceID: 10442}
+      Script: {instanceID: 10444}
     - Class: 114
-      Script: {instanceID: 10486}
+      Script: {instanceID: 10488}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -328,8 +326,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9226}
     - Class: 114
-      Script: {instanceID: 9260}
-    - Class: 114
       Script: {instanceID: 9302}
     - Class: 114
       Script: {instanceID: 9304}
@@ -372,31 +368,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9954}
     - Class: 114
-      Script: {instanceID: 10068}
+      Script: {instanceID: 10070}
     - Class: 114
-      Script: {instanceID: 10130}
+      Script: {instanceID: 10132}
     - Class: 114
-      Script: {instanceID: 10138}
+      Script: {instanceID: 10140}
     - Class: 114
-      Script: {instanceID: 10152}
+      Script: {instanceID: 10154}
     - Class: 114
-      Script: {instanceID: 10178}
+      Script: {instanceID: 10180}
     - Class: 114
-      Script: {instanceID: 10216}
+      Script: {instanceID: 10218}
     - Class: 114
-      Script: {instanceID: 10244}
+      Script: {instanceID: 10246}
     - Class: 114
-      Script: {instanceID: 10296}
+      Script: {instanceID: 10298}
     - Class: 114
-      Script: {instanceID: 10478}
+      Script: {instanceID: 10480}
     - Class: 114
-      Script: {instanceID: 10678}
+      Script: {instanceID: 10680}
     - Class: 114
-      Script: {instanceID: 10740}
+      Script: {instanceID: 10742}
     - Class: 114
-      Script: {instanceID: 10884}
+      Script: {instanceID: 10886}
     - Class: 114
-      Script: {instanceID: 10902}
+      Script: {instanceID: 10904}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -998,7 +994,7 @@ ScriptsOnlyBuild:
     className: AnalyticsTracker
   - hash:
       serializedVersion: 2
-      Hash: 7bd65d802fa7de0f76ccbf1c24ca2414
+      Hash: d2fa77628f3b731cc15ef0db9eae8dd2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: projectileBehaviour
@@ -1028,7 +1024,7 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: 5d533b5cb781af63d9d7ab16d1f91f6f
+      Hash: c4457ab80952da49fabcb3646ee02811
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
@@ -1056,6 +1052,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Weapon
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Timer
   - hash:
       serializedVersion: 2
       Hash: 4fb767cbbca6ebaf8d8b60566b0d1440
@@ -1172,7 +1174,7 @@ ScriptsOnlyBuild:
     className: SimpleEnemySpawner
   - hash:
       serializedVersion: 2
-      Hash: 2f9450b3bee3efdcc07e447ab678ff32
+      Hash: 02550246a6dcb760ff5aca2925c871c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemySpawner
@@ -1316,7 +1318,7 @@ ScriptsOnlyBuild:
     className: NetworkDiscovery
   - hash:
       serializedVersion: 2
-      Hash: d936a0c83e49e381d3382a652b63700a
+      Hash: 7bd65d802fa7de0f76ccbf1c24ca2414
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: enemyBullet

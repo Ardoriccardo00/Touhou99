@@ -25,7 +25,8 @@ public class Enemy : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         timeBetweenMoveCounter = timeBetweenMove;
-        timeToMoveCounter = timeToMove; 
+        timeToMoveCounter = timeToMove;
+        Destroy(gameObject, 4f);
     }
 
     void Update()
@@ -58,7 +59,7 @@ public class Enemy : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.tag != "Enemy" || hitInfo.tag != "EnemyBullet")
+        if (hitInfo.tag == "Player")
         {
             Destroy(gameObject);
         }

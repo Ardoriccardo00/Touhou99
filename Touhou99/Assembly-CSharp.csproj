@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\SimpleEnemySpawner.cs" />
     <Compile Include="Assets\Scripts\StartGame.cs" />
     <Compile Include="Assets\Scripts\test.cs" />
+    <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\UserAccount_Lobby.cs" />
     <Compile Include="Assets\Scripts\UserAccountManager.cs" />

@@ -10,26 +10,17 @@ public class enemyBullet : MonoBehaviour
     public Rigidbody2D rb;
     private Vector3 moveDirection;
     //public GameObject impactEffect;
-    public Transform playerPosition;
+    private Transform playerPosition;
     [Obsolete]
     playerMovement player;
-    private int timeToSurvive = 150;
 
     [Obsolete]
     void Start()
     {
-        player = GameObject.FindObjectOfType<playerMovement>();
-        if (player != null) { moveDirection = (player.transform.position - transform.position).normalized * speed; }
-        //try{moveDirection = (player.transform.position - transform.position).normalized * speed;}
-        //catch(NullReferenceException) { throw new NullReferenceException("Nemico non trovato"); }
-
+        playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        moveDirection = (playerPosition.transform.position - transform.position).normalized * speed;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
-    }
-
-    void Update()
-    {
-        timeToSurvive--;
-        if (timeToSurvive <= 0) { Destroy(gameObject); }
+        Destroy(gameObject, 3f);
     }
 
     [Obsolete]
