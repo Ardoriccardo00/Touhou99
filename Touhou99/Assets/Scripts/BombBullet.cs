@@ -6,13 +6,9 @@ public class BombBullet : MonoBehaviour {
     public float speed;
     public int damage;
     public Rigidbody2D rb;
-    private int timeToSurvive = 75;
+    private int timeToSurvive = 15;
     //public GameObject impactEffect;
     float scale = 1f;
-    void Start()
-    {
-        //rb.velocity = transform.up * speed;
-    }
 
     void Update()
     {
@@ -31,7 +27,7 @@ public class BombBullet : MonoBehaviour {
         if (enemy != null)
         {
             Debug.Log("Colpito nemico con bomba");
-            Destroy(enemy);
+            Destroy(hitInfo.gameObject);
         }
         else if (player != null)
         {

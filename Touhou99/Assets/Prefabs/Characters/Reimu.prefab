@@ -118,6 +118,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7664280116528014463, guid: 385a3b67d0141b14bbcc10d41c51029c,
         type: 3}
+    - target: {fileID: 3383648522482584679, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: clonePrefab
+      value: 
+      objectReference: {fileID: 7802531291373603246, guid: 666514c51c59df34bb447becec637ddb,
+        type: 3}
     - target: {fileID: 8721164251343191713, guid: b8af716ea064bae4c8de68cf5186a520,
         type: 3}
       propertyPath: m_AssetId.i0

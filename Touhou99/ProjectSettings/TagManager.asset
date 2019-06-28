@@ -8,6 +8,8 @@ TagManager:
   - Arena
   - EnemyBullet
   - Muro
+  - CloneSpawner
+  - Clone
   layers:
   - Default
   - TransparentFX

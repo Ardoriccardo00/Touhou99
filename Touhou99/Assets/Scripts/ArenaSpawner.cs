@@ -33,6 +33,9 @@ public class ArenaSpawner : NetworkBehaviour
     [SerializeField]
     private GameObject spawnButton;
 
+    [SerializeField]
+    private Transform spawnersParent;
+
 
     void Awake()
     {
@@ -51,8 +54,8 @@ public class ArenaSpawner : NetworkBehaviour
             for (int y = 0; y < 20; y++)
             {
                 spawn = Instantiate(spawner, new Vector3(posX, posY, 0), Quaternion.identity);
-                spawn.transform.name = "Spawn" + spawnNumber;
-
+                spawn.transform.name = "Spawn" + spawnNumber;   
+                //assegna al genitore
                 spawnNumber += 1;
                 posX += 17;
 

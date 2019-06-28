@@ -20,19 +20,22 @@ public class Enemy : NetworkBehaviour
 
     public string direction;
 
+    public int currentHealth;
+    private int health = 1;
+
 
     void Start()
     {
+        currentHealth = health;
         rb = GetComponent<Rigidbody2D>();
-        timeBetweenMoveCounter = timeBetweenMove;
-        timeToMoveCounter = timeToMove;
         Destroy(gameObject, 4f);
     }
 
     void Update()
     {
-        timeToMoveCounter -= Time.deltaTime;
         GetUpdate();
+        if (currentHealth <= 0)
+            NetworkServer.Destroy(gameObject);
     }
 
     private void GetUpdate()
@@ -57,14 +60,14 @@ public class Enemy : NetworkBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D hitInfo)
-    {
-        if (hitInfo.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
-            
-    }
+    //private void OnTriggerEnter2D(Collider2D hitInfo)
+    //{
+    //    if (hitInfo.tag == "Player")
+    //    {
+    //        Destroy(gameObject);
+    //    }
+
+    //}
 
 }
 

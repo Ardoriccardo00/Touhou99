@@ -32,6 +32,9 @@ public class playerMovement : NetworkBehaviour {
 
     [SerializeField]
     private float moveSpeed;
+    private float currentMoveSpeed;
+    public float diagonalMoveModifier = 0.75f;
+
     private Vector2 direction;
 
     private Camera myCamera;
@@ -43,6 +46,8 @@ public class playerMovement : NetworkBehaviour {
     private Animator animator;
 
     private NetworkManager networkManager;
+
+    private CloneSpawner cloneSpawner;
 
     [Header("Weapon")]
     public Transform firePoint;
@@ -57,6 +62,8 @@ public class playerMovement : NetworkBehaviour {
     public float fireRate = 0f;
 
     public int damage = 10;
+
+    public GameObject clonePrefab;
 
     public void Awake()
     {
@@ -91,12 +98,12 @@ public class playerMovement : NetworkBehaviour {
     {
         if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
         {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * currentMoveSpeed, rb.velocity.y);
             //animator.SetFloat("direction", 0.2f);
         }
         if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, Input.GetAxisRaw("Vertical") * moveSpeed);
+            rb.velocity = new Vector2(rb.velocity.x, Input.GetAxisRaw("Vertical") * currentMoveSpeed);
         }
 
         if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
@@ -110,13 +117,22 @@ public class playerMovement : NetworkBehaviour {
 
         animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
 
+        if(Mathf.Abs (Input.GetAxisRaw("Horizontal")) > 0.5f && Mathf.Abs (Input.GetAxisRaw("Vertical")) > 0.5f)
+        {
+            currentMoveSpeed = moveSpeed * diagonalMoveModifier;
+        }
+        else
+        {
+            currentMoveSpeed = moveSpeed;
+        }
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveSpeed = 4;
+            currentMoveSpeed = 4;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            moveSpeed = originalMoveSpeed;
+            currentMoveSpeed = originalMoveSpeed;
         }
 
         //weapon
@@ -140,8 +156,8 @@ public class playerMovement : NetworkBehaviour {
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        if (Input.GetKeyDown(KeyCode.X))
+        {          
             if (bombPower >= 40f)
             {
                 Bomb();
@@ -149,12 +165,22 @@ public class playerMovement : NetworkBehaviour {
             }
             else { Debug.Log("no"); }
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CloneMovement cm = GameObject.FindObjectOfType<CloneMovement>();
+            cm.CloneAttack();
+        }
     }
 
     [Client]
     void Bomb()
     {
         Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
+        cloneSpawner = GameObject.FindGameObjectWithTag("CloneSpawner").GetComponent<CloneSpawner>();
+        cloneSpawner.clonePrefab = clonePrefab;
+        cloneSpawner.InstantiateClone();
+        //cloneSpawner.InstantiateClone();
     }
 
     [Client]

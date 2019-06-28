@@ -16,7 +16,7 @@ public class EnemySpawner : NetworkBehaviour
     Transform spawnerToUse;
 
     [Header("Timers")]
-    private float spawnDelay = 0.5f;
+    private float spawnDelay = 0.3f;
     private float spawnDelayCounter;
     private float timeBetweenSpawn;
     private float timeBetweenSpawnCounter;

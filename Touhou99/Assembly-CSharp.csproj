@@ -71,6 +71,8 @@
     <Compile Include="Assets\Scripts\CameraView.cs" />
     <Compile Include="Assets\Scripts\ChangeText.cs" />
     <Compile Include="Assets\Scripts\ChooseGirl.cs" />
+    <Compile Include="Assets\Scripts\CloneMovement.cs" />
+    <Compile Include="Assets\Scripts\CloneSpawner.cs" />
     <Compile Include="Assets\Scripts\DataTranslator.cs" />
     <Compile Include="Assets\Scripts\DontDestroy.cs" />
     <Compile Include="Assets\Scripts\EndGame.cs" />

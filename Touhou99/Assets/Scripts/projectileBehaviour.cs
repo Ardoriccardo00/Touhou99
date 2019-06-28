@@ -22,23 +22,45 @@ public class projectileBehaviour : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
         playerMovement player = hitInfo.GetComponent<playerMovement>();
-        NetworkIdentity ni = GetComponent<NetworkIdentity>();
-        projectileBehaviour pb = GetComponent<projectileBehaviour>();
 
-        if (hitInfo.tag == "Enemy")
-         {
+        if (hitInfo.tag == "Enemy" || hitInfo.tag == "Clone")
+        {
             player = FindObjectOfType<playerMovement>();
-            player.bombPower = player.bombPower + UnityEngine.Random.Range(1f, 5f);
+            player.bombPower = player.bombPower + UnityEngine.Random.Range(1f, 2f);
+
             Debug.Log(player.bombPower);
-            Destroy(enemy);
+
+            if(hitInfo.tag == "Enemy")
+            {
+                Enemy enemy = FindObjectOfType<Enemy>();
+                enemy.currentHealth -= damage;
+            }
+            else if(hitInfo.tag == "Clone")
+            {
+                CloneMovement cloneHit = FindObjectOfType<CloneMovement>();
+                cloneHit.currentHealth -= damage;
+                Debug.Log("vita clone: " + cloneHit.currentHealth);
+            }
+            //NetworkServer.Destroy(hitInfo.gameObject);
+            //Destroy(gameObject);
         }
-         else if (hitInfo.tag == "Muro")
+
+        else if (hitInfo.tag == "Muro" || hitInfo.tag == "Clone")
         {
             Destroy(gameObject);
         }
-        //Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(gameObject); 
+
+        //else if(hitInfo.tag == "Clone")
+        //{
+        //    //CloneMovement cloneHit = FindObjectOfType<CloneMovement>();
+        //    //cloneHit.currentHealth -= damage;
+        //    //Debug.Log("Salute clone: " + cloneHit.currentHealth);
+        //    Debug.Log("clone colpito");
+        //    NetworkServer.Destroy(hitInfo.gameObject);
+        //    Destroy(gameObject);
+        //}
+        //Instantiate(impactEffect, transform.position, transform.rotation); 
+        Destroy(gameObject);
     }
 }
