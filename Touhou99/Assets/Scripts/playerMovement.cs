@@ -10,7 +10,7 @@ public class playerMovement : NetworkBehaviour {
     [Header("Official")]
 
     [SerializeField]
-    private int maxHealth = 50;
+    public int maxHealth = 50;
 
     [SyncVar]
     private int currentHealth;
@@ -18,6 +18,11 @@ public class playerMovement : NetworkBehaviour {
     public int GetHealth()
     {
         return currentHealth;
+    }
+
+    public float GetBombPowerAmount()
+    {
+        return bombPower;
     }
 
     [SyncVar]
@@ -28,6 +33,7 @@ public class playerMovement : NetworkBehaviour {
 
     private Rigidbody2D rb;
     public float bombPower;
+    public float bombPowerMax = 40f;
     private float originalMoveSpeed;
 
     [SerializeField]
@@ -73,13 +79,13 @@ public class playerMovement : NetworkBehaviour {
     public void SetDefaults()
     {
         currentHealth = maxHealth;
+        bombPower = 0f;
     }
 
     void Start()
     {
         //health = maxHealth;
         originalMoveSpeed = moveSpeed;
-        bombPower = 0;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         networkManager = NetworkManager.singleton;
@@ -93,6 +99,9 @@ public class playerMovement : NetworkBehaviour {
         {
             GetInput();
         }
+
+        if (bombPower >= 40f)
+            bombPower = bombPowerMax;
     }
     private void GetInput()
     {

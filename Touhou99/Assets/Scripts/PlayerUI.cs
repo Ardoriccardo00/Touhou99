@@ -17,13 +17,14 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private Sprite[] pictures = new Sprite[3];
 
+    public Slider bombPowerBar;
+
     private playerMovement player;
 
     public void SetPlayer(playerMovement _player)
     {
         player = _player;
     }
-
     private void Start()
     {
         PauseMenu.IsOn = false;
@@ -31,6 +32,10 @@ public class PlayerUI : MonoBehaviour
     private void Update()
     {
         SetHealthAmount(player.GetHealth());
+        SetBombPowerAmount(player.GetBombPowerAmount());
+
+        bombPowerBar.maxValue = player.bombPowerMax;
+        bombPowerBar.value = player.bombPower;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -63,7 +68,10 @@ public class PlayerUI : MonoBehaviour
         PauseMenu.IsOn = pauseMenu.activeSelf;
 
     }
-
+    public void SetBombPowerAmount(float _amount)
+    {
+        bombPowerBar.value = _amount;
+    }
     void SetHealthAmount(float _amount)
     {
         switch (_amount)

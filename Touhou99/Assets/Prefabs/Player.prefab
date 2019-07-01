@@ -69,7 +69,7 @@ Transform:
   m_Children:
   - {fileID: 1710417750642797245}
   - {fileID: 720712603952643188}
-  - {fileID: 2367775793920764767}
+  - {fileID: 2367775793920764795}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -856128011
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2118331171373fe4bb55056b5d6386ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -153,8 +153,10 @@ MonoBehaviour:
   username: loading...
   kills: 0
   deaths: 0
-  bombPower: 40
+  bombPower: 0
+  bombPowerMax: 40
   moveSpeed: 8
+  diagonalMoveModifier: 0.75
   animator: {fileID: 5774516659631564311}
   firePoint: {fileID: 1710417750642797245}
   firePoint1: {fileID: 720712603952643188}
@@ -166,6 +168,7 @@ MonoBehaviour:
   distance: 1000
   fireRate: 10
   damage: 100
+  clonePrefab: {fileID: 0}
 --- !u!114 &-6814792453246056337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c47be8a05e7b134d940bcca1ee300fb, type: 3}
---- !u!4 &2367775793920764767 stripped
+--- !u!4 &2367775793920764795 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8938421997919836174, guid: 8c47be8a05e7b134d940bcca1ee300fb,
     type: 3}
