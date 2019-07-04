@@ -27,7 +27,7 @@ public class projectileBehaviour : NetworkBehaviour
         if (hitInfo.tag == "Enemy" || hitInfo.tag == "Clone")
         {
             player = FindObjectOfType<playerMovement>();
-            player.bombPower = player.bombPower + UnityEngine.Random.Range(1f, 2f);
+            player.bombPower = player.bombPower + UnityEngine.Random.Range(0.1f, 0.5f);
 
             Debug.Log(player.bombPower);
 

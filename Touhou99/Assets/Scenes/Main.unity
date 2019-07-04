@@ -248,6 +248,8 @@ MonoBehaviour:
     type: 3}
   spawnButton: {fileID: 261306898}
   spawnersParent: {fileID: 252780691}
+  arenasContainer: {fileID: 0}
+  spawnsContainer: {fileID: 0}
 --- !u!4 &66180052
 Transform:
   m_ObjectHideFlags: 0
@@ -295,6 +297,36 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!1 &221256026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 221256027}
+  m_Layer: 0
+  m_Name: ArenasContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &221256027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221256026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252780690
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +428,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1177478637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1177478638}
+  m_Layer: 0
+  m_Name: SpawnsContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1177478638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177478637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1390551064
 PrefabInstance:
@@ -906,13 +968,13 @@ PrefabInstance:
         type: 3}
       propertyPath: characters.Array.data[1]
       value: 
-      objectReference: {fileID: 6593998093110205817, guid: 8cabe665a214caa4c9402de82c13bf23,
+      objectReference: {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23,
         type: 3}
     - target: {fileID: 450741495165745256, guid: 3baf195a074d2644ba51d562cffea3f3,
         type: 3}
       propertyPath: m_SpawnPrefabs.Array.data[9]
       value: 
-      objectReference: {fileID: 6593998093110205817, guid: 8cabe665a214caa4c9402de82c13bf23,
+      objectReference: {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23,
         type: 3}
     - target: {fileID: 450741495165745256, guid: 3baf195a074d2644ba51d562cffea3f3,
         type: 3}

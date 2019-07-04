@@ -36,9 +36,14 @@ public class ArenaSpawner : NetworkBehaviour
     [SerializeField]
     private Transform spawnersParent;
 
+    public GameObject arenasContainer;
+    public GameObject spawnsContainer;
+
 
     void Awake()
     {
+        arenasContainer = GameObject.Find("ArenasContainer");
+        spawnsContainer = GameObject.Find("SpawnsContainer");
         SpawnSpawners();
         posX = 0;
         posY = 0;
@@ -46,7 +51,7 @@ public class ArenaSpawner : NetworkBehaviour
 
     private void Update()
     {
-        int numberOfPlayers = GameManager.playersAlive.Count;
+        int numberOfPlayers = GameManager.playersAlive.Count;   
     }
 
     public void SpawnSpawners()
@@ -54,9 +59,10 @@ public class ArenaSpawner : NetworkBehaviour
             for (int y = 0; y < 20; y++)
             {
                 spawn = Instantiate(spawner, new Vector3(posX, posY, 0), Quaternion.identity);
-                spawn.transform.name = "Spawn" + spawnNumber;   
-                //assegna al genitore
-                spawnNumber += 1;
+                spawn.transform.name = "Spawn" + spawnNumber;
+                spawn.transform.parent = spawnsContainer.transform;
+
+            spawnNumber += 1;
                 posX += 17;
 
             }       
@@ -70,6 +76,7 @@ public class ArenaSpawner : NetworkBehaviour
             arena = Instantiate(arenaPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
             arena.transform.name = "Arena" + arenaNumber;
             NetworkServer.Spawn(arena);
+            arena.transform.parent = arenasContainer.transform;
 
             arenaNumber += 1;
             posX += 17;

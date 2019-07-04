@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2402163958952872545}
   - component: {fileID: -1619320432632493807}
   - component: {fileID: 8240343031161307228}
-  - component: {fileID: 7787204467622303757}
+  - component: {fileID: -1748946070492836861}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -142,9 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 0}
   moveSpeed: 3
-  timeBetweenMove: 0
-  timeToMove: 0
-  direction: 
+  currentHealth: 1
 --- !u!114 &2402163958952872545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 868f5e21e4b047941ac9e8bbbfa6150f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &7787204467622303757
+--- !u!50 &-1748946070492836861
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -232,7 +230,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!1 &1630414692791344094
 GameObject:
   m_ObjectHideFlags: 0

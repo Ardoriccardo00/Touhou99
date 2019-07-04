@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &531694270410291380
+--- !u!1001 &2012780953567401793
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1290405546085826877, guid: d707baaf171b8de41bc167ec7d23fd28,
         type: 3}
       propertyPath: m_Name
-      value: EnemyLeft
+      value: EnemyUpCenterLeft
       objectReference: {fileID: 0}
     - target: {fileID: 2063485863127228427, guid: d707baaf171b8de41bc167ec7d23fd28,
         type: 3}
@@ -67,26 +67,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1802306999913407907, guid: d707baaf171b8de41bc167ec7d23fd28,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -8918034418388536846, guid: 1eef107389c1e784fad986abdd2961f4,
-        type: 3}
-    - target: {fileID: 3812295746426588186, guid: d707baaf171b8de41bc167ec7d23fd28,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.5416667
-      objectReference: {fileID: 0}
-    - target: {fileID: 3812295746426588186, guid: d707baaf171b8de41bc167ec7d23fd28,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.5208333
-      objectReference: {fileID: 0}
     - target: {fileID: 8012694574285763369, guid: d707baaf171b8de41bc167ec7d23fd28,
         type: 3}
       propertyPath: Direction
-      value: left
+      value: down
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012694574285763369, guid: d707baaf171b8de41bc167ec7d23fd28,
+        type: 3}
+      propertyPath: direction
+      value: up center left
       objectReference: {fileID: 0}
     - target: {fileID: 2402163958952872545, guid: d707baaf171b8de41bc167ec7d23fd28,
         type: 3}

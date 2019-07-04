@@ -55,6 +55,12 @@ public class playerMovement : NetworkBehaviour {
 
     private CloneSpawner cloneSpawner;
 
+    [SerializeField]
+    private GameObject hitBoxSprite;
+
+    private bool isHit;
+
+
     [Header("Weapon")]
     public Transform firePoint;
     public Transform firePoint1;
@@ -78,6 +84,7 @@ public class playerMovement : NetworkBehaviour {
 
     public void SetDefaults()
     {
+        isHit = false;
         currentHealth = maxHealth;
         bombPower = 0f;
     }
@@ -89,6 +96,8 @@ public class playerMovement : NetworkBehaviour {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         networkManager = NetworkManager.singleton;
+        //hitBoxSprite = GetComponent(SpriteRenderer);
+        hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
     void Update()
     {
@@ -137,10 +146,12 @@ public class playerMovement : NetworkBehaviour {
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = true;
             currentMoveSpeed = 4;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             currentMoveSpeed = originalMoveSpeed;
         }
 
@@ -232,15 +243,33 @@ public class playerMovement : NetworkBehaviour {
     [ClientRpc]
     public void RpcTakeDamage(int _amount, string _sourceID)
     {
-        currentHealth -= _amount;
-
-        Debug.Log(transform.name + " now has " + currentHealth + " health ");
-
-        if (currentHealth <= 0)
+        if (!isHit)
         {
-            Die(_sourceID);
+            StartCoroutine("HurtColor");
+            currentHealth -= _amount;
+
+            Debug.Log(transform.name + " now has " + currentHealth + " health ");
+
+            if (currentHealth <= 0)
+            {
+                Die(_sourceID);
+            }
         }
+        
     }
+
+    IEnumerator HurtColor()
+    {
+        isHit = true;
+        for (int i = 0; i < 5; i++)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.3f); //Red, Green, Blue, Alpha/Transparency
+            yield return new WaitForSeconds(.2f);
+            GetComponent<SpriteRenderer>().color = Color.white; //White is the default "color" for the sprite, if you're curious.
+            yield return new WaitForSeconds(.2f);
+        }
+        isHit = false;
+    } 
 
     private void Die(string _sourceID)
     {

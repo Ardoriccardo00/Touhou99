@@ -18,9 +18,6 @@ public class JoinGame : MonoBehaviour
     [SerializeField]
     private Transform roomListParent;
 
-    //[SerializeField]
-    //private Text girlError;
-
     [System.Obsolete]
     private NetworkManager nm;
 
@@ -35,8 +32,6 @@ public class JoinGame : MonoBehaviour
         }
 
         RefreshRoomList();
-
-        //girlError.enabled = false;
     }
     public void RefreshRoomList()
     {
@@ -107,8 +102,6 @@ public class JoinGame : MonoBehaviour
             nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
             StartCoroutine(WaitForJoin());
         }
-
-        //else girlError.enabled = true;
     }
 
     IEnumerator WaitForJoin()

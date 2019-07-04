@@ -9,55 +9,85 @@ public class Enemy : NetworkBehaviour
     //Altre variabili
     public GameObject deathEffect;
     private Rigidbody2D rb;
-    public int moveSpeed = 5;
+    public float moveSpeed = 50f;
     playerMovement player;
 
-    //Timer per il movimento
-    public float timeBetweenMove;
-    private float timeBetweenMoveCounter;
-    public float timeToMove;
-    private float timeToMoveCounter;
+    private string direction;
 
-    public string direction;
+    private Vector3 spawnPosition;
 
     public int currentHealth;
     private int health = 1;
 
+    float movement = 0f;
+
+    Vector2 moveDirection;
+    Vector2 moveDirection2;
+
+    float timer = 1f;
+    float timer2 = 3f;
 
     void Start()
     {
+        spawnPosition = this.transform.position;
         currentHealth = health;
         rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 4f);
+        GetPosition();
+        GetMoveDirection();
     }
 
     void Update()
     {
-        GetUpdate();
         if (currentHealth <= 0)
             NetworkServer.Destroy(gameObject);
+
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            Debug.Log(timer);
+            rb.velocity = moveDirection;
+        }
+        else if (timer <= 0)
+        {
+            if (timer2 > 0)
+            {
+                timer2 -= Time.deltaTime;
+                rb.velocity = moveDirection2;
+            }
+
+            if(timer2 <= 0 && timer <= 0)
+            {
+                timer = 1f;
+                timer2 = 3f;
+            }
+        }    
     }
 
-    private void GetUpdate()
+    void GetPosition()
     {
-        rb.velocity = transform.up * moveSpeed;
-        //rb.velocity = Vector2.zero;     
-        //switch (direction)
-        //{
-        //    case "right":
-        //        rb.velocity = new Vector2(1f * moveSpeed, rb.velocity.y);
-        //        break;
-        //    case "left":
-        //        rb.velocity = new Vector2(-1f * moveSpeed, rb.velocity.y);
-        //        break;
-        //    case "up":
-        //        rb.velocity = new Vector2(rb.velocity.x, 1f * moveSpeed);
-        //        break;
-        //    case "down":
-        //        rb.velocity = new Vector2(rb.velocity.x, -1f * moveSpeed);
-        //        break;
-        //}
+        if (spawnPosition == new Vector3(-1, 4.5f, 0))
+            direction = "up center left";
 
+        else if(spawnPosition == new Vector3(1, 4.5f, 0))
+            direction = "up center right";
+    }
+
+    void GetMoveDirection()
+    {
+        switch (direction)
+        {
+            case "null":
+                break;
+            case "up center left":
+                moveDirection = new Vector2(0f, -1f * moveSpeed);
+                moveDirection2 = new Vector2(1f * moveSpeed, 0f);
+                break;
+            case "up center right":
+                moveDirection = new Vector2(0f, -1f * moveSpeed);
+                moveDirection2 = new Vector2(-1f * moveSpeed, 0f);
+                break;
+        }
     }
 
     //private void OnTriggerEnter2D(Collider2D hitInfo)
@@ -155,3 +185,100 @@ public class Enemy : NetworkBehaviour
         Destroy(gameObject);
         //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
     }*/
+
+/*using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+
+[System.Obsolete]
+public class Enemy : NetworkBehaviour
+{
+//Altre variabili
+public GameObject deathEffect;
+private Rigidbody2D rb;
+public float moveSpeed = 50f;
+playerMovement player;
+
+public string direction;
+
+
+public int currentHealth;
+private int health = 1;
+
+float movement = 0f;
+
+Vector3 spawnPostion;
+Vector3 directionToGo;
+
+void Start()
+{
+    currentHealth = health;
+    rb = GetComponent<Rigidbody2D>();
+    Destroy(gameObject, 4f);
+    spawnPostion = this.transform.position;
+}
+
+void Update()
+{
+    GetPosition();
+    //MoveDirection();
+    if (currentHealth <= 0)
+        NetworkServer.Destroy(gameObject);
+}
+private void FixedUpdate()
+{
+
+}
+private void GetPosition()
+{
+    //rb.velocity = transform.up * moveSpeed;
+    //rb.velocity = Vector2.zero; 
+
+    if (spawnPostion == new Vector3(-1, 4.5f, 0))
+    {
+        //GetDirection("up center left");
+
+    }
+    else if (spawnPostion == new Vector3(1, 4.5f, 0))
+    {
+        GetDirection("up center right");
+    }
+    else
+    {
+        //direction = "zero";
+    }
+}
+
+private void GetDirection(string _direction)
+{
+    switch (_direction)
+    {
+        case "up center left":
+            float moveTimer = 1f;
+            if(moveTimer > 0f)
+            {
+                moveTimer -= Time.deltaTime;
+                rb.velocity = new Vector2(rb.velocity.x, Input.GetAxisRaw("Vertical") * moveSpeed);
+            }
+            else if(moveTimer <= 0f)
+            {
+                rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
+            }
+
+            break;
+    }
+}
+
+
+//private void OnTriggerEnter2D(Collider2D hitInfo)
+//{
+//    if (hitInfo.tag == "Player")
+//    {
+//        Destroy(gameObject);
+//    }
+
+//}
+
+}
+*/

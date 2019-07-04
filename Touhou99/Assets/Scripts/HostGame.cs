@@ -13,16 +13,12 @@ public class HostGame : MonoBehaviour
 
     public Text userText;
 
-    //[SerializeField]
-    //private Text girlError;
-
     [System.Obsolete]
     private NetworkManager nm;
 
     [System.Obsolete]
     void Start()
     {
-        //girlError.enabled = false;
         nm = NetworkManager.singleton;
 
         if(nm.matchMaker == null)
@@ -51,6 +47,5 @@ public class HostGame : MonoBehaviour
                 nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
             }
         }
-        //else girlError.enabled = true;
     }
 }
