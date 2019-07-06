@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Database Control Free\Demos\C#\Scripts\DCF_DemoScene_ManagerScript_CSharp.cs" />
+    <Compile Include="Assets\Scripts\Arena.cs" />
     <Compile Include="Assets\Scripts\ArenaRegister.cs" />
     <Compile Include="Assets\Scripts\ArenaSpawner.cs" />
     <Compile Include="Assets\Scripts\BombBullet.cs" />

@@ -29,7 +29,8 @@ public class Enemy : NetworkBehaviour
 
     void Start()
     {
-        spawnPosition = this.transform.position;
+        spawnPosition = this.transform.localPosition;
+        Debug.Log("posizione spawn" + spawnPosition);
         currentHealth = health;
         rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 4f);
@@ -45,7 +46,6 @@ public class Enemy : NetworkBehaviour
         if (timer > 0)
         {
             timer -= Time.deltaTime;
-            Debug.Log(timer);
             rb.velocity = moveDirection;
         }
         else if (timer <= 0)
@@ -71,6 +71,12 @@ public class Enemy : NetworkBehaviour
 
         else if(spawnPosition == new Vector3(1, 4.5f, 0))
             direction = "up center right";
+
+        else if (spawnPosition == new Vector3(-3.5f, 5.555556f, 0))
+            direction = "up left";
+
+        else if (spawnPosition == new Vector3(3.5f, 5.555556f, 0))
+            direction = "up right";
     }
 
     void GetMoveDirection()
@@ -80,13 +86,25 @@ public class Enemy : NetworkBehaviour
             case "null":
                 break;
             case "up center left":
+                //moveDirection = new Vector2(0f, -1f * moveSpeed);
+                //moveDirection2 = new Vector2(1f * moveSpeed, 0f);
+                break;
+            case "up center right":
+                //moveDirection = new Vector2(0f, -1f * moveSpeed);
+                //moveDirection2 = new Vector2(-1f * moveSpeed, 0f);
+                break;
+
+            case "up left":
                 moveDirection = new Vector2(0f, -1f * moveSpeed);
                 moveDirection2 = new Vector2(1f * moveSpeed, 0f);
                 break;
-            case "up center right":
+
+            case "up right":
                 moveDirection = new Vector2(0f, -1f * moveSpeed);
                 moveDirection2 = new Vector2(-1f * moveSpeed, 0f);
                 break;
+
+
         }
     }
 

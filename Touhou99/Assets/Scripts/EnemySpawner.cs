@@ -14,6 +14,7 @@ public class EnemySpawner : NetworkBehaviour
     public GameObject enemyPrefab;
     private Transform placeToSpawn;
     Transform spawnerToUse;
+    Arena theClosestArena;
 
     [Header("Timers")]
     private float spawnDelay = 0.3f;
@@ -30,15 +31,17 @@ public class EnemySpawner : NetworkBehaviour
         timeBetweenSpawn = UnityEngine.Random.Range(1f, 3f);
         timeBetweenSpawnCounter = timeBetweenSpawn;
 
-        spawnDelayCounter = spawnDelay; 
+        spawnDelayCounter = spawnDelay;
     }
     private void Start()
     {
         RandomizeSpawner();
+        FindClosestArena();
     }
 
     void Update()
     {
+
         if (timeBetweenSpawnCounter > 0)
         {
             timeBetweenSpawnCounter -= Time.deltaTime;
@@ -51,7 +54,7 @@ public class EnemySpawner : NetworkBehaviour
 
                 if (spawnDelayCounter <= 0)
                 {
-                    Spawn();
+                    CmdSpawn();
                     spawnDelayCounter = spawnDelay;
                     i++;
                 }
@@ -59,7 +62,7 @@ public class EnemySpawner : NetworkBehaviour
             }
             if (i >= enemiesToSpawn)
             {
-                
+
                 timeBetweenSpawn = UnityEngine.Random.Range(1f, 3f);
                 timeBetweenSpawnCounter = timeBetweenSpawn;
                 RandomizeSpawner();
@@ -68,22 +71,40 @@ public class EnemySpawner : NetworkBehaviour
         }
     }
 
-
-    void Spawn()
+    //[Command]
+    void CmdSpawn()
     {
-        
-        GameObject enemy = Instantiate(enemyPrefab, spawnerToUse.position, spawnerToUse.rotation);
+        GameObject enemy = Instantiate(enemyPrefab, spawnerToUse.localPosition, spawnerToUse.localRotation);
         NetworkServer.Spawn(enemy);
-        //Debug.Log("Spawnato nemico");
+        enemy.transform.parent = theClosestArena.transform;
     }
 
     void RandomizeSpawner()
     {
         j = UnityEngine.Random.Range(0, spawnPoints.Length);
         spawnerToUse = spawnPoints[j];
-        //Debug.Log(j);
     }
 
+    void FindClosestArena()
+    {
+        float distanceClosestArena = Mathf.Infinity;
+        Arena closestArena = null;
+        Arena[] allArenas = GameObject.FindObjectsOfType<Arena>();
+
+        foreach (Arena currentArena in allArenas)
+        {
+            float distanceToArena = (currentArena.transform.position - this.transform.position).sqrMagnitude;
+
+            if (distanceToArena < distanceClosestArena)
+            {
+                distanceClosestArena = distanceToArena;
+                closestArena = currentArena;
+                theClosestArena = closestArena;
+            }
+        }
+
+        Debug.Log("Arena position: " + closestArena.transform.position + "Arena name: " + closestArena.transform.name);
+    }
 }
 
 
