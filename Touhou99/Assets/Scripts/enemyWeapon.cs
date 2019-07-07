@@ -18,7 +18,7 @@ public class enemyWeapon : MonoBehaviour
     void Start()
     {
         player = GameObject.FindObjectOfType<playerMovement>();
-        timeBetweenShoot = Random.Range(1f, 5f);
+        timeBetweenShoot = Random.Range(1f, 2.5f);
         timeBetweenShootCounter = timeBetweenShoot;
         nextFire = Time.time;
     }

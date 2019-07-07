@@ -233,9 +233,9 @@ public class playerMovement : NetworkBehaviour {
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
-        if (enemy != null)
+        if (hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")
         {
-            RpcTakeDamage(10, "Enemy hit");
+            RpcTakeDamage(10, "hit by enemy");
         }
         //Instantiate(impactEffect, transform.position, transform.rotation);
     }

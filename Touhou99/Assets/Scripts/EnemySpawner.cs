@@ -7,13 +7,16 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 [Obsolete]
-public class EnemySpawner : NetworkBehaviour
+public class EnemySpawner : NetworkBehaviour //fai spawnare i nemici al server che ottiene la posizione di tutti gli spanwers
 {
     [Header("Oggetti")]
-    public Transform[] spawnPoints;
+    public List<GameObject[]> spawnPoints = new List<GameObject[]>();
+    //public List<int> list = new List<int>();
+    public GameObject[] spawnPointsUpLeft;
+    public GameObject[] spawnPointsUpRight;
     public GameObject enemyPrefab;
-    private Transform placeToSpawn;
-    Transform spawnerToUse;
+    //private Transform placeToSpawn;
+    GameObject[] spawnerToUse;
     Arena theClosestArena;
 
     [Header("Timers")]
@@ -34,9 +37,22 @@ public class EnemySpawner : NetworkBehaviour
         spawnDelayCounter = spawnDelay;
     }
     private void Start()
-    {
+    { 
+        spawnPointsUpLeft = GameObject.FindGameObjectsWithTag("SpawnPointUpLeft");
+        spawnPointsUpRight = GameObject.FindGameObjectsWithTag("SpawnPointUpRight");
+
+        spawnPoints.Add(spawnPointsUpLeft);
+        //Debug.Log("added element: " + spawnPoints.Count);
+        spawnPoints.Add(spawnPointsUpRight);
+        //Debug.Log("added element: " + spawnPoints.Count);
         RandomizeSpawner();
         FindClosestArena();
+
+        foreach (GameObject[] element in spawnPoints)
+        {
+            Debug.Log(element);
+        }
+
     }
 
     void Update()
@@ -54,7 +70,7 @@ public class EnemySpawner : NetworkBehaviour
 
                 if (spawnDelayCounter <= 0)
                 {
-                    CmdSpawn();
+                    Spawn();
                     spawnDelayCounter = spawnDelay;
                     i++;
                 }
@@ -72,16 +88,21 @@ public class EnemySpawner : NetworkBehaviour
     }
 
     //[Command]
-    void CmdSpawn()
+    void Spawn()
     {
-        GameObject enemy = Instantiate(enemyPrefab, spawnerToUse.localPosition, spawnerToUse.localRotation);
-        NetworkServer.Spawn(enemy);
-        enemy.transform.parent = theClosestArena.transform;
+        foreach(GameObject element in spawnerToUse)
+        {
+            Debug.Log("element " + element + "local position " + element.transform.localPosition + "global position" + element.transform.position);
+            GameObject enemy = Instantiate(enemyPrefab, element.transform.localPosition, element.transform.localRotation);
+            NetworkServer.Spawn(enemy);
+            enemy.transform.parent = theClosestArena.transform;
+        }
+        
     }
 
     void RandomizeSpawner()
     {
-        j = UnityEngine.Random.Range(0, spawnPoints.Length);
+        j = UnityEngine.Random.Range(0, spawnPoints.Count);
         spawnerToUse = spawnPoints[j];
     }
 

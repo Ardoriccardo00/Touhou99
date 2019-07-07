@@ -26,17 +26,7 @@ public class enemyBullet : MonoBehaviour
     [Obsolete]
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
-        playerMovement player = hitInfo.GetComponent<playerMovement>();
-
-        if (hitInfo.tag == "Player")
-        {
-            player.RpcTakeDamage(damage, "Enemy bullet");
-            Destroy(gameObject);
-            //Instantiate(impactEffect, transform.position, transform.rotation);
-        }
-
-        else if (hitInfo.tag == "Arena")
+        if (hitInfo.tag == "Arena")
         {
             Destroy(gameObject);
         }

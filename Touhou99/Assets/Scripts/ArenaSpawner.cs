@@ -30,11 +30,11 @@ public class ArenaSpawner : NetworkBehaviour
 
     private GameObject arena;
 
-    [SerializeField]
-    private GameObject spawnButton;
+    //[SerializeField]
+    //private GameObject spawnButton;
 
-    [SerializeField]
-    private Transform spawnersParent;
+    //[SerializeField]
+    //private Transform spawnersParent;
 
     public GameObject arenasContainer;
     public GameObject spawnsContainer;
@@ -69,7 +69,7 @@ public class ArenaSpawner : NetworkBehaviour
     }
 
     [Command]
-    void CmdSpawnArenas()
+    public void CmdSpawnArenas()
     {
         foreach (KeyValuePair<string, playerMovement> entry in GameManager.playersAlive)
         {

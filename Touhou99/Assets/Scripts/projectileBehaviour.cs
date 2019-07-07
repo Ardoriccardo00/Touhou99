@@ -29,8 +29,6 @@ public class projectileBehaviour : NetworkBehaviour
             player = FindObjectOfType<playerMovement>();
             player.bombPower = player.bombPower + UnityEngine.Random.Range(0.1f, 0.5f);
 
-            Debug.Log(player.bombPower);
-
             if(hitInfo.tag == "Enemy")
             {
                 Enemy enemy = FindObjectOfType<Enemy>();
