@@ -25,6 +25,11 @@ public class PlayerSetup : NetworkBehaviour
 
     void Start()
     {
+        if (isServer)
+            Debug.Log("server");
+        else
+            Debug.Log("Client");
+
         player = GetComponent<Transform>();
         if (!isLocalPlayer)
         {

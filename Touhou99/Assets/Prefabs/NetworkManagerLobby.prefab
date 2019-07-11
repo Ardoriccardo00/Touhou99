@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1670850289468588416}
   - component: {fileID: 1670850289468588417}
-  - component: {fileID: 1670850289468588418}
-  - component: {fileID: 2214130180363772353}
   m_Layer: 0
   m_Name: NetworkManagerLobby
   m_TagString: Untagged
@@ -61,16 +59,18 @@ MonoBehaviour:
   m_OfflineScene: Lobby
   m_OnlineScene: Main
   m_SpawnPrefabs:
-  - {fileID: 7625204189543060798, guid: 19fa527f2367a3b478c1c0dd0e658740, type: 3}
-  - {fileID: 8614196702933975922, guid: 356997888055ee343b6e9437fe21160c, type: 3}
+  - {fileID: 8259962898754785055, guid: b8af716ea064bae4c8de68cf5186a520, type: 3}
+  - {fileID: 3442555412545888522, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
+  - {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23, type: 3}
   - {fileID: 1290405546085826877, guid: d707baaf171b8de41bc167ec7d23fd28, type: 3}
-  - {fileID: 519350734164162524, guid: 2e8e76824837a684d8812d90bf2b1f2b, type: 3}
-  - {fileID: 722445785172366972, guid: 972c36015c687e442ab9c2853d86b0cc, type: 3}
-  - {fileID: 1623692933981649289, guid: c83fdcfaeb835f34eb72868b74d9cdc7, type: 3}
   - {fileID: 4272197064462991318, guid: ca0aa3f4738cc1e43bb21006344212d4, type: 3}
   - {fileID: 4052975380734369846, guid: d81952f0d174cdf49932ae9b48b5d966, type: 3}
-  - {fileID: 3442555412545888522, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
-  - {fileID: 6593998093110205817, guid: 8cabe665a214caa4c9402de82c13bf23, type: 3}
+  - {fileID: 8614196702933975922, guid: 356997888055ee343b6e9437fe21160c, type: 3}
+  - {fileID: 519350734164162524, guid: 2e8e76824837a684d8812d90bf2b1f2b, type: 3}
+  - {fileID: 6131945459548112599, guid: bcc42f68a2cf3b240b33d23d98d5e214, type: 3}
+  - {fileID: 4718840605215000032, guid: 677be7e7389d7824d8ca48f8d8b5dda1, type: 3}
+  - {fileID: 7802531291373603246, guid: 666514c51c59df34bb447becec637ddb, type: 3}
+  - {fileID: 761783265423904730, guid: efd45e34cdb76bc45a546ca788715503, type: 3}
   m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -129,34 +129,4 @@ MonoBehaviour:
   chosenCharacter: 0
   characters:
   - {fileID: 3442555412545888522, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
-  - {fileID: 6593998093110205817, guid: 8cabe665a214caa4c9402de82c13bf23, type: 3}
---- !u!114 &1670850289468588418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670850289468588419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4394a3eef724546f896557197e2d6c44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  showGUI: 1
-  offsetX: 0
-  offsetY: 0
---- !u!114 &2214130180363772353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670850289468588419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1276c7be3734a9941b59358788769b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomSize: 20
-  userText: {fileID: 0}
+  - {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23, type: 3}

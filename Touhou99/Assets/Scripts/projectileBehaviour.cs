@@ -31,8 +31,9 @@ public class projectileBehaviour : NetworkBehaviour
 
             if(hitInfo.tag == "Enemy")
             {
-                Enemy enemy = FindObjectOfType<Enemy>();
-                enemy.currentHealth -= damage;
+                //Enemy enemy = FindObjectOfType<Enemy>();
+                //enemy.currentHealth -= damage;
+                player.CmdEnemyShot(hitInfo.transform.name, this.transform.name); //cambiare this.transform.name con nome giocatore
             }
             else if(hitInfo.tag == "Clone")
             {

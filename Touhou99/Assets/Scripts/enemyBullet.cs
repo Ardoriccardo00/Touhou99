@@ -13,12 +13,14 @@ public class enemyBullet : MonoBehaviour
     private Transform playerPosition;
     [Obsolete]
     playerMovement player;
+    playerMovement theClosestPlayer;
 
     [Obsolete]
     void Start()
     {
-        playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        moveDirection = (playerPosition.transform.position - transform.position).normalized * speed;
+        //playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        FindClosestPlayer();
+        moveDirection = (theClosestPlayer.transform.position - transform.position).normalized * speed;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
         Destroy(gameObject, 3f);
     }
@@ -30,6 +32,27 @@ public class enemyBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void FindClosestPlayer()
+    {
+        float distanceClosestPlayer = Mathf.Infinity;
+        playerMovement closestPlayer = null;
+        playerMovement[] allPlayers = GameObject.FindObjectsOfType<playerMovement>();
+
+        foreach (playerMovement currentArena in allPlayers)
+        {
+            float distanceToPlayer = (currentArena.transform.position - this.transform.position).sqrMagnitude;
+
+            if (distanceToPlayer < distanceClosestPlayer)
+            {
+                distanceClosestPlayer = distanceToPlayer;
+                closestPlayer = currentArena;
+                theClosestPlayer = closestPlayer;
+            }
+        }
+
+        Debug.Log("player position: " + closestPlayer.transform.position + "Arena name: " + closestPlayer.transform.name);
     }
 }
 

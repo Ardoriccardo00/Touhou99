@@ -6,58 +6,38 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-[Obsolete]
-public class EnemySpawner : NetworkBehaviour //fai spawnare i nemici al server che ottiene la posizione di tutti gli spanwers
+public class EnemySpawner : NetworkBehaviour
 {
-    [Header("Oggetti")]
-    public List<GameObject[]> spawnPoints = new List<GameObject[]>();
-    //public List<int> list = new List<int>();
-    public GameObject[] spawnPointsUpLeft;
-    public GameObject[] spawnPointsUpRight;
+    //Miste
+    public Transform spawnPoint;
     public GameObject enemyPrefab;
-    //private Transform placeToSpawn;
-    GameObject[] spawnerToUse;
-    Arena theClosestArena;
+    playerMovement player;
 
-    [Header("Timers")]
-    private float spawnDelay = 0.3f;
+    //Timer per lo spawn
+    private float spawnDelay = 1f;
     private float spawnDelayCounter;
     private float timeBetweenSpawn;
     private float timeBetweenSpawnCounter;
     public float enemiesToSpawn;
 
     private int i = 0;
-    private int j;
 
     public override void OnStartServer()
     {
-        timeBetweenSpawn = UnityEngine.Random.Range(1f, 3f);
-        timeBetweenSpawnCounter = timeBetweenSpawn;
-
+        player = GameObject.FindObjectOfType<playerMovement>();
+        //timeBetweenSpawn = UnityEngine.Random.Range(5f, 15f);
+        //timeBetweenSpawnCounter = timeBetweenSpawn;
         spawnDelayCounter = spawnDelay;
     }
+
     private void Start()
-    { 
-        spawnPointsUpLeft = GameObject.FindGameObjectsWithTag("SpawnPointUpLeft");
-        spawnPointsUpRight = GameObject.FindGameObjectsWithTag("SpawnPointUpRight");
-
-        spawnPoints.Add(spawnPointsUpLeft);
-        //Debug.Log("added element: " + spawnPoints.Count);
-        spawnPoints.Add(spawnPointsUpRight);
-        //Debug.Log("added element: " + spawnPoints.Count);
-        RandomizeSpawner();
-        FindClosestArena();
-
-        foreach (GameObject[] element in spawnPoints)
-        {
-            Debug.Log(element);
-        }
-
+    {
+        timeBetweenSpawn = UnityEngine.Random.Range(5f, 15f);
+        timeBetweenSpawnCounter = timeBetweenSpawn;
     }
 
     void Update()
     {
-
         if (timeBetweenSpawnCounter > 0)
         {
             timeBetweenSpawnCounter -= Time.deltaTime;
@@ -71,60 +51,27 @@ public class EnemySpawner : NetworkBehaviour //fai spawnare i nemici al server c
                 if (spawnDelayCounter <= 0)
                 {
                     Spawn();
+                    Debug.Log("spawn");
                     spawnDelayCounter = spawnDelay;
                     i++;
                 }
 
             }
+
             if (i >= enemiesToSpawn)
             {
-
-                timeBetweenSpawn = UnityEngine.Random.Range(1f, 3f);
+                timeBetweenSpawn = UnityEngine.Random.Range(5f, 10f);
                 timeBetweenSpawnCounter = timeBetweenSpawn;
-                RandomizeSpawner();
                 i = 0;
             }
         }
     }
 
-    //[Command]
+    
     void Spawn()
     {
-        foreach(GameObject element in spawnerToUse)
-        {
-            Debug.Log("element " + element + "local position " + element.transform.localPosition + "global position" + element.transform.position);
-            GameObject enemy = Instantiate(enemyPrefab, element.transform.localPosition, element.transform.localRotation);
-            NetworkServer.Spawn(enemy);
-            enemy.transform.parent = theClosestArena.transform;
-        }
-        
-    }
-
-    void RandomizeSpawner()
-    {
-        j = UnityEngine.Random.Range(0, spawnPoints.Count);
-        spawnerToUse = spawnPoints[j];
-    }
-
-    void FindClosestArena()
-    {
-        float distanceClosestArena = Mathf.Infinity;
-        Arena closestArena = null;
-        Arena[] allArenas = GameObject.FindObjectsOfType<Arena>();
-
-        foreach (Arena currentArena in allArenas)
-        {
-            float distanceToArena = (currentArena.transform.position - this.transform.position).sqrMagnitude;
-
-            if (distanceToArena < distanceClosestArena)
-            {
-                distanceClosestArena = distanceToArena;
-                closestArena = currentArena;
-                theClosestArena = closestArena;
-            }
-        }
-
-        Debug.Log("Arena position: " + closestArena.transform.position + "Arena name: " + closestArena.transform.name);
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        NetworkServer.Spawn(enemy);
     }
 }
 
@@ -227,3 +174,122 @@ public class EnemySpawner : NetworkBehaviour
 
 }
 */
+/*public class EnemySpawner : NetworkBehaviour //fai spawnare i nemici al server che ottiene la posizione di tutti gli spanwers
+{
+    [Header("Oggetti")]
+    public List<GameObject[]> spawnPoints = new List<GameObject[]>();
+    //public List<int> list = new List<int>();
+    public GameObject[] spawnPointsUpLeft;
+    public GameObject[] spawnPointsUpRight;
+    public GameObject enemyPrefab;
+    //private Transform placeToSpawn;
+    GameObject[] spawnerToUse;
+    Arena theClosestArena;
+
+    [Header("Timers")]
+    private float spawnDelay = 0.3f;
+    private float spawnDelayCounter;
+    private float timeBetweenSpawn;
+    private float timeBetweenSpawnCounter;
+    public float enemiesToSpawn;
+
+    private int i = 0;
+    private int j;
+
+    public override void OnStartServer()
+    {
+        timeBetweenSpawn = UnityEngine.Random.Range(1f, 3f);
+        timeBetweenSpawnCounter = timeBetweenSpawn;
+
+        spawnDelayCounter = spawnDelay;
+    }
+    private void Start()
+    { 
+        spawnPointsUpLeft = GameObject.FindGameObjectsWithTag("SpawnPointUpLeft");
+        spawnPointsUpRight = GameObject.FindGameObjectsWithTag("SpawnPointUpRight");
+
+        spawnPoints.Add(spawnPointsUpLeft);
+        Debug.Log("added element: " + spawnPoints.Count);
+        spawnPoints.Add(spawnPointsUpRight);
+        Debug.Log("added element: " + spawnPoints.Count);
+        RandomizeSpawner();
+        FindClosestArena();
+
+        foreach (GameObject[] element in spawnPoints)
+        {
+            Debug.Log(element);
+        }
+
+    }
+
+    void Update()
+    {
+
+        if (timeBetweenSpawnCounter > 0)
+        {
+            timeBetweenSpawnCounter -= Time.deltaTime;
+        }
+        else if (timeBetweenSpawnCounter <= 0)
+        {
+            if (i < enemiesToSpawn)
+            {
+                spawnDelayCounter -= Time.deltaTime;
+
+                if (spawnDelayCounter <= 0)
+                {
+                    Spawn();
+                    spawnDelayCounter = spawnDelay;
+                    i++;
+                }
+
+            }
+            if (i >= enemiesToSpawn)
+            {
+
+                timeBetweenSpawn = UnityEngine.Random.Range(1f, 3f);
+                timeBetweenSpawnCounter = timeBetweenSpawn;
+                RandomizeSpawner();
+                i = 0;
+            }
+        }
+    }
+
+    void Spawn()
+    {
+        foreach(GameObject element in spawnerToUse)
+        {
+            Debug.Log("element " + element + "local position " + element.transform.localPosition + "global position" + element.transform.position);
+            GameObject enemy = Instantiate(enemyPrefab, element.transform.localPosition, element.transform.localRotation);
+            NetworkServer.Spawn(enemy);
+            enemy.transform.parent = theClosestArena.transform;
+        }
+        
+    }
+
+    void RandomizeSpawner()
+    {
+        j = UnityEngine.Random.Range(0, spawnPoints.Count);
+        spawnerToUse = spawnPoints[j];
+    }
+
+    void FindClosestArena()
+    {
+        float distanceClosestArena = Mathf.Infinity;
+        Arena closestArena = null;
+        Arena[] allArenas = GameObject.FindObjectsOfType<Arena>();
+
+        foreach (Arena currentArena in allArenas)
+        {
+            float distanceToArena = (currentArena.transform.position - this.transform.position).sqrMagnitude;
+
+            if (distanceToArena < distanceClosestArena)
+            {
+                distanceClosestArena = distanceToArena;
+                closestArena = currentArena;
+                theClosestArena = closestArena;
+            }
+        }
+
+        Debug.Log("Arena position: " + closestArena.transform.position + "Arena name: " + closestArena.transform.name);
+    }
+}*/

@@ -29,8 +29,6 @@ public class Enemy : NetworkBehaviour
 
     void Start()
     {
-        spawnPosition = this.transform.localPosition;
-        Debug.Log("posizione spawn" + spawnPosition);
         currentHealth = health;
         rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 4f);
@@ -66,16 +64,16 @@ public class Enemy : NetworkBehaviour
 
     void GetPosition()
     {
-        if (spawnPosition == new Vector3(-1, 4.5f, 0))
+        if (this.transform.name.Contains("EnemyUpCenterLeft"))
             direction = "up center left";
 
-        else if(spawnPosition == new Vector3(1, 4.5f, 0))
+        else if(this.transform.name.Contains("EnemyUpCenterRight"))
             direction = "up center right";
 
-        else if (spawnPosition == new Vector3(-3.5f, 5.555556f, 0))
+        else if (this.transform.name.Contains("EnemyUpLeft"))
             direction = "up left";
 
-        else if (spawnPosition == new Vector3(3.5f, 5.555556f, 0))
+        else if (this.transform.name.Contains("EnemyUpRight"))
             direction = "up right";
     }
 

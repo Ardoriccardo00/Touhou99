@@ -196,6 +196,9 @@ public class playerMovement : NetworkBehaviour {
     [Client]
     void Bomb()
     {
+        if (!isLocalPlayer)
+            return;
+
         Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
         cloneSpawner = GameObject.FindGameObjectWithTag("CloneSpawner").GetComponent<CloneSpawner>();
         cloneSpawner.clonePrefab = clonePrefab;
@@ -206,6 +209,9 @@ public class playerMovement : NetworkBehaviour {
     [Client]
     void Shoot()
     {
+        if (!isLocalPlayer)
+            return;
+
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         GameObject bullet1 = Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
         Destroy(bullet, 0.5f);
@@ -222,7 +228,7 @@ public class playerMovement : NetworkBehaviour {
     }
 
     [Command]
-    void CmdEnemyShot(string _enemyID, int _damage, string _sourceID)
+    public void CmdEnemyShot(string _enemyID, string _sourceID)
     {
         Debug.Log(_enemyID + " enemy has been shot");
 
