@@ -45,6 +45,7 @@ public class HostGame : MonoBehaviour
             {
                 Debug.Log("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
                 nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
+
             }
         }
     }

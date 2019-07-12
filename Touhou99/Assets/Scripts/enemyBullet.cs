@@ -51,8 +51,6 @@ public class enemyBullet : MonoBehaviour
                 theClosestPlayer = closestPlayer;
             }
         }
-
-        Debug.Log("player position: " + closestPlayer.transform.position + "Arena name: " + closestPlayer.transform.name);
     }
 }
 

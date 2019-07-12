@@ -50,8 +50,7 @@ public class EnemySpawner : NetworkBehaviour
 
                 if (spawnDelayCounter <= 0)
                 {
-                    Spawn();
-                    Debug.Log("spawn");
+                    CmdSpawn();
                     spawnDelayCounter = spawnDelay;
                     i++;
                 }
@@ -67,8 +66,8 @@ public class EnemySpawner : NetworkBehaviour
         }
     }
 
-    
-    void Spawn()
+    //[Command]
+    void CmdSpawn()
     {
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
         NetworkServer.Spawn(enemy);

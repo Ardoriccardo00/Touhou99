@@ -39,8 +39,7 @@ public class ArenaSpawner : NetworkBehaviour
     public GameObject arenasContainer;
     public GameObject spawnsContainer;
 
-
-    void Awake()
+    public override void OnStartServer()
     {
         arenasContainer = GameObject.Find("ArenasContainer");
         spawnsContainer = GameObject.Find("SpawnsContainer");
@@ -48,6 +47,14 @@ public class ArenaSpawner : NetworkBehaviour
         posX = 0;
         posY = 0;
     }
+    //void Awake()
+    //{
+    //    arenasContainer = GameObject.Find("ArenasContainer");
+    //    spawnsContainer = GameObject.Find("SpawnsContainer");
+    //    SpawnSpawners();
+    //    posX = 0;
+    //    posY = 0;
+    //}
 
     private void Update()
     {
@@ -75,6 +82,7 @@ public class ArenaSpawner : NetworkBehaviour
         {
             arena = Instantiate(arenaPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
             arena.transform.name = "Arena" + arenaNumber;
+            //NetworkServer.SpawnWithClientAuthority(arena, connectionToClient);
             NetworkServer.Spawn(arena);
             arena.transform.parent = arenasContainer.transform;
 

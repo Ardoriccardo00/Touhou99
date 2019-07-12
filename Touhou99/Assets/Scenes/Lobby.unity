@@ -3106,7 +3106,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Logged In As: John Smith'
+  m_Text: 'Logged In As: ...nobody?'
 --- !u!222 &1914008808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3730,11 +3730,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1670850289468588417, guid: 0a922e7a5d9834f43be37abaa077e185,
-        type: 3}
-      propertyPath: m_SpawnPrefabs.Array.size
-      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a922e7a5d9834f43be37abaa077e185, type: 3}

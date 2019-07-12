@@ -105,9 +105,10 @@ public class playerMovement : NetworkBehaviour {
             return;
 
         if (this.isLocalPlayer)
-        {
             GetInput();
-        }
+
+        else
+            return;
 
         if (bombPower >= 40f)
             bombPower = bombPowerMax;
@@ -156,23 +157,28 @@ public class playerMovement : NetworkBehaviour {
         }
 
         //weapon
-        if (fireRate <= 0f)
+        //if (fireRate <= 0f)
+        //{
+        //    if (Input.GetButtonDown("Fire1"))
+        //    {
+        //        CmdShoot();
+        //    }
+        //}
+        //else
+        //{
+        //    if (Input.GetButtonDown("Fire1"))
+        //    {
+        //        InvokeRepeating("Shoot", 0f, 1f / fireRate);
+        //    }
+        //    else if (Input.GetButtonUp("Fire1"))
+        //    {
+        //        CancelInvoke("Shoot");
+        //    }
+        //}
+
+        if (Input.GetButtonDown("Fire1"))
         {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                Shoot();
-            }
-        }
-        else
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                InvokeRepeating("Shoot", 0f, 1f / fireRate);
-            }
-            else if (Input.GetButtonUp("Fire1"))
-            {
-                CancelInvoke("Shoot");
-            }
+            Shoot();
         }
 
 
@@ -214,6 +220,8 @@ public class playerMovement : NetworkBehaviour {
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         GameObject bullet1 = Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
+        NetworkServer.Spawn(bullet);
+        NetworkServer.Spawn(bullet1);
         Destroy(bullet, 0.5f);
         Destroy(bullet1, 0.5f);
     }
@@ -238,7 +246,7 @@ public class playerMovement : NetworkBehaviour {
     
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
+        //Enemy enemy = hitInfo.GetComponent<Enemy>();
         if (hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")
         {
             RpcTakeDamage(10, "hit by enemy");
