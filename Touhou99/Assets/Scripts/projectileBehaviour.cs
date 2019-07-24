@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System;
 
 [System.Obsolete]
 public class projectileBehaviour : NetworkBehaviour
 {
     public float speed;
     public int damage;
+    public string shooter;
+    playerMovement theClosestPlayer;
+    GameObject playerToReward;
     //public GameObject impactEffect;
 
     void Start()
     {
-        //transform.rotation = Quaternion.LookRotation(transform.up) * transform.rotation;
+        playerToReward = GameObject.Find(shooter);
     }
 
     private void Update()
@@ -22,32 +26,29 @@ public class projectileBehaviour : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        playerMovement player = hitInfo.GetComponent<playerMovement>();
 
         if (hitInfo.tag == "Enemy" || hitInfo.tag == "Clone")
         {
-            player = FindObjectOfType<playerMovement>();
-            player.bombPower = player.bombPower + UnityEngine.Random.Range(0.1f, 0.5f);
+            //playerToReward.bombPower = playerToReward.bombPower + UnityEngine.Random.Range(0.5f, 0.8f);
+            playerToReward.GetComponent<playerMovement>().bombPower += UnityEngine.Random.Range(0.5f, 0.8f);
 
-            if(hitInfo.tag == "Enemy")
+            if (hitInfo.tag == "Enemy")
             {
-                //Enemy enemy = FindObjectOfType<Enemy>();
-                //enemy.currentHealth -= damage;
-                player.CmdEnemyShot(hitInfo.transform.name, this.transform.name); //cambiare this.transform.name con nome giocatore
+                NetworkServer.Destroy(hitInfo.gameObject);
             }
+
             else if(hitInfo.tag == "Clone")
             {
                 CloneMovement cloneHit = FindObjectOfType<CloneMovement>();
                 cloneHit.currentHealth -= damage;
                 Debug.Log("vita clone: " + cloneHit.currentHealth);
-            }
-            //NetworkServer.Destroy(hitInfo.gameObject);
-            //Destroy(gameObject);
+            }         
+            NetworkServer.Destroy(gameObject);
         }
 
         else if (hitInfo.tag == "Muro" || hitInfo.tag == "Clone")
         {
-            Destroy(gameObject);
+            NetworkServer.Destroy(gameObject);
         }
 
         //else if(hitInfo.tag == "Clone")

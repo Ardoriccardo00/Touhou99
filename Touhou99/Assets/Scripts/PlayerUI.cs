@@ -24,6 +24,7 @@ public class PlayerUI : MonoBehaviour
     public void SetPlayer(playerMovement _player)
     {
         player = _player;
+        print("BERSAGLIO: " + _player);
     }
     private void Start()
     {
@@ -72,7 +73,7 @@ public class PlayerUI : MonoBehaviour
     {
         bombPowerBar.value = _amount;
     }
-    void SetHealthAmount(float _amount)
+    void SetHealthAmount(int _amount)
     {
         switch (_amount)
         {

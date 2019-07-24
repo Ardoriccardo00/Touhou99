@@ -8,6 +8,11 @@ public class NetworkCustom : NetworkManager
     public int chosenCharacter = 0;
     public GameObject[] characters;
 
+    public GameObject spawner;
+
+   int posX = 0;
+   int posY = 0;
+
     //subclass for sending network messages
     public class NetworkMessage : MessageBase
     {
@@ -17,6 +22,9 @@ public class NetworkCustom : NetworkManager
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
     {
+        GameObject spawnPoint = Instantiate(spawner, new Vector2(posX, posY), Quaternion.identity);
+        posX += 18;
+
         NetworkMessage message = extraMessageReader.ReadMessage<NetworkMessage>();
         int selectedClass = message.chosenClass;
         Debug.Log("server add with message " + selectedClass);

@@ -39,41 +39,41 @@ public class ArenaSpawner : NetworkBehaviour
     public GameObject arenasContainer;
     public GameObject spawnsContainer;
 
-    public override void OnStartServer()
-    {
-        arenasContainer = GameObject.Find("ArenasContainer");
-        spawnsContainer = GameObject.Find("SpawnsContainer");
-        SpawnSpawners();
-        posX = 0;
-        posY = 0;
-    }
-    //void Awake()
+    //public override void OnStartServer()
     //{
     //    arenasContainer = GameObject.Find("ArenasContainer");
     //    spawnsContainer = GameObject.Find("SpawnsContainer");
-    //    SpawnSpawners();
+    //    CmdSpawnSpawners();
     //    posX = 0;
     //    posY = 0;
     //}
+    void Start()
+    {
+        arenasContainer = GameObject.Find("ArenasContainer");
+        spawnsContainer = GameObject.Find("SpawnsContainer");
+        //SpawnSpawners();
+        posX = 0;
+        posY = 0;
+    }
 
     private void Update()
     {
         int numberOfPlayers = GameManager.playersAlive.Count;   
     }
 
-    public void SpawnSpawners()
-    {
-            for (int y = 0; y < 20; y++)
-            {
-                spawn = Instantiate(spawner, new Vector3(posX, posY, 0), Quaternion.identity);
-                spawn.transform.name = "Spawn" + spawnNumber;
-                spawn.transform.parent = spawnsContainer.transform;
+    //public void SpawnSpawners()
+    //{
+    //        for (int y = 0; y < 20; y++)
+    //        {
+    //            spawn = Instantiate(spawner, new Vector3(posX, posY, 0), Quaternion.identity);
+    //            spawn.transform.name = "Spawn" + spawnNumber;
+    //            spawn.transform.parent = spawnsContainer.transform;
 
-            spawnNumber += 1;
-                posX += 17;
+    //        spawnNumber += 1;
+    //            posX += 17;
 
-            }       
-    }
+    //        }       
+    //}
 
     [Command]
     public void CmdSpawnArenas()

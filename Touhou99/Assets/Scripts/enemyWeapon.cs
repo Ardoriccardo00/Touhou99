@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class enemyWeapon : MonoBehaviour
+public class enemyWeapon : NetworkBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -39,7 +40,7 @@ public class enemyWeapon : MonoBehaviour
         {
             if (timeBetweenShootCounter <= 0)
             {
-                Shoot();
+                CmdShoot();
                 timeBetweenShoot = Random.Range(1f, 5f);
                 //Debug.Log(timeBetweenShoot);
                 timeBetweenShootCounter = timeBetweenShoot;
@@ -47,7 +48,8 @@ public class enemyWeapon : MonoBehaviour
         }
     }
 
-    void Shoot()
+    [Command]
+    void CmdShoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         nextFire = Time.time + fireRate;

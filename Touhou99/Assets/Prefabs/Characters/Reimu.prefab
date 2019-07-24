@@ -7,7 +7,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3442555412545888522}
+  m_GameObject: {fileID: 6730385099516948183}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b6a5f448d5aa7464ba03aecbe734fdbf, type: 2}
@@ -116,7 +116,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bulletPrefab
       value: 
-      objectReference: {fileID: 7664280116528014463, guid: 385a3b67d0141b14bbcc10d41c51029c,
+      objectReference: {fileID: 7179997388609053528, guid: 213ad10ca525ff84cbd9a3d22570cba0,
         type: 3}
     - target: {fileID: 3383648522482584679, guid: b8af716ea064bae4c8de68cf5186a520,
         type: 3}
@@ -204,6 +204,16 @@ PrefabInstance:
       propertyPath: m_AssetId.i15
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4678560845095517382, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1391212795557518087, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 339431127972993720, guid: b8af716ea064bae4c8de68cf5186a520,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -269,19 +279,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1391212795557518087, guid: b8af716ea064bae4c8de68cf5186a520,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4678560845095517382, guid: b8af716ea064bae4c8de68cf5186a520,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8af716ea064bae4c8de68cf5186a520, type: 3}
---- !u!1 &3442555412545888522 stripped
+--- !u!1 &6730385099516948183 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8259962898754785055, guid: b8af716ea064bae4c8de68cf5186a520,
     type: 3}

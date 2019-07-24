@@ -162,7 +162,7 @@ Transform:
   m_Children:
   - {fileID: 1710417750642797245}
   - {fileID: 720712603952643188}
-  - {fileID: 2367775793920764778}
+  - {fileID: 6689992763442131859}
   - {fileID: 1391212795557518087}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
   firePoint: {fileID: 1710417750642797245}
   firePoint1: {fileID: 720712603952643188}
   bombFirePoint: {fileID: 5536426307208110057}
-  bulletPrefab: {fileID: 7625204189543060798, guid: 19fa527f2367a3b478c1c0dd0e658740,
+  bulletPrefab: {fileID: 2822029368383740940, guid: c5478d18b1e5b5e45add18db48a72d88,
     type: 3}
   bombPrefab: {fileID: 519350734164162524, guid: 2e8e76824837a684d8812d90bf2b1f2b,
     type: 3}
@@ -516,7 +516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c47be8a05e7b134d940bcca1ee300fb, type: 3}
---- !u!4 &2367775793920764778 stripped
+--- !u!4 &6689992763442131859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8938421997919836174, guid: 8c47be8a05e7b134d940bcca1ee300fb,
     type: 3}

@@ -12,7 +12,7 @@ public class playerMovement : NetworkBehaviour {
     [SerializeField]
     public int maxHealth = 50;
 
-    [SyncVar]
+    [SyncVar (hook = "OnHealthChanged")]
     private int currentHealth;
 
     public int GetHealth()
@@ -32,6 +32,8 @@ public class playerMovement : NetworkBehaviour {
     public int deaths;
 
     private Rigidbody2D rb;
+
+    //[SyncVar]
     public float bombPower;
     public float bombPowerMax = 40f;
     private float originalMoveSpeed;
@@ -84,9 +86,9 @@ public class playerMovement : NetworkBehaviour {
 
     public void SetDefaults()
     {
-        isHit = false;
-        currentHealth = maxHealth;
-        bombPower = 0f;
+            isHit = false;
+            currentHealth = maxHealth;
+            bombPower = 0f;
     }
 
     void Start()
@@ -178,7 +180,7 @@ public class playerMovement : NetworkBehaviour {
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            CmdShoot();
         }
 
 
@@ -212,27 +214,37 @@ public class playerMovement : NetworkBehaviour {
         //cloneSpawner.InstantiateClone();
     }
 
-    [Client]
-    void Shoot()
+    //public void AddBombPower(float amount)
+    //{
+
+    //}
+
+    [Command]
+    void CmdShoot()
     {
         if (!isLocalPlayer)
             return;
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        GameObject bullet1 = Instantiate(bulletPrefab, firePoint1.position, firePoint1.rotation);
+
         NetworkServer.Spawn(bullet);
-        NetworkServer.Spawn(bullet1);
+
+        bullet.GetComponent<projectileBehaviour>().shooter = transform.name;
+
+
         Destroy(bullet, 0.5f);
-        Destroy(bullet1, 0.5f);
     }
 
     [Command]
-    void CmdPlayerShot(string _playerID, int _damage, string _sourceID)
+    void CmdPlayerShot(string _playerID, int _damage)
     {
-        Debug.Log(_playerID + " has been shot");
+        //Debug.Log(_playerID + " has been shot");
 
-        playerMovement _player = GameManager.GetPlayer(_playerID);
-        _player.RpcTakeDamage(_damage, _sourceID);
+        //playerMovement _player = GameManager.GetPlayer(_playerID);
+        //_player.CmdTakeDamage(_damage, _sourceID);
+
+        GameObject go = GameObject.Find(_playerID);
+        go.GetComponent<playerMovement>().CmdTakeDamage(_damage);
     }
 
     [Command]
@@ -243,19 +255,19 @@ public class playerMovement : NetworkBehaviour {
         Destroy(GameObject.Find(_enemyID));
     }
 
-    
+
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         //Enemy enemy = hitInfo.GetComponent<Enemy>();
         if (hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")
         {
-            RpcTakeDamage(10, "hit by enemy");
+            CmdPlayerShot(transform.name, 10);
         }
         //Instantiate(impactEffect, transform.position, transform.rotation);
     }
 
-    [ClientRpc]
-    public void RpcTakeDamage(int _amount, string _sourceID)
+    //[Server] //was ClientRpc
+    public void CmdTakeDamage(int _amount)
     {
         if (!isHit)
         {
@@ -266,10 +278,15 @@ public class playerMovement : NetworkBehaviour {
 
             if (currentHealth <= 0)
             {
-                Die(_sourceID);
+                Die();
             }
         }
         
+    }
+
+    void OnHealthChanged(int hlth)
+    {
+        currentHealth = hlth;
     }
 
     IEnumerator HurtColor()
@@ -285,7 +302,7 @@ public class playerMovement : NetworkBehaviour {
         isHit = false;
     } 
 
-    private void Die(string _sourceID)
+    private void Die()
     {
         //playerMovement sourcePlayer = GameManager.GetPlayer(_sourceID);
         //if (sourcePlayer != null)
