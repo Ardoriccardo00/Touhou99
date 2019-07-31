@@ -54,7 +54,7 @@ public class UserAccountManager : MonoBehaviour
 
         IsLoggedIn = true;
 
-        Debug.Log("Logged in as " + username);
+        Debug.Log(username);
 
         SceneManager.LoadScene(loggedInSceneName);
     }

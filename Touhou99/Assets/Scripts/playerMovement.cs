@@ -9,21 +9,11 @@ using UnityEngine.Networking.Match;
 public class playerMovement : NetworkBehaviour {
     [Header("Official")]
 
-    [SerializeField]
-    public int maxHealth = 50;
+    [SerializeField] public int maxHealth = 50;
 
-    [SyncVar (hook = "OnHealthChanged")]
-    private int currentHealth;
+    [SyncVar (hook = "OnHealthChanged")] private int currentHealth;
 
-    public int GetHealth()
-    {
-        return currentHealth;
-    }
-
-    public float GetBombPowerAmount()
-    {
-        return bombPower;
-    }
+    
 
     [SyncVar]
     public string username = "loading...";
@@ -79,113 +69,67 @@ public class playerMovement : NetworkBehaviour {
 
     public GameObject clonePrefab;
 
-    public void Awake()
-    {
-        SetDefaults();
-    }
-
-    public void SetDefaults()
-    {
-            isHit = false;
-            currentHealth = maxHealth;
-            bombPower = 0f;
-    }
-
+    //public void Awake()
+    //{
+    //    SetDefaults();
+    //}
     void Start()
     {
-        //health = maxHealth;
-        originalMoveSpeed = moveSpeed;
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        networkManager = NetworkManager.singleton;
-        //hitBoxSprite = GetComponent(SpriteRenderer);
-        hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        SetDefaults(); 
     }
+
+
     void Update()
     {
         if (PauseMenu.IsOn)
             return;
 
-        if (this.isLocalPlayer)
-            GetInput();
-
-        else
-            return;
+        if (this.isLocalPlayer) GetInput();
+        else return;
 
         if (bombPower >= 40f)
             bombPower = bombPowerMax;
     }
+
+    public void SetDefaults()
+    {
+        isHit = false;
+        currentHealth = maxHealth;
+        bombPower = 0f;
+        originalMoveSpeed = moveSpeed;
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        networkManager = NetworkManager.singleton;
+        hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public int GetHealth()
+    {
+        return currentHealth;
+    }
+
+    public float GetBombPowerAmount()
+    {
+        return bombPower;
+    }
     private void GetInput()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
-        {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * currentMoveSpeed, rb.velocity.y);
-            //animator.SetFloat("direction", 0.2f);
-        }
-        if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, Input.GetAxisRaw("Vertical") * currentMoveSpeed);
-        }
+        Move();
+        AdjustDiagonalMovement();
+        Focus();
+        GetWeaponInput();
+    }
 
-        if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
-        {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
-        if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
-        }
-
-        animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
-
-        if(Mathf.Abs (Input.GetAxisRaw("Horizontal")) > 0.5f && Mathf.Abs (Input.GetAxisRaw("Vertical")) > 0.5f)
-        {
-            currentMoveSpeed = moveSpeed * diagonalMoveModifier;
-        }
-        else
-        {
-            currentMoveSpeed = moveSpeed;
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            currentMoveSpeed = 4;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            currentMoveSpeed = originalMoveSpeed;
-        }
-
-        //weapon
-        //if (fireRate <= 0f)
-        //{
-        //    if (Input.GetButtonDown("Fire1"))
-        //    {
-        //        CmdShoot();
-        //    }
-        //}
-        //else
-        //{
-        //    if (Input.GetButtonDown("Fire1"))
-        //    {
-        //        InvokeRepeating("Shoot", 0f, 1f / fireRate);
-        //    }
-        //    else if (Input.GetButtonUp("Fire1"))
-        //    {
-        //        CancelInvoke("Shoot");
-        //    }
-        //}
-
+    private void GetWeaponInput()
+    {
         if (Input.GetButtonDown("Fire1"))
         {
-            CmdShoot();
+            Shoot();
         }
 
 
         if (Input.GetKeyDown(KeyCode.X))
-        {          
+        {
             if (bombPower >= 40f)
             {
                 Bomb();
@@ -201,50 +145,136 @@ public class playerMovement : NetworkBehaviour {
         }
     }
 
-    [Client]
+    private void AdjustDiagonalMovement()
+    {
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.5f && Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.5f)
+        {
+            currentMoveSpeed = moveSpeed * diagonalMoveModifier;
+        }
+        else
+        {
+            currentMoveSpeed = moveSpeed;
+        }
+    }
+
+    private void Focus()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            currentMoveSpeed = 4;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            currentMoveSpeed = originalMoveSpeed;
+        }
+    }
+
+    private void Move()
+    {
+        if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * currentMoveSpeed, rb.velocity.y);
+
+        if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
+            rb.velocity = new Vector2(rb.velocity.x, Input.GetAxisRaw("Vertical") * currentMoveSpeed);
+
+        if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+
+        if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
+
+        animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
+    }
+
     void Bomb()
     {
         if (!isLocalPlayer)
             return;
 
+        if (isServer)
+            CmdBomb();
+        else if (isClient)
+            ClientBomb();    
+    }
+
+    [Command]
+    void CmdBomb()
+    {
         Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
         cloneSpawner = GameObject.FindGameObjectWithTag("CloneSpawner").GetComponent<CloneSpawner>();
         cloneSpawner.clonePrefab = clonePrefab;
         cloneSpawner.InstantiateClone();
-        //cloneSpawner.InstantiateClone();
     }
 
-    //public void AddBombPower(float amount)
-    //{
+    [Client]
+    void ClientBomb()
+    {    
+        Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
+        cloneSpawner = GameObject.FindGameObjectWithTag("CloneSpawner").GetComponent<CloneSpawner>();
+        cloneSpawner.clonePrefab = clonePrefab;
+        cloneSpawner.InstantiateClone();
+    }
 
-    //}
-
-    [Command]
-    void CmdShoot()
+    [Client]
+    void Shoot()
     {
         if (!isLocalPlayer)
             return;
 
+        if (isServer)
+            CmdShoot();
+        else if (isClient)
+            ClientShoot();
+    }
+
+    [Command]
+    void CmdShoot()
+    {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
         NetworkServer.Spawn(bullet);
 
         bullet.GetComponent<projectileBehaviour>().shooter = transform.name;
 
+        Destroy(bullet, 0.5f);
+    }
+
+    [Client]
+    void ClientShoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+        NetworkServer.Spawn(bullet);
+
+        bullet.GetComponent<projectileBehaviour>().shooter = transform.name;
 
         Destroy(bullet, 0.5f);
+    }
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        if (hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")
+        {
+            if (isServer)
+                CmdPlayerShot(transform.name, 10);
+            else if (isClient)
+                ClientPlayerShot(transform.name, 10);
+        }
     }
 
     [Command]
     void CmdPlayerShot(string _playerID, int _damage)
     {
-        //Debug.Log(_playerID + " has been shot");
-
-        //playerMovement _player = GameManager.GetPlayer(_playerID);
-        //_player.CmdTakeDamage(_damage, _sourceID);
-
         GameObject go = GameObject.Find(_playerID);
         go.GetComponent<playerMovement>().CmdTakeDamage(_damage);
+    }
+
+    [Client]
+    void ClientPlayerShot(string _playerID, int _damage)
+    {
+        GameObject go = GameObject.Find(_playerID);
+        go.GetComponent<playerMovement>().ClientTakeDamage(_damage);
     }
 
     [Command]
@@ -255,18 +285,16 @@ public class playerMovement : NetworkBehaviour {
         Destroy(GameObject.Find(_enemyID));
     }
 
-
-    private void OnTriggerEnter2D(Collider2D hitInfo)
+    [Client]
+    public void ClientEnemyShot(string _enemyID, string _sourceID)
     {
-        //Enemy enemy = hitInfo.GetComponent<Enemy>();
-        if (hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")
-        {
-            CmdPlayerShot(transform.name, 10);
-        }
-        //Instantiate(impactEffect, transform.position, transform.rotation);
+        Debug.Log(_enemyID + " enemy has been shot");
+
+        Destroy(GameObject.Find(_enemyID));
     }
 
-    //[Server] //was ClientRpc
+
+    [Command]
     public void CmdTakeDamage(int _amount)
     {
         if (!isHit)
@@ -284,9 +312,26 @@ public class playerMovement : NetworkBehaviour {
         
     }
 
-    void OnHealthChanged(int hlth)
+    [Client]
+    public void ClientTakeDamage(int _amount)
     {
-        currentHealth = hlth;
+        if (!isHit)
+        {
+            StartCoroutine("HurtColor");
+            currentHealth -= _amount;
+
+            Debug.Log(transform.name + " now has " + currentHealth + " health ");
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    void OnHealthChanged(int health)
+    {
+        currentHealth = health;
     }
 
     IEnumerator HurtColor()
@@ -304,15 +349,7 @@ public class playerMovement : NetworkBehaviour {
 
     private void Die()
     {
-        //playerMovement sourcePlayer = GameManager.GetPlayer(_sourceID);
-        //if (sourcePlayer != null)
-        //{
-        //    sourcePlayer.kills++;
-        //    GameManager.instance.onPlayerKilledCallBack.Invoke(username, sourcePlayer.username);
-        //}
-
         deaths++;
-        //Instantiate(deathEffect, transform.position, Quaternion.identity); //Ripristinare quando verra' aggiunta un'animazione di morte
         Destroy(gameObject);
         GameManager.RemoveDeadPlayer(transform.name);
     }

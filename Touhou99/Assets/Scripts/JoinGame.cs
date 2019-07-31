@@ -31,8 +31,10 @@ public class JoinGame : MonoBehaviour
             nm.StartMatchMaker();
         }
 
-        RefreshRoomList();
+        //RefreshRoomList();
     }
+
+    [System.Obsolete]
     public void RefreshRoomList()
     {
         ClearRoomList();
@@ -99,8 +101,9 @@ public class JoinGame : MonoBehaviour
         if(ChooseGirl.girlChosen == true)
         {
             Debug.Log("joining " + _match.name);
-            nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
             StartCoroutine(WaitForJoin());
+            nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
+            
         }
     }
 
