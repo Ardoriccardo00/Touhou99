@@ -12,7 +12,13 @@ public class EndGame : NetworkBehaviour
     private Text gameOverText;
 
     [SerializeField]
+    private Button startGameButton;
+
+    [SerializeField]
     private Button leaveButton;
+
+    [SerializeField]
+    private ArenaSpawner arenaSpawner;
 
     int numberOfPlayers;
 
@@ -24,6 +30,7 @@ public class EndGame : NetworkBehaviour
         networkManager = NetworkManager.singleton;
         gameOverText.enabled = false;
         leaveButton.gameObject.SetActive(false);
+        arenaSpawner = FindObjectOfType<ArenaSpawner>();
     }
 
     void Update()
@@ -50,5 +57,10 @@ public class EndGame : NetworkBehaviour
         MatchInfo matchInfo = networkManager.matchInfo;
         networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
         networkManager.StopHost();
+    }
+
+    public void ActivateArenaSpawner()
+    {
+        arenaSpawner.SpawnArenas();
     }
 }

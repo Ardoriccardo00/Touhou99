@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 
     private const string PLAYER_ID_PREFIX = "Player ";
 
-    public static Dictionary<string, playerMovement> players = new Dictionary<string, playerMovement>();
-    public static Dictionary<string, playerMovement> playersAlive = new Dictionary<string, playerMovement>();
+    [SerializeField] public static Dictionary<string, playerMovement> players = new Dictionary<string, playerMovement>();
+    [SerializeField] public static Dictionary<string, playerMovement> playersAlive = new Dictionary<string, playerMovement>();
 
     public delegate void OnPlayerKilledCallBack(string player, string source);
     public OnPlayerKilledCallBack onPlayerKilledCallBack;

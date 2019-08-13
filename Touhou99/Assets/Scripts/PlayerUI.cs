@@ -24,7 +24,7 @@ public class PlayerUI : MonoBehaviour
     public void SetPlayer(playerMovement _player)
     {
         player = _player;
-        print("BERSAGLIO: " + _player);
+        print("BERSAGLIO (UI): " + _player);
     }
     private void Start()
     {

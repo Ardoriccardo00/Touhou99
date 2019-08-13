@@ -18,10 +18,16 @@ public class PlayerSetup : NetworkBehaviour
     GameObject playerUIPrefab;
     private GameObject playerUIInstance;
 
+    [SerializeField]
+    GameObject girlSwitcherPrefab;
+    private GameObject girlSwitcherInstance;
+
     public GameObject cameraPrefab;
     //private Transform cameraSpawnPoint;
     public Transform player;
     private GameObject playerCamera;
+
+    public string thisPlayerUsername;
 
     void Start()
     {
@@ -52,6 +58,17 @@ public class PlayerSetup : NetworkBehaviour
             _username = transform.name;
 
         CmdSetUserName(transform.name, _username);
+
+        //girlSwitcherInstance = Instantiate(girlSwitcherPrefab);
+        //GirlSwitcher gs = ui.GetComponent<GirlSwitcher>();
+        //print(gs);
+        //if (gs = null)
+        //    Debug.LogError("no Girl chooser on playerui prefab");
+        //gs.SetPlayer(GetComponent<playerMovement>());
+
+        //girlSwitcherInstance = FindObjectOfType<GirlSwitcher>();
+        //girlSwitcherInstance.SetPlayer(GetComponent<playerMovement>());
+
     }
 
     [Command]

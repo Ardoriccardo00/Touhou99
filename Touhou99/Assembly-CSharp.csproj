@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\enemyWeapon.cs" />
     <Compile Include="Assets\Scripts\ExitGame.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GirlSwitcher.cs" />
     <Compile Include="Assets\Scripts\HostGame.cs" />
     <Compile Include="Assets\Scripts\JoinGame.cs" />
     <Compile Include="Assets\Scripts\Killfeed.cs" />

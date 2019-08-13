@@ -6,24 +6,27 @@ using UnityEngine.UI;
 
 public class TextMenuSelector : MonoBehaviour
 {
-    enum Screen {Main, FindMatch, CreateMatch, Options, ChooseGirl};
-    [SerializeField] Screen screen;
+    public enum Screen {Main, FindMatch, CreateMatch, Options, ChooseGirl};
+    public Screen screen;
 
     private int cursor = 0;
 
     [Header("Texts")]
     [SerializeField] private Text[] textList;
     [SerializeField] private Text debugText;
-    [SerializeField] private Text enumText;   
+    [SerializeField] private Text enumText;
 
-    [Header("Canvas")]
-    [SerializeField]  private Canvas[] canvasList; //main, find, create, options, choose
+    [SerializeField] private InputField createInputField;
+
+    [Header("Containers")]
+    [SerializeField] private GameObject[] containersList; //main, find, create, options, choose
 
     [Header("Audio")]    
     [SerializeField] AudioClip selectSound;
     [SerializeField] AudioClip confirmSound;
     [SerializeField] AudioClip cancelSound;
     AudioSource audioSource;
+
 
     void Start()
     {
@@ -44,23 +47,23 @@ public class TextMenuSelector : MonoBehaviour
         {
             case Screen.Main:
                 DisableAllCanvas();
-                canvasList[0].enabled = true;
+                containersList[0].SetActive(true);
                 break;
             case Screen.FindMatch:
                 DisableAllCanvas();
-                canvasList[1].enabled = true;
+                containersList[1].SetActive(true);
                 break;
             case Screen.CreateMatch:
                 DisableAllCanvas();
-                canvasList[2].enabled = true;
+                containersList[2].SetActive(true);
                 break;
             case Screen.Options:
                 DisableAllCanvas();
-                canvasList[3].enabled = true;
+                containersList[3].SetActive(true);
                 break;
             case Screen.ChooseGirl:
                 DisableAllCanvas();
-                canvasList[4].enabled = true;
+                containersList[4].SetActive(true);
                 break;
         }
     }
@@ -84,16 +87,24 @@ public class TextMenuSelector : MonoBehaviour
 
     private void GetCancelInput()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             audioSource.PlayOneShot(cancelSound);       
-            switch (screen) //main, find, create, options, choose
+            switch (screen) //main, find, create, options
             {
                 case Screen.Main:
                     cursor = textList.Length - 1;
                     break;
 
+                case Screen.ChooseGirl:
+                    DisableAllCanvas();
+                    containersList[0].SetActive(true);
+                    screen = Screen.Main;
+                    break;
+
                 default:
+                    DisableAllCanvas();
+                    containersList[0].SetActive(true);
                     screen = Screen.Main;
                     break;
             }
@@ -104,7 +115,7 @@ public class TextMenuSelector : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            audioSource.PlayOneShot(confirmSound);
+            if(screen != Screen.CreateMatch) audioSource.PlayOneShot(confirmSound);
             switch (cursor)
             {
                 case 0:
@@ -129,9 +140,9 @@ public class TextMenuSelector : MonoBehaviour
 
     void DisableAllCanvas()
     {
-        for(int i = 0; i < canvasList.Length - 1; i++)
+        for(int i = 0; i < containersList.Length - 1; i++)
         {
-            canvasList[i].enabled = false;
+            containersList[i].SetActive(false);
         }
     }
 
@@ -151,5 +162,10 @@ public class TextMenuSelector : MonoBehaviour
     void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void SetChooseGirl()
+    {
+        screen = Screen.ChooseGirl;
     }
 }

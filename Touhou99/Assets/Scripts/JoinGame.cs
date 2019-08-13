@@ -31,10 +31,8 @@ public class JoinGame : MonoBehaviour
             nm.StartMatchMaker();
         }
 
-        //RefreshRoomList();
+        RefreshRoomList();
     }
-
-    [System.Obsolete]
     public void RefreshRoomList()
     {
         ClearRoomList();
@@ -44,16 +42,10 @@ public class JoinGame : MonoBehaviour
             nm.StartMatchMaker();
         }
 
-        if (nm.matchMaker == null)
-        {
-            nm.StartMatchMaker();
-        }
-
         nm.matchMaker.ListMatches(0, 20, "", true, 0, 0, OnMatchList);
         status.text = "Loading...";
     }
 
-    [System.Obsolete]
     public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
     {
         status.text = "";
@@ -95,16 +87,19 @@ public class JoinGame : MonoBehaviour
 
     }
 
-    [System.Obsolete]
     public void JoinRoom(MatchInfoSnapshot _match)
     {
-        if(ChooseGirl.girlChosen == true)
-        {
-            Debug.Log("joining " + _match.name);
-            StartCoroutine(WaitForJoin());
-            nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
-            
-        }
+        //if(ChooseGirl.girlChosen == true)
+        //{
+        //    Debug.Log("joining " + _match.name);
+        //    StartCoroutine(WaitForJoin());
+        //    nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
+
+        //}
+
+        Debug.Log("joining " + _match.name);
+        StartCoroutine(WaitForJoin());
+        nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
     }
 
     IEnumerator WaitForJoin()

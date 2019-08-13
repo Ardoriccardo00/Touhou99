@@ -10,7 +10,6 @@ public class ChooseGirl : MonoBehaviour
     [SerializeField]
     private Text girlError;
 
-    [System.Obsolete]
     public void PickHero(int hero)
     {
         girlChosen = true;

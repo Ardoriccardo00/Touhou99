@@ -282,9 +282,12 @@ MonoBehaviour:
   remoteLayerName: RemotePlayer
   playerUIPrefab: {fileID: 4535632190999133756, guid: d21412bc10258eb439323fa2df5df0ca,
     type: 3}
+  girlSwitcherPrefab: {fileID: 7067331619234202494, guid: ede817eb01a004e468a7dc933c0fc297,
+    type: 3}
   cameraPrefab: {fileID: 8938421997919836169, guid: 8c47be8a05e7b134d940bcca1ee300fb,
     type: 3}
   player: {fileID: 5536426307208110057}
+  thisPlayerUsername: 
 --- !u!95 &5774516659631564311
 Animator:
   serializedVersion: 3
