@@ -846,5 +846,55 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 545854217}
+    - target: {fileID: 2451540480389141373, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848324991153436207, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848324991153436207, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848324991153436207, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848324991153436207, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806160170081166487, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806160170081166487, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806160170081166487, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806160170081166487, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5653698406999332782, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
