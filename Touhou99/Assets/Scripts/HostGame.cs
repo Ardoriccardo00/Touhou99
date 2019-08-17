@@ -13,7 +13,6 @@ public class HostGame : MonoBehaviour
 
     public Text userText;
 
-    TextMenuSelector textMenuSelector;
 
     [System.Obsolete]
     private NetworkManager nm;
@@ -22,7 +21,6 @@ public class HostGame : MonoBehaviour
     void Start()
     {
         nm = NetworkManager.singleton;
-        textMenuSelector = FindObjectOfType<TextMenuSelector>();
 
         if(nm.matchMaker == null)
         {
@@ -41,27 +39,15 @@ public class HostGame : MonoBehaviour
         userText.text = _host;
     }
 
-    public void SetChooseGirl()
+    public void CreateRoom()
     {
-        textMenuSelector.screen = TextMenuSelector.Screen.ChooseGirl;
-    }
-    public void createRoom()
-    {
-        //if (ChooseGirl.girlChosen == true)
+        //if (roomName != "" && roomName != null)
         //{
-        //    if (roomName != "" && roomName != null)
-        //    {
-        //        Debug.Log("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
-        //        nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
-
-        //    }
+        //    print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
+        //    nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
         //}
 
-        if (roomName != "" && roomName != null)
-        {
-            Debug.Log("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
-            nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
-
-        }
+        print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
+        nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
     }
 }

@@ -59,7 +59,7 @@ MonoBehaviour:
     type: 3}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
-  m_OfflineScene: Lobby
+  m_OfflineScene: 
   m_OnlineScene: Main
   m_SpawnPrefabs:
   - {fileID: 7625204189543060798, guid: 19fa527f2367a3b478c1c0dd0e658740, type: 3}
@@ -161,11 +161,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPrefab: {fileID: 8938421997919836169, guid: 8c47be8a05e7b134d940bcca1ee300fb,
     type: 3}
-  posX: 0
-  posY: 0
   spawner: {fileID: 0}
   arenaPrefab: {fileID: 6131945459548112599, guid: bcc42f68a2cf3b240b33d23d98d5e214,
     type: 3}
+  arenasContainer: {fileID: 0}
+  spawnsContainer: {fileID: 0}
 --- !u!114 &8542614803293804311
 MonoBehaviour:
   m_ObjectHideFlags: 0

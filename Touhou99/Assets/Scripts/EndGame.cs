@@ -40,13 +40,13 @@ public class EndGame : NetworkBehaviour
         if (numberOfPlayers <= 1)
         {
             gameOverText.enabled = true;
-            leaveButton.gameObject.SetActive(true);
+            //leaveButton.gameObject.SetActive(true);
         }
 
         else
         {
             gameOverText.enabled = false;
-            leaveButton.gameObject.SetActive(false);
+            //leaveButton.gameObject.SetActive(false);
         }
             
     }

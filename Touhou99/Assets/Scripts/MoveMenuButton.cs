@@ -3,33 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using TMPro;
 
-public class MoveMenuButton : MonoBehaviour, IPointerEnterHandler
+public class MoveMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-   public Vector3 startingPosition;
-
-    void start()
+    TextMeshProUGUI text;
+    //[SerializeField] GameObject audioComponent;
+    //[SerializeField] GameObject audio;
+    void Start()
     {
-        //startingPosition = this.transform.position;
-    }
-
-    void update()
-    {
-        this.transform.position = startingPosition;
+        text = gameObject.GetComponentInChildren(typeof(TextMeshProUGUI)) as TextMeshProUGUI;
+        //audio = gameObject.GetComponent<GameObject>().GetComponent<AudioSource>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        print("puntatore");
-        transform.Translate(new Vector3(10, 0, 0));
+        text.fontStyle = FontStyles.Italic;
+        //audio.Play();
     }
 
-    public void OnPoinerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
-        print("niente puntatore");
+        text.fontStyle = FontStyles.Normal;
     }
-
-    //public void OnSelect(BaseEventData eventData)
-    //{
-    //    print("puntatore");
-    //}
 }
