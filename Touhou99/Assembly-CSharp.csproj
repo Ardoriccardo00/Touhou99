@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Lobby\AMBManager.cs" />
     <Compile Include="Assets\Scripts\Lobby\AnimatedMenuBackground.cs" />
     <Compile Include="Assets\Scripts\Lobby\ChooseGirl.cs" />
+    <Compile Include="Assets\Scripts\Lobby\GirlImageRandomizer.cs" />
     <Compile Include="Assets\Scripts\Lobby\HostGame.cs" />
     <Compile Include="Assets\Scripts\Lobby\JoinGame.cs" />
     <Compile Include="Assets\Scripts\Lobby\MainMenu.cs" />

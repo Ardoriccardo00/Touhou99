@@ -41,6 +41,11 @@ public class HostGame : MonoBehaviour
 
     public void CreateRoom()
     {
+        Invoke("CreatingRoom", 1.5f);
+    }
+
+    private void CreatingRoom()
+    {
         //if (roomName != "" && roomName != null)
         //{
         //    print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);

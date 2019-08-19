@@ -8,17 +8,16 @@ using TMPro;
 public class MoveMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     TextMeshProUGUI text;
-    //[SerializeField] GameObject audioComponent;
+    [SerializeField] AudioSource audioComponent;
     //[SerializeField] GameObject audio;
     void Start()
     {
         text = gameObject.GetComponentInChildren(typeof(TextMeshProUGUI)) as TextMeshProUGUI;
-        //audio = gameObject.GetComponent<GameObject>().GetComponent<AudioSource>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
         text.fontStyle = FontStyles.Italic;
-        //audio.Play();
+        audioComponent.Play();
     }
 
     public void OnPointerExit(PointerEventData eventData)
