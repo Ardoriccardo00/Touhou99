@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UserAccount_Lobby : MonoBehaviour
 {
-    public Text usernameText;
+    public TextMeshProUGUI usernameText;
 
     void Start()
     {
