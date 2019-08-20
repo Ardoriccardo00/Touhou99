@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    //[SerializeField] int rotationSpeed = 50;
     void Update()
     {
         transform.Rotate(new Vector3(0, 0, Time.deltaTime * -400));

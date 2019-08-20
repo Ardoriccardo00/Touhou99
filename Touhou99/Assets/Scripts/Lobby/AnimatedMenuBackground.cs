@@ -5,45 +5,28 @@ using UnityEngine.UI;
 
 public class AnimatedMenuBackground : MonoBehaviour
 {
-    [SerializeField] float speed = 100f;
+    Vector3 movementDirection;
+
+    Image image;
 
     float moveSpeed;
-    enum Direction { Up, Down, Left, Right };
-
-    [SerializeField] Direction moveDirection;
-
+    float rotateSpeed;
 
     void Start()
     {
-        moveSpeed = speed * Time.deltaTime;
+        image = GetComponent<Image>();
+        image.color = new Color(255, 255, 255, Random.Range(0.5f, 0.8f));
+
+        rotateSpeed = Random.Range(5f, 10f);
+        moveSpeed = Random.Range(5f, 10f);
+
+        movementDirection = new Vector2(Random.Range(-0.3f, 0.3f), -1);
+        print(movementDirection);
     }
 
     void Update()
     {
-        print("ciao");
-
-        switch (moveDirection)
-        {
-            case Direction.Up:
-                transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-                break;
-
-            case Direction.Down:
-                transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-                break;
-
-            case Direction.Left:
-                transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-                break;
-
-            case Direction.Right:
-                transform.Translate(Vector3.right * moveSpeed);
-                break;
-        }
-
-        if (transform.position.x >= 2000)
-        {
-            this.transform.localPosition = Vector3.zero;
-        }
+        transform.Translate(movementDirection * moveSpeed, Space.World);
+        transform.Rotate(0, 0, 1f * rotateSpeed);
     }
 }
