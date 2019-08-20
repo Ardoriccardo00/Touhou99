@@ -9,19 +9,22 @@ public class MoveMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     TextMeshProUGUI text;
     [SerializeField] AudioSource audioComponent;
-    //[SerializeField] GameObject audio;
+
+    Color transparent = new Color(255, 255, 255, 0.5f);
+    Color opaque = new Color(255, 255, 255, 255);
+
     void Start()
     {
         text = gameObject.GetComponentInChildren(typeof(TextMeshProUGUI)) as TextMeshProUGUI;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        text.fontStyle = FontStyles.Italic;
+        text.color = opaque;       
         audioComponent.Play();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        text.fontStyle = FontStyles.Normal;
+        text.color = transparent;
     }
 }
