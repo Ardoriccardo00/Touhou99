@@ -21,7 +21,6 @@ public class AnimatedMenuBackground : MonoBehaviour
         moveSpeed = Random.Range(5f, 10f);
 
         movementDirection = new Vector2(Random.Range(-0.3f, 0.3f), -1);
-        print(movementDirection);
     }
 
     void Update()
