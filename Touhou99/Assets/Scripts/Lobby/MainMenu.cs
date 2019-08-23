@@ -11,12 +11,18 @@ public class MainMenu : MonoBehaviour
     [SerializeField] float titleMoveSpeed = 1000f;
     [SerializeField] float girlImageMoveSpeed = 1000f;
     [SerializeField] float textsMoveSpeed = 1000f;
+    [SerializeField] float menusMoveSpeed = 1000f;
 
     [Header("Game Objects")]
     [SerializeField] CanvasGroup mainCanvas;
     [SerializeField] CanvasGroup findCanvas;
     [SerializeField] CanvasGroup createCanvas;
     [SerializeField] CanvasGroup optionsCanvas;
+
+    [SerializeField] GameObject awayPoint;
+    [SerializeField] GameObject centerPoint;
+
+    //[SerializeField] GameObject menuToMoveAway;
 
     [Header("Main Menu")]
     [SerializeField] GameObject titleImage;
@@ -37,8 +43,6 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         playerNameImage = playerName.GetComponent<TextMeshProUGUI>();
-
-        //canvasGroup = GetComponent<CanvasGroup>();
         mainCanvas.alpha = 0;
 
         StartCoroutine(StartMenuAnimations());
@@ -96,36 +100,54 @@ public class MainMenu : MonoBehaviour
         ambManager.SetActive(true);
     }
 
-    public void InvokeStartFindMatchAnimation()
+    public void InvokeMoveMenuOut(GameObject menuToMoveAway)
     {
-        StartCoroutine(StartFindMatchAnimation());
+        StartCoroutine(moveMenuOut(menuToMoveAway));
     }
 
-    public IEnumerator StartFindMatchAnimation()
+    IEnumerator moveMenuOut(GameObject menu) //Move menus
     {
-        while (findCanvas.transform.position != new Vector3(0,0,0)) //Move title
+        while (menu.transform.position != awayPoint.transform.position) 
         {
-            findCanvas.transform.position = Vector3.MoveTowards(findCanvas.transform.position, new Vector3(0,0,0), Time.deltaTime * titleMoveSpeed);
-            //yield return null;
-        }
-        yield return null;
-    }
-
-    public void InvokeMoveMenuOut()
-    {
-        StartCoroutine(moveMenuOut());
-    }
-
-    IEnumerator moveMenuOut()
-    {
-        float distance = 100f;
-        while(distance > 0)
-        {
-            mainCanvas.transform.position = new Vector2(-1, 0);
-            distance -= Time.deltaTime / 2;
+            menu.transform.position = Vector3.MoveTowards(menu.transform.position, awayPoint.transform.position, Time.deltaTime * menusMoveSpeed);
+            yield return null;
         }
 
+        menu.gameObject.SetActive(false);        
+        yield return null;   
+    }
+
+    public void InvokeMoveMenuIn(GameObject menuToMoveIn)
+    {
+        StartCoroutine(moveMenuIn(menuToMoveIn));
+    }
+
+    IEnumerator moveMenuIn(GameObject menuIn) //move menus in
+    {
+        menuIn.SetActive(true);
         yield return null;
+
+        while (menuIn.transform.position != centerPoint.transform.position)
+        {
+            menuIn.transform.position = Vector3.MoveTowards(menuIn.transform.position, centerPoint.transform.position, Time.deltaTime * menusMoveSpeed);
+            yield return null;
+        }
+    }
+
+    public void InvokeFadeMenuOut(GameObject menu)
+    {
+        StartCoroutine(FadeMenuOut(menu));
+    }
+
+    IEnumerator FadeMenuOut(GameObject menu)
+    {
+        CanvasGroup menuCanvas = menu.GetComponent<CanvasGroup>();
+
+        while (menuCanvas.alpha > 0) //Fade Menu in
+        {
+            menuCanvas.alpha -= Time.deltaTime / 0.5f;
+            yield return null;
+        }
     }
 
     public void LogOut()
@@ -164,3 +186,18 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
     }*/
+//public void InvokeFadeMainMenuCanvas()
+//{
+//    StartCoroutine(FadeMainMenuCanvas());
+//}
+//IEnumerator FadeMainMenuCanvas()
+//{
+//    while (mainCanvas.alpha > 0) //Fade Menu in
+//    {
+//        mainCanvas.alpha -= Time.deltaTime / 0.5f;
+//        yield return null;
+//    }
+
+//    mainCanvas.gameObject.SetActive(false);
+//    findCanvas.gameObject.SetActive(true); //fare fade in
+//}
