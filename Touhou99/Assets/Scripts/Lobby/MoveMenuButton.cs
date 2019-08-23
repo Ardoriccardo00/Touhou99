@@ -19,7 +19,7 @@ public class MoveMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        text.color = opaque;       
+        text.color = opaque;
         audioComponent.Play();
     }
 

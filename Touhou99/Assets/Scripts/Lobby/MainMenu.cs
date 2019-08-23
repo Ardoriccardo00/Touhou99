@@ -42,10 +42,20 @@ public class MainMenu : MonoBehaviour
     TextMeshProUGUI playerNameImage;
     private void Start()
     {
+        SetDefaults();
+
         playerNameImage = playerName.GetComponent<TextMeshProUGUI>();
         mainCanvas.alpha = 0;
 
         StartCoroutine(StartMenuAnimations());
+    }
+
+    void SetDefaults()
+    {
+        mainCanvas.gameObject.SetActive(true); //fare array di canvas
+        findCanvas.gameObject.SetActive(false);
+        createCanvas.gameObject.SetActive(false);
+        optionsCanvas.gameObject.SetActive(false);
     }
 
     IEnumerator StartMenuAnimations()

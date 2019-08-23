@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Lobby\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Lobby\MoveMenuButton.cs" />
     <Compile Include="Assets\Scripts\Lobby\NetworkCustom.cs" />
+    <Compile Include="Assets\Scripts\Lobby\Options.cs" />
     <Compile Include="Assets\Scripts\Lobby\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Lobby\RoomListItem.cs" />
     <Compile Include="Assets\Scripts\Lobby\TextMenuSelector.cs" />
