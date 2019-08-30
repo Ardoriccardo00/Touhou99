@@ -56,11 +56,12 @@ MonoBehaviour:
     type: 3}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
-  m_OfflineScene: Lobby
+  m_OfflineScene: 
   m_OnlineScene: Main
   m_SpawnPrefabs:
+  - {fileID: 965947961239845380, guid: 86f9e51293b94a040a57b9cf0d0eddac, type: 3}
   - {fileID: 8259962898754785055, guid: b8af716ea064bae4c8de68cf5186a520, type: 3}
-  - {fileID: 3442555412545888522, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
+  - {fileID: 6730385099516948183, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
   - {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23, type: 3}
   - {fileID: 1290405546085826877, guid: d707baaf171b8de41bc167ec7d23fd28, type: 3}
   - {fileID: 4272197064462991318, guid: ca0aa3f4738cc1e43bb21006344212d4, type: 3}
@@ -72,8 +73,8 @@ MonoBehaviour:
   - {fileID: 7802531291373603246, guid: 666514c51c59df34bb447becec637ddb, type: 3}
   - {fileID: 761783265423904730, guid: efd45e34cdb76bc45a546ca788715503, type: 3}
   - {fileID: 2822029368383740940, guid: c5478d18b1e5b5e45add18db48a72d88, type: 3}
-  - {fileID: 7664280116528014463, guid: 385a3b67d0141b14bbcc10d41c51029c, type: 3}
-  - {fileID: 4492524080149456830, guid: c19e0a869ad21114bbd089a51f327c9e, type: 3}
+  - {fileID: 7179997388609053528, guid: 213ad10ca525ff84cbd9a3d22570cba0, type: 3}
+  - {fileID: 152385802298668810, guid: a241ae5cebe1d5c479fb78b4c32fd74d, type: 3}
   m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -131,5 +132,5 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   chosenCharacter: 0
   characters:
-  - {fileID: 3442555412545888522, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
+  - {fileID: 6730385099516948183, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
   - {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23, type: 3}

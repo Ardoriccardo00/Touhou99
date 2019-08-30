@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] CanvasGroup findCanvas;
     [SerializeField] CanvasGroup createCanvas;
     [SerializeField] CanvasGroup optionsCanvas;
+    [SerializeField] CanvasGroup girlCanvas;
+    [SerializeField] CanvasGroup UserStatsCanvas;
 
     [SerializeField] GameObject awayPoint;
     [SerializeField] GameObject centerPoint;
@@ -56,6 +58,8 @@ public class MainMenu : MonoBehaviour
         findCanvas.gameObject.SetActive(false);
         createCanvas.gameObject.SetActive(false);
         optionsCanvas.gameObject.SetActive(false);
+        girlCanvas.gameObject.SetActive(false);
+        UserStatsCanvas.gameObject.SetActive(false);
     }
 
     IEnumerator StartMenuAnimations()

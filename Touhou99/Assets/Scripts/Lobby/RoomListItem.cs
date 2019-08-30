@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking.Match;
+using TMPro;
 public class RoomListItem : MonoBehaviour
 {
     [System.Obsolete]
@@ -10,7 +11,7 @@ public class RoomListItem : MonoBehaviour
     private JoinRoomDelegate joinRoomCallback;
 
     [SerializeField]
-    private Text roomNameText;
+    private TextMeshProUGUI roomNameText;
 
     [System.Obsolete]
     public MatchInfoSnapshot match;
@@ -24,7 +25,6 @@ public class RoomListItem : MonoBehaviour
         roomNameText.text = match.name + "(" + match.currentSize + "/" + match.maxSize + ")";
     }
 
-    [System.Obsolete] //test
     public void JoinRoom()
     {
         joinRoomCallback.Invoke(match);

@@ -21,7 +21,6 @@ public class JoinGame : MonoBehaviour
     [System.Obsolete]
     private NetworkManager nm;
 
-    [System.Obsolete]
     private void Start()
     {
         nm = NetworkManager.singleton;
@@ -31,7 +30,7 @@ public class JoinGame : MonoBehaviour
             nm.StartMatchMaker();
         }
 
-        RefreshRoomList();
+        //RefreshRoomList();
     }
     public void RefreshRoomList()
     {
@@ -98,7 +97,7 @@ public class JoinGame : MonoBehaviour
         //}
 
         Debug.Log("joining " + _match.name);
-        StartCoroutine(WaitForJoin());
+        //StartCoroutine(WaitForJoin());
         nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
     }
 
