@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject awayPoint;
     [SerializeField] GameObject centerPoint;
 
+    [SerializeField] Rotate rotatingNine;
+
     //[SerializeField] GameObject menuToMoveAway;
 
     [Header("Main Menu")]
@@ -50,6 +52,9 @@ public class MainMenu : MonoBehaviour
         mainCanvas.alpha = 0;
 
         StartCoroutine(StartMenuAnimations());
+
+        rotatingNine.GetComponent<Rotate>();
+        rotatingNine.enabled = false;
     }
 
     void SetDefaults()
@@ -104,7 +109,7 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        while (playerNameImage.alpha < 1) //Fade player name in
+        while (playerNameImage.alpha < 0.5f) //Fade player name in
         {
             playerChangingAlpha += Time.deltaTime / 2;
             playerNameImage.color = new Color(255, 255, 255, playerChangingAlpha);
@@ -112,6 +117,18 @@ public class MainMenu : MonoBehaviour
         }
 
         ambManager.SetActive(true);
+
+        CanvasGroup titleAlpha = titleImage.GetComponent<CanvasGroup>();
+        titleAlpha.alpha = 1;
+        yield return new WaitForSeconds(0.1f);
+        titleAlpha.alpha = 0.5f;
+        yield return new WaitForSeconds(0.1f);
+        titleAlpha.alpha = 1;
+        yield return new WaitForSeconds(0.1f);
+        titleAlpha.alpha = 0.5f;
+        yield return new WaitForSeconds(0.3f);
+        titleAlpha.alpha = 1;
+        rotatingNine.enabled = true;
     }
 
     public void InvokeMoveMenuOut(GameObject menuToMoveAway)

@@ -10276,7 +10276,6 @@ GameObject:
   - component: {fileID: 613477010433632276}
   - component: {fileID: 7312492246318453039}
   - component: {fileID: 8690739543859749342}
-  - component: {fileID: 7399275869103393329}
   m_Layer: 5
   m_Name: NineBall
   m_TagString: Untagged
@@ -10291,13 +10290,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8005095351482018599}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.016612366, w: 0.9998621}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 8259368565186714392}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.904}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 362, y: -19}
@@ -10340,20 +10339,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &7399275869103393329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8005095351482018599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f5448492eb1084a999361c2863c4c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotatingTime: 10
-  rotatingSpeed: 400
 --- !u!1 &8043736821214301523
 GameObject:
   m_ObjectHideFlags: 0
@@ -11238,7 +11223,6 @@ GameObject:
   - component: {fileID: 5498485547545442530}
   - component: {fileID: 5946136904994467073}
   - component: {fileID: 6927767930325042036}
-  - component: {fileID: 6729375408052995319}
   m_Layer: 5
   m_Name: LoggedInAsText
   m_TagString: Untagged
@@ -11302,8 +11286,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 2164260863
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -11386,19 +11370,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6729375408052995319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8993925800913216527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da1a11479771c6c42b0fb3c9593b1d5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioComponent: {fileID: 0}
 --- !u!1 &9181777626990879908
 GameObject:
   m_ObjectHideFlags: 0
