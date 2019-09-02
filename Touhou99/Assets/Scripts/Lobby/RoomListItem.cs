@@ -27,6 +27,9 @@ public class RoomListItem : MonoBehaviour
 
     public void JoinRoom()
     {
-        joinRoomCallback.Invoke(match);
+        if(ChooseGirl.girlChosen == true)
+        {
+            joinRoomCallback.Invoke(match);;
+        }
     }
 }

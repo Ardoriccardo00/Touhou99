@@ -31,7 +31,7 @@ public class NetworkCustom : NetworkManager
         }
         else
         {
-            player = Instantiate(characters[selectedClass], new Vector3(100, 100, 0), Quaternion.identity) as GameObject;
+            player = Instantiate(characters[selectedClass], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         }
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);

@@ -19,10 +19,13 @@ public class ArenaSpawner : NetworkBehaviour
 
     public static int spawnNumber = 1;
 
+    int numberOfPlayers;
+
     private GameObject playerCamera;
-    [SerializeField]
-    private GameObject spawner;
-    private GameObject spawn;
+
+    //[SerializeField]
+    //private GameObject spawner;
+    //private GameObject spawn;
 
     [SerializeField]
     public GameObject arenaPrefab;
@@ -35,25 +38,31 @@ public class ArenaSpawner : NetworkBehaviour
     public GameObject arenasContainer;
     public GameObject spawnsContainer;
 
+    public playerMovement[] players;
+
     void Start()
     {
         arenasContainer = GameObject.Find("ArenasContainer");
         spawnsContainer = GameObject.Find("SpawnsContainer");
         posX = 0;
         posY = 0;
+        //players = FindObjectsOfType<playerMovement>();
     }
 
     private void Update()
     {
-        int numberOfPlayers = GameManager.playersAlive.Count;   
+        players = FindObjectsOfType<playerMovement>();
+        //numberOfPlayers = GameManager.playersAlive.Count;
+        //print(numberOfPlayers);
     }
 
-    [Server]
-    public void SpawnArenas()
+    [Command]
+    public void CmdSpawnArenas()
     {
-        foreach (KeyValuePair<string, playerMovement> entry in GameManager.playersAlive)
+        print("GIOCATORI" +  " " + players.Length);
+        for (int i = 0; i < players.Length; i++)
         {
-            arena = Instantiate(arenaPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
+            arena = Instantiate(arenaPrefab, players[i].transform.position, Quaternion.identity);
             arena.transform.name = "Arena " + arenaNumber;
             NetworkServer.Spawn(arena);
             arena.transform.parent = arenasContainer.transform;
@@ -63,13 +72,13 @@ public class ArenaSpawner : NetworkBehaviour
         }
     }
 
-    [Server]
-    public void SpawnCameras()
+    [Command]
+    public void CmdSpawnCameras()
     {
         foreach (KeyValuePair<string, playerMovement> entry in GameManager.playersAlive)
         {
             camera = Instantiate(cameraPrefab, new Vector3(0, 0, -5), Quaternion.identity);
-            CameraSettings();
+            CmdCameraSettings();
             camera.transform.name = "Camera " + arenaNumber;
             NetworkServer.Spawn(camera);
 
@@ -78,7 +87,8 @@ public class ArenaSpawner : NetworkBehaviour
         }
     }
 
-    private void CameraSettings()
+    [Command]
+    private void CmdCameraSettings()
     {
         camera.GetComponent<Camera>().rect = new Rect(cameraPosX, cameraPosY, 0.1f, 0.1f);
         //Cam2.rect = new Rect (0.5f, 0, 0.5f, 1);

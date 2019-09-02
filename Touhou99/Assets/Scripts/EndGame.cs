@@ -61,6 +61,6 @@ public class EndGame : NetworkBehaviour
 
     public void ActivateArenaSpawner()
     {
-        arenaSpawner.SpawnArenas();
+        arenaSpawner.CmdSpawnArenas();
     }
 }

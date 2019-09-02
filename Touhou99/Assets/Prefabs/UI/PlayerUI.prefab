@@ -930,7 +930,6 @@ GameObject:
   - component: {fileID: 7416338678078534256}
   - component: {fileID: 7005073571843981631}
   - component: {fileID: 8961932826260969256}
-  - component: {fileID: 8222138290067061284}
   m_Layer: 5
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -1099,21 +1098,6 @@ MonoBehaviour:
   startGameButton: {fileID: 0}
   leaveButton: {fileID: 3864856329775075949}
   arenaSpawner: {fileID: 0}
---- !u!114 &8222138290067061284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4535632190999133756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1fe27a3dc1e88a4fbfbc68304cb1af9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nc: {fileID: 0}
-  nm: {fileID: 0}
-  girlNumber: 0
 --- !u!1 &4709501333825058439
 GameObject:
   m_ObjectHideFlags: 0

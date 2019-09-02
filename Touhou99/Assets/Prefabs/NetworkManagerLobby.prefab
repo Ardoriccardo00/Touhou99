@@ -61,7 +61,7 @@ MonoBehaviour:
   m_SpawnPrefabs:
   - {fileID: 965947961239845380, guid: 86f9e51293b94a040a57b9cf0d0eddac, type: 3}
   - {fileID: 8259962898754785055, guid: b8af716ea064bae4c8de68cf5186a520, type: 3}
-  - {fileID: 6730385099516948183, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
+  - {fileID: 3442555412545888522, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
   - {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23, type: 3}
   - {fileID: 1290405546085826877, guid: d707baaf171b8de41bc167ec7d23fd28, type: 3}
   - {fileID: 4272197064462991318, guid: ca0aa3f4738cc1e43bb21006344212d4, type: 3}
@@ -132,5 +132,5 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   chosenCharacter: 0
   characters:
-  - {fileID: 6730385099516948183, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
+  - {fileID: 3442555412545888522, guid: 439b27a2eed6b6546ae1dbe3b8e5b647, type: 3}
   - {fileID: 2964457251764474375, guid: 8cabe665a214caa4c9402de82c13bf23, type: 3}

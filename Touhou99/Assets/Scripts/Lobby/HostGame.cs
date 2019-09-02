@@ -52,7 +52,10 @@ public class HostGame : MonoBehaviour
         //    nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
         //}
 
+        if(ChooseGirl.girlChosen == true)
+        {
         print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
         nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
+        }
     }
 }
