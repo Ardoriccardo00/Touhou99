@@ -93,6 +93,9 @@ public class playerMovement : NetworkBehaviour {
 
     public void SetDefaults()
     {
+        if (!isLocalPlayer)
+            return;
+
         isHit = false;
         currentHealth = maxHealth;
         bombPower = 0f;
@@ -256,6 +259,9 @@ public class playerMovement : NetworkBehaviour {
     {
         if (hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")
         {
+            if (!isLocalPlayer)
+                return;
+
             if (isServer)
                 CmdPlayerShot(transform.name, 10);
             else if (isClient)

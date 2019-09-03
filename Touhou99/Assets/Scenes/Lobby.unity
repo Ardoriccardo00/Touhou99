@@ -573,6 +573,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usernameText: {fileID: 1296589356}
+--- !u!224 &926018355 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 939314473, guid: 536d7aaf910ad7f4f812fd5110719bad,
+    type: 3}
+  m_PrefabInstance: {fileID: 5746629987776793041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &974528992
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,12 +789,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!224 &1292324583 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1292324583, guid: 536d7aaf910ad7f4f812fd5110719bad,
-    type: 3}
-  m_PrefabInstance: {fileID: 5746629987776793041}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1296589356 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4639236918969740274, guid: 536d7aaf910ad7f4f812fd5110719bad,
@@ -1038,7 +1038,7 @@ MonoBehaviour:
   status: {fileID: 535352634}
   roomListItemPrefab: {fileID: 5866652827225378495, guid: 1c1a6c3b85a1d6e47907bca693bc118d,
     type: 3}
-  roomListParent: {fileID: 1292324583}
+  roomListParent: {fileID: 926018355}
 --- !u!4 &1777821527
 Transform:
   m_ObjectHideFlags: 0
@@ -1263,15 +1263,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1292324583, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1292324583, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1292324583, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -47
       objectReference: {fileID: 0}
     - target: {fileID: 5746629986276179870, guid: 536d7aaf910ad7f4f812fd5110719bad,
         type: 3}
@@ -1596,27 +1596,46 @@ PrefabInstance:
       objectReference: {fileID: 1490769109}
     - target: {fileID: 383728794, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 383728794, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4239914927414727695, guid: 536d7aaf910ad7f4f812fd5110719bad,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 441207728}
-    - target: {fileID: 4239914927414727695, guid: 536d7aaf910ad7f4f812fd5110719bad,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6151836771634466427, guid: 536d7aaf910ad7f4f812fd5110719bad,
         type: 3}
       propertyPath: audioComponent
       value: 
       objectReference: {fileID: 1490769109}
+    - target: {fileID: 581934678, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451540480389141373, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746629986276179868, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746629986276179868, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746629986276179868, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
 --- !u!114 &5746629987776793042 stripped
