@@ -62,7 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\cg.cs" />
     <Compile Include="Assets\Database Control Free\Demos\C#\Scripts\DCF_DemoScene_ManagerScript_CSharp.cs" />
     <Compile Include="Assets\Scripts\Arena.cs" />
     <Compile Include="Assets\Scripts\ArenaRegister.cs" />
@@ -100,6 +99,7 @@
     <Compile Include="Assets\Scripts\Lobby\UserAccount_Lobby.cs" />
     <Compile Include="Assets\Scripts\LoginMenu\DataTranslator.cs" />
     <Compile Include="Assets\Scripts\LoginMenu\LoginMenu.cs" />
+    <Compile Include="Assets\Scripts\LoginMenu\PlayWithoutLogginIn.cs" />
     <Compile Include="Assets\Scripts\LoginMenu\UserAccountManager.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\playerMovement.cs" />

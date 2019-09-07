@@ -2,6 +2,7 @@
 using System.Collections;
 using DatabaseControl;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UserAccountManager : MonoBehaviour
 {
@@ -137,5 +138,23 @@ public class UserAccountManager : MonoBehaviour
         if (onDataReceived != null)
             onDataReceived.Invoke(data);
     }
+
+    //public void PlayWithoutLogginIn()
+    //{
+    //    int[] randomNumbers = new int[9];
+
+    //    for(int i = 0; i < randomNumbers.Length; i++)
+    //    {
+    //        randomNumbers[i] = UnityEngine.Random.Range(0, 9);
+    //    }
+
+    //    string playerName = "Player " + Convert.ToString(randomNumbers);
+
+    //    LoggedIn_Username = playerName;
+
+    //    print(playerName);
+
+    //    SceneManager.LoadScene(loggedInSceneName);
+    //}
 
 }

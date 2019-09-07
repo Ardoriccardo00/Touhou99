@@ -19,7 +19,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] CanvasGroup createCanvas;
     [SerializeField] CanvasGroup optionsCanvas;
     [SerializeField] CanvasGroup girlCanvas;
-    [SerializeField] CanvasGroup UserStatsCanvas;
+    [SerializeField] CanvasGroup userStatsCanvas;
+    [SerializeField] CanvasGroup loadingCanvas;
 
     [SerializeField] GameObject awayPoint;
     [SerializeField] GameObject centerPoint;
@@ -64,7 +65,8 @@ public class MainMenu : MonoBehaviour
         createCanvas.gameObject.SetActive(false);
         optionsCanvas.gameObject.SetActive(false);
         girlCanvas.gameObject.SetActive(false);
-        UserStatsCanvas.gameObject.SetActive(false);
+        userStatsCanvas.gameObject.SetActive(false);
+        girlCanvas.alpha = 0;
     }
 
     IEnumerator StartMenuAnimations()
@@ -98,12 +100,12 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
 
-        for(int i = 0; i < textsContainer.Length; i++) //Move texts //-635.7, -569.7, -660.5, -633.8, -697.5
+        for (int i = 0; i < textsContainer.Length; i++) //Move texts //-635.7, -569.7, -660.5, -633.8, -697.5
         {
-            Vector3 nextTextPosition = new Vector3(textsContainer[i].transform.position.x + 1000, textsContainer[i].transform.position.y, 0);
+            Vector3 nextTextPosition = new Vector3(textsContainer[i].transform.position.x + 770, textsContainer[i].transform.position.y, 0);
 
-            while (textsContainer[i].transform.position != nextTextPosition) 
-            {        
+            while (textsContainer[i].transform.position != nextTextPosition)
+            {
                 textsContainer[i].transform.position = Vector3.MoveTowards(textsContainer[i].transform.position, nextTextPosition, Time.deltaTime * textsMoveSpeed);
                 yield return null;
             }
@@ -170,6 +172,11 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(FadeMenuOut(menu));
     }
 
+    public void InvokeFadeMenuIn(GameObject menu)
+    {
+        StartCoroutine(FadeMenuIn(menu));
+    }
+
     IEnumerator FadeMenuOut(GameObject menu)
     {
         CanvasGroup menuCanvas = menu.GetComponent<CanvasGroup>();
@@ -177,6 +184,17 @@ public class MainMenu : MonoBehaviour
         while (menuCanvas.alpha > 0) //Fade Menu in
         {
             menuCanvas.alpha -= Time.deltaTime / 0.5f;
+            yield return null;
+        }
+    }
+
+    IEnumerator FadeMenuIn(GameObject menu)
+    {
+        CanvasGroup menuCanvas = menu.GetComponent<CanvasGroup>();
+
+        while (menuCanvas.alpha < 1)
+        {
+            menuCanvas.alpha += Time.deltaTime / 0.3f;
             yield return null;
         }
     }

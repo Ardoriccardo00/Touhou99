@@ -501,7 +501,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.9, z: 1}
   m_Children:
-  - {fileID: 1934313675709247275}
+  - {fileID: 5314573355873368989}
   - {fileID: 6131945459732858295}
   - {fileID: 6131945460847526645}
   - {fileID: 1531083438495454546}
@@ -513,7 +513,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &-5039155037091424133
 MonoBehaviour:
@@ -745,7 +745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 533b9488506281f42b64110f80321015, type: 3}
---- !u!4 &1934313675709247275 stripped
+--- !u!4 &5314573355873368989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5987879048926336092, guid: 533b9488506281f42b64110f80321015,
     type: 3}

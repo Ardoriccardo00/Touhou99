@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,15 +11,21 @@ public class PauseMenu : MonoBehaviour
 
     private NetworkManager networkManager;
 
+    private PlayerUI pu;
+
     void Start()
     {
         networkManager = NetworkManager.singleton;
+        pu = GetComponentInParent<PlayerUI>();
     }
 
     public void LeaveRoom()
     {
+
         MatchInfo matchInfo = networkManager.matchInfo;
+        pu.RemovePlayer();
         networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
         networkManager.StopHost();
+        SceneManager.LoadScene(1);
     }
 }

@@ -19,7 +19,7 @@ public class PlayerUI : MonoBehaviour
 
     public Slider bombPowerBar;
 
-    private playerMovement player;
+    public playerMovement player;
 
     public void SetPlayer(playerMovement _player)
     {
@@ -61,6 +61,12 @@ public class PlayerUI : MonoBehaviour
                 Debug.Log(GameManager.playersAlive.Count);
             }
         }
+    }
+
+    public void RemovePlayer()
+    {
+        GameManager.UnRegisterPlayer(player.transform.name);
+        GameManager.RemoveDeadPlayer(player.transform.name);
     }
 
     public void TogglePauseMenu()

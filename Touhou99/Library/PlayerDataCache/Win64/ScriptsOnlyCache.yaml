@@ -950,7 +950,7 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
-      Hash: 46c1d2b505b1fa59302a13426ed4116d
+      Hash: 515f631ada5cacdd5f93ea7d8a6f97c9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EndGame
@@ -1286,7 +1286,7 @@ ScriptsOnlyBuild:
     className: NetworkMigrationManager
   - hash:
       serializedVersion: 2
-      Hash: 8856725819eaa516bf74350461b30b1a
+      Hash: 0970bd63f09f86f91343e5f084ea9494
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainMenu

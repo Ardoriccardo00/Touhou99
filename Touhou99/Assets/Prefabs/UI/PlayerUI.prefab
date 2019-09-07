@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1894137139497651551
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1150,6 +1150,7 @@ MonoBehaviour:
   startGameButton: {fileID: 0}
   leaveButton: {fileID: 0}
   arenaSpawner: {fileID: 0}
+  dataText: {fileID: 0}
 --- !u!1 &4709501333825058439
 GameObject:
   m_ObjectHideFlags: 0

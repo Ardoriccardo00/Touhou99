@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -54,8 +55,16 @@ public class HostGame : MonoBehaviour
 
         if(ChooseGirl.girlChosen == true)
         {
+            StartCoroutine("WaitForCreate");
+            //print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
+            //nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
+        }
+    }
+
+    IEnumerator WaitForCreate()
+    {
+        yield return new WaitForSeconds(2);
         print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
         nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
-        }
     }
 }
