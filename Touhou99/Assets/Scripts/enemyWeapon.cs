@@ -51,7 +51,9 @@ public class enemyWeapon : NetworkBehaviour
     [Command]
     void CmdShoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        print("enemy shoots!");
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        NetworkServer.Spawn(bullet);
         nextFire = Time.time + fireRate;
     }
 }

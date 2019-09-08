@@ -77,7 +77,6 @@
     <Compile Include="Assets\Scripts\enemyBullet.cs" />
     <Compile Include="Assets\Scripts\EnemySetup.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\EnemySpawnerFromPlayer.cs" />
     <Compile Include="Assets\Scripts\enemyWeapon.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Killfeed.cs" />

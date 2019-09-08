@@ -66,7 +66,7 @@ public class EnemySpawner : NetworkBehaviour
         }
     }
 
-    [Server]
+    //[Server]
     void Spawn()
     {
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);

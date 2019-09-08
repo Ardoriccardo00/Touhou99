@@ -29,7 +29,7 @@ public class EndGame : NetworkBehaviour
     void Start()
     {
         networkManager = NetworkManager.singleton;
-        gameOverText.enabled = false;
+        //gameOverText.enabled = false;
         //leaveButton.gameObject.SetActive(false);
         arenaSpawner = FindObjectOfType<ArenaSpawner>();
     }
@@ -40,12 +40,12 @@ public class EndGame : NetworkBehaviour
 
         if (numberOfPlayers <= 1)
         {
-            gameOverText.enabled = true;
+            //gameOverText.enabled = true;
         }
 
         else
         {
-            gameOverText.enabled = false;
+            //gameOverText.enabled = false;
         }
 
         dataText.text = "Players Alive " +  Convert.ToString(GameManager.playersAlive.Count) + "Players connected " + Convert.ToString(GameManager.players.Count);

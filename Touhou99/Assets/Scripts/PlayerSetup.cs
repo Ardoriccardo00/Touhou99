@@ -36,6 +36,11 @@ public class PlayerSetup : NetworkBehaviour
         else
             Debug.Log("Client");
 
+        if (!isLocalPlayer)
+        {
+            DisableComponents();
+        }
+
         player = GetComponent<Transform>();
         if (!isLocalPlayer)
         {

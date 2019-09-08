@@ -29,7 +29,7 @@ public class RoomListItem : MonoBehaviour
     {
         if(ChooseGirl.girlChosen == true)
         {
-            joinRoomCallback.Invoke(match);;
+            joinRoomCallback.Invoke(match);
         }
     }
 }

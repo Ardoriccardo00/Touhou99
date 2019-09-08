@@ -106,9 +106,9 @@ public class playerMovement : NetworkBehaviour {
         hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    public int GetHealth()
+    public float GetHealth()
     {
-        return currentHealth;
+        return  (float)currentHealth / maxHealth;
     }
 
     public float GetBombPowerAmount()
@@ -220,16 +220,24 @@ public class playerMovement : NetworkBehaviour {
         cloneSpawner.InstantiateClone();
     }
 
-    [Client]
+    //[Client]
     void Shoot()
     {
         if (!isLocalPlayer)
             return;
 
-        if (isServer)
-            CmdShoot();
-        else if (isClient)
-            ClientShoot();
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+        NetworkServer.Spawn(bullet);
+
+        bullet.GetComponent<projectileBehaviour>().shooter = transform.name;
+
+        Destroy(bullet, 0.5f);
+
+        //if (isServer)
+        //    CmdShoot();
+        //else if (isClient)
+        //    ClientShoot();
     }
 
     [Command]
