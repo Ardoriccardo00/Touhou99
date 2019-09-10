@@ -5,8 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class MainMenu : MonoBehaviour
-{
-    
+{   
     [Header("Values")]
     [SerializeField] float titleMoveSpeed = 1000f;
     [SerializeField] float girlImageMoveSpeed = 1000f;
@@ -45,6 +44,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject ambManager;
 
     TextMeshProUGUI playerNameImage;
+
     private void Start()
     {
         SetDefaults();

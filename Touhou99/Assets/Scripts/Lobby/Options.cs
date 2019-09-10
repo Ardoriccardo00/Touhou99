@@ -12,8 +12,8 @@ public class Options : MonoBehaviour
     [SerializeField] Slider musicSlider;
 
     [Header("Audio Sources")]
-    [SerializeField] AudioSource[] soundSources;
-    [SerializeField] AudioSource musicSource;
+    public AudioSource[] soundSources;
+    public AudioSource musicSource;
 
     [Header("Texts")]
     [SerializeField] TextMeshProUGUI soundText;
@@ -27,7 +27,7 @@ public class Options : MonoBehaviour
     void SetDefaults()
     {
         soundSlider.value = 0.1f;
-        musicSlider.value = 0.2f;
+        musicSlider.value = 0f;
         soundText.text = "1";
     }
 

@@ -6,19 +6,16 @@ using UnityEngine.UI;
 public class HostGame : MonoBehaviour
 {
 
-    [SerializeField]
-    private uint roomSize;
+
+    [SerializeField]  private uint roomSize;
     private string roomName;
 
     public static string hosterName;
 
     public Text userText;
 
-
-    [System.Obsolete]
     private NetworkManager nm;
 
-    [System.Obsolete]
     void Start()
     {
         nm = NetworkManager.singleton;
@@ -55,9 +52,9 @@ public class HostGame : MonoBehaviour
 
         if(ChooseGirl.girlChosen == true)
         {
-            StartCoroutine("WaitForCreate");
-            //print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
-            //nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
+            //StartCoroutine("WaitForCreate");
+            print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
+            nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
         }
     }
 

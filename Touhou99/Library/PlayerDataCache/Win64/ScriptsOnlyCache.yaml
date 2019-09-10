@@ -1184,7 +1184,7 @@ ScriptsOnlyBuild:
     className: BombBullet
   - hash:
       serializedVersion: 2
-      Hash: 232f0a73a0bafb157df8ea0e3668edfd
+      Hash: c965556d67c8fce13ce08cc0bface400
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoomListItem

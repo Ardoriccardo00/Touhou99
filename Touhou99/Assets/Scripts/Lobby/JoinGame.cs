@@ -57,6 +57,7 @@ public class JoinGame : MonoBehaviour
 
         foreach (MatchInfoSnapshot match in matchList)
         {
+            print(match.name);
             GameObject _roomListItemGO = Instantiate(roomListItemPrefab);
             _roomListItemGO.transform.SetParent(roomListParent);
 
@@ -96,9 +97,9 @@ public class JoinGame : MonoBehaviour
 
         //}
 
-        Debug.Log("joining " + _match.name);
-        //StartCoroutine(WaitForJoin());
+        Debug.Log("Joining " + _match.name);
         nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
+        StartCoroutine(WaitForJoin());
     }
 
     IEnumerator WaitForJoin()
