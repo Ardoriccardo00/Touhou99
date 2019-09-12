@@ -29,12 +29,21 @@ public class PlayerSetup : NetworkBehaviour
 
     public string thisPlayerUsername;
 
+    [HideInInspector] public static bool isServerPlayer;
+
     void Start()
     {
         if (isServer)
-            Debug.Log("server");
+        {
+            isServerPlayer = true;
+            Debug.Log(isServerPlayer);
+        }
         else
-            Debug.Log("Client");
+        {
+            isServerPlayer = false;
+            Debug.Log(isServerPlayer);
+        }
+            
 
         if (!isLocalPlayer)
         {

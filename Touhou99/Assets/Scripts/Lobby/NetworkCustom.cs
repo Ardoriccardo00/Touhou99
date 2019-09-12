@@ -22,16 +22,23 @@ public class NetworkCustom : NetworkManager
         int selectedClass = message.chosenClass;
         Debug.Log("server add with message " + selectedClass);
 
+        GameObject arena;
         GameObject player;
         Transform startPos = GetStartPosition();
 
         if (startPos != null)
         {
+            arena = Instantiate(playerPrefab, startPos.position, startPos.rotation) as GameObject;
             player = Instantiate(characters[selectedClass], startPos.position, startPos.rotation) as GameObject;
+            NetworkServer.Spawn(arena);
+            NetworkServer.Spawn(player);
         }
         else
         {
+            arena = Instantiate(playerPrefab, startPos.position, startPos.rotation) as GameObject;
             player = Instantiate(characters[selectedClass], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            NetworkServer.Spawn(arena);
+            NetworkServer.Spawn(player);
         }
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);

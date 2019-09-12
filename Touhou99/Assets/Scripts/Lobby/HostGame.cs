@@ -44,15 +44,8 @@ public class HostGame : MonoBehaviour
 
     private void CreatingRoom()
     {
-        //if (roomName != "" && roomName != null)
-        //{
-        //    print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
-        //    nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
-        //}
-
-        if(ChooseGirl.girlChosen == true)
+        if (roomName != "" && roomName != null && ChooseGirl.girlChosen == true)
         {
-            //StartCoroutine("WaitForCreate");
             print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
             nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
         }
@@ -61,7 +54,7 @@ public class HostGame : MonoBehaviour
     IEnumerator WaitForCreate()
     {
         yield return new WaitForSeconds(2);
-        print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
-        nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
+        //print("Creating room named " + roomName + " for " + roomSize + " players, created by: " + hosterName);
+        //nm.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, nm.OnMatchCreate);
     }
 }

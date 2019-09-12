@@ -6,26 +6,22 @@ using UnityEngine.Networking;
 [System.Obsolete]
 public class Enemy : NetworkBehaviour
 {
-    //Altre variabili
+    [Header("Stats")]
     public GameObject deathEffect;
     private Rigidbody2D rb;
     public float moveSpeed = 50f;
-    playerMovement player;
-
-    private string direction;
-
-    private Vector3 spawnPosition;
-
     public int currentHealth;
     private int health = 1;
 
-    float movement = 0f;
-
+    [Header("Movement")]
     Vector2 moveDirection;
     Vector2 moveDirection2;
 
     float timer = 1f;
     float timer2 = 3f;
+
+    public enum SpawnPositionEnum {UpLeft, UpRight};
+    public SpawnPositionEnum spawnPosition;
 
     void Start()
     {
@@ -33,7 +29,6 @@ public class Enemy : NetworkBehaviour
         rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 4f);
         GetPosition();
-        GetMoveDirection();
     }
 
     void Update()
@@ -64,57 +59,45 @@ public class Enemy : NetworkBehaviour
 
     void GetPosition()
     {
-        if (this.transform.name.Contains("EnemyUpCenterLeft"))
-            direction = "up center left";
-
-        else if(this.transform.name.Contains("EnemyUpCenterRight"))
-            direction = "up center right";
-
-        else if (this.transform.name.Contains("EnemyUpLeft"))
-            direction = "up left";
-
-        else if (this.transform.name.Contains("EnemyUpRight"))
-            direction = "up right";
-    }
-
-    void GetMoveDirection()
-    {
-        switch (direction)
+        switch (spawnPosition)
         {
-            case "null":
-                break;
-            case "up center left":
-                //moveDirection = new Vector2(0f, -1f * moveSpeed);
-                //moveDirection2 = new Vector2(1f * moveSpeed, 0f);
-                break;
-            case "up center right":
-                //moveDirection = new Vector2(0f, -1f * moveSpeed);
-                //moveDirection2 = new Vector2(-1f * moveSpeed, 0f);
-                break;
-
-            case "up left":
+            case SpawnPositionEnum.UpLeft:
                 moveDirection = new Vector2(0f, -1f * moveSpeed);
                 moveDirection2 = new Vector2(1f * moveSpeed, 0f);
                 break;
 
-            case "up right":
+            case SpawnPositionEnum.UpRight:
                 moveDirection = new Vector2(0f, -1f * moveSpeed);
                 moveDirection2 = new Vector2(-1f * moveSpeed, 0f);
                 break;
-
-
         }
     }
+  
+        //switch (direction)
+        //{
+        //    case "null":
+        //        break;
+        //    case "up center left":
+        //        //moveDirection = new Vector2(0f, -1f * moveSpeed);
+        //        //moveDirection2 = new Vector2(1f * moveSpeed, 0f);
+        //        break;
+        //    case "up center right":
+        //        //moveDirection = new Vector2(0f, -1f * moveSpeed);
+        //        //moveDirection2 = new Vector2(-1f * moveSpeed, 0f);
+        //        break;
 
-    //private void OnTriggerEnter2D(Collider2D hitInfo)
-    //{
-    //    if (hitInfo.tag == "Player")
-    //    {
-    //        Destroy(gameObject);
-    //    }
+        //    case "up left":
+        //        moveDirection = new Vector2(0f, -1f * moveSpeed);
+        //        moveDirection2 = new Vector2(1f * moveSpeed, 0f);
+        //        break;
 
-    //}
+        //    case "up right":
+        //        moveDirection = new Vector2(0f, -1f * moveSpeed);
+        //        moveDirection2 = new Vector2(-1f * moveSpeed, 0f);
+        //        break;
 
+
+        //}
 }
 
 /*    //Altre variabili

@@ -5,72 +5,100 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : NetworkBehaviour
 {
-    //Miste
-    public Transform spawnPoint;
+    [Header ("Miste")]
+    //public Transform spawnPoint;
+    public Transform[] spawnPoints;
     public GameObject enemyPrefab;
     playerMovement player;
+    private int i = 0;
 
-    //Timer per lo spawn
+    [Header ("Timers")]
+    [SerializeField] GameObject gameCanvas;
+    [SerializeField] TimerToStartMatch timer;
     private float spawnDelay = 1f;
     private float spawnDelayCounter;
     private float timeBetweenSpawn;
     private float timeBetweenSpawnCounter;
     public float enemiesToSpawn;
 
-    private int i = 0;
 
-    public override void OnStartServer()
-    {
-        player = GameObject.FindObjectOfType<playerMovement>();
-        //timeBetweenSpawn = UnityEngine.Random.Range(5f, 15f);
-        //timeBetweenSpawnCounter = timeBetweenSpawn;
-        spawnDelayCounter = spawnDelay;
-    }
+    //public override void OnStartServer()
+    //{
+    //    timer = FindObjectOfType<TimerToStartMatch>();
+    //    player = GameObject.FindObjectOfType<playerMovement>();
+    //    //timeBetweenSpawn = UnityEngine.Random.Range(5f, 15f);
+    //    //timeBetweenSpawnCounter = timeBetweenSpawn;
+    //    spawnDelayCounter = spawnDelay;
+    //}
 
     private void Start()
     {
+        gameCanvas = GameObject.FindGameObjectWithTag("GameCanvas");
+        timer = gameCanvas.GetComponent<TimerToStartMatch>();
+        player = GameObject.FindObjectOfType<playerMovement>();
         timeBetweenSpawn = UnityEngine.Random.Range(5f, 15f);
         timeBetweenSpawnCounter = timeBetweenSpawn;
+        spawnDelayCounter = spawnDelay;
     }
 
     void Update()
     {
-        if (timeBetweenSpawnCounter > 0)
+        if(timer.countDownToStart <= 0)
         {
-            timeBetweenSpawnCounter -= Time.deltaTime;
-        }
-        else if (timeBetweenSpawnCounter <= 0)
-        {
-            if (i < enemiesToSpawn)
+            if (timeBetweenSpawnCounter > 0)
             {
-                spawnDelayCounter -= Time.deltaTime;
-
-                if (spawnDelayCounter <= 0)
+                timeBetweenSpawnCounter -= Time.deltaTime;
+            }
+            else if (timeBetweenSpawnCounter <= 0)
+            {
+                if (i < enemiesToSpawn)
                 {
-                    Spawn();
-                    spawnDelayCounter = spawnDelay;
-                    i++;
+                    spawnDelayCounter -= Time.deltaTime;
+
+                    if (spawnDelayCounter <= 0)
+                    {
+                        Spawn();
+                        spawnDelayCounter = spawnDelay;
+                        i++;
+                    }
+
                 }
 
-            }
-
-            if (i >= enemiesToSpawn)
-            {
-                timeBetweenSpawn = UnityEngine.Random.Range(5f, 10f);
-                timeBetweenSpawnCounter = timeBetweenSpawn;
-                i = 0;
+                if (i >= enemiesToSpawn)
+                {
+                    timeBetweenSpawn = UnityEngine.Random.Range(5f, 10f);
+                    timeBetweenSpawnCounter = timeBetweenSpawn;
+                    i = 0;
+                }
             }
         }
+        
     }
 
-    //[Server]
     void Spawn()
     {
-        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        var spawnPoint = Random.Range(0, spawnPoints.Length);
+        var spawnPointPosition = spawnPoints[spawnPoint].transform.name;
+
+
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoints[spawnPoint].transform.position, spawnPoints[spawnPoint].transform.rotation);
+        Enemy theEnemy = enemy.GetComponent<Enemy>();
         NetworkServer.Spawn(enemy);
+
+        switch (spawnPointPosition)
+        {
+            case "UpLeft":
+                theEnemy.spawnPosition = Enemy.SpawnPositionEnum.UpLeft;
+                break;
+
+            case "UpRight":
+                theEnemy.spawnPosition = Enemy.SpawnPositionEnum.UpRight;
+                break;
+        }
     }
 }
 

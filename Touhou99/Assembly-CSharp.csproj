@@ -111,6 +111,7 @@
     <Compile Include="Assets\Scripts\Scoreboard.cs" />
     <Compile Include="Assets\Scripts\SpawnsSpawner.cs" />
     <Compile Include="Assets\Scripts\StartGame.cs" />
+    <Compile Include="Assets\Scripts\TimerToStartMatch.cs" />
     <Compile Include="Assets\Scripts\UIScripts\ChangeText.cs" />
     <Compile Include="Assets\Scripts\UIScripts\ExitGame.cs" />
     <Compile Include="Assets\Scripts\UIScripts\Rotate.cs" />

@@ -35,6 +35,7 @@ ScriptsOnlyBuild:
     - RoomListItem
     - Rotate
     - Scoreboard
+    - TimerToStartMatch
     - UserAccountManager
     - UserAccount_Lobby
     - Weapon
@@ -421,6 +422,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10784}
     - Class: 114
       Script: {instanceID: 10810}
+    - Class: 114
+      Script: {instanceID: 74286}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -956,7 +959,7 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
-      Hash: b167ea1bf40e25c8f7414e7c8ce947b6
+      Hash: f3c3dbd695c46f4d206b09e5020a3296
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EndGame
@@ -1076,7 +1079,7 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: 61ac5530d1e83f77da77a3b7454ae4a9
+      Hash: 1f6fe69ecd08e0c8c232179b68941905
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
@@ -1226,7 +1229,7 @@ ScriptsOnlyBuild:
     className: PlayerStats
   - hash:
       serializedVersion: 2
-      Hash: 59b54c6ee299efdd683104f6e9aeb116
+      Hash: ec4a13f3349ba0a615475d304b034148
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemySpawner
@@ -1512,6 +1515,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 7b03b122f8a89ecf8b731ba41bc439d8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TimerToStartMatch
   platform: 19
   scenePathNames:
   - Assets/Scenes/LoginMenu.unity

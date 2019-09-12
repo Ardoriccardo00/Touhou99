@@ -25,39 +25,53 @@ public class EndGame : NetworkBehaviour
 
     private NetworkManager networkManager;
 
-    [System.Obsolete]
+    [SerializeField] Text countDown;
+
+    [SerializeField] TimerToStartMatch timer;
+
     void Start()
     {
         networkManager = NetworkManager.singleton;
-        //gameOverText.enabled = false;
-        //leaveButton.gameObject.SetActive(false);
+        gameOverText.enabled = false;
         arenaSpawner = FindObjectOfType<ArenaSpawner>();
+
+        if (PlayerSetup.isServerPlayer == true)
+            startGameButton.enabled = true;
+        else
+            startGameButton.enabled = false;
+
     }
 
     void Update()
     {
+        countDown.text = Convert.ToString(timer.countDownToStart);
+
+        if(timer.countDownToStart <= 0)
+        {
+            countDown.enabled = false;
+        }
+
         numberOfPlayers = GameManager.playersAlive.Count;
 
         if (numberOfPlayers <= 1)
         {
-            //gameOverText.enabled = true;
+            gameOverText.enabled = true;
         }
 
         else
         {
-            //gameOverText.enabled = false;
+            gameOverText.enabled = false;
         }
 
         dataText.text = "Players Alive " +  Convert.ToString(GameManager.playersAlive.Count) + "Players connected " + Convert.ToString(GameManager.players.Count);
     }
 
-    [Client]
     public void LeaveRoom()
     {
         MatchInfo matchInfo = networkManager.matchInfo;
         networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
         networkManager.StopHost();
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
     public void ActivateArenaSpawner()

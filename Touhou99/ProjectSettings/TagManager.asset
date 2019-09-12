@@ -12,6 +12,7 @@ TagManager:
   - Clone
   - SpawnPointUpLeft
   - SpawnPointUpRight
+  - GameCanvas
   layers:
   - Default
   - TransparentFX
