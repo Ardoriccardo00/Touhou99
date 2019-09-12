@@ -121,6 +121,11 @@ public class playerMovement : NetworkBehaviour {
         AdjustDiagonalMovement();
         Focus();
         GetWeaponInput();
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            bombPower = bombPowerMax;
+        }
     }
 
     private void GetWeaponInput()

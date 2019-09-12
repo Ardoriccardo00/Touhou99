@@ -10,15 +10,14 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : NetworkBehaviour
 {
     [Header ("Miste")]
-    //public Transform spawnPoint;
     public Transform[] spawnPoints;
     public GameObject enemyPrefab;
     playerMovement player;
     private int i = 0;
 
     [Header ("Timers")]
-    [SerializeField] GameObject gameCanvas;
-    [SerializeField] TimerToStartMatch timer;
+    GameObject gameCanvas;
+    TimerToStartMatch timer;
     private float spawnDelay = 1f;
     private float spawnDelayCounter;
     private float timeBetweenSpawn;

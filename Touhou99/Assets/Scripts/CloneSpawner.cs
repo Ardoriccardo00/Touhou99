@@ -6,10 +6,11 @@ using UnityEngine.Networking;
 public class CloneSpawner : NetworkBehaviour
 {
     public GameObject clonePrefab;
+    [SerializeField] GameObject cloneSpawnPoint;
 
    public void InstantiateClone()
     {
-        GameObject clone = Instantiate(clonePrefab, transform.position, transform.rotation);
+        GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);
         NetworkServer.Spawn(clone);
     }
 }
