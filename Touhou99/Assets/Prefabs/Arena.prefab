@@ -271,7 +271,6 @@ GameObject:
   - component: {fileID: -5039155037091424133}
   - component: {fileID: 1707467351553062075}
   - component: {fileID: 7373793628122823029}
-  - component: {fileID: 3135816581838423519}
   m_Layer: 0
   m_Name: Arena
   m_TagString: Arena
@@ -366,21 +365,6 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1290405546085826877, guid: d707baaf171b8de41bc167ec7d23fd28,
     type: 3}
   enemiesToSpawn: 5
---- !u!114 &3135816581838423519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6131945459548112599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed16817e854457b4da788770e5579901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clonePrefab: {fileID: 4718840605215000032, guid: 677be7e7389d7824d8ca48f8d8b5dda1,
-    type: 3}
-  cloneSpawnPoint: {fileID: 158011007352542118}
 --- !u!1 &6131945460847526642
 GameObject:
   m_ObjectHideFlags: 0

@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2470ff1df4ed1f247b2eab4779084f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotatingSpeed: -400
 --- !u!1 &7811519340551911179
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,14 +245,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  username: loading...
   kills: 0
   deaths: 0
-  bombPower: 0
-  bombPowerMax: 40
+  username: loading...
   moveSpeed: 8
   diagonalMoveModifier: 0.75
   animator: {fileID: 5774516659631564311}
+  clonePrefab: {fileID: 0}
   hitBoxSprite: {fileID: 4678560845095517382}
   firePoint: {fileID: 1710417750642797245}
   firePoint1: {fileID: 720712603952643188}
@@ -263,7 +263,8 @@ MonoBehaviour:
   distance: 1000
   fireRate: 10
   damage: 100
-  clonePrefab: {fileID: 0}
+  bombPower: 0
+  bombPowerMax: 40
 --- !u!114 &-6814792453246056337
 MonoBehaviour:
   m_ObjectHideFlags: 0

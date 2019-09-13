@@ -4,54 +4,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
+using Random = UnityEngine.Random;
 
 [Obsolete]
 public class playerMovement : NetworkBehaviour {
-    [Header("Official")]
 
+    [Header("Statistics")]
     [SerializeField] public int maxHealth = 50;
-
     [SyncVar (hook = "OnHealthChanged")] private int currentHealth;
-
-    
-
-    [SyncVar]
-    public string username = "loading...";
 
     public int kills;
     public int deaths;
 
-    private Rigidbody2D rb;
+    [SyncVar] public string username = "loading...";
 
-    //[SyncVar]
-    public float bombPower;
-    public float bombPowerMax = 40f;
+    [SerializeField] private float moveSpeed;
     private float originalMoveSpeed;
-
-    [SerializeField]
-    private float moveSpeed;
     private float currentMoveSpeed;
     public float diagonalMoveModifier = 0.75f;
 
+    [Header("Components")]
+    private Rigidbody2D rb;
+    private Camera myCamera;
+    [SerializeField] private Animator animator;
+
+    private NetworkManager networkManager;
+    
+    public GameObject clonePrefab;
+
+    [SerializeField] GameObject cloneSpawnPoint;
+
+    [SerializeField] private GameObject hitBoxSprite;
+
     private Vector2 direction;
 
-    private Camera myCamera;
-
+    [Header("Others")]
+    [SerializeField] private GameObject Arena;
     private const string PLAYER_TAG = "Player";
     private const string ENEMY_TAG = "Enemy";
 
-    [SerializeField]
-    private Animator animator;
-
-    private NetworkManager networkManager;
-
-    private CloneSpawner cloneSpawner;
-
-    [SerializeField]
-    private GameObject hitBoxSprite;
-
     private bool isHit;
-
 
     [Header("Weapon")]
     public Transform firePoint;
@@ -67,15 +59,27 @@ public class playerMovement : NetworkBehaviour {
 
     public int damage = 10;
 
-    public GameObject clonePrefab;
+    [SyncVar] public float bombPower;
+    public float bombPowerMax = 40f;
 
-    //public void Awake()
-    //{
-    //    SetDefaults();
-    //}
+
     void Start()
     {
-        SetDefaults(); 
+        if (!isLocalPlayer)
+            return;
+
+        Arena = GameObject.FindGameObjectWithTag("Arena");
+        isHit = false;
+        currentHealth = maxHealth;
+        bombPower = 0f;
+        originalMoveSpeed = moveSpeed;
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        networkManager = NetworkManager.singleton;
+        hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        cloneSpawnPoint = GameObject.FindGameObjectWithTag("CloneSpawner");
+
+        SetTarget();
     }
 
 
@@ -89,21 +93,6 @@ public class playerMovement : NetworkBehaviour {
 
         if (bombPower >= 40f)
             bombPower = bombPowerMax;
-    }
-
-    public void SetDefaults()
-    {
-        if (!isLocalPlayer)
-            return;
-
-        isHit = false;
-        currentHealth = maxHealth;
-        bombPower = 0f;
-        originalMoveSpeed = moveSpeed;
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        networkManager = NetworkManager.singleton;
-        hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public float GetHealth()
@@ -125,6 +114,11 @@ public class playerMovement : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.H))
         {
             bombPower = bombPowerMax;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SetTarget();
         }
     }
 
@@ -201,31 +195,13 @@ public class playerMovement : NetworkBehaviour {
         if (!isLocalPlayer)
             return;
 
-        if (isServer)
-            CmdBomb();
-        else if (isClient)
-            ClientBomb();    
+        GameObject bomb = Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
+        NetworkServer.Spawn(bomb);
+
+        GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);
+        NetworkServer.Spawn(clone);
     }
 
-    [Command]
-    void CmdBomb()
-    {
-        Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
-        cloneSpawner = GameObject.FindGameObjectWithTag("CloneSpawner").GetComponent<CloneSpawner>();
-        cloneSpawner.clonePrefab = clonePrefab;
-        cloneSpawner.InstantiateClone();
-    }
-
-    [Client]
-    void ClientBomb()
-    {    
-        Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
-        cloneSpawner = GameObject.FindGameObjectWithTag("CloneSpawner").GetComponent<CloneSpawner>();
-        cloneSpawner.clonePrefab = clonePrefab;
-        cloneSpawner.InstantiateClone();
-    }
-
-    //[Client]
     void Shoot()
     {
         if (!isLocalPlayer)
@@ -239,35 +215,24 @@ public class playerMovement : NetworkBehaviour {
 
         Destroy(bullet, 0.5f);
 
-        //if (isServer)
-        //    CmdShoot();
-        //else if (isClient)
-        //    ClientShoot();
     }
 
-    [Command]
-    void CmdShoot()
+    void SetTarget()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        if (!isLocalPlayer)
+            return;
 
-        NetworkServer.Spawn(bullet);
+        GameObject[] cloneSpawnPoints = GameObject.FindGameObjectsWithTag("CloneSpawner");
+        int random = Random.Range(0, cloneSpawnPoints.Length);
+        GameObject targetSpawn = cloneSpawnPoints[random];
+        print("Giocatore besagliato: " + targetSpawn);
 
-        bullet.GetComponent<projectileBehaviour>().shooter = transform.name;
-
-        Destroy(bullet, 0.5f);
+        //playerMovement[] playerList = FindObjectsOfType<playerMovement>();
+        //int intTargetPlayer = Random.Range(0, playerList.Length);
+        //playerMovement targetPlayer = playerList[intTargetPlayer];
+        //print("Giocatore besagliato: " + targetPlayer);
     }
 
-    [Client]
-    void ClientShoot()
-    {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
-        NetworkServer.Spawn(bullet);
-
-        bullet.GetComponent<projectileBehaviour>().shooter = transform.name;
-
-        Destroy(bullet, 0.5f);
-    }
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         if (hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")

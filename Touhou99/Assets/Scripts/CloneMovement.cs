@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class CloneMovement : NetworkBehaviour
 {
-    private int maxHealth = 5000;
+    [SerializeField] private int maxHealth = 1000;
     public int currentHealth;
 
     private float timeBetweenMove = 2f;

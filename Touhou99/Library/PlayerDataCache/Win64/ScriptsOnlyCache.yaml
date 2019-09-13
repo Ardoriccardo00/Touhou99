@@ -9,7 +9,6 @@ ScriptsOnlyBuild:
     - CameraController
     - ChooseGirl
     - CloneMovement
-    - CloneSpawner
     - EndGame
     - Enemy
     - EnemySpawner
@@ -189,8 +188,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10214}
     - Class: 114
-      Script: {instanceID: 10244}
-    - Class: 114
       Script: {instanceID: 10328}
     - Class: 114
       Script: {instanceID: 10376}
@@ -211,15 +208,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10808}
     - Class: 114
-      Script: {instanceID: 10810}
-    - Class: 114
       Script: {instanceID: 10826}
     - Class: 114
       Script: {instanceID: 10830}
     - Class: 114
-      Script: {instanceID: 10878}
+      Script: {instanceID: 10880}
     - Class: 114
-      Script: {instanceID: 10910}
+      Script: {instanceID: 10912}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -380,8 +375,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 95
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -415,15 +408,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10294}
     - Class: 114
-      Script: {instanceID: 10584}
-    - Class: 114
       Script: {instanceID: 10690}
     - Class: 114
       Script: {instanceID: 10784}
     - Class: 114
-      Script: {instanceID: 10810}
-    - Class: 114
-      Script: {instanceID: 74286}
+      Script: {instanceID: 10846}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1007,7 +996,7 @@ ScriptsOnlyBuild:
     className: enemyWeapon
   - hash:
       serializedVersion: 2
-      Hash: 14efd195d16d3c41f59309a38e94eee3
+      Hash: 813820192881bd8b8cd54206f409caa0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: playerMovement
@@ -1229,7 +1218,7 @@ ScriptsOnlyBuild:
     className: PlayerStats
   - hash:
       serializedVersion: 2
-      Hash: ec4a13f3349ba0a615475d304b034148
+      Hash: 02550246a6dcb760ff5aca2925c871c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemySpawner
@@ -1379,7 +1368,7 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: 7281fd98d7fa6cda13ea3dd97a82cf28
+      Hash: 126b9fe56e611dc214be593356f4ff69
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CloneMovement
@@ -1457,7 +1446,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: 57bcec6b384757f1533849f789c44c37
+      Hash: cafdd8479928fcba2fe6651be4f58f37
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CloneSpawner
@@ -1485,6 +1474,12 @@ ScriptsOnlyBuild:
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
     className: NetworkManagerHUD
+  - hash:
+      serializedVersion: 2
+      Hash: 7b03b122f8a89ecf8b731ba41bc439d8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TimerToStartMatch
   - hash:
       serializedVersion: 2
       Hash: 8649814970b42d345b89944b862453cc
@@ -1515,12 +1510,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 7b03b122f8a89ecf8b731ba41bc439d8
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: TimerToStartMatch
   platform: 19
   scenePathNames:
   - Assets/Scenes/LoginMenu.unity
