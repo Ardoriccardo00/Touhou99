@@ -124,6 +124,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7802531291373603246, guid: 666514c51c59df34bb447becec637ddb,
         type: 3}
+    - target: {fileID: 7416816598037890894, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: clonePrefab
+      value: 
+      objectReference: {fileID: 7802531291373603246, guid: 666514c51c59df34bb447becec637ddb,
+        type: 3}
+    - target: {fileID: 7416816598037890894, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7179997388609053528, guid: 213ad10ca525ff84cbd9a3d22570cba0,
+        type: 3}
     - target: {fileID: 8721164251343191713, guid: b8af716ea064bae4c8de68cf5186a520,
         type: 3}
       propertyPath: m_AssetId.i0
@@ -288,6 +300,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040343368841230031, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 6740665149771057310}
+    - target: {fileID: 6040343368841230031, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8af716ea064bae4c8de68cf5186a520, type: 3}

@@ -6,11 +6,11 @@ using UnityEngine.Networking;
 public class SpawnsSpawner : NetworkBehaviour
 {
     [SerializeField] private GameObject spawner;
-    [SerializeField] playerMovement[] players;
+    [SerializeField] Player[] players;
 
     void Start()
     {
-        players = FindObjectsOfType<playerMovement>();
+        players = FindObjectsOfType<Player>();
         SpawnSpawners();
     }
 
@@ -20,7 +20,7 @@ public class SpawnsSpawner : NetworkBehaviour
     }
     public void SpawnSpawners()
     {
-        foreach (KeyValuePair<string, playerMovement> entry in GameManager.players)
+        foreach (KeyValuePair<string, Player> entry in GameManager.players)
         {
             print("GIOCATORE" + entry.Key + entry.Value);
         }

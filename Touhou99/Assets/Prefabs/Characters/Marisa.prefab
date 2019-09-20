@@ -125,6 +125,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6f0b1db80fa4e5b449efd9dc87ae6959, type: 2}
+    - target: {fileID: 7416816598037890894, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: clonePrefab
+      value: 
+      objectReference: {fileID: 761783265423904730, guid: efd45e34cdb76bc45a546ca788715503,
+        type: 3}
+    - target: {fileID: 7416816598037890894, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 152385802298668810, guid: a241ae5cebe1d5c479fb78b4c32fd74d,
+        type: 3}
     - target: {fileID: 8721164251343191713, guid: b8af716ea064bae4c8de68cf5186a520,
         type: 3}
       propertyPath: m_AssetId.i0
@@ -290,5 +302,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6f0b1db80fa4e5b449efd9dc87ae6959, type: 2}
+    - target: {fileID: 6040343368841230031, guid: b8af716ea064bae4c8de68cf5186a520,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8af716ea064bae4c8de68cf5186a520, type: 3}

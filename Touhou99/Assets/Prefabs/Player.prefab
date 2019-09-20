@@ -57,6 +57,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -137,8 +138,9 @@ GameObject:
   - component: {fileID: 8183273828411856129}
   - component: {fileID: 3383648522482584679}
   - component: {fileID: -6814792453246056337}
-  - component: {fileID: 5774516659631564311}
+  - component: {fileID: 6040343368841230031}
   - component: {fileID: 7416816598037890894}
+  - component: {fileID: 5774516659631564311}
   - component: {fileID: 6512339290626615010}
   - component: {fileID: 8721164251343191713}
   - component: {fileID: 4709279201127390924}
@@ -193,6 +195,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -248,23 +251,8 @@ MonoBehaviour:
   kills: 0
   deaths: 0
   username: loading...
-  moveSpeed: 8
-  diagonalMoveModifier: 0.75
-  animator: {fileID: 5774516659631564311}
-  clonePrefab: {fileID: 0}
-  hitBoxSprite: {fileID: 4678560845095517382}
-  firePoint: {fileID: 1710417750642797245}
-  firePoint1: {fileID: 720712603952643188}
-  bombFirePoint: {fileID: 5536426307208110057}
-  bulletPrefab: {fileID: 2822029368383740940, guid: c5478d18b1e5b5e45add18db48a72d88,
-    type: 3}
-  bombPrefab: {fileID: 519350734164162524, guid: 2e8e76824837a684d8812d90bf2b1f2b,
-    type: 3}
-  distance: 1000
-  fireRate: 10
-  damage: 100
-  bombPower: 0
-  bombPowerMax: 40
+  weapon: {fileID: 7416816598037890894}
+  Arena: {fileID: 0}
 --- !u!114 &-6814792453246056337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +277,48 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 5536426307208110057}
   thisPlayerUsername: 
+--- !u!114 &6040343368841230031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259962898754785055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e76d6170d539644b3bcceb8d8283cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  diagonalMoveModifier: 0.75
+  hitBoxSprite: {fileID: 4678560845095517382}
+  animator: {fileID: 5774516659631564311}
+--- !u!114 &7416816598037890894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259962898754785055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ecf0ad54bae77047badcab6449a4ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 1000
+  fireRate: 10
+  damage: 10
+  bombPower: 0
+  bombPowerMax: 40
+  firePoint: {fileID: 1710417750642797245}
+  firePoint1: {fileID: 720712603952643188}
+  bombFirePoint: {fileID: 5536426307208110057}
+  cloneSpawnPoint: {fileID: 0}
+  bulletPrefab: {fileID: 2822029368383740940, guid: c5478d18b1e5b5e45add18db48a72d88,
+    type: 3}
+  bombPrefab: {fileID: 519350734164162524, guid: 2e8e76824837a684d8812d90bf2b1f2b,
+    type: 3}
+  clonePrefab: {fileID: 0}
 --- !u!95 &5774516659631564311
 Animator:
   serializedVersion: 3
@@ -308,26 +338,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7416816598037890894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8259962898754785055}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ecf0ad54bae77047badcab6449a4ecd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
-  firePoint1: {fileID: 0}
-  bombFirePoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  bombPrefab: {fileID: 0}
-  player: {fileID: 0}
-  distance: 100
-  fireRate: 0
 --- !u!114 &6512339290626615010
 MonoBehaviour:
   m_ObjectHideFlags: 0

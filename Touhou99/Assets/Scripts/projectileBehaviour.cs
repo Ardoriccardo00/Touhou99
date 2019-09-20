@@ -10,7 +10,8 @@ public class projectileBehaviour : NetworkBehaviour
     public float speed;
     public int damage;
     public string shooter;
-    playerMovement theClosestPlayer;
+    //Player theClosestPlayer;
+    //Weapon playersWeapon;
     GameObject playerToReward;
     //public GameObject impactEffect;
 
@@ -29,8 +30,7 @@ public class projectileBehaviour : NetworkBehaviour
 
         if (hitInfo.tag == "Enemy" || hitInfo.tag == "Clone")
         {
-            //playerToReward.bombPower = playerToReward.bombPower + UnityEngine.Random.Range(0.5f, 0.8f);
-            playerToReward.GetComponent<playerMovement>().bombPower += UnityEngine.Random.Range(0.5f, 0.8f);
+            playerToReward.GetComponent<Weapon>().bombPower += UnityEngine.Random.Range(0.5f, 0.8f); //was Player instead of Weapon
 
             if (hitInfo.tag == "Enemy")
             {

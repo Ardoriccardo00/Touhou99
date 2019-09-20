@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 
     private const string PLAYER_ID_PREFIX = "Player ";
 
-    [SerializeField] public static Dictionary<string, playerMovement> players = new Dictionary<string, playerMovement>();
-    [SerializeField] public static Dictionary<string, playerMovement> playersAlive = new Dictionary<string, playerMovement>();
+    [SerializeField] public static Dictionary<string, Player> players = new Dictionary<string, Player>();
+    [SerializeField] public static Dictionary<string, Player> playersAlive = new Dictionary<string, Player>();
 
     public delegate void OnPlayerKilledCallBack(string player, string source);
     public OnPlayerKilledCallBack onPlayerKilledCallBack;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     }
 
     [System.Obsolete]
-    public static void RegisterPlayer(string _netID, playerMovement _player)
+    public static void RegisterPlayer(string _netID, Player _player)
     {
         string _playerID = PLAYER_ID_PREFIX + _netID;
         players.Add(_playerID, _player);
@@ -43,17 +43,17 @@ public class GameManager : MonoBehaviour
     }
 
     [System.Obsolete]
-    public static playerMovement GetPlayer(string _playerID)
+    public static Player GetPlayer(string _playerID)
     {
         return players[_playerID];
     }
 
-    public static playerMovement[] GetAllPlayers()
+    public static Player[] GetAllPlayers()
     {
         return players.Values.ToArray();
     }
 
-    public static void AddAlivePlayer(string _netID, playerMovement _player)
+    public static void AddAlivePlayer(string _netID, Player _player)
     {
         string _playerID = PLAYER_ID_PREFIX + _netID;
         playersAlive.Add(_playerID, _player);

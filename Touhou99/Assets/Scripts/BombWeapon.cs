@@ -7,12 +7,12 @@ public class BombWeapon : MonoBehaviour
     public Transform bombFirePoint;
     public GameObject bombPrefab;
     [System.Obsolete]
-    public playerMovement player;
+    public Weapon weapon;
 
     [System.Obsolete]
     void start()
     {
-        player = FindObjectOfType<playerMovement>();
+        weapon = FindObjectOfType<Weapon>();
     }
 
     [System.Obsolete]
@@ -20,7 +20,7 @@ public class BombWeapon : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            if (player.bombPower >= 40f)
+            if (weapon.bombPower >= 40f)
             {
                 Bomb();
             }

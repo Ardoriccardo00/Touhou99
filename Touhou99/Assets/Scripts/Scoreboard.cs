@@ -12,9 +12,9 @@ public class Scoreboard : MonoBehaviour
     Transform playerScoreboardList;
     void OnEnable()
     {
-        playerMovement[] players = GameManager.GetAllPlayers();
+        Player[] players = GameManager.GetAllPlayers();
 
-        foreach(playerMovement player in players)
+        foreach(Player player in players)
         {
            GameObject itemGO = Instantiate(playerScoreboardItem, playerScoreboardList);
             PlayerScoreboardItem item = itemGO.GetComponent<PlayerScoreboardItem>();

@@ -38,7 +38,7 @@ public class ArenaSpawner : NetworkBehaviour
     public GameObject arenasContainer;
     public GameObject spawnsContainer;
 
-    public playerMovement[] players;
+    public Player[] players;
 
     void Start()
     {
@@ -51,7 +51,7 @@ public class ArenaSpawner : NetworkBehaviour
 
     private void Update()
     {
-        players = FindObjectsOfType<playerMovement>();
+        players = FindObjectsOfType<Player>();
         //numberOfPlayers = GameManager.playersAlive.Count;
         //print(numberOfPlayers);
     }
@@ -75,7 +75,7 @@ public class ArenaSpawner : NetworkBehaviour
     [Command]
     public void CmdSpawnCameras()
     {
-        foreach (KeyValuePair<string, playerMovement> entry in GameManager.playersAlive)
+        foreach (KeyValuePair<string, Player> entry in GameManager.playersAlive)
         {
             camera = Instantiate(cameraPrefab, new Vector3(0, 0, -5), Quaternion.identity);
             CmdCameraSettings();

@@ -64,9 +64,7 @@ public class CloneMovement : NetworkBehaviour
             if (timeToMoveCounter < 0f)
             {
                 moving = false;
-                //timeBetweenMoveCounter = timeBetweenMove;
                 timeBetweenMoveCounter = Random.Range(timeBetweenMove * 0.75f, timeBetweenMove * 1.25f);
-                Debug.Log(timeBetweenMoveCounter);
 
             }
         }

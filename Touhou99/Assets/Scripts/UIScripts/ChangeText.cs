@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ChangeText : MonoBehaviour
 {
     [Obsolete]
-    playerMovement player;
+    Player player;
 
     [Obsolete]
     void Start()
@@ -20,7 +20,7 @@ public class ChangeText : MonoBehaviour
     [Obsolete]
     void Update()
     {
-        playerMovement player = GetComponent<playerMovement>();
+        Player player = GetComponent<Player>();
         Text myText = GameObject.Find("Canvas/Text").GetComponent<Text>();
         //myText.text = Convert.ToString(player.health);
     }

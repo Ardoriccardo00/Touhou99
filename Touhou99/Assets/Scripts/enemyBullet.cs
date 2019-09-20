@@ -12,8 +12,8 @@ public class enemyBullet : MonoBehaviour
     //public GameObject impactEffect;
     private Transform playerPosition;
     [Obsolete]
-    playerMovement player;
-    playerMovement theClosestPlayer;
+    Player player;
+    Player theClosestPlayer;
 
     [Obsolete]
     void Start()
@@ -37,10 +37,10 @@ public class enemyBullet : MonoBehaviour
     void FindClosestPlayer()
     {
         float distanceClosestPlayer = Mathf.Infinity;
-        playerMovement closestPlayer = null;
-        playerMovement[] allPlayers = GameObject.FindObjectsOfType<playerMovement>();
+        Player closestPlayer = null;
+        Player[] allPlayers = GameObject.FindObjectsOfType<Player>();
 
-        foreach (playerMovement currentArena in allPlayers)
+        foreach (Player currentArena in allPlayers)
         {
             float distanceToPlayer = (currentArena.transform.position - this.transform.position).sqrMagnitude;
 

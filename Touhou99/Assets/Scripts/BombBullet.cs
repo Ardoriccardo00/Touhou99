@@ -22,7 +22,7 @@ public class BombBullet : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
-        playerMovement player = hitInfo.GetComponent<playerMovement>();
+        Player player = hitInfo.GetComponent<Player>();
 
         if (enemy != null)
         {

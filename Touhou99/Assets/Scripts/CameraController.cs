@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
-        if (!this.transform.parent.GetComponent<playerMovement>().isLocalPlayer)
+        if (!this.transform.parent.GetComponent<Player>().isLocalPlayer)
         {
             gameObject.GetComponent<Camera>().enabled = false;
             //gameObject.GetComponent<AudioListener>().enabled = false;

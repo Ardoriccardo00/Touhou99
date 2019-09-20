@@ -13,12 +13,12 @@ public class enemyWeapon : NetworkBehaviour
     private float timeBetweenShoot;
     private float timeBetweenShootCounter;
     [System.Obsolete]
-    playerMovement player;
+    Player player;
 
     [System.Obsolete]
     void Start()
     {
-        player = GameObject.FindObjectOfType<playerMovement>();
+        player = GameObject.FindObjectOfType<Player>();
         timeBetweenShoot = Random.Range(1f, 2.5f);
         timeBetweenShootCounter = timeBetweenShoot;
         nextFire = Time.time;

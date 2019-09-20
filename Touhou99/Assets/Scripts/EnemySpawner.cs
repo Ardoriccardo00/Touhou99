@@ -12,7 +12,7 @@ public class EnemySpawner : NetworkBehaviour
     [Header ("Miste")]
     public Transform[] spawnPoints;
     public GameObject enemyPrefab;
-    playerMovement player;
+    Player player;
     private int i = 0;
 
     [Header ("Timers")]
@@ -38,7 +38,7 @@ public class EnemySpawner : NetworkBehaviour
     {
         gameCanvas = GameObject.FindGameObjectWithTag("GameCanvas");
         timer = gameCanvas.GetComponent<TimerToStartMatch>();
-        player = GameObject.FindObjectOfType<playerMovement>();
+        player = GameObject.FindObjectOfType<Player>();
         timeBetweenSpawn = UnityEngine.Random.Range(5f, 15f);
         timeBetweenSpawnCounter = timeBetweenSpawn;
         spawnDelayCounter = spawnDelay;
