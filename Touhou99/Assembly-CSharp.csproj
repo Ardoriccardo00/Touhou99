@@ -64,20 +64,14 @@
   <ItemGroup>
     <Compile Include="Assets\Database Control Free\Demos\C#\Scripts\DCF_DemoScene_ManagerScript_CSharp.cs" />
     <Compile Include="Assets\Scripts\Arena.cs" />
-    <Compile Include="Assets\Scripts\ArenaRegister.cs" />
-    <Compile Include="Assets\Scripts\ArenaSpawner.cs" />
-    <Compile Include="Assets\Scripts\BombBullet.cs" />
-    <Compile Include="Assets\Scripts\BombWeapon.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\CameraView.cs" />
     <Compile Include="Assets\Scripts\CloneMovement.cs" />
     <Compile Include="Assets\Scripts\CloneSpawner.cs" />
     <Compile Include="Assets\Scripts\EndGame.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\enemyBullet.cs" />
+    <Compile Include="Assets\Scripts\EnemyBullet.cs" />
     <Compile Include="Assets\Scripts\EnemySetup.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\enemyWeapon.cs" />
+    <Compile Include="Assets\Scripts\EnemyWeapon.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Killfeed.cs" />
     <Compile Include="Assets\Scripts\KillFeedItem.cs" />
@@ -101,6 +95,8 @@
     <Compile Include="Assets\Scripts\LoginMenu\PlayWithoutLogginIn.cs" />
     <Compile Include="Assets\Scripts\LoginMenu\UserAccountManager.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\Player\BombBullet.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraController.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerScore.cs" />
@@ -118,6 +114,10 @@
     <Compile Include="Assets\Scripts\UIScripts\ExitGame.cs" />
     <Compile Include="Assets\Scripts\UIScripts\Rotate.cs" />
     <Compile Include="Assets\Scripts\Wall.cs" />
+    <Compile Include="Assets\Scripts\ZTrash\ArenaRegister.cs" />
+    <Compile Include="Assets\Scripts\ZTrash\ArenaSpawner.cs" />
+    <Compile Include="Assets\Scripts\ZTrash\BombWeapon.cs" />
+    <Compile Include="Assets\Scripts\ZTrash\CameraView.cs" />
     <Compile Include="Assets\UIParticleEffects\Scripts\UIParticleSystem.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

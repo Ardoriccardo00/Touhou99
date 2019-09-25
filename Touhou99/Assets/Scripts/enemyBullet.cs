@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyBullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public float speed;
     public int damage;
@@ -13,13 +13,19 @@ public class enemyBullet : MonoBehaviour
     private Transform playerPosition;
     [Obsolete]
     Player player;
+    [Obsolete]
     Player theClosestPlayer;
 
     [Obsolete]
     void Start()
     {
-        //playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         FindClosestPlayer();
+        MoveEnemyBullet();
+    }
+
+    [Obsolete]
+    private void MoveEnemyBullet()
+    {
         moveDirection = (theClosestPlayer.transform.position - transform.position).normalized * speed;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
         Destroy(gameObject, 3f);
@@ -34,6 +40,7 @@ public class enemyBullet : MonoBehaviour
         }
     }
 
+    [Obsolete]
     void FindClosestPlayer()
     {
         float distanceClosestPlayer = Mathf.Infinity;
@@ -53,21 +60,3 @@ public class enemyBullet : MonoBehaviour
         }
     }
 }
-
-/*private void OnTriggerEnter2D(Collider2D hitInfo)
-    {
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
-        playerMovement player = hitInfo.GetComponent<playerMovement>();
-
-        if (player != null)
-        {
-            player.RpcTakeDamage(damage, "Enemy bullet");
-            Destroy(gameObject);
-        }
-        else if (enemy != null)
-        {
-        }
-       
-        //Instantiate(impactEffect, transform.position, transform.rotation);
-
-    }*/

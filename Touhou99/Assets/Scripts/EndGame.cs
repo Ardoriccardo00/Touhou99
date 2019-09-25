@@ -10,47 +10,51 @@ using System;
 [System.Obsolete]
 public class EndGame : NetworkBehaviour
 {
-    [SerializeField]
-    private Text gameOverText;
-
-    [SerializeField]
-    private Button startGameButton;
-
-    [SerializeField]
-    private ArenaSpawner arenaSpawner;
-
+    [Header("Components")]
+    [SerializeField] private Text gameOverText;
+    [SerializeField] private Button startGameButton;
+    [SerializeField] private ArenaSpawner arenaSpawner;
     [SerializeField] Text dataText;
-
-    int numberOfPlayers;
-
-    private NetworkManager networkManager;
-
     [SerializeField] Text countDown;
-
     [SerializeField] TimerToStartMatch timer;
+
+    [Header("Components")]
+    int numberOfPlayers;
+    private NetworkManager networkManager;
+    PlayerSetup[] playerSetups;
 
     void Start()
     {
         networkManager = NetworkManager.singleton;
         gameOverText.enabled = false;
         arenaSpawner = FindObjectOfType<ArenaSpawner>();
+        playerSetups = FindObjectsOfType<PlayerSetup>();
 
-        if (PlayerSetup.isServerPlayer == true)
-            startGameButton.enabled = true;
-        else
-            startGameButton.enabled = false;
-
+        foreach(PlayerSetup player in playerSetups)
+        {
+            if (player.isServer)
+            {
+                gameObject.SetActive(true);
+                print("Attivata UI");
+            }
+            else
+            {
+                gameObject.SetActive(false);
+                print("Disattivata UI");
+            }
+        }
     }
 
     void Update()
     {
-        countDown.text = Convert.ToString(timer.countDownToStart);
+        CheckCountDownTimer();
+        CheckIfActivateGameOverText();
 
-        if(timer.countDownToStart <= 0)
-        {
-            countDown.enabled = false;
-        }
+        dataText.text = "Players Alive " + Convert.ToString(GameManager.playersAlive.Count) + "Players connected " + Convert.ToString(GameManager.players.Count);
+    }
 
+    private void CheckIfActivateGameOverText()
+    {
         numberOfPlayers = GameManager.playersAlive.Count;
 
         if (numberOfPlayers <= 1)
@@ -62,8 +66,16 @@ public class EndGame : NetworkBehaviour
         {
             gameOverText.enabled = false;
         }
+    }
 
-        dataText.text = "Players Alive " +  Convert.ToString(GameManager.playersAlive.Count) + "Players connected " + Convert.ToString(GameManager.players.Count);
+    private void CheckCountDownTimer()
+    {
+        countDown.text = Convert.ToString(timer.countDownToStart);
+
+        if (timer.countDownToStart <= 0)
+        {
+            countDown.enabled = false;
+        }
     }
 
     public void LeaveRoom()
@@ -71,11 +83,5 @@ public class EndGame : NetworkBehaviour
         MatchInfo matchInfo = networkManager.matchInfo;
         networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
         networkManager.StopHost();
-        //SceneManager.LoadScene(1);
-    }
-
-    public void ActivateArenaSpawner()
-    {
-        arenaSpawner.CmdSpawnArenas();
     }
 }

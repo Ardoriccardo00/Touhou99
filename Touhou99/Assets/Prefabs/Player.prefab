@@ -165,7 +165,7 @@ Transform:
   m_Children:
   - {fileID: 1710417750642797245}
   - {fileID: 720712603952643188}
-  - {fileID: 6689992763442131859}
+  - {fileID: 2367775793920764604}
   - {fileID: 1391212795557518087}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -266,7 +266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentsToDisable:
-  - {fileID: 6512339290626615010}
   - {fileID: 6512339290626615010}
   remoteLayerName: RemotePlayer
   playerUIPrefab: {fileID: 4535632190999133756, guid: d21412bc10258eb439323fa2df5df0ca,
@@ -530,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c47be8a05e7b134d940bcca1ee300fb, type: 3}
---- !u!4 &6689992763442131859 stripped
+--- !u!4 &2367775793920764604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8938421997919836174, guid: 8c47be8a05e7b134d940bcca1ee300fb,
     type: 3}

@@ -32,11 +32,6 @@ public class PlayerUI : MonoBehaviour
     }
     private void Start()
     {
-        //if (!isLocalPlayer)
-        //{
-        //    this.gameObject.SetActive(false);
-        //}
-
         PauseMenu.IsOn = false;
     }
     private void Update()

@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Arena : MonoBehaviour
+public class Arena : NetworkBehaviour
 {
-    // Start is called before the first frame update
+    public ArenaSpawner ArenaSpawner;
     void Start()
     {
-        
+        RegisterArena();
+        MoveInContainer();
     }
 
-    // Update is called once per frame
-    void Update()
+    void RegisterArena()
     {
-        
+        string _ID = "Spawn " + ArenaSpawner.spawnNumber;
+        transform.name = _ID;
+    }
+
+    void MoveInContainer()
+    {
+        GameObject arenasContainer = GameObject.FindGameObjectWithTag("ArenasContainer");
+        transform.SetParent(arenasContainer.transform);
     }
 }

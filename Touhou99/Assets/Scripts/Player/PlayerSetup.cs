@@ -31,19 +31,19 @@ public class PlayerSetup : NetworkBehaviour
 
     [HideInInspector] public static bool isServerPlayer;
 
+    //PlayerUI[] uiList;
+
     void Start()
     {
-        if (isServer)
-        {
-            isServerPlayer = true;
-            Debug.Log(isServerPlayer);
-        }
-        else
-        {
-            isServerPlayer = false;
-            Debug.Log(isServerPlayer);
-        }
-            
+        //uiList = FindObjectsOfType<PlayerUI>();
+
+        //foreach (PlayerUI theUi in uiList)
+        //{
+        //    if (theUi.player.transform.name != transform.name)
+        //    {
+        //        theUi.gameObject.SetActive(false);
+        //    }
+        //}
 
         if (!isLocalPlayer)
         {
@@ -57,13 +57,13 @@ public class PlayerSetup : NetworkBehaviour
             AssignRemoteLayer();  
         }
 
-        playerUIInstance = Instantiate(playerUIPrefab);
-        playerUIInstance.name = playerUIPrefab.name;
+            playerUIInstance = Instantiate(playerUIPrefab);
+            playerUIInstance.name = playerUIPrefab.name;
 
-        PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
-        if (ui == null)
-            Debug.LogError("no playerUI on playerui prefab");
-        ui.SetPlayer(GetComponent<Player>());
+            PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
+            if (ui == null)
+                Debug.LogError("no playerUI on playerui prefab");
+            ui.SetPlayer(GetComponent<Player>());               
 
         string _username = "loading...";
         if (UserAccountManager.IsLoggedIn)
@@ -72,17 +72,6 @@ public class PlayerSetup : NetworkBehaviour
             _username = transform.name;
 
         CmdSetUserName(transform.name, _username);
-
-        //girlSwitcherInstance = Instantiate(girlSwitcherPrefab);
-        //GirlSwitcher gs = ui.GetComponent<GirlSwitcher>();
-        //print(gs);
-        //if (gs = null)
-        //    Debug.LogError("no Girl chooser on playerui prefab");
-        //gs.SetPlayer(GetComponent<playerMovement>());
-
-        //girlSwitcherInstance = FindObjectOfType<GirlSwitcher>();
-        //girlSwitcherInstance.SetPlayer(GetComponent<playerMovement>());
-
     }
 
     [Command]
@@ -126,28 +115,4 @@ public class PlayerSetup : NetworkBehaviour
         Destroy(playerUIInstance);
         GameManager.UnRegisterPlayer(transform.name);
     }
-
-    //[Command]
-    //public void CmdSetAuth(NetworkInstanceId objectId, NetworkIdentity player)
-    //{
-    //    GameObject iObject = NetworkServer.FindLocalObject(objectId);
-    //    NetworkIdentity networkIdentity = iObject.GetComponent<NetworkIdentity>();
-
-    //    //Checks if anyone else has authority and removes it and lastly gives the authority to the player who interacts with object
-    //    NetworkConnection otherOwner = networkIdentity.clientAuthorityOwner;
-    //    if (otherOwner == player.connectionToClient)
-    //    {
-    //        return;
-    //    }
-    //    else
-    //    {
-    //        if (otherOwner != null)
-    //        {
-    //            networkIdentity.RemoveClientAuthority(otherOwner);
-    //        }
-    //        networkIdentity.AssignClientAuthority(player.connectionToClient);
-    //    }
-
-    //    networkIdentity.AssignClientAuthority(player.connectionToClient);
-    //}
 }

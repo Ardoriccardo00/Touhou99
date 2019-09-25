@@ -13,6 +13,7 @@ TagManager:
   - SpawnPointUpLeft
   - SpawnPointUpRight
   - GameCanvas
+  - ArenasContainer
   layers:
   - Default
   - TransparentFX

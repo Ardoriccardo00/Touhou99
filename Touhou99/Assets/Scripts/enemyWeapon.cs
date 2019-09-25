@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class enemyWeapon : NetworkBehaviour
+[System.Obsolete]
+public class EnemyWeapon : NetworkBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -27,7 +28,6 @@ public class enemyWeapon : NetworkBehaviour
     [System.Obsolete]
     void Update()
     {
-        //timeBetweenShoot = Random.Range(1f, 5f);
         timeBetweenShootCounter -= Time.deltaTime;
         if (player != null) { CheckIfTimeToFire(); }
         
@@ -42,13 +42,13 @@ public class enemyWeapon : NetworkBehaviour
             {
                 CmdShoot();
                 timeBetweenShoot = Random.Range(1f, 5f);
-                //Debug.Log(timeBetweenShoot);
                 timeBetweenShootCounter = timeBetweenShoot;
             }
         }
     }
 
     [Command]
+    [System.Obsolete]
     void CmdShoot()
     {
         print("enemy shoots!");

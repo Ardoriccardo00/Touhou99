@@ -21,6 +21,7 @@ public class Player : NetworkBehaviour {
     [Header("Components")]
     [SerializeField] private Weapon weapon;
     private NetworkManager networkManager;
+    PlayerUI[] uiList;
 
     [Header("Others")]
     [SerializeField] private GameObject Arena;
@@ -38,6 +39,16 @@ public class Player : NetworkBehaviour {
         isHit = false;
         currentHealth = maxHealth;
         networkManager = NetworkManager.singleton;
+
+        uiList = FindObjectsOfType<PlayerUI>();
+
+        foreach (PlayerUI ui in uiList)
+        {
+            if (ui.player.transform.name != transform.name)
+            {
+                ui.gameObject.SetActive(false);
+            }
+        }
     }
 
 
