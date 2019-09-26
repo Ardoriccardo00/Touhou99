@@ -18,6 +18,7 @@ public class Weapon : NetworkBehaviour
     public Transform firePoint1;
     public Transform bombFirePoint;
     [SerializeField] GameObject cloneSpawnPoint;
+    private GameObject thisCloneSpawnPoint;
     private GameObject projectilesContainer;
     private GameObject clonesContainer;
 
@@ -31,6 +32,10 @@ public class Weapon : NetworkBehaviour
         cloneSpawnPoint = GameObject.FindGameObjectWithTag("CloneSpawner");
         projectilesContainer = GameObject.FindGameObjectWithTag("ProjectilesContainer");
         clonesContainer = GameObject.FindGameObjectWithTag("ClonesContainer");
+        thisCloneSpawnPoint = FindObjectOfType<Arena>().gameObject;
+        thisCloneSpawnPoint.transform.Find("CloneSpawnPoint");
+        print("THIS CLONE SP" + thisCloneSpawnPoint);
+        SetTarget();
     }
 
     private void Update()
@@ -48,9 +53,13 @@ public class Weapon : NetworkBehaviour
         NetworkServer.Spawn(bomb);
         bomb.transform.SetParent(projectilesContainer.transform);
 
-        GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);
-        NetworkServer.Spawn(clone);
-        clone.transform.SetParent(clonesContainer.transform);
+        if (cloneSpawnPoint.transform.position == thisCloneSpawnPoint.transform.position)
+        {
+            GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);
+            NetworkServer.Spawn(clone);
+            clone.transform.SetParent(clonesContainer.transform);
+        }
+        
     }
 
     void Shoot()
@@ -64,5 +73,15 @@ public class Weapon : NetworkBehaviour
         bullet.GetComponent<ProjectileBehaviour>().shooter = transform.name;
         Destroy(bullet, 1f);
 
+    }
+
+    void SetTarget()
+    {
+        if (!isLocalPlayer) return;
+
+        GameObject[] cloneSpawnPoints = GameObject.FindGameObjectsWithTag("CloneSpawner");
+        int random = Random.Range(0, cloneSpawnPoints.Length);
+        cloneSpawnPoint = cloneSpawnPoints[random];
+        print("Giocatore besagliato: " + cloneSpawnPoint);
     }
 }

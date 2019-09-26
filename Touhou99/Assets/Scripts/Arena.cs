@@ -10,12 +10,19 @@ public class Arena : NetworkBehaviour
     {
         RegisterArena();
         MoveInContainer();
+        RegisterCloneSpawner();
     }
 
     void RegisterArena()
     {
         string _ID = "Arena " + GameManager.numberOfArenas;
         transform.name = _ID;
+    }
+
+    void RegisterCloneSpawner()
+    {
+        GameObject cloneSpawner = transform.Find("CloneSpawnPoint").gameObject;
+        cloneSpawner.transform.name = "CloneSpawnPoint " + GameManager.numberOfArenas;
     }
 
     void MoveInContainer()

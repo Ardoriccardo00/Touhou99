@@ -43,7 +43,7 @@ public class PlayerController : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            SetTarget();
+            SendMessage("SetTarget");
         }
     }
 
@@ -115,19 +115,19 @@ public class PlayerController : NetworkBehaviour
         animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
     }
 
-    void SetTarget()
-    {
-        if (!isLocalPlayer)
-            return;
+    //void SetTarget()
+    //{
+    //    if (!isLocalPlayer)
+    //        return;
 
-        GameObject[] cloneSpawnPoints = GameObject.FindGameObjectsWithTag("CloneSpawner");
-        int random = Random.Range(0, cloneSpawnPoints.Length);
-        GameObject targetSpawn = cloneSpawnPoints[random];
-        print("Giocatore besagliato: " + targetSpawn);
+    //    GameObject[] cloneSpawnPoints = GameObject.FindGameObjectsWithTag("CloneSpawner");
+    //    int random = Random.Range(0, cloneSpawnPoints.Length);
+    //    GameObject targetSpawn = cloneSpawnPoints[random];
+    //    print("Giocatore besagliato: " + targetSpawn);
 
-        //playerMovement[] playerList = FindObjectsOfType<playerMovement>();
-        //int intTargetPlayer = Random.Range(0, playerList.Length);
-        //playerMovement targetPlayer = playerList[intTargetPlayer];
-        //print("Giocatore besagliato: " + targetPlayer);
-    }
+    //    //playerMovement[] playerList = FindObjectsOfType<playerMovement>();
+    //    //int intTargetPlayer = Random.Range(0, playerList.Length);
+    //    //playerMovement targetPlayer = playerList[intTargetPlayer];
+    //    //print("Giocatore besagliato: " + targetPlayer);
+    //}
 }
