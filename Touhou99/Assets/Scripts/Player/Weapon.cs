@@ -18,6 +18,8 @@ public class Weapon : NetworkBehaviour
     public Transform firePoint1;
     public Transform bombFirePoint;
     [SerializeField] GameObject cloneSpawnPoint;
+    private GameObject projectilesContainer;
+    private GameObject clonesContainer;
 
     public GameObject bulletPrefab;
     public GameObject bombPrefab;
@@ -27,6 +29,8 @@ public class Weapon : NetworkBehaviour
     {
         bombPower = 0f;
         cloneSpawnPoint = GameObject.FindGameObjectWithTag("CloneSpawner");
+        projectilesContainer = GameObject.FindGameObjectWithTag("ProjectilesContainer");
+        clonesContainer = GameObject.FindGameObjectWithTag("ClonesContainer");
     }
 
     private void Update()
@@ -42,9 +46,11 @@ public class Weapon : NetworkBehaviour
 
         GameObject bomb = Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
         NetworkServer.Spawn(bomb);
+        bomb.transform.SetParent(projectilesContainer.transform);
 
         GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);
         NetworkServer.Spawn(clone);
+        clone.transform.SetParent(clonesContainer.transform);
     }
 
     void Shoot()
@@ -53,12 +59,10 @@ public class Weapon : NetworkBehaviour
             return;
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
         NetworkServer.Spawn(bullet);
-
-        bullet.GetComponent<projectileBehaviour>().shooter = transform.name;
-
-        Destroy(bullet, 0.5f);
+        bullet.transform.SetParent(projectilesContainer.transform);
+        bullet.GetComponent<ProjectileBehaviour>().shooter = transform.name;
+        Destroy(bullet, 1f);
 
     }
 }

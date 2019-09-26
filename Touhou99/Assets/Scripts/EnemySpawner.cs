@@ -16,6 +16,7 @@ public class EnemySpawner : NetworkBehaviour
     GameObject gameCanvas;
     Player player;
     private int i = 0;
+    private GameObject enemiesContainer;
 
     [Header ("Timers")]
     TimerToStartMatch timer;
@@ -33,6 +34,7 @@ public class EnemySpawner : NetworkBehaviour
         timeBetweenSpawn = UnityEngine.Random.Range(2f, 8f);
         timeBetweenSpawnCounter = timeBetweenSpawn;
         spawnDelayCounter = spawnDelay;
+        enemiesContainer = GameObject.FindGameObjectWithTag("EnemiesContainer");
     }
 
     void Update()
@@ -83,6 +85,7 @@ public class EnemySpawner : NetworkBehaviour
         GameObject enemy = Instantiate(enemyPrefab, spawnPoints[spawnPoint].transform.position, spawnPoints[spawnPoint].transform.rotation);
         Enemy theEnemy = enemy.GetComponent<Enemy>();
         NetworkServer.Spawn(enemy);
+        enemy.transform.SetParent(enemiesContainer.transform);
 
         switch (spawnPointPosition)
         {

@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class KillFeedItem : MonoBehaviour
 {
-    [SerializeField]
-    Text text;
+    [SerializeField] Text text;
 
     public void Setup(string player, string source)
     {

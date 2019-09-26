@@ -4,67 +4,37 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 [System.Obsolete]
-
 [RequireComponent(typeof(Player))]
 public class PlayerSetup : NetworkBehaviour
 {
-    [SerializeField]
-    Behaviour[] componentsToDisable;
+    [Header("Components")]
+    [SerializeField] Behaviour[] componentsToDisable;
+    [SerializeField] string remoteLayerName = "RemotePlayer";
+    [SerializeField] GameObject playerUIPrefab;
+    private Transform player;
 
-    [SerializeField]
-    string remoteLayerName = "RemotePlayer";
-
-    [SerializeField]
-    GameObject playerUIPrefab;
     private GameObject playerUIInstance;
-
-    [SerializeField]
-    GameObject girlSwitcherPrefab;
     private GameObject girlSwitcherInstance;
-
-    public GameObject cameraPrefab;
-    //private Transform cameraSpawnPoint;
-    public Transform player;
     private GameObject playerCamera;
-
-    public string thisPlayerUsername;
-
     [HideInInspector] public static bool isServerPlayer;
-
-    //PlayerUI[] uiList;
+    private GameObject uiContainer;
 
     void Start()
     {
-        //uiList = FindObjectsOfType<PlayerUI>();
-
-        //foreach (PlayerUI theUi in uiList)
-        //{
-        //    if (theUi.player.transform.name != transform.name)
-        //    {
-        //        theUi.gameObject.SetActive(false);
-        //    }
-        //}
-
-        if (!isLocalPlayer)
-        {
-            DisableComponents();
-        }
-
         player = GetComponent<Transform>();
+
         if (!isLocalPlayer)
         {
             DisableComponents();
-            AssignRemoteLayer();  
+            AssignRemoteLayer();
         }
 
-            playerUIInstance = Instantiate(playerUIPrefab);
-            playerUIInstance.name = playerUIPrefab.name;
+        SetUI();
+        SetUsername();
+    }
 
-            PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
-            if (ui == null)
-                Debug.LogError("no playerUI on playerui prefab");
-            ui.SetPlayer(GetComponent<Player>());               
-
+    private void SetUsername()
+    {
         string _username = "loading...";
         if (UserAccountManager.IsLoggedIn)
             _username = UserAccountManager.LoggedIn_Username;
@@ -72,6 +42,19 @@ public class PlayerSetup : NetworkBehaviour
             _username = transform.name;
 
         CmdSetUserName(transform.name, _username);
+    }
+
+    private void SetUI()
+    {
+        playerUIInstance = Instantiate(playerUIPrefab);
+        playerUIInstance.name = playerUIPrefab.name;
+        //playerUIInstance.transform.SetParent(uiContainer.transform);
+
+        PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
+
+        if (ui == null)
+            Debug.LogError("no playerUI on playerui prefab");
+        ui.SetPlayer(GetComponent<Player>());
     }
 
     [Command]

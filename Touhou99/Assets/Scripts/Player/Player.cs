@@ -7,7 +7,7 @@ using UnityEngine.Networking.Match;
 using Random = UnityEngine.Random;
 
 [Obsolete]
-public class Player : NetworkBehaviour {
+public class Player : NetworkBehaviour { //Proiettili, giocatori, nemici, UI
 
     [Header("Statistics")]
     [SerializeField] public int maxHealth = 50;

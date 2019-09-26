@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 8721164251343191713}
   - component: {fileID: 4709279201127390924}
   - component: {fileID: 5508062550488919789}
+  - component: {fileID: 5878381396829241219}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -165,7 +166,7 @@ Transform:
   m_Children:
   - {fileID: 1710417750642797245}
   - {fileID: 720712603952643188}
-  - {fileID: 2367775793920764604}
+  - {fileID: 6689992763442131859}
   - {fileID: 1391212795557518087}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -267,15 +268,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentsToDisable:
   - {fileID: 6512339290626615010}
+  - {fileID: 5878381396829241219}
   remoteLayerName: RemotePlayer
   playerUIPrefab: {fileID: 4535632190999133756, guid: d21412bc10258eb439323fa2df5df0ca,
     type: 3}
-  girlSwitcherPrefab: {fileID: 7067331619234202494, guid: ede817eb01a004e468a7dc933c0fc297,
-    type: 3}
-  cameraPrefab: {fileID: 8938421997919836169, guid: 8c47be8a05e7b134d940bcca1ee300fb,
-    type: 3}
   player: {fileID: 5536426307208110057}
-  thisPlayerUsername: 
 --- !u!114 &6040343368841230031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +422,14 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!81 &5878381396829241219
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259962898754785055}
+  m_Enabled: 1
 --- !u!1 &9118604686449531013
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c47be8a05e7b134d940bcca1ee300fb, type: 3}
---- !u!4 &2367775793920764604 stripped
+--- !u!4 &6689992763442131859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8938421997919836174, guid: 8c47be8a05e7b134d940bcca1ee300fb,
     type: 3}

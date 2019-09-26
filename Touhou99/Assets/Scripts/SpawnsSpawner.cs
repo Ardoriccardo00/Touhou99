@@ -15,10 +15,6 @@ public class SpawnsSpawner : NetworkBehaviour
         SpawnSpawners();
     }
 
-    void Update()
-    {
-        
-    }
     public void SpawnSpawners()
     {
         foreach (KeyValuePair<string, Player> entry in GameManager.players)
