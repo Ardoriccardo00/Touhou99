@@ -5,13 +5,14 @@ using UnityEngine;
 public class TimerToStartMatch : MonoBehaviour
 {
     bool canCountDown = false;
-    bool matchHasStarted = false;
+    private bool matchHasStarted;
     float timerToStart = 3f;
     [HideInInspector] public float countDownToStart;
 
     void Start()
     {
         countDownToStart = timerToStart;
+        matchHasStarted = false;
     }
 
     void Update()

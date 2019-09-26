@@ -10,7 +10,6 @@ public class ArenaSpawner : NetworkBehaviour
 {
     public GameObject cameraPrefab;
     
-
     private int posX = 0;
     private int posY = 0;
 
@@ -33,7 +32,7 @@ public class ArenaSpawner : NetworkBehaviour
     public static int cameraNumber = 1;
 
     private GameObject arena;
-    private GameObject camera;
+    private new GameObject camera; //Rimuovere New se necessario
 
     public GameObject arenasContainer;
     public GameObject spawnsContainer;

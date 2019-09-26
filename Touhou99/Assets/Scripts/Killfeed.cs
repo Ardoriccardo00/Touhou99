@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete]
 public class Killfeed : MonoBehaviour
 {
-    [SerializeField]
-    GameObject killFeedItemPrefab;
+    [SerializeField] GameObject killFeedItemPrefab;
 
     void Start()
     {
@@ -16,7 +16,6 @@ public class Killfeed : MonoBehaviour
     {
        GameObject go = Instantiate(killFeedItemPrefab, this.transform);
         go.GetComponent<KillFeedItem>().Setup(player, source);
-
         Destroy(go, 4f);
     }
 

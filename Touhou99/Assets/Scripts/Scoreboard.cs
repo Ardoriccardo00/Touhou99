@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete]
 public class Scoreboard : MonoBehaviour
 {
-
-    [SerializeField]
-    GameObject playerScoreboardItem;
-
-    [SerializeField]
-    Transform playerScoreboardList;
+    [SerializeField] GameObject playerScoreboardItem;
+    [SerializeField] Transform playerScoreboardList;
     void OnEnable()
     {
         Player[] players = GameManager.GetAllPlayers();

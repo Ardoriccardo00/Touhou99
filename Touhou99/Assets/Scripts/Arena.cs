@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Arena : NetworkBehaviour
+[System.Obsolete]
+public class Arena : NetworkBehaviour 
 {
-    public ArenaSpawner ArenaSpawner;
     void Start()
     {
         RegisterArena();
@@ -14,7 +14,7 @@ public class Arena : NetworkBehaviour
 
     void RegisterArena()
     {
-        string _ID = "Spawn " + ArenaSpawner.spawnNumber;
+        string _ID = "Arena " + GameManager.numberOfArenas;
         transform.name = _ID;
     }
 

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using System;
 
 [System.Obsolete]
-public class EndGame : NetworkBehaviour
+public class GameCanvas : NetworkBehaviour
 {
     [Header("Components")]
     [SerializeField] private Text gameOverText;
@@ -70,7 +70,7 @@ public class EndGame : NetworkBehaviour
 
     private void CheckCountDownTimer()
     {
-        countDown.text = Convert.ToString(timer.countDownToStart);
+        countDown.text = Convert.ToString(Mathf.Round((timer.countDownToStart)));
 
         if (timer.countDownToStart <= 0)
         {

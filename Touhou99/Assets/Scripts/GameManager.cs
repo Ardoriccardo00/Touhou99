@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Linq;
 
+[System.Obsolete]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public static Dictionary<string, Player> players = new Dictionary<string, Player>();
     [SerializeField] public static Dictionary<string, Player> playersAlive = new Dictionary<string, Player>();
+
+    public static int numberOfArenas = 0;
 
     public delegate void OnPlayerKilledCallBack(string player, string source);
     public OnPlayerKilledCallBack onPlayerKilledCallBack;
@@ -28,7 +31,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [System.Obsolete]
+    public static void IncreaseArenaNumber()
+    {
+        numberOfArenas++;
+        print("Number of arenas: " + numberOfArenas);
+    }
+
     public static void RegisterPlayer(string _netID, Player _player)
     {
         string _playerID = PLAYER_ID_PREFIX + _netID;
@@ -36,13 +44,11 @@ public class GameManager : MonoBehaviour
         _player.transform.name = _playerID;
     }
 
-    [System.Obsolete]
     public static void UnRegisterPlayer(string _playerID)
     {
         players.Remove(_playerID);
     }
 
-    [System.Obsolete]
     public static Player GetPlayer(string _playerID)
     {
         return players[_playerID];

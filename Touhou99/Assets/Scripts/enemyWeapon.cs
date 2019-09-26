@@ -6,17 +6,17 @@ using UnityEngine.Networking;
 [System.Obsolete]
 public class EnemyWeapon : NetworkBehaviour
 {
-    public Transform firePoint;
-    public GameObject bulletPrefab;
-
-    float fireRate = 0;
-    float nextFire;
-    private float timeBetweenShoot;
-    private float timeBetweenShootCounter;
-    [System.Obsolete]
+    [Header("Components")]
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject bulletPrefab;
     Player player;
 
-    [System.Obsolete]
+    [Header("Statistics")]
+    float fireRate = 0;
+    private float nextFire;
+    private float timeBetweenShoot;
+    private float timeBetweenShootCounter;
+
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>();
@@ -25,7 +25,6 @@ public class EnemyWeapon : NetworkBehaviour
         nextFire = Time.time;
     }
 
-    [System.Obsolete]
     void Update()
     {
         timeBetweenShootCounter -= Time.deltaTime;
@@ -33,7 +32,6 @@ public class EnemyWeapon : NetworkBehaviour
         
     }
 
-    [System.Obsolete]
     void CheckIfTimeToFire()
     {
         if (player != null)
@@ -47,11 +45,9 @@ public class EnemyWeapon : NetworkBehaviour
         }
     }
 
-    [Command]
-    [System.Obsolete]
+    //[Command]
     void CmdShoot()
     {
-        print("enemy shoots!");
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         NetworkServer.Spawn(bullet);
         nextFire = Time.time + fireRate;

@@ -7,29 +7,30 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using Random = UnityEngine.Random;
 
+[Obsolete]
 public class EnemySpawner : NetworkBehaviour
 {
-    [Header ("Miste")]
-    public Transform[] spawnPoints;
-    public GameObject enemyPrefab;
+    [Header ("Components")]
+    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private GameObject enemyPrefab;
+    GameObject gameCanvas;
     Player player;
     private int i = 0;
 
     [Header ("Timers")]
-    GameObject gameCanvas;
     TimerToStartMatch timer;
     private float spawnDelay = 1f;
     private float spawnDelayCounter;
     private float timeBetweenSpawn;
     private float timeBetweenSpawnCounter;
-    public float enemiesToSpawn;
+    [SerializeField] private int enemiesToSpawn;
 
     private void Start()
     {
         gameCanvas = GameObject.FindGameObjectWithTag("GameCanvas");
         try { timer = gameCanvas.GetComponent<TimerToStartMatch>(); } catch { }
         player = GameObject.FindObjectOfType<Player>();
-        timeBetweenSpawn = UnityEngine.Random.Range(5f, 15f);
+        timeBetweenSpawn = UnityEngine.Random.Range(2f, 8f);
         timeBetweenSpawnCounter = timeBetweenSpawn;
         spawnDelayCounter = spawnDelay;
     }
@@ -72,6 +73,7 @@ public class EnemySpawner : NetworkBehaviour
         catch { }
     }
 
+
     void Spawn()
     {
         var spawnPoint = Random.Range(0, spawnPoints.Length);
@@ -94,3 +96,5 @@ public class EnemySpawner : NetworkBehaviour
         }
     }
 }
+
+

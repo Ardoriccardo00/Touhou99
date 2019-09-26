@@ -8,10 +8,12 @@ ScriptsOnlyBuild:
     - CameraController
     - ChooseGirl
     - CloneMovement
-    - EndGame
     - Enemy
+    - EnemyBullet
     - EnemySpawner
+    - EnemyWeapon
     - ExitGame
+    - GameCanvas
     - GameManager
     - GirlImageRandomizer
     - HostGame
@@ -39,8 +41,6 @@ ScriptsOnlyBuild:
     - UserAccountManager
     - UserAccount_Lobby
     - Weapon
-    - enemyBullet
-    - enemyWeapon
     - projectileBehaviour
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
@@ -630,7 +630,7 @@ ScriptsOnlyBuild:
       Hash: f3c3dbd695c46f4d206b09e5020a3296
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: EndGame
+    className: GameCanvas
   - hash:
       serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
@@ -684,7 +684,7 @@ ScriptsOnlyBuild:
       Hash: 9ee4e69a1287bfe259ceea86d29c1920
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: enemyWeapon
+    className: EnemyWeapon
   - hash:
       serializedVersion: 2
       Hash: 93c64b40928a1fb1a38690583c923960
@@ -957,7 +957,7 @@ ScriptsOnlyBuild:
     className: PlayerStats
   - hash:
       serializedVersion: 2
-      Hash: 02550246a6dcb760ff5aca2925c871c7
+      Hash: 8c3c11c65a188f23dd1428f35efdbb6a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemySpawner
@@ -1134,7 +1134,7 @@ ScriptsOnlyBuild:
       Hash: 7bd65d802fa7de0f76ccbf1c24ca2414
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: enemyBullet
+    className: EnemyBullet
   - hash:
       serializedVersion: 2
       Hash: 893dbdbfe611d62e230a686ea89f1efd
@@ -1167,7 +1167,7 @@ ScriptsOnlyBuild:
     className: NetworkAnimator
   - hash:
       serializedVersion: 2
-      Hash: 4fb767cbbca6ebaf8d8b60566b0d1440
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Arena

@@ -17,7 +17,7 @@ public class NetworkCustom : NetworkManager
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
     {
-
+        GameManager.IncreaseArenaNumber();
         NetworkMessage message = extraMessageReader.ReadMessage<NetworkMessage>();
         int selectedClass = message.chosenClass;
         Debug.Log("server add with message " + selectedClass);
@@ -54,7 +54,7 @@ public class NetworkCustom : NetworkManager
     }
 
 
-    public override void OnClientSceneChanged(NetworkConnection conn)
+    public override void OnClientSceneChanged(NetworkConnection conn) //Rimuovere?
     {
         //base.OnClientSceneChanged(conn);
     }

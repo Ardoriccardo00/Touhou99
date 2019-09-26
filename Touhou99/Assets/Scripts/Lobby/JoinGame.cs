@@ -5,20 +5,17 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 
+[System.Obsolete]
 public class JoinGame : MonoBehaviour
 {
     List<GameObject> roomList = new List<GameObject>();
 
-    [SerializeField]
-    private Text status;
+    [SerializeField] private Text status;
 
-    [SerializeField]
-    private GameObject roomListItemPrefab;
+    [SerializeField] private GameObject roomListItemPrefab;
 
-    [SerializeField]
-    private Transform roomListParent;
+    [SerializeField] private Transform roomListParent;
 
-    [System.Obsolete]
     private NetworkManager nm;
 
     private void Start()
@@ -30,7 +27,7 @@ public class JoinGame : MonoBehaviour
             nm.StartMatchMaker();
         }
 
-        //RefreshRoomList();
+        RefreshRoomList();
     }
     public void RefreshRoomList()
     {

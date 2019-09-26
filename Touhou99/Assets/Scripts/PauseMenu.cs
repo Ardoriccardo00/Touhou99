@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.SceneManagement;
 
+[System.Obsolete]
 public class PauseMenu : MonoBehaviour
 {
     public static bool IsOn = false;

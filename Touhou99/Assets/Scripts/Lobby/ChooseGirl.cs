@@ -3,12 +3,11 @@ using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+[System.Obsolete]
 public class ChooseGirl : MonoBehaviour
 {
     public static bool girlChosen = false;
-
-    [SerializeField]
-    private Text girlError;
+    [SerializeField] private Text girlError;
 
     public void PickHero(int hero)
     {

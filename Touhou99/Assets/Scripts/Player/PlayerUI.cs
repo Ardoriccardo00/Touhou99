@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+[System.Obsolete]
 public class PlayerUI : MonoBehaviour
 {
 
