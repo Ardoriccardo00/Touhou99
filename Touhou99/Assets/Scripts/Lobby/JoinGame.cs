@@ -86,17 +86,12 @@ public class JoinGame : MonoBehaviour
 
     public void JoinRoom(MatchInfoSnapshot _match)
     {
-        //if(ChooseGirl.girlChosen == true)
-        //{
-        //    Debug.Log("joining " + _match.name);
-        //    StartCoroutine(WaitForJoin());
-        //    nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
-
-        //}
-
-        Debug.Log("Joining " + _match.name);
-        nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
-        StartCoroutine(WaitForJoin());
+        if (ChooseGirl.girlChosen == true)
+        {
+            Debug.Log("Joining " + _match.name);
+            StartCoroutine(WaitForJoin());
+            nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
+        }   
     }
 
     IEnumerator WaitForJoin()

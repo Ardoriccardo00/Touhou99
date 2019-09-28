@@ -75,9 +75,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
-    com.unity.multiplayer-hlapi.Editor.dll:
-    - UnityEditor.NetworkBehaviourInspector
-    - UnityEditor.NetworkIdentityEditor
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
@@ -714,7 +711,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: d9073812ce67285b6ed91ee3270221d9
+      Hash: 841dc01873ebebbd526089b7913b66c5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ChooseGirl
@@ -1026,7 +1023,7 @@ ScriptsOnlyBuild:
     className: NetworkMigrationManager
   - hash:
       serializedVersion: 2
-      Hash: 0970bd63f09f86f91343e5f084ea9494
+      Hash: e0211a551b4b06c9188ce84320b89155
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainMenu

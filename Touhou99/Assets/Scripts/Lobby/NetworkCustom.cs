@@ -5,6 +5,7 @@ using UnityEngine.Networking.NetworkSystem;
 [System.Obsolete]
 public class NetworkCustom : NetworkManager
 {
+    [Header("Character Selector")]
     public int chosenCharacter = 0;
     public GameObject[] characters;
 
@@ -26,10 +27,13 @@ public class NetworkCustom : NetworkManager
         GameObject player;
         Transform startPos = GetStartPosition();
 
+        GameObject playersContainer = GameObject.Find("PlayersContainer");
+
         if (startPos != null)
         {
             arena = Instantiate(playerPrefab, startPos.position, startPos.rotation) as GameObject;
             player = Instantiate(characters[selectedClass], startPos.position, startPos.rotation) as GameObject;
+            player.transform.SetParent(playersContainer.transform);
             NetworkServer.Spawn(arena);
             NetworkServer.Spawn(player);
         }
@@ -37,6 +41,7 @@ public class NetworkCustom : NetworkManager
         {
             arena = Instantiate(playerPrefab, startPos.position, startPos.rotation) as GameObject;
             player = Instantiate(characters[selectedClass], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            player.transform.SetParent(playersContainer.transform);
             NetworkServer.Spawn(arena);
             NetworkServer.Spawn(player);
         }

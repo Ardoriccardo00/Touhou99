@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class ChooseGirl : MonoBehaviour
 {
     public static bool girlChosen = false;
-    [SerializeField] private Text girlError;
+    [SerializeField] private Text girlErrorGirlCanvas;
+    [SerializeField] private Text girlErrorFindCanvas;
 
     public void PickHero(int hero)
     {
         girlChosen = true;
-        girlError.enabled = false;
+        girlErrorGirlCanvas.enabled = false;
+        girlErrorFindCanvas.enabled = false;
         NetworkManager.singleton.GetComponent<NetworkCustom>().chosenCharacter = hero;
     }
 }

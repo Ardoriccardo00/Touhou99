@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] float textsMoveSpeed = 1000f;
     [SerializeField] float menusMoveSpeed = 1000f;
 
+    bool textsMoved = false;
+
     [Header("Game Objects")]
     [SerializeField] CanvasGroup mainCanvas;
     [SerializeField] CanvasGroup findCanvas;
@@ -36,10 +38,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject girlPoint;
 
     [SerializeField] GameObject playerName;
-    [SerializeField] GameObject playerNamePoint;
 
     [SerializeField] GameObject[] textsContainer;
-    [SerializeField] GameObject textsPoint;
+    [SerializeField] GameObject[] textsPoint;
 
     [SerializeField] GameObject ambManager;
 
@@ -49,7 +50,7 @@ public class MainMenu : MonoBehaviour
     {
         SetDefaults();
 
-        playerNameImage = playerName.GetComponent<TextMeshProUGUI>();
+        playerNameImage = playerName.GetComponentInChildren<TextMeshProUGUI>();
         mainCanvas.alpha = 0;
 
         StartCoroutine(StartMenuAnimations());
@@ -71,6 +72,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator StartMenuAnimations()
     {
+        playerNameImage.alpha = 0;
         float playerChangingAlpha = 0;
 
         while (mainCanvas.alpha < 1) //Fade Menu in
@@ -91,29 +93,52 @@ public class MainMenu : MonoBehaviour
             yield return null;
         }
 
-        playerNameImage.alpha = 0;
-
-
-        while (playerName.transform.position != playerNamePoint.transform.position) //Move player name in
+        while (textsContainer[0].transform.position != textsPoint[0].transform.position)
         {
-            playerName.transform.position = Vector3.MoveTowards(playerName.transform.position, playerNamePoint.transform.position, Time.deltaTime * 1000f);
+            textsContainer[0].transform.position = Vector3.MoveTowards(textsContainer[0].transform.position, textsPoint[0].transform.position, Time.deltaTime * textsMoveSpeed);
             yield return null;
         }
 
-        for (int i = 0; i < textsContainer.Length; i++) //Move texts //-635.7, -569.7, -660.5, -633.8, -697.5
+        while (textsContainer[1].transform.position != textsPoint[1].transform.position)
         {
-            Vector3 nextTextPosition = new Vector3(textsContainer[i].transform.position.x + 770, textsContainer[i].transform.position.y, 0);
-
-            while (textsContainer[i].transform.position != nextTextPosition)
-            {
-                textsContainer[i].transform.position = Vector3.MoveTowards(textsContainer[i].transform.position, nextTextPosition, Time.deltaTime * textsMoveSpeed);
-                yield return null;
-            }
+            textsContainer[1].transform.position = Vector3.MoveTowards(textsContainer[1].transform.position, textsPoint[1].transform.position, Time.deltaTime * textsMoveSpeed);
+            yield return null;
         }
+
+        while (textsContainer[2].transform.position != textsPoint[2].transform.position)
+        {
+            textsContainer[2].transform.position = Vector3.MoveTowards(textsContainer[2].transform.position, textsPoint[2].transform.position, Time.deltaTime * textsMoveSpeed);
+            yield return null;
+        }
+
+        while (textsContainer[3].transform.position != textsPoint[3].transform.position)
+        {
+            textsContainer[3].transform.position = Vector3.MoveTowards(textsContainer[3].transform.position, textsPoint[3].transform.position, Time.deltaTime * textsMoveSpeed);
+            yield return null;
+        }
+
+        while (textsContainer[4].transform.position != textsPoint[4].transform.position)
+        {
+            textsContainer[4].transform.position = Vector3.MoveTowards(textsContainer[4].transform.position, textsPoint[4].transform.position, Time.deltaTime * textsMoveSpeed);
+            yield return null;
+        }
+
+        //for (int i = 0; i < textsContainer.Length; i++) //Move texts //630;160, 696;60, 630;-40, 670;-40, 610;-240
+        //{
+        //        print("Texts Container lenght: " + textsContainer.Length);
+        //        print("TEXT CONTAINER " + textsContainer[i]);
+        //        print("TEXT POINT " + textsPoint[i]);
+
+        //        while (textsContainer[i].transform.position != textsContainer[i].transform.position)
+        //        {
+        //            textsContainer[i].transform.position = Vector3.MoveTowards(textsContainer[i].transform.position, textsPoint[i].transform.position, Time.deltaTime * textsMoveSpeed);
+        //            yield return null;
+        //        }
+        //}
 
         while (playerNameImage.alpha < 0.5f) //Fade player name in
         {
-            playerChangingAlpha += Time.deltaTime / 2;
+            playerChangingAlpha += Time.deltaTime / 4;
             playerNameImage.color = new Color(255, 255, 255, playerChangingAlpha);
             yield return null;
         }
