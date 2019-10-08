@@ -6,6 +6,7 @@ using UnityEngine.Networking.Match;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 [System.Obsolete]
 public class GameCanvas : NetworkBehaviour
@@ -15,13 +16,15 @@ public class GameCanvas : NetworkBehaviour
     [SerializeField] private Button startGameButton;
     [SerializeField] private ArenaSpawner arenaSpawner;
     [SerializeField] Text dataText;
-    [SerializeField] Text countDown;
+    [SerializeField] TextMeshProUGUI countDown;
     [SerializeField] TimerToStartMatch timer;
+    [SerializeField] GameObject centerPoint;
 
-    [Header("Components")]
+    [Header("Others")]
     int numberOfPlayers;
     private NetworkManager networkManager;
     PlayerSetup[] playerSetups;
+    bool textCanMove = false;
 
     void Start()
     {
@@ -47,6 +50,13 @@ public class GameCanvas : NetworkBehaviour
 
     void Update()
     {
+        print(textCanMove);
+        if (textCanMove == true)
+        {
+            print("can");
+            countDown.transform.position = Vector3.MoveTowards(countDown.transform.position, centerPoint.transform.position, 1000f * Time.deltaTime);
+        }
+
         CheckCountDownTimer();
         CheckIfActivateGameOverText();
 
@@ -70,12 +80,18 @@ public class GameCanvas : NetworkBehaviour
 
     private void CheckCountDownTimer()
     {
-        countDown.text = Convert.ToString(Mathf.Round((timer.countDownToStart)));
+        var theTimer = timer.countDownToStart;
+        countDown.text = Convert.ToString(Mathf.Round((theTimer)));
 
         if (timer.countDownToStart <= 0)
         {
             countDown.enabled = false;
         }
+    }
+
+    public void MoveTimerText(bool can)
+    {
+        textCanMove = can;
     }
 
     public void LeaveRoom()

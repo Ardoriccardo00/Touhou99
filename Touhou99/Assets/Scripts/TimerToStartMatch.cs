@@ -6,7 +6,7 @@ public class TimerToStartMatch : MonoBehaviour
 {
     bool canCountDown = false;
     private bool matchHasStarted;
-    float timerToStart = 3f;
+    float timerToStart = 4f;
     [HideInInspector] public float countDownToStart;
 
     void Start()

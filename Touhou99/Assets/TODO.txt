@@ -1,2 +1,1 @@
 Aggiungere countdown partita
-Usare recttransform per muovere ui text
