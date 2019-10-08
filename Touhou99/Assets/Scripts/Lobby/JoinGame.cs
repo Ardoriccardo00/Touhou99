@@ -105,13 +105,11 @@ public class JoinGame : MonoBehaviour
         {
             int matchNumber = Random.Range(0, matchList.Count);
             MatchInfoSnapshot _match = matchList[matchNumber];
-            nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
+            if (ChooseGirl.girlChosen)
+            {
+                nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
+            }
         }
-        
-        //if (ChooseGirl.girlChosen)
-        //{
-        //    nm.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, nm.OnMatchJoined);
-        //}
     }
 
     IEnumerator WaitForJoin()

@@ -1,2 +1,2 @@
-Add lightng to game title
-Adjust UI moving speed
+Aggiungere countdown partita
+Usare recttransform per muovere ui text

@@ -28,7 +28,9 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] Rotate rotatingNine;
 
-    //[SerializeField] GameObject menuToMoveAway;
+    [Header("To Enable/Disable")]
+    [SerializeField] GameObject[] componentsToDisable;
+    [SerializeField] GameObject[] componentsToEnable;
 
     [Header("Main Menu")]
     [SerializeField] GameObject titleImage;
@@ -61,13 +63,22 @@ public class MainMenu : MonoBehaviour
 
     void SetDefaults()
     {
-        mainCanvas.gameObject.SetActive(true); //fare array di canvas
+        mainCanvas.gameObject.SetActive(true);
         findCanvas.gameObject.SetActive(false);
         createCanvas.gameObject.SetActive(false);
         optionsCanvas.gameObject.SetActive(false);
         girlCanvas.gameObject.SetActive(false);
         userStatsCanvas.gameObject.SetActive(false);
         girlCanvas.alpha = 0;
+
+        for(int i = 0; i < componentsToDisable.Length; i++)
+        {
+            componentsToDisable[i].SetActive(false);
+        }
+        for (int i = 0; i < componentsToEnable.Length; i++)
+        {
+            componentsToEnable[i].SetActive(true);
+        }
     }
 
     IEnumerator StartMenuAnimations()
