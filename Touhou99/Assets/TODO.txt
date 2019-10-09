@@ -1,1 +1,1 @@
-Aggiungere countdown partita
+Far rimanere solo il numero di giocatori vivi

@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6acaa3d2298eb41aa140bb4e72e333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 10
   kills: 0
   deaths: 0
   username: loading...
@@ -272,7 +272,6 @@ MonoBehaviour:
   remoteLayerName: RemotePlayer
   playerUIPrefab: {fileID: 4535632190999133756, guid: d21412bc10258eb439323fa2df5df0ca,
     type: 3}
-  player: {fileID: 5536426307208110057}
 --- !u!114 &6040343368841230031
 MonoBehaviour:
   m_ObjectHideFlags: 0

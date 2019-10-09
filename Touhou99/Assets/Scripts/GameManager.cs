@@ -47,11 +47,12 @@ public class GameManager : MonoBehaviour
     public static void UnRegisterPlayer(string _playerID)
     {
         players.Remove(_playerID);
+        print("Unregistered " + _playerID);
     }
 
-    public static Player GetPlayer(string _playerID)
+    public static Player GetPlayer(string _pplayerID)
     {
-        return players[_playerID];
+        return players[_pplayerID];
     }
 
     public static Player[] GetAllPlayers()
@@ -67,9 +68,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Aggiunto " + _player + " tra i vivi");
     }
 
-    public static void RemoveDeadPlayer(string _playerID)
+    public static void RemoveDeadPlayer(string _ppplayerID)
     {
-        playersAlive.Remove(_playerID);
-        Debug.Log("Rimosso " + _playerID + " tra i vivi");
+        playersAlive.Remove(_ppplayerID);
+        Debug.Log("Rimosso " + _ppplayerID + " tra i vivi");
     }
 }

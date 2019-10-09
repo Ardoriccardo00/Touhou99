@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class Player : NetworkBehaviour {
 
     [Header("Statistics")]
-    [SerializeField] public int maxHealth = 50;
+    [SerializeField] public int maxHealth = 10;
     [SyncVar (hook = "OnHealthChanged")] private int currentHealth;
 
     public int kills;
@@ -61,9 +61,9 @@ public class Player : NetworkBehaviour {
         else return;
     }
 
-    public float GetHealth()
+    public int GetHealth()
     {
-        return (float)currentHealth / maxHealth;
+        return (int)currentHealth;
     }
 
     public float GetBombPowerAmount()
@@ -78,10 +78,9 @@ public class Player : NetworkBehaviour {
             if (!isLocalPlayer)
                 return;
 
-            if (isServer)
-                CmdPlayerShot(transform.name, 10);
-            else if (isClient)
-                ClientPlayerShot(transform.name, 10);
+            CmdPlayerShot(transform.name, 2);
+            //else if (isClient)
+            //    ClientPlayerShot(transform.name, 10);
         }
     }
 
@@ -92,12 +91,12 @@ public class Player : NetworkBehaviour {
         go.GetComponent<Player>().CmdTakeDamage(_damage);
     }
 
-    [Client]
-    void ClientPlayerShot(string _playerID, int _damage)
-    {
-        GameObject go = GameObject.Find(_playerID);
-        go.GetComponent<Player>().ClientTakeDamage(_damage);
-    }
+    //[Client]
+    //void ClientPlayerShot(string _playerID, int _damage)
+    //{
+    //    GameObject go = GameObject.Find(_playerID);
+    //    go.GetComponent<Player>().ClientTakeDamage(_damage);
+    //}
 
     [Command]
     public void CmdEnemyShot(string _enemyID, string _sourceID)
@@ -107,13 +106,13 @@ public class Player : NetworkBehaviour {
         Destroy(GameObject.Find(_enemyID));
     }
 
-    [Client]
-    public void ClientEnemyShot(string _enemyID, string _sourceID)
-    {
-        Debug.Log(_enemyID + " enemy has been shot");
+    //[Client]
+    //public void ClientEnemyShot(string _enemyID, string _sourceID)
+    //{
+    //    Debug.Log(_enemyID + " enemy has been shot");
 
-        Destroy(GameObject.Find(_enemyID));
-    }
+    //    Destroy(GameObject.Find(_enemyID));
+    //}
 
 
     [Command]
@@ -134,22 +133,22 @@ public class Player : NetworkBehaviour {
         
     }
 
-    [Client]
-    public void ClientTakeDamage(int _amount)
-    {
-        if (!isHit)
-        {
-            StartCoroutine("HurtColor");
-            currentHealth -= _amount;
+    //[Client]
+    //public void ClientTakeDamage(int _amount)
+    //{
+    //    if (!isHit)
+    //    {
+    //        StartCoroutine("HurtColor");
+    //        currentHealth -= _amount;
 
-            Debug.Log(transform.name + " now has " + currentHealth + " health ");
+    //        Debug.Log(transform.name + " now has " + currentHealth + " health ");
 
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-        }
-    }
+    //        if (currentHealth <= 0)
+    //        {
+    //            Die();
+    //        }
+    //    }
+    //}
 
     void OnHealthChanged(int health)
     {

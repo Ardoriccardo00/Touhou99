@@ -399,7 +399,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11116}
     - Class: 114
+      Script: {instanceID: 11254}
+    - Class: 114
+      Script: {instanceID: 11482}
+    - Class: 114
       Script: {instanceID: 11558}
+    - Class: 114
+      Script: {instanceID: 11890}
     - Class: 114
       Script: {instanceID: 11956}
     - Class: 114
@@ -627,7 +633,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: f3c3dbd695c46f4d206b09e5020a3296
+      Hash: cd02d5360f9dfef8b0c77b196738dd27
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameCanvas
@@ -1191,7 +1197,7 @@ ScriptsOnlyBuild:
     className: HostGame
   - hash:
       serializedVersion: 2
-      Hash: 606a6c0ce6fd4c69675201560b53740c
+      Hash: 230ba53d8776afc10b13f3519a2adc72
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerUI

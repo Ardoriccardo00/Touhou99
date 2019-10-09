@@ -50,11 +50,9 @@ public class GameCanvas : NetworkBehaviour
 
     void Update()
     {
-        print(textCanMove);
         if (textCanMove == true)
         {
-            print("can");
-            countDown.transform.position = Vector3.MoveTowards(countDown.transform.position, centerPoint.transform.position, 1000f * Time.deltaTime);
+            countDown.transform.position = Vector3.MoveTowards(countDown.transform.position, centerPoint.transform.position, 2000f * Time.deltaTime);     
         }
 
         CheckCountDownTimer();
@@ -92,6 +90,7 @@ public class GameCanvas : NetworkBehaviour
     public void MoveTimerText(bool can)
     {
         textCanMove = can;
+        startGameButton.gameObject.SetActive(false);
     }
 
     public void LeaveRoom()
