@@ -687,7 +687,7 @@ ScriptsOnlyBuild:
     className: EnemyWeapon
   - hash:
       serializedVersion: 2
-      Hash: 93c64b40928a1fb1a38690583c923960
+      Hash: 291655ef14bfa0334b779ab4ecfb7dfe
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -1197,7 +1197,7 @@ ScriptsOnlyBuild:
     className: HostGame
   - hash:
       serializedVersion: 2
-      Hash: 230ba53d8776afc10b13f3519a2adc72
+      Hash: 32fb381d077fccfec690a0db09cfeb79
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerUI

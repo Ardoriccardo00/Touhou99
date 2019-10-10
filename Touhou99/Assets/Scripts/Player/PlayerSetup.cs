@@ -96,6 +96,7 @@ public class PlayerSetup : NetworkBehaviour
     private void OnDisable()
     {
         Destroy(playerUIInstance);
-        GameManager.UnRegisterPlayer(transform.name);
+        GameManager.UnRegisterPlayer(player.name);
+        GameManager.RemoveDeadPlayer(player.name);
     }
 }
