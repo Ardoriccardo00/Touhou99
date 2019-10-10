@@ -12,6 +12,8 @@ public class AnimatedMenuBackground : MonoBehaviour
     float moveSpeed;
     float rotateSpeed;
 
+    bool canFadeOut = false;
+
     void Start()
     {
         image = GetComponent<Image>();
@@ -25,7 +27,35 @@ public class AnimatedMenuBackground : MonoBehaviour
 
     void Update()
     {
+        if (canFadeOut)
+        {
+            FadeAway();
+        }
+
         transform.Translate(movementDirection * moveSpeed, Space.World);
         transform.Rotate(0, 0, 1f * rotateSpeed);
+    }
+
+    public void ActivateFade(float timeToLive)
+    {
+        Invoke("CanFade", timeToLive);
+    }
+
+    void CanFade()
+    {
+        canFadeOut = true;
+    }
+
+    void FadeAway()
+    {
+        Image movingSpriteImage = GetComponent<Image>();
+        Color newColor = new Color(255, 255, 255, movingSpriteImage.color.a - 0.01f);
+
+        if (movingSpriteImage.color.a > 0)
+        {
+            movingSpriteImage.color = newColor;
+        }
+
+        else Destroy(gameObject);
     }
 }

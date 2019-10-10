@@ -10,7 +10,7 @@ public class AMBManager : MonoBehaviour
     GameObject movingSprite;
 
     int length = 1920;
-    int height = 1080;
+    int height = 1500;
 
     private int posX;
     private int posY;
@@ -32,7 +32,7 @@ public class AMBManager : MonoBehaviour
 
         spawnPoint = new Vector2(posX, posY);
 
-        timeToLive = Random.Range(1f, 2f);
+        timeToLive = Random.Range(0.5f, 1.5f);
 
         if(timeDown > 0f)
         {
@@ -49,28 +49,8 @@ public class AMBManager : MonoBehaviour
     {
         movingSprite = Instantiate(prefab[Random.Range(0,prefab.Length)], spawnPoint, Quaternion.identity);
         movingSprite.transform.SetParent(transform);
-        Destroy(movingSprite, timeToLive);
-        //StartCoroutine(FadeAwayCounter(timeToLive));
-    }
-
-    IEnumerator FadeAwayCounter(float timer)
-    {
-        //print(timer);
-        while (timer > 0)
-        {
-            timer -= Time.deltaTime / 2;
-        }
-       
-        if (timer <= 0)
-        {
-            Image movingSpriteImage = movingSprite.GetComponent<Image>();
-            Color newColor = new Color(255, 255, 255, movingSpriteImage.color.a);
-
-            while (movingSpriteImage.color.a > 0)
-            {
-                movingSpriteImage.color = newColor;
-            }
-        }
-        yield return null;
+        AnimatedMenuBackground fadeComponent = movingSprite.GetComponent<AnimatedMenuBackground>();
+        //Invoke("fadeComponent.ActivateFade", timeToLive);
+        fadeComponent.ActivateFade(timeToLive);       
     }
 }
