@@ -348,7 +348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b60a3edd53c6444a02f270dc8d9edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ArenaSpawner: {fileID: 0}
 --- !u!114 &7373793628122823029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +365,7 @@ MonoBehaviour:
   - {fileID: 1258045185856787610}
   enemyPrefab: {fileID: 1290405546085826877, guid: d707baaf171b8de41bc167ec7d23fd28,
     type: 3}
-  enemiesToSpawn: 2
+  enemiesToSpawn: 5
 --- !u!1 &6131945460847526642
 GameObject:
   m_ObjectHideFlags: 0

@@ -249,11 +249,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  currentHealth: 10
   kills: 0
   deaths: 0
   username: loading...
   weapon: {fileID: 7416816598037890894}
-  Arena: {fileID: 0}
 --- !u!114 &-6814792453246056337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +428,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8259962898754785055}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &9118604686449531013
 GameObject:
   m_ObjectHideFlags: 0

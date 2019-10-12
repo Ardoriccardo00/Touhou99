@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 using UnityEngine;
 
 [System.Obsolete]
-public class Weapon : NetworkBehaviour
+public class PlayerWeapon : NetworkBehaviour
 {
     [Header("Weapon")]
     public float distance = 100f;
@@ -28,7 +28,6 @@ public class Weapon : NetworkBehaviour
 
     private void Start()
     {
-        bombPower = 0f;
         cloneSpawnPoint = GameObject.FindGameObjectWithTag("CloneSpawner");
         projectilesContainer = GameObject.FindGameObjectWithTag("ProjectilesContainer");
         clonesContainer = GameObject.FindGameObjectWithTag("ClonesContainer");
@@ -40,45 +39,71 @@ public class Weapon : NetworkBehaviour
 
     private void Update()
     {
+        if (!isLocalPlayer) return;           
+
         if (bombPower >= 40f)
             bombPower = bombPowerMax;
     }
 
-    void Bomb()
+    public void SetBombPower()
     {
-        if (!isLocalPlayer)
-            return;
+        bombPower = 0f;
+    }
 
+    [Command]
+    void CmdShoot()
+    {
+        RpcCreateBullet();
+    }
+
+    [ClientRpc]
+    void RpcCreateBullet()
+    {
+        CreateBullet();
+    }
+
+    void CreateBullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        NetworkServer.Spawn(bullet);
+        bullet.transform.SetParent(projectilesContainer.transform);
+        bullet.GetComponent<ProjectileBehaviour>().shooter = transform.name;
+        Destroy(bullet, 1f);
+    }
+
+    [Command]
+    void CmdBomb()
+    {
+        RpcBomb();     
+    }
+
+    [ClientRpc]
+    void RpcBomb()
+    {
+        CreateBomb();
+    }
+
+    void CreateBomb()
+    {
         GameObject bomb = Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
         NetworkServer.Spawn(bomb);
         bomb.transform.SetParent(projectilesContainer.transform);
+        SpawnClone();
+    }
 
+    private void SpawnClone()
+    {
         if (cloneSpawnPoint.transform.position == thisCloneSpawnPoint.transform.position)
         {
             GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);
             NetworkServer.Spawn(clone);
             clone.transform.SetParent(clonesContainer.transform);
         }
-        
     }
 
-    void Shoot()
-    {
-        if (!isLocalPlayer)
-            return;
-
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        NetworkServer.Spawn(bullet);
-        bullet.transform.SetParent(projectilesContainer.transform);
-        bullet.GetComponent<ProjectileBehaviour>().shooter = transform.name;
-        Destroy(bullet, 1f);
-
-    }
 
     void SetTarget()
     {
-        if (!isLocalPlayer) return;
-
         GameObject[] cloneSpawnPoints = GameObject.FindGameObjectsWithTag("CloneSpawner");
         int random = Random.Range(0, cloneSpawnPoints.Length);
         cloneSpawnPoint = cloneSpawnPoints[random];

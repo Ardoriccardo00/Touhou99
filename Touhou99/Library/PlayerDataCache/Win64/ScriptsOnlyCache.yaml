@@ -34,6 +34,7 @@ ScriptsOnlyBuild:
     - PlayerSetup
     - PlayerStats
     - PlayerUI
+    - PlayerWeapon
     - ProjectileBehaviour
     - RoomListItem
     - Rotate
@@ -41,7 +42,6 @@ ScriptsOnlyBuild:
     - TimerToStartMatch
     - UserAccountManager
     - UserAccount_Lobby
-    - Weapon
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -75,6 +75,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
+    com.unity.multiplayer-hlapi.Editor.dll:
+    - UnityEditor.NetworkIdentityEditor
+    - UnityEditor.NetworkTransformEditor
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
@@ -603,7 +606,7 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 954b8dde12eafe38fe9b464ade68a22a
+      Hash: 55f98b514365e9dfe5ff1582f73baa7d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BombWeapon
@@ -687,7 +690,7 @@ ScriptsOnlyBuild:
     className: EnemyWeapon
   - hash:
       serializedVersion: 2
-      Hash: 291655ef14bfa0334b779ab4ecfb7dfe
+      Hash: 1e80270f110b1b71374f6b2e07e59f23
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -816,7 +819,7 @@ ScriptsOnlyBuild:
       Hash: 6f5f9cffa434a4384f5703ace02b21bc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Weapon
+    className: PlayerWeapon
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1119,7 +1122,7 @@ ScriptsOnlyBuild:
     className: NetworkDiscovery
   - hash:
       serializedVersion: 2
-      Hash: 7bd65d802fa7de0f76ccbf1c24ca2414
+      Hash: 2445479c25b0a7273e0588f722f7baeb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyBullet
@@ -1197,7 +1200,7 @@ ScriptsOnlyBuild:
     className: HostGame
   - hash:
       serializedVersion: 2
-      Hash: 32fb381d077fccfec690a0db09cfeb79
+      Hash: b7522919471228d6e4947a638477371a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerUI

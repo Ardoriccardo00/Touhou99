@@ -18,19 +18,14 @@ public class BombBullet : MonoBehaviour {
         scale += 1f;
     }
 
-    [System.Obsolete]
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
-        Player player = hitInfo.GetComponent<Player>();
-
-        if (enemy != null)
+        if (hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")
         {
             Debug.Log("Colpito nemico con bomba");
             Destroy(hitInfo.gameObject);
         }
 
         //Instantiate(impactEffect, transform.position, transform.rotation);
-
     }
 }

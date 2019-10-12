@@ -19,25 +19,18 @@ public class Player : NetworkBehaviour {
     [SyncVar] public string username = "loading...";
 
     [Header("Components")]
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private PlayerWeapon weapon;
     private NetworkManager networkManager;
     PlayerUI[] uiList;
 
     [Header("Others")]
-    [SerializeField] private GameObject Arena;
-    private const string PLAYER_TAG = "Player";
-    private const string ENEMY_TAG = "Enemy";
-
+    //[SerializeField] private GameObject Arena;
     private bool isHit;
 
     void Start()
     {
-        if (!isLocalPlayer)
-            return;
-
-        Arena = GameObject.FindGameObjectWithTag("Arena");
+        //Arena = GameObject.FindGameObjectWithTag("Arena");
         isHit = false;
-        currentHealth = maxHealth;
         networkManager = NetworkManager.singleton;
 
         uiList = FindObjectsOfType<PlayerUI>();
@@ -61,6 +54,11 @@ public class Player : NetworkBehaviour {
         else return;
     }
 
+    public void SetHealth()
+    {
+        currentHealth = maxHealth;
+    }
+
     public int GetHealth()
     {
         return (int)currentHealth;
@@ -73,47 +71,11 @@ public class Player : NetworkBehaviour {
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")
+        if (isLocalPlayer && hitInfo.tag == "Enemy" || hitInfo.tag == "EnemyBullet")
         {
-            if (!isLocalPlayer)
-                return;
-            if(isServer)
-            CmdPlayerShot(transform.name, 2);
-            else if (isClient)
-                ClientPlayerShot(transform.name, 10);
+            CmdTakeDamage(2);
         }
     }
-
-    [Command]
-    void CmdPlayerShot(string _playerID, int _damage)
-    {
-        GameObject go = GameObject.Find(_playerID);
-        go.GetComponent<Player>().CmdTakeDamage(_damage);
-    }
-
-    [Client]
-    void ClientPlayerShot(string _playerID, int _damage)
-    {
-        GameObject go = GameObject.Find(_playerID);
-        go.GetComponent<Player>().ClientTakeDamage(_damage);
-    }
-
-    [Command]
-    public void CmdEnemyShot(string _enemyID, string _sourceID)
-    {
-        Debug.Log(_enemyID + " enemy has been shot");
-
-        Destroy(GameObject.Find(_enemyID));
-    }
-
-    [Client]
-    public void ClientEnemyShot(string _enemyID, string _sourceID)
-    {
-        Debug.Log(_enemyID + " enemy has been shot");
-
-        Destroy(GameObject.Find(_enemyID));
-    }
-
 
     [Command]
     public void CmdTakeDamage(int _amount)
@@ -130,8 +92,42 @@ public class Player : NetworkBehaviour {
                 Die();
             }
         }
-        
+
     }
+
+
+    //[Command]
+    //void CmdPlayerShot(string _playerID, int _damage)
+    //{
+    //    GameObject go = GameObject.Find(_playerID);
+    //    go.GetComponent<Player>().CmdTakeDamage(_damage);
+    //}
+
+    //[Client]
+    //void ClientPlayerShot(string _playerID, int _damage)
+    //{
+    //    GameObject go = GameObject.Find(_playerID);
+    //    go.GetComponent<Player>().ClientTakeDamage(_damage);
+    //}
+
+    //[Command]
+    //public void CmdEnemyShot(string _enemyID, string _sourceID)
+    //{
+    //    Debug.Log(_enemyID + " enemy has been shot");
+
+    //    Destroy(GameObject.Find(_enemyID));
+    //}
+
+    //[Client]
+    //public void ClientEnemyShot(string _enemyID, string _sourceID)
+    //{
+    //    Debug.Log(_enemyID + " enemy has been shot");
+
+    //    Destroy(GameObject.Find(_enemyID));
+    //}
+
+
+
 
     [Client]
     public void ClientTakeDamage(int _amount)

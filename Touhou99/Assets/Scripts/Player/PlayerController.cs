@@ -12,14 +12,14 @@ public class PlayerController : NetworkBehaviour
     public float diagonalMoveModifier = 0.75f;
     private Rigidbody2D rb;
     private Camera myCamera;
-    private Weapon weapon;
+    private PlayerWeapon weapon;
     [SerializeField] private GameObject hitBoxSprite;
     [SerializeField] private Animator animator;
     void Start()
     {
         originalMoveSpeed = moveSpeed;
         rb = GetComponent<Rigidbody2D>();
-        weapon = GetComponent<Weapon>();
+        weapon = GetComponent<PlayerWeapon>();
         animator = GetComponent<Animator>();
         hitBoxSprite.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
@@ -51,7 +51,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            SendMessage("Shoot");
+            SendMessage("CmdShoot");
         }
 
 
@@ -59,7 +59,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (weapon.bombPower >= 40f)
             {
-                SendMessage("Bomb");
+                SendMessage("CmdBomb");
                 weapon.bombPower = weapon.bombPower - 40f;
             }
             else { Debug.Log("no"); }

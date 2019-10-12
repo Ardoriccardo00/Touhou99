@@ -7,12 +7,12 @@ public class BombWeapon : MonoBehaviour
     [Header("Components")]
     public Transform bombFirePoint;
     public GameObject bombPrefab;
-    [System.Obsolete]  public Weapon weapon;
+    [System.Obsolete]  public PlayerWeapon weapon;
 
     [System.Obsolete]
     void start()
     {
-        weapon = FindObjectOfType<Weapon>();
+        weapon = FindObjectOfType<PlayerWeapon>();
     }
 
     [System.Obsolete]

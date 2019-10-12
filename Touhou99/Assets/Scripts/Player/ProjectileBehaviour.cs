@@ -27,7 +27,7 @@ public class ProjectileBehaviour : NetworkBehaviour
 
         if (hitInfo.tag == "Enemy" || hitInfo.tag == "Clone")
         {
-            playerToReward.GetComponent<Weapon>().bombPower += UnityEngine.Random.Range(0.5f, 0.8f); //was Player instead of Weapon
+            playerToReward.GetComponent<PlayerWeapon>().bombPower += UnityEngine.Random.Range(1f, 2f); //was Player instead of Weapon
 
             if (hitInfo.tag == "Enemy")
             {

@@ -6,7 +6,6 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public float speed;
-    public int damage;
     public Rigidbody2D rb;
     private Vector3 moveDirection;
     //public GameObject impactEffect;

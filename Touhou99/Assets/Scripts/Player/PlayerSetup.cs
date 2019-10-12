@@ -33,6 +33,21 @@ public class PlayerSetup : NetworkBehaviour
         SetUsername();
     }
 
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        string _netID = GetComponent<NetworkIdentity>().netId.ToString();
+        Player _player = GetComponent<Player>();
+        PlayerWeapon _playerWeapon = GetComponent<PlayerWeapon>();
+
+        GameManager.RegisterPlayer(_netID, _player);
+        GameManager.AddAlivePlayer(_netID, _player);
+
+        _player.SetHealth();
+        _playerWeapon.SetBombPower();
+    }
+
     private void SetUsername()
     {
         string _username = "loading...";
@@ -68,16 +83,7 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-
-        string _netID = GetComponent<NetworkIdentity>().netId.ToString();
-        Player _player = GetComponent<Player>();
-
-        GameManager.RegisterPlayer(_netID, _player);
-        GameManager.AddAlivePlayer(_netID, _player);
-    }
+    
 
     void DisableComponents()
     {

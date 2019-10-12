@@ -511,12 +511,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &547179355 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6727611451028555888, guid: 536d7aaf910ad7f4f812fd5110719bad,
-    type: 3}
-  m_PrefabInstance: {fileID: 5746629987776793041}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &591044325
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +790,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1020881498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1692511735, guid: 536d7aaf910ad7f4f812fd5110719bad,
+    type: 3}
+  m_PrefabInstance: {fileID: 5746629987776793041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1296589356 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4639236918969740274, guid: 536d7aaf910ad7f4f812fd5110719bad,
@@ -1723,7 +1723,7 @@ PrefabInstance:
     - target: {fileID: 5953632987260398306, guid: 536d7aaf910ad7f4f812fd5110719bad,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5953632987260398306, guid: 536d7aaf910ad7f4f812fd5110719bad,
         type: 3}
@@ -1793,7 +1793,7 @@ PrefabInstance:
     - target: {fileID: 5953632987260398306, guid: 536d7aaf910ad7f4f812fd5110719bad,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5953632987260398306, guid: 536d7aaf910ad7f4f812fd5110719bad,
         type: 3}
@@ -1804,7 +1804,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 547179355}
+      objectReference: {fileID: 1020881498}
+    - target: {fileID: 5953632987260398306, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953632987260398306, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953632987260398306, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3033678602015802886, guid: 536d7aaf910ad7f4f812fd5110719bad,
         type: 3}
       propertyPath: audioComponent
@@ -1845,6 +1860,26 @@ PrefabInstance:
       propertyPath: audioComponent
       value: 
       objectReference: {fileID: 441207728}
+    - target: {fileID: 1337447594217186728, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 996867344}
+    - target: {fileID: 1337447594217186728, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337447594217186728, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1777821526}
+    - target: {fileID: 1337447594217186728, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PrepareRandomRoom
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
 --- !u!114 &5746629987776793042 stripped

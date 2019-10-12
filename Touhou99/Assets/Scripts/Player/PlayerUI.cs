@@ -21,12 +21,12 @@ public class PlayerUI : MonoBehaviour
     public Slider bombPowerBar;
 
     [HideInInspector] public Player player;
-    [HideInInspector] public Weapon weapon;
+    [HideInInspector] public PlayerWeapon weapon;
 
     public void SetPlayer(Player _player)
     {
         player = _player;
-        weapon = player.GetComponent<Weapon>();
+        weapon = player.GetComponent<PlayerWeapon>();
         print("BERSAGLIO (UI): " + _player);
     }
     private void Start()
