@@ -1,1 +1,4 @@
 Creare un solo prefab per ogni personaggio
+Fix sound not playing while pressing button and start game animation not showing while joining random game
+aggiustare comando per spawnare clone
+aggiustare bomb bullet clone che non spawna e anche proiettili nemici

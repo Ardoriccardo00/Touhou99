@@ -51,7 +51,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            SendMessage("CmdShoot");
+            SendMessage("Shoot");
         }
 
 
@@ -59,7 +59,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (weapon.bombPower >= 40f)
             {
-                SendMessage("CmdBomb");
+                SendMessage("Bomb");
                 weapon.bombPower = weapon.bombPower - 40f;
             }
             else { Debug.Log("no"); }

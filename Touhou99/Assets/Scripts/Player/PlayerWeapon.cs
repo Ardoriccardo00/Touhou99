@@ -50,54 +50,51 @@ public class PlayerWeapon : NetworkBehaviour
         bombPower = 0f;
     }
 
-    [Command]
-    void CmdShoot()
-    {
-        RpcCreateBullet();
-    }
-
-    [ClientRpc]
-    void RpcCreateBullet()
-    {
-        CreateBullet();
-    }
-
-    void CreateBullet()
+    void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        NetworkServer.Spawn(bullet);
         bullet.transform.SetParent(projectilesContainer.transform);
         bullet.GetComponent<ProjectileBehaviour>().shooter = transform.name;
         Destroy(bullet, 1f);
+
+        CmdSpawnBullet(bullet);
     }
 
-    [Command]
-    void CmdBomb()
-    {
-        RpcBomb();     
-    }
-
-    [ClientRpc]
-    void RpcBomb()
-    {
-        CreateBomb();
-    }
-
-    void CreateBomb()
+    void Bomb()
     {
         GameObject bomb = Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
         NetworkServer.Spawn(bomb);
         bomb.transform.SetParent(projectilesContainer.transform);
-        SpawnClone();
+        CreateClone();
+
+        CmdCreateBomb(bomb);
     }
 
-    private void SpawnClone()
+    [Command]
+    void CmdSpawnBullet(GameObject bulletToSpawn)
+    {
+        NetworkServer.Spawn(bulletToSpawn);
+    }
+
+    [Command]
+    void CmdCreateBomb(GameObject bombToCreate)
+    {
+        NetworkServer.Spawn(bombToCreate);   
+    }
+
+    [Command]
+    void CmdSpawnClone(GameObject cloneToSpawn)
+    {
+        NetworkServer.Spawn(cloneToSpawn);
+    }
+
+    private void CreateClone()
     {
         if (cloneSpawnPoint.transform.position == thisCloneSpawnPoint.transform.position)
         {
-            GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);
-            NetworkServer.Spawn(clone);
+            GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);         
             clone.transform.SetParent(clonesContainer.transform);
+            CmdSpawnClone(clone);
         }
     }
 
@@ -110,3 +107,14 @@ public class PlayerWeapon : NetworkBehaviour
         print("Giocatore besagliato: " + cloneSpawnPoint);
     }
 }
+
+/*[ClientRpc]
+    void RpcShoot()
+    {
+        CreateBullet();
+    }*/
+/*[ClientRpc]
+    void RpcBomb()
+    {
+        CreateBomb();
+    }*/
