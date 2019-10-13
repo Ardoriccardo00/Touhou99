@@ -54,7 +54,11 @@ public class PlayerSetup : NetworkBehaviour
         if (UserAccountManager.IsLoggedIn)
             _username = UserAccountManager.LoggedIn_Username;
         else
+        {
+            transform.name = "Player " + GameManager.numberOfArenas;
             _username = transform.name;
+        }
+            
 
         CmdSetUserName(transform.name, _username);
     }

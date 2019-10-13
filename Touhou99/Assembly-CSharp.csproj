@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Arena.cs" />
     <Compile Include="Assets\Scripts\CloneMovement.cs" />
     <Compile Include="Assets\Scripts\CloneSpawner.cs" />
+    <Compile Include="Assets\Scripts\CloneSpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyBullet.cs" />
     <Compile Include="Assets\Scripts\EnemySetup.cs" />

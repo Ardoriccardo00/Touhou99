@@ -9,7 +9,6 @@ public class EnemySetup : NetworkBehaviour
         RegisterEnemy();
     }
 
-    [System.Obsolete]
     void RegisterEnemy()
     {
         string _ID = "Enemy " + GetComponent<NetworkIdentity>().netId;

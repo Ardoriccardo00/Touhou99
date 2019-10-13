@@ -38,18 +38,23 @@ public class EnemyWeapon : NetworkBehaviour
         {
             if (timeBetweenShootCounter <= 0)
             {
-                CmdShoot();
+                EnemyShoot();
                 timeBetweenShoot = Random.Range(1f, 5f);
                 timeBetweenShootCounter = timeBetweenShoot;
             }
         }
     }
 
-    //[Command]
-    void CmdShoot()
+    void EnemyShoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        NetworkServer.Spawn(bullet);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);      
         nextFire = Time.time + fireRate;
+        CmdCreateEnemyBullet(bullet);
+    }
+
+    [Command]
+    void CmdCreateEnemyBullet(GameObject bulletToSpawn)
+    {
+        NetworkServer.Spawn(bulletToSpawn);
     }
 }

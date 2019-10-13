@@ -31,8 +31,7 @@ public class PlayerWeapon : NetworkBehaviour
         cloneSpawnPoint = GameObject.FindGameObjectWithTag("CloneSpawner");
         projectilesContainer = GameObject.FindGameObjectWithTag("ProjectilesContainer");
         clonesContainer = GameObject.FindGameObjectWithTag("ClonesContainer");
-        thisCloneSpawnPoint = FindObjectOfType<Arena>().gameObject;
-        thisCloneSpawnPoint.transform.Find("CloneSpawnPoint");
+        thisCloneSpawnPoint = FindObjectOfType<CloneSpawnPoint>().gameObject;
         print("THIS CLONE SP" + thisCloneSpawnPoint);
         SetTarget();
     }
@@ -63,11 +62,25 @@ public class PlayerWeapon : NetworkBehaviour
     void Bomb()
     {
         GameObject bomb = Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
-        NetworkServer.Spawn(bomb);
         bomb.transform.SetParent(projectilesContainer.transform);
         CreateClone();
 
         CmdCreateBomb(bomb);
+    }
+
+    private void CreateClone()
+    {
+        if (cloneSpawnPoint.transform.position != thisCloneSpawnPoint.transform.position)
+        {
+            GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);
+            clone.transform.SetParent(clonesContainer.transform);
+            CmdSpawnClone(clone);
+            print("Spawnando clone su " + cloneSpawnPoint);
+        }
+        else
+        {
+            print("Could not spawn clone");
+        }
     }
 
     [Command]
@@ -88,23 +101,15 @@ public class PlayerWeapon : NetworkBehaviour
         NetworkServer.Spawn(cloneToSpawn);
     }
 
-    private void CreateClone()
-    {
-        if (cloneSpawnPoint.transform.position == thisCloneSpawnPoint.transform.position)
-        {
-            GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);         
-            clone.transform.SetParent(clonesContainer.transform);
-            CmdSpawnClone(clone);
-        }
-    }
-
-
     void SetTarget()
     {
         GameObject[] cloneSpawnPoints = GameObject.FindGameObjectsWithTag("CloneSpawner");
         int random = Random.Range(0, cloneSpawnPoints.Length);
         cloneSpawnPoint = cloneSpawnPoints[random];
+        //GameObject cloneSP = cloneSpawnPoints[random];
+        //CreateClone();
         print("Giocatore besagliato: " + cloneSpawnPoint);
+        print("Mio spawn point: " + thisCloneSpawnPoint);
     }
 }
 
