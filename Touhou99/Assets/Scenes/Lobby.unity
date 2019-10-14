@@ -1417,6 +1417,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6043641933530204019, guid: 536d7aaf910ad7f4f812fd5110719bad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8364859284147076891, guid: 536d7aaf910ad7f4f812fd5110719bad,
         type: 3}
       propertyPath: soundSources.Array.data[0]
@@ -2020,11 +2025,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 594174587, guid: 536d7aaf910ad7f4f812fd5110719bad, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6043641933530204019, guid: 536d7aaf910ad7f4f812fd5110719bad,
-        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
         print("Number of arenas: " + numberOfArenas);
     }
 
+    public static void ReduceArenaNumber()
+    {
+        numberOfArenas--;
+    }
+
     public static void RegisterPlayer(string _netID, Player _player)
     {
         string _playerID = PLAYER_ID_PREFIX + _netID;

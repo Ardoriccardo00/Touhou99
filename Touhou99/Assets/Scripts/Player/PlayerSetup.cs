@@ -18,6 +18,7 @@ public class PlayerSetup : NetworkBehaviour
     private GameObject playerCamera;
     [HideInInspector] public static bool isServerPlayer;
     private GameObject uiContainer;
+    private GameObject playersContainer;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class PlayerSetup : NetworkBehaviour
 
         SetUI();
         SetUsername();
+        playersContainer = GameObject.Find("playersContainer");
     }
 
     public override void OnStartClient()
@@ -55,7 +57,7 @@ public class PlayerSetup : NetworkBehaviour
             _username = UserAccountManager.LoggedIn_Username;
         else
         {
-            transform.name = "Player " + GameManager.numberOfArenas;
+            //transform.name = "Player " + GameManager.numberOfArenas;
             _username = transform.name;
         }
             
@@ -87,6 +89,11 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    void RpcSetUserName()
+    {
+
+    }
     
 
     void DisableComponents()

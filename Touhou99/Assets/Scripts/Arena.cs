@@ -15,6 +15,20 @@ public class Arena : NetworkBehaviour
 
     void RegisterArena()
     {
+        if (isServer) RpcRegisterArena();
+        else CmdRegisterArena();
+    }
+
+    [Command]
+    void CmdRegisterArena()
+    {
+        string _ID = "Arena " + GameManager.numberOfArenas;
+        transform.name = _ID;
+    }
+
+    [ClientRpc]
+    void RpcRegisterArena()
+    {
         string _ID = "Arena " + GameManager.numberOfArenas;
         transform.name = _ID;
     }

@@ -24,8 +24,7 @@ public class PauseMenu : MonoBehaviour
     {
 
         MatchInfo matchInfo = networkManager.matchInfo;
-        //GameManager.UnRegisterPlayer(transform.name);
-        //GameManager.RemoveDeadPlayer(transform.name);
+        GameManager.ReduceArenaNumber();
         networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
         networkManager.StopHost();
         SceneManager.LoadScene(1);

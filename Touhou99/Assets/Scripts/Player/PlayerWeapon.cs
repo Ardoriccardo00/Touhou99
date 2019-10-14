@@ -42,6 +42,12 @@ public class PlayerWeapon : NetworkBehaviour
 
         if (bombPower >= 40f)
             bombPower = bombPowerMax;
+
+        if(cloneSpawnPoint == thisCloneSpawnPoint)
+        {
+            SetTarget();
+            print("reset target");
+        }
     }
 
     public void SetBombPower()
@@ -51,52 +57,65 @@ public class PlayerWeapon : NetworkBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        bullet.transform.SetParent(projectilesContainer.transform);
-        bullet.GetComponent<ProjectileBehaviour>().shooter = transform.name;
-        Destroy(bullet, 1f);
-
-        CmdSpawnBullet(bullet);
+        CmdSpawnBullet();
     }
 
     void Bomb()
     {
-        GameObject bomb = Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
-        bomb.transform.SetParent(projectilesContainer.transform);
-        CreateClone();
-
-        CmdCreateBomb(bomb);
+        CmdCreateBomb();     
     }
 
     private void CreateClone()
     {
+        CmdSpawnClone();
+    }
+
+    [Command]
+    void CmdSpawnBullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        bullet.transform.SetParent(projectilesContainer.transform);
+        bullet.GetComponent<ProjectileBehaviour>().shooter = transform.name;
+        Destroy(bullet, 1f);
+        NetworkServer.Spawn(bullet);
+    }
+
+    [Command]
+    void CmdCreateBomb()
+    {
+        GameObject bomb = Instantiate(bombPrefab, bombFirePoint.position, bombFirePoint.rotation);
+        bomb.transform.SetParent(projectilesContainer.transform);
+        CreateClone();
+        NetworkServer.Spawn(bomb);   
+    }
+
+    [Command]
+    void CmdSpawnClone()
+    {   
         if (cloneSpawnPoint.transform.position != thisCloneSpawnPoint.transform.position)
         {
             GameObject clone = Instantiate(clonePrefab, cloneSpawnPoint.transform.position, cloneSpawnPoint.transform.rotation);
             clone.transform.SetParent(clonesContainer.transform);
-            CmdSpawnClone(clone);
+            NetworkServer.Spawn(clone);
             print("Spawnando clone su " + cloneSpawnPoint);
         }
-        else
-        {
-            print("Could not spawn clone");
-        }
+        else print("Could not spawn clone");     
     }
 
-    [Command]
-    void CmdSpawnBullet(GameObject bulletToSpawn)
+    [ClientRpc]
+    void RpcSpawnBullet(GameObject bulletToSpawn)
     {
         NetworkServer.Spawn(bulletToSpawn);
     }
 
-    [Command]
-    void CmdCreateBomb(GameObject bombToCreate)
+    [ClientRpc]
+    void RpcCreateBomb(GameObject bombToCreate)
     {
-        NetworkServer.Spawn(bombToCreate);   
+        NetworkServer.Spawn(bombToCreate);
     }
 
-    [Command]
-    void CmdSpawnClone(GameObject cloneToSpawn)
+    [ClientRpc]
+    void RpcSpawnClone(GameObject cloneToSpawn)
     {
         NetworkServer.Spawn(cloneToSpawn);
     }

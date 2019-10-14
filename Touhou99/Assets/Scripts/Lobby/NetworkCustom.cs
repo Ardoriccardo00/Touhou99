@@ -58,9 +58,9 @@ public class NetworkCustom : NetworkManager
         ClientScene.AddPlayer(conn, 0, test);
     }
 
-
-    public override void OnClientSceneChanged(NetworkConnection conn) //Rimuovere?
+    public override void OnClientSceneChanged(NetworkConnection conn)
     {
+        //Non eliminare questa funzione
         //base.OnClientSceneChanged(conn);
     }
 
