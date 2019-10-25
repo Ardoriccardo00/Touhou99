@@ -35,11 +35,11 @@ public class PlayerUI : MonoBehaviour
     }
     private void Update()
     {
-        SetHealthAmount(player.GetHealth());
-        SetBombPowerAmount(player.GetBombPowerAmount());
+        //SetHealthAmount(player.GetHealth());
+        //SetBombPowerAmount(player.GetBombPowerAmount());
 
-        bombPowerBar.maxValue = weapon.bombPowerMax;
-        bombPowerBar.value = weapon.bombPower;
+        //bombPowerBar.maxValue = weapon.bombPowerMax;
+        //bombPowerBar.value = weapon.bombPower;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

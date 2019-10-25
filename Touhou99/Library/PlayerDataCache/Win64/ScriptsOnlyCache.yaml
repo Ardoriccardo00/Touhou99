@@ -10,9 +10,7 @@ ScriptsOnlyBuild:
     - CloneMovement
     - CloneSpawnPoint
     - Enemy
-    - EnemyBullet
     - EnemySpawner
-    - EnemyWeapon
     - ExitGame
     - GameCanvas
     - GameManager
@@ -59,6 +57,8 @@ ScriptsOnlyBuild:
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
+    UnityEditor.UI.dll:
+    - UnityEditor.UI.CanvasScalerEditor
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -388,19 +388,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9720}
     - Class: 114
+      Script: {instanceID: 9858}
+    - Class: 114
       Script: {instanceID: 9930}
     - Class: 114
       Script: {instanceID: 9942}
     - Class: 114
       Script: {instanceID: 9982}
     - Class: 114
+      Script: {instanceID: 10134}
+    - Class: 114
       Script: {instanceID: 10146}
+    - Class: 114
+      Script: {instanceID: 10490}
     - Class: 114
       Script: {instanceID: 10496}
     - Class: 114
+      Script: {instanceID: 10798}
+    - Class: 114
+      Script: {instanceID: 10932}
+    - Class: 114
+      Script: {instanceID: 10976}
+    - Class: 114
       Script: {instanceID: 10992}
     - Class: 114
+      Script: {instanceID: 11100}
+    - Class: 114
       Script: {instanceID: 11116}
+    - Class: 114
+      Script: {instanceID: 11250}
     - Class: 114
       Script: {instanceID: 11254}
     - Class: 114
@@ -410,9 +426,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11892}
     - Class: 114
+      Script: {instanceID: 11940}
+    - Class: 114
       Script: {instanceID: 11958}
     - Class: 114
       Script: {instanceID: 12026}
+    - Class: 114
+      Script: {instanceID: 12068}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -684,13 +704,7 @@ ScriptsOnlyBuild:
     className: TransitionArmModel
   - hash:
       serializedVersion: 2
-      Hash: 9ee4e69a1287bfe259ceea86d29c1920
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: EnemyWeapon
-  - hash:
-      serializedVersion: 2
-      Hash: 1e80270f110b1b71374f6b2e07e59f23
+      Hash: dac267f00d6b74c4d8f0ea2229d34d8d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -1126,12 +1140,6 @@ ScriptsOnlyBuild:
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
     className: NetworkDiscovery
-  - hash:
-      serializedVersion: 2
-      Hash: 2445479c25b0a7273e0588f722f7baeb
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: EnemyBullet
   - hash:
       serializedVersion: 2
       Hash: 893dbdbfe611d62e230a686ea89f1efd

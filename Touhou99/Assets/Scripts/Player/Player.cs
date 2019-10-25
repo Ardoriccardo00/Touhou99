@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 [Obsolete]
@@ -21,11 +22,20 @@ public class Player : NetworkBehaviour {
     [Header("Components")]
     [SerializeField] private PlayerWeapon weapon;
     private NetworkManager networkManager;
-    PlayerUI[] uiList;
 
     [Header("Others")]
     //[SerializeField] private GameObject Arena;
     private bool isHit;
+
+    [Header("HealthBar")]
+    [SerializeField] private GameObject healthBarObject;
+    [SerializeField]
+    private Image[] healthbar = new Image[5];
+
+    [SerializeField]
+    private Sprite[] pictures = new Sprite[3];
+
+    public Slider bombPowerBar;
 
     void Start()
     {
@@ -33,15 +43,10 @@ public class Player : NetworkBehaviour {
         isHit = false;
         networkManager = NetworkManager.singleton;
 
-        uiList = FindObjectsOfType<PlayerUI>();
-
-        foreach (PlayerUI ui in uiList)
-        {
-            if (ui.player.transform.name != transform.name)
-            {
-                ui.gameObject.SetActive(false);
-            }
-        }
+        weapon = GetComponent<PlayerWeapon>();
+        healthBarObject = GameObject.Find("HealthPanel");
+        healthbar = healthBarObject.gameObject.GetComponentsInChildren<Image>();
+        bombPowerBar = FindObjectOfType<Slider>();
     }
 
 
@@ -52,6 +57,9 @@ public class Player : NetworkBehaviour {
 
         if (this.isLocalPlayer) SendMessage("GetInput");
         else return;
+
+        SetBombPowerAmount();
+        SetHealthAmount();
     }
 
     public void SetHealth()
@@ -170,5 +178,72 @@ public class Player : NetworkBehaviour {
         deaths++;
         Destroy(gameObject);
         GameManager.RemoveDeadPlayer(transform.name);
+    }
+
+    public void SetBombPowerAmount()
+    {
+        bombPowerBar.value = weapon.bombPower;
+    }
+
+    void SetHealthAmount()
+    {
+        switch (currentHealth)
+        {
+            case 8:
+                for (int i = 0; i < 5; i++)
+                {
+                    healthbar[i].sprite = pictures[0];
+                }
+                healthbar[5].sprite = pictures[2];
+                break;
+
+            case 6:
+                for (int i = 0; i < 4; i++)
+                {
+                    healthbar[i].sprite = pictures[0];
+                }
+                for (int i = 5; i > 3; i--)
+                {
+                    healthbar[i].sprite = pictures[2];
+                }
+                break;
+
+            case 4:
+                for (int i = 0; i < 3; i++)
+                {
+                    healthbar[i].sprite = pictures[0];
+                }
+                for (int i = 5; i > 2; i--)
+                {
+                    healthbar[i].sprite = pictures[2];
+                }
+                break;
+
+            case 2:
+                for (int i = 0; i < 1; i++)
+                {
+                    healthbar[i].sprite = pictures[0];
+                }
+                for (int i = 5; i > 0; i--)
+                {
+                    healthbar[i].sprite = pictures[2];
+                }
+                break;
+
+            case 0:
+                for (int i = 0; i < 5; i++)
+                {
+                    healthbar[i].sprite = pictures[2];
+                }
+                break;
+        }
+        if (currentHealth == 10)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                healthbar[i].sprite = pictures[0];
+            }
+        }
+
     }
 }

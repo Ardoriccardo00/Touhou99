@@ -254,6 +254,18 @@ MonoBehaviour:
   deaths: 0
   username: loading...
   weapon: {fileID: 7416816598037890894}
+  healthBarObject: {fileID: 0}
+  healthbar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  pictures:
+  - {fileID: 4333283870218021683, guid: e93f43f5348488e429bbafe208caa8b2, type: 3}
+  - {fileID: 5771342103939480521, guid: e93f43f5348488e429bbafe208caa8b2, type: 3}
+  - {fileID: -9045937668294457034, guid: e93f43f5348488e429bbafe208caa8b2, type: 3}
+  bombPowerBar: {fileID: 0}
 --- !u!114 &-6814792453246056337
 MonoBehaviour:
   m_ObjectHideFlags: 0

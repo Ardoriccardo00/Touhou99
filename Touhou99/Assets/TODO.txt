@@ -1,4 +1,1 @@
-
 SINCRONIZZARE TUTTO
-Usare un solo canvas per tutti i giocatori
-Creare un solo prefab per ogni personaggio

@@ -30,7 +30,7 @@ public class PlayerSetup : NetworkBehaviour
             AssignRemoteLayer();
         }
 
-        SetUI();
+        //SetUI();
         SetUsername();
         playersContainer = GameObject.Find("playersContainer");
     }
