@@ -27,20 +27,20 @@ public class ProjectileBehaviour : NetworkBehaviour
 
         if (hitInfo.tag == "Enemy" || hitInfo.tag == "Clone")
         {
-            playerToReward.GetComponent<PlayerWeapon>().bombPower += UnityEngine.Random.Range(1f, 2f); //was Player instead of Weapon
+            RewardPlayer();
 
             if (hitInfo.tag == "Enemy")
             {
-                NetworkServer.Destroy(hitInfo.gameObject);
+                DestroyEnemy(hitInfo.gameObject);
             }
 
-            else if(hitInfo.tag == "Clone")
+            else if (hitInfo.tag == "Clone")
             {
                 DamageClone();
             }
-        }       
+        }
 
-        if(hitInfo.tag == "EnemyBullet")
+        if (hitInfo.tag == "EnemyBullet")
         {
             Destroy(hitInfo.gameObject);
             NetworkServer.Destroy(hitInfo.gameObject);
@@ -49,7 +49,36 @@ public class ProjectileBehaviour : NetworkBehaviour
            Destroy(gameObject);
     }
 
+    private void DestroyEnemy(GameObject hitInfo)
+    {
+        var varToPass = hitInfo;
+        CmdDestroyEnemy(varToPass);
+    }
+
+    private void RewardPlayer()
+    {
+        CmdRewardPlayer();
+    }
+
     private void DamageClone()
+    {
+        CmdDamageClone();
+    }
+
+    [Command]
+    void CmdRewardPlayer()
+    {
+        playerToReward.GetComponent<PlayerWeapon>().bombPower += UnityEngine.Random.Range(1f, 2f);
+    }
+
+    [Command]
+    void CmdDestroyEnemy(GameObject hitInfo)
+    {
+        NetworkServer.Destroy(hitInfo.gameObject);
+    }
+
+    [Command]
+    void CmdDamageClone()
     {
         CloneMovement cloneHit = FindObjectOfType<CloneMovement>();
         cloneHit.currentHealth -= damage;
