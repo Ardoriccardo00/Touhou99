@@ -66,6 +66,7 @@
     <Compile Include="Assets\Other Stuff\ParrelSync\Examples\CustomArgumentExample.cs" />
     <Compile Include="Assets\Scripts\BulletBehaviour.cs" />
     <Compile Include="Assets\Scripts\MyNewtworkManager.cs" />
+    <Compile Include="Assets\Scripts\Player\Health.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerIdentity.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
