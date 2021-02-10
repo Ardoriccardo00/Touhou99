@@ -7,7 +7,7 @@ public class BulletBehaviour : NetworkBehaviour
 {
     public Collider2D myCollider;
 	public Rigidbody2D rb;
-    PlayerIdentity playerWhoShotMe;
+    public PlayerIdentity playerWhoShotMe;
 	[SerializeField] float moveSpeed = 1000;
 	public float bulletDamage = 10;
 	//PlayerIdentity playerIHit;
@@ -23,18 +23,32 @@ public class BulletBehaviour : NetworkBehaviour
 		rb.velocity = Vector2.up * moveSpeed * Time.deltaTime;
 	}
 
-	/*void OnCollisionEnter2D(Collision2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Destroy(gameObject);
-	}*/
-
-	public void SetPlayerWhoShotMe(PlayerIdentity player)
-	{
-        playerWhoShotMe = player;
+		if(collision.tag == "Player")
+		{
+			//CmdBulletHitEffect();
+			playerWhoShotMe.GetComponent<PlayerWeapon>().CmdDamagePlayer(collision.GetComponent<PlayerIdentity>(), bulletDamage);
+			//FindObjectOfType<NetworkGameManager>().RpcDamagePlayer(collision.GetComponent<PlayerIdentity>(), bulletDamage);
+			//CmdServerDestroy(); later
+		}
 	}
 
-    public PlayerIdentity ReturnPlayerWhoShotMe()
+	[Command]
+	void CmdBulletHitEffect()
 	{
-        return playerWhoShotMe;
+		FindObjectOfType<NetworkGameManager>().SaySomething();
+	}
+
+	[Command]
+	void CmdServerDestroy()
+	{
+		RpcDestroy();
+	}
+
+	[ClientRpc]
+	void RpcDestroy()
+	{
+		Destroy(gameObject);
 	}
 }
