@@ -23,7 +23,7 @@ public class BulletBehaviour : NetworkBehaviour
 		rb.velocity = Vector2.up * moveSpeed * Time.deltaTime;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+	/*private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if(collision.tag == "Player")
 		{
@@ -32,9 +32,9 @@ public class BulletBehaviour : NetworkBehaviour
 			//FindObjectOfType<NetworkGameManager>().RpcDamagePlayer(collision.GetComponent<PlayerIdentity>(), bulletDamage);
 			//CmdServerDestroy(); later
 		}
-	}
+	}*/
 
-	[Command]
+	/*[Command]
 	void CmdBulletHitEffect()
 	{
 		FindObjectOfType<NetworkGameManager>().SaySomething();
@@ -50,5 +50,5 @@ public class BulletBehaviour : NetworkBehaviour
 	void RpcDestroy()
 	{
 		Destroy(gameObject);
-	}
+	}*/
 }

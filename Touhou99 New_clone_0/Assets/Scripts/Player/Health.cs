@@ -4,32 +4,60 @@ using TMPro;
 
 public class Health : NetworkBehaviour
 {
+    [Header("Setup")]
     BoxCollider2D hitBox;
-
-    [SerializeField] float maxHealth;
-    float currentHealth;
-
     public PlayerIdentity playerSource;
-
     [SerializeField] TextMeshProUGUI healthText;
 
-    void Start()
+    [Header("Variables")]
+    [SerializeField] float maxHealth;
+    [SerializeField] [SyncVar] float currentHealth = 0;
+
+    //These delegate and event are created so the UI script can update the UI
+    public delegate void HealthChangedDelegate(float currentHealth, float maxHealth);
+
+    public event HealthChangedDelegate EventHealthChanged;
+
+	public override void OnStartServer()
+	{
+		hitBox = GetComponent<BoxCollider2D>();
+		SetHealth(maxHealth);
+	}
+
+	[ClientCallback]
+    private void Update()
     {
-        hitBox = GetComponent<BoxCollider2D>();
-        currentHealth = maxHealth;
-        healthText.text = "Health: " + currentHealth + "/" + maxHealth;
+        if (!hasAuthority) return;
     }
 
-	/*private void OnCollisionEnter2D(Collision2D collision)
+    //whenever the server updates the health it will raise an event
+    //and all the clients subscribed to it will receive it
+    [Server]
+    private void SetHealth(float value)
 	{
-        if(collision.gameObject.tag == "Bullet")
-		{
-            float newDamage = collision.gameObject.GetComponent<BulletBehaviour>().bulletDamage;
-            CmdDecreaseHealth(newDamage);
-        }     
-	}*/
+        currentHealth = value;
+        EventHealthChanged?.Invoke(currentHealth, maxHealth);
+	}
 
-	[Command]
+    [Command]
+    public void CmdTakeDamage(float damageToDeal)
+	{
+        SetHealth(currentHealth -= damageToDeal);
+        if (currentHealth <= 0) print(transform.name + " has died");
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+        if (!isLocalPlayer) return;
+
+		else if(collision.tag == "Bullet")
+		{
+            var newdamage = collision.GetComponent<BulletBehaviour>().bulletDamage;
+            CmdTakeDamage(newdamage);
+		}
+	}
+
+	/*[Command]
     public void CmdIncreaseHealth(float value)
 	{
         RpcIncreaseHealth(value);
@@ -70,5 +98,5 @@ public class Health : NetworkBehaviour
 	{
         Destroy(gameObject);
 		print(gameObject.name + "has died");
-	}
+	}*/
 }

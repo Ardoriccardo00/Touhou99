@@ -12,14 +12,19 @@ public class PlayerWeapon : NetworkBehaviour
     [SerializeField] float shootingDelay = 1f;
     float shootingDelayTimer = 0;
 
+    [SyncVar] [SerializeField] float maxBombPower = 100f;
     [SerializeField] [Range(0f, 100f)] float bombPower = 0f;
 
-    void Start()
-    {
+    public delegate void BombPowerChangeDelegate(float bombPower, float maxBombPower);
+    public event BombPowerChangeDelegate EventBombPowerChanged;
+
+	public override void OnStartServer()
+	{
         shootingDelayTimer = shootingDelay;
         bombText.text = "Bomb: " + Mathf.RoundToInt(bombPower) + "%";
     }
 
+    [ClientCallback]
     void Update()
     {
 		if (isLocalPlayer)
@@ -35,26 +40,71 @@ public class PlayerWeapon : NetworkBehaviour
                     shootingDelayTimer = shootingDelay;
                 }
 			}
-		}
+
+			if (Input.GetKeyDown(KeyCode.X))
+			{
+                CmdBomb();
+			}
+
+/*            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                FindObjectOfType<MatchInitializer>().CmdSpawnArenas();
+            }*/
+        }
     }
 
-    [Command]
-    void CmdShoot()
+    [Server] 
+    private void SetBomb(float value)
+	{
+        bombPower = value;
+        EventBombPowerChanged?.Invoke(bombPower, maxBombPower);
+	}
+
+	[Command]
+	public void CmdIncreaseBomb(float valueToIncrease)
+	{
+		SetBomb(bombPower += valueToIncrease);
+	}
+
+	/*[Server]
+    private void ShootBullet()
+	{
+        SetBomb(bombPower += 1f);
+        var newbullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
+        newbullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
+        Destroy(newbullet, 3f);
+    }*/
+
+	[Command]
+	void CmdShoot()
 	{
 		//print("Client: Asking to shoot");
 		RpcShoot();
 	}
 
-    [ClientRpc]
-    void RpcShoot()
+	[ClientRpc]
+	void RpcShoot()
 	{
         //print("Server: Shooting");
-        var newbullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
-        newbullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
-        Destroy(newbullet, 3f);
+        //CmdIncreaseBomb(1f);
+        SetBomb(bombPower += 1f);
+		var newbullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
+		newbullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
+		Destroy(newbullet, 3f);
+	}
+
+	void CmdBomb()
+    {
+        RpcBomb();
     }
 
-    [Command]
+    [ClientRpc]
+    void RpcBomb()
+    {
+        print("Boom!");
+    }
+
+    /*[Command]
     void CmdBomb()
 	{
         RpcBomb();
@@ -107,5 +157,5 @@ public class PlayerWeapon : NetworkBehaviour
 	{
 		var targetPlayerHealth = player.GetComponent<Health>();
 		targetPlayerHealth.CmdDecreaseHealth(damage);
-	}
+	}*/
 }

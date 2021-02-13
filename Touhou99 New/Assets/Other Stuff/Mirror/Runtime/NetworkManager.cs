@@ -24,7 +24,7 @@ namespace Mirror
     public class NetworkManager : MonoBehaviour
     {
         static readonly ILogger logger = LogFactory.GetLogger<NetworkManager>();
-
+        
         /// <summary>
         /// A flag to control whether the NetworkManager object is destroyed when the scene changes.
         /// <para>This should be set if your game has a single NetworkManager that exists for the lifetime of the process. If there is a NetworkManager in each scene, then this should not be set.</para>
@@ -1110,13 +1110,14 @@ namespace Mirror
         /// List of transforms populted by NetworkStartPosition components found in the scene.
         /// </summary>
         public static List<Transform> startPositions = new List<Transform>();
+		//[SyncVar] public int numberOfOnlinePlayers = 0;
 
-        /// <summary>
-        /// Registers the transform of a game object as a player spawn location.
-        /// <para>This is done automatically by NetworkStartPosition components, but can be done manually from user script code.</para>
-        /// </summary>
-        /// <param name="start">Transform to register.</param>
-        public static void RegisterStartPosition(Transform start)
+		/// <summary>
+		/// Registers the transform of a game object as a player spawn location.
+		/// <para>This is done automatically by NetworkStartPosition components, but can be done manually from user script code.</para>
+		/// </summary>
+		/// <param name="start">Transform to register.</param>
+		public static void RegisterStartPosition(Transform start)
         {
             if (logger.LogEnabled()) logger.Log("RegisterStartPosition: (" + start.gameObject.name + ") " + start.position);
             startPositions.Add(start);
