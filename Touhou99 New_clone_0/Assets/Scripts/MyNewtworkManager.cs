@@ -5,9 +5,9 @@ using Mirror;
 
 public class MyNewtworkManager : NetworkManager
 {
-	public delegate void PlayerJoinOrLeave();
+	/*public delegate void PlayerJoinOrLeave();
 	public event PlayerJoinOrLeave playerConnected;
-	public event PlayerJoinOrLeave playerDisconnected;
+	public event PlayerJoinOrLeave playerDisconnected;*/
 
 	public override void OnStartClient()
 	{
@@ -16,9 +16,8 @@ public class MyNewtworkManager : NetworkManager
 
 	public override void OnServerAddPlayer(NetworkConnection conn)
 	{
-
 		print("Added player");
-		playerConnected();
+		//playerConnected();
 
 		Transform startPos = GetStartPosition();
 		GameObject player = startPos != null
@@ -31,7 +30,7 @@ public class MyNewtworkManager : NetworkManager
 	public override void OnClientDisconnect(NetworkConnection conn)
 	{
 		print("A player left");
-		playerDisconnected();
+		//playerDisconnected();
 		base.OnClientDisconnect(conn);
 	}
 }

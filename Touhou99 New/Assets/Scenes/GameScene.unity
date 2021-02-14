@@ -383,11 +383,7 @@ MonoBehaviour:
   arenasSpawned: 0
   arenaObject: {fileID: 870991985274094890, guid: ed18627fa619c1f4c9664a3208d40ed2,
     type: 3}
-  arenaCamera: {fileID: 4643024661806086983, guid: 31f97205a902e1f47b8928fc9835b09b,
-    type: 3}
-  cameraParent: {fileID: 60367402}
-  timerMax: 5
-  timer: 0
+  arenaCenterList: []
 --- !u!4 &545891221
 Transform:
   m_ObjectHideFlags: 0
