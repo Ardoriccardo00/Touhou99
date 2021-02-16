@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using Mirror;
 using TMPro;
+using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerWeapon : NetworkBehaviour
 {
@@ -78,11 +80,25 @@ public class PlayerWeapon : NetworkBehaviour
 	[Command]
 	void CmdShoot()
 	{
-		//print("Client: Asking to shoot");
-		RpcShoot();
+        //print("Client: Asking to shoot");
+        SetBomb(bombPower += 1f);
+        var newbullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
+        newbullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
+        NetworkServer.Spawn(newbullet);
+        StartCoroutine(DestroyBullet(newbullet));
+        /*Destroy(newbullet, 3f);
+        NetworkServer.Destroy(newbullet);*/
+		//RpcShoot();
 	}
 
-	[ClientRpc]
+    IEnumerator DestroyBullet(GameObject objectToDestroy)
+	{
+        yield return new WaitForSeconds(3);
+        Destroy(objectToDestroy);
+        NetworkServer.Destroy(objectToDestroy);
+    }
+
+	/*[ClientRpc]
 	void RpcShoot()
 	{
         //print("Server: Shooting");
@@ -91,7 +107,7 @@ public class PlayerWeapon : NetworkBehaviour
 		var newbullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
 		newbullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
 		Destroy(newbullet, 3f);
-	}
+	}*/
 
 	void CmdBomb()
     {

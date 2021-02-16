@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MyNewtworkManager.cs" />
     <Compile Include="Assets\Scripts\NetworkGameManager.cs" />
+    <Compile Include="Assets\Scripts\Player\EnemyCameraSwitcher.cs" />
     <Compile Include="Assets\Scripts\Player\Health.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerIdentity.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />

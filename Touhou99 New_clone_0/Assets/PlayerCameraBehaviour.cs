@@ -4,8 +4,15 @@ using UnityEngine;
 public class PlayerCameraBehaviour : NetworkBehaviour
 {
     Vector3 position;
+    public bool canDisableOthers = false;
+    Camera cameraComponent;
 
-    public void SetPosition(Vector3 newPos)
+	private void OnEnable()
+	{
+        cameraComponent = GetComponent<Camera>();
+	}
+
+	public void SetPosition(Vector3 newPos)
 	{
         position = newPos;
 	}
@@ -17,9 +24,13 @@ public class PlayerCameraBehaviour : NetworkBehaviour
 
     void Update()
     {
-        if (!transform.parent.GetComponent<PlayerIdentity>().isLocalPlayer)
+		if (transform.parent.GetComponent<PlayerIdentity>().isLocalPlayer)
+		{
+            cameraComponent.depth = 0;
+		}
+        /*if (!transform.parent.GetComponent<PlayerIdentity>().isLocalPlayer && canDisableOthers)
         {
             gameObject.SetActive(false);
-        }
+        }*/
     }
 }
