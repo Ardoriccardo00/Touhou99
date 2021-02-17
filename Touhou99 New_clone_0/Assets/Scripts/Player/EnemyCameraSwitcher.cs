@@ -44,12 +44,12 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 	{
 		if (forward)
 		{
-			if (cameraIndex >= cameraList.Count) cameraIndex = 0;
+			if (cameraIndex == cameraList.Count - 1) cameraIndex = 0;
 			else cameraIndex++;
 		}
 		else if (!forward)
 		{
-			if (cameraIndex <= 0) cameraIndex = cameraList.Count - 1;
+			if (cameraIndex == 0) cameraIndex = cameraList.Count - 1;
 			else cameraIndex--;
 		}
 
@@ -62,6 +62,7 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 
 	void AssignEnemyCamera()
 	{
+		if (cameraList.Count == 0) return;
 		var rand = Random.Range(1, cameraList.Count - 1);
 		print("rand " + rand);
 		enemyPlayerCamera = cameraList[rand - 1];
