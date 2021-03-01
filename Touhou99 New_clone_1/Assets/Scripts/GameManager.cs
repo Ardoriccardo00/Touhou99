@@ -59,7 +59,8 @@ public class GameManager : NetworkBehaviour
             GameObject newArena = Instantiate(arenaObject, new Vector2(posX, posY), Quaternion.identity);
             newArena.transform.localScale = new Vector3(11.57531f, 10.06353f, 16.32845f);
             GameObject enemySpawner = newArena.transform.Find("Enemy Spawn Point").gameObject;
-            NetworkServer.Spawn(enemySpawner);
+
+            //NetworkServer.Spawn(enemySpawner);
 
             PlayerIdentity currentPlayer = playerDictionary.Values.ElementAt(i); //Get current player
             PlayerCameraBehaviour currentPlayerCamera = currentPlayer.transform.FindChild("Game Camera").GetComponent<PlayerCameraBehaviour>(); //Get current player camera
@@ -76,6 +77,8 @@ public class GameManager : NetworkBehaviour
             currentPlayerWeapon.FindOwnPlayerArena(); //The player weapon finds the closest clone spawn point
 
             posX += 19.37f;
+
+            NetworkServer.Spawn(enemySpawner);
         }
     }
 }
