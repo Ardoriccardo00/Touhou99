@@ -13,6 +13,8 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 	[SerializeField] RawImage rawImage;
 	[SerializeField] RenderTexture renderTexture;
 
+	[SerializeField] PlayerWeapon playerWeapon;
+
 	private void Awake()
 	{
 		rawImage = FindObjectOfType<RawImage>();
@@ -57,6 +59,7 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 		AssignTargetTextureToEnemyCamera(false);
 		enemyPlayerCamera = cameraList[cameraIndex];
 		enemyPlayerCamera.gameObject.SetActive(true);
+		playerWeapon.targetPlayer = enemyPlayerCamera.GetComponentInParent<PlayerIdentity>();
 		AssignTargetTextureToEnemyCamera(true);
 	}
 

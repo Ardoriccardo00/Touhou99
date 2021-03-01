@@ -211,6 +211,29 @@ PrefabInstance:
       propertyPath: playerSpawnMethod
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 6532645217900313904, guid: d7d57aea1b3e5c64283a1ca27378f92d,
+        type: 3}
+    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 3131595737831050464, guid: ee1461bc2547fa0418abc536562928c7,
+        type: 3}
+    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 6907740875436670692, guid: 0dbd27a8c200775449fc1acd35458412,
+        type: 3}
     - target: {fileID: 2713113671741470232, guid: d037fc7d7cd603d48904fef26c4869cd,
         type: 3}
       propertyPath: m_Name
@@ -781,6 +804,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d6d8c36e2e04c0e46941685138c47557,
         type: 3}
+    - target: {fileID: 3646892857878455180, guid: ed18627fa619c1f4c9664a3208d40ed2,
+        type: 3}
+      propertyPath: sceneId
+      value: 2032326674
+      objectReference: {fileID: 0}
     - target: {fileID: 8242778738119901215, guid: ed18627fa619c1f4c9664a3208d40ed2,
         type: 3}
       propertyPath: m_RootOrder
@@ -1023,6 +1051,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d6d8c36e2e04c0e46941685138c47557,
         type: 3}
+    - target: {fileID: 3646892857878455180, guid: ed18627fa619c1f4c9664a3208d40ed2,
+        type: 3}
+      propertyPath: sceneId
+      value: 1443998929
+      objectReference: {fileID: 0}
     - target: {fileID: 8242778738119901215, guid: ed18627fa619c1f4c9664a3208d40ed2,
         type: 3}
       propertyPath: m_RootOrder
@@ -1122,6 +1155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646892857878455180, guid: ed18627fa619c1f4c9664a3208d40ed2,
+        type: 3}
+      propertyPath: sceneId
+      value: 3799498524
       objectReference: {fileID: 0}
     - target: {fileID: 8242778738119901215, guid: ed18627fa619c1f4c9664a3208d40ed2,
         type: 3}

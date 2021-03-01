@@ -3,27 +3,56 @@ using Mirror;
 using TMPro;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class PlayerWeapon : NetworkBehaviour
 {
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootingPoint;
 
+    [SerializeField] CloneBehaviour clone;
+
     [SerializeField] TextMeshProUGUI bombText;
 
     [SerializeField] float shootingDelay = 1f;
     float shootingDelayTimer = 0;
 
-    [SyncVar] [SerializeField] float maxBombPower = 100f;
-    [SerializeField] [Range(0f, 100f)] float bombPower = 0f;
+    [SerializeField] float maxBombPower = 100f;
+    [SyncVar] [SerializeField] [Range(0f, 100f)] public float bombPower = 0f;
+    public float bombPowerToIncrease = 5f;
 
     public delegate void BombPowerChangeDelegate(float bombPower, float maxBombPower);
     public event BombPowerChangeDelegate EventBombPowerChanged;
+
+    public PlayerIdentity targetPlayer;
+
+    [Header("Arena Components")]
+    public GameObject playerArena;
+    public GameObject cloneSpawnPoint;
+    public GameObject enemySpawnPoint;
 
 	public override void OnStartServer()
 	{
         shootingDelayTimer = shootingDelay;
         bombText.text = "Bomb: " + Mathf.RoundToInt(bombPower) + "%";
+    }
+
+    public void FindOwnPlayerArena()
+    {
+        float distanceToClosestPoint = Mathf.Infinity;
+        GameObject[] allCenters = GameObject.FindGameObjectsWithTag("Arena");
+
+        foreach (GameObject currentCenter in allCenters)
+        {
+            float distanceToCenter = (currentCenter.transform.position - transform.position).sqrMagnitude;
+            if (distanceToCenter < distanceToClosestPoint)
+            {
+                distanceToClosestPoint = distanceToCenter;
+                playerArena = currentCenter;
+                cloneSpawnPoint = playerArena.transform.Find("Clone Spawn Point").gameObject;
+                cloneSpawnPoint = playerArena.transform.Find("Enemy Spawn Point").gameObject;
+            }
+        }
     }
 
     [ClientCallback]
@@ -33,7 +62,6 @@ public class PlayerWeapon : NetworkBehaviour
 		{
 			if (Input.GetKey(KeyCode.Z))
 			{
-                //print(shootingDelayTimer);
                 shootingDelayTimer -= Time.deltaTime;
                 if (shootingDelayTimer > 0) return;
 				else
@@ -48,10 +76,10 @@ public class PlayerWeapon : NetworkBehaviour
                 CmdBomb();
 			}
 
-/*            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.M))
             {
-                FindObjectOfType<MatchInitializer>().CmdSpawnArenas();
-            }*/
+                CmdIncreaseBomb(100);
+            }
         }
     }
 
@@ -68,6 +96,12 @@ public class PlayerWeapon : NetworkBehaviour
 		SetBomb(bombPower += valueToIncrease);
 	}
 
+    [Command]
+    public void CmdResetBomb()
+	{
+        SetBomb(0);
+	}
+
 	/*[Server]
     private void ShootBullet()
 	{
@@ -80,44 +114,31 @@ public class PlayerWeapon : NetworkBehaviour
 	[Command]
 	void CmdShoot()
 	{
-        //print("Client: Asking to shoot");
-        SetBomb(bombPower += 1f);
         var newbullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
         newbullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
         NetworkServer.Spawn(newbullet);
-        StartCoroutine(DestroyBullet(newbullet));
-        /*Destroy(newbullet, 3f);
-        NetworkServer.Destroy(newbullet);*/
-		//RpcShoot();
 	}
 
-    IEnumerator DestroyBullet(GameObject objectToDestroy)
-	{
-        yield return new WaitForSeconds(3);
-        Destroy(objectToDestroy);
-        NetworkServer.Destroy(objectToDestroy);
-    }
-
-	/*[ClientRpc]
-	void RpcShoot()
-	{
-        //print("Server: Shooting");
-        //CmdIncreaseBomb(1f);
-        SetBomb(bombPower += 1f);
-		var newbullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
-		newbullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
-		Destroy(newbullet, 3f);
-	}*/
-
+    [Command]
 	void CmdBomb()
     {
-        RpcBomb();
-    }
-
-    [ClientRpc]
-    void RpcBomb()
-    {
-        print("Boom!");
+        if(bombPower == maxBombPower)
+		{
+            GameObject newClone;
+            //GameObject newClone = Instantiate(clone.gameObject, transform.position, transform.rotation);           
+            if (targetPlayer == null)
+			{
+                newClone = Instantiate(clone.gameObject, playerArena.transform.position, playerArena.transform.rotation);
+                NetworkServer.Spawn(newClone);
+            }
+			else
+			{
+                GameObject enemyArenaCenter = targetPlayer.GetComponent<PlayerWeapon>().playerArena;
+                newClone = Instantiate(clone.gameObject, enemyArenaCenter.transform.position, enemyArenaCenter.transform.rotation);
+                NetworkServer.Spawn(newClone);
+            }
+            CmdResetBomb();
+        }
     }
 
     /*[Command]

@@ -5,50 +5,68 @@ using Mirror;
 
 public class BulletBehaviour : NetworkBehaviour
 {
+	[Header("Setup")]
     public Collider2D myCollider;
 	public Rigidbody2D rb;
     public PlayerIdentity playerWhoShotMe;
+	Transform bulletsPrefab;
+
+	[Header("Stats")]
 	[SerializeField] float moveSpeed = 1000;
+	Vector2 direction;
 	public float bulletDamage = 10;
-	//PlayerIdentity playerIHit;
+	[SerializeField] MovingDirection movingDirection;
+
+	[SerializeField] float timeToSurviveMax = 2f;
+	float timeToSurviveTimer = 0;
+
+	public enum MovingDirection
+	{
+		up,
+		down,
+		left,
+		right
+	}
 
 	private void Start()
 	{
+		bulletsPrefab = GameObject.FindGameObjectWithTag("Bullet Parent").transform;
+		transform.SetParent(bulletsPrefab);
+
+		timeToSurviveTimer = timeToSurviveMax;
+
 		myCollider = GetComponent<Collider2D>();
 		rb = GetComponent<Rigidbody2D>();
 	}
 
 	private void Update()
 	{
-		rb.velocity = Vector2.up * moveSpeed * Time.deltaTime;
-	}
-
-	/*private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if(collision.tag == "Player")
+		if (timeToSurviveTimer > 0)
 		{
-			//CmdBulletHitEffect();
-			playerWhoShotMe.GetComponent<PlayerWeapon>().CmdDamagePlayer(collision.GetComponent<PlayerIdentity>(), bulletDamage);
-			//FindObjectOfType<NetworkGameManager>().RpcDamagePlayer(collision.GetComponent<PlayerIdentity>(), bulletDamage);
-			//CmdServerDestroy(); later
+			timeToSurviveTimer -= Time.deltaTime;
 		}
-	}*/
+		else
+		{
+			Destroy(gameObject);
+			NetworkServer.Destroy(gameObject);
+		}
 
-	/*[Command]
-	void CmdBulletHitEffect()
-	{
-		FindObjectOfType<NetworkGameManager>().SaySomething();
+		switch (movingDirection)
+		{
+			case MovingDirection.up:
+				direction = Vector2.up;
+				break;
+			case MovingDirection.down:
+				direction = Vector2.down;
+				break;
+			case MovingDirection.left:
+				direction = Vector2.left;
+				break;
+			case MovingDirection.right:
+				direction = Vector2.right;
+				break;
+		}
+
+		rb.velocity = direction * moveSpeed * Time.deltaTime;
 	}
-
-	[Command]
-	void CmdServerDestroy()
-	{
-		RpcDestroy();
-	}
-
-	[ClientRpc]
-	void RpcDestroy()
-	{
-		Destroy(gameObject);
-	}*/
 }
