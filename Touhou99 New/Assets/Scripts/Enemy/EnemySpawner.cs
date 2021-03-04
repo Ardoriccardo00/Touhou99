@@ -46,7 +46,7 @@ public class EnemySpawner : NetworkBehaviour
 			float posY = Random.Range(arenaCorners[0].transform.position.y, arenaCorners[2].transform.position.y);
 
 			Vector2 newSpawnPoint = new Vector2(posX, posY);
-			print(newSpawnPoint);
+			//print(newSpawnPoint);
 
 			//Generates a random enemy prefab to spawn
 			int enemyIndex = Random.Range(0, enemiesToSpawn.Length - 1);

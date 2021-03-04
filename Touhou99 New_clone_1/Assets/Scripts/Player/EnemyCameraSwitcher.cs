@@ -38,13 +38,14 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 
 		cameraList.Remove(thisPlayerCamera);
 
-		AssignEnemyCamera();
-		//DisableAllCameras();
+		//AssignRandomEnemyCamera();
+		if (!isLocalPlayer) return;
+		SwitchEnemyCamera(false);
 	}
 
-	void SwitchEnemyCamera(bool forward)
+	void SwitchEnemyCamera(bool forward) //This function gets called whenever the player presses Q or E to switch the enemy cam to spy
 	{
-		if (forward)
+		if (forward) //Forward determines if it should move to the next or previous camera
 		{
 			if (cameraIndex == cameraList.Count - 1) cameraIndex = 0;
 			else cameraIndex++;
@@ -55,21 +56,39 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 			else cameraIndex--;
 		}
 
-		DisableAllCameras();
-		AssignTargetTextureToEnemyCamera(false);
-		enemyPlayerCamera = cameraList[cameraIndex];
-		enemyPlayerCamera.gameObject.SetActive(true);
-		playerWeapon.targetPlayer = enemyPlayerCamera.GetComponentInParent<PlayerIdentity>();
-		AssignTargetTextureToEnemyCamera(true);
+		AssignEnemyCamera(0, false); //Doesn't overwrite so the int can be anything
 	}
 
-	void AssignEnemyCamera()
+	void AssignRandomEnemyCamera()
 	{
 		if (cameraList.Count == 0) return;
 		var rand = Random.Range(1, cameraList.Count - 1);
+		print(cameraList.Count);
 		print("rand " + rand);
-		enemyPlayerCamera = cameraList[rand - 1];
+
+		AssignEnemyCamera(rand, true); //Must overwrite, and the value is random
 	}
+
+	private void AssignEnemyCamera(int i, bool canOverwrite)
+	{
+		print("i =" + i);
+		DisableAllCameras(); //what it says
+		if(enemyPlayerCamera != null) AssignTargetTextureToEnemyCamera(false); //removes the render texture from the active enemy camera
+
+		if (canOverwrite)
+		{
+			enemyPlayerCamera = cameraList[i]; //swithches enemy camera, by choosing from the list
+		}
+		else
+		{
+			enemyPlayerCamera = cameraList[cameraIndex]; //swithches enemy camera, by choosing from the list
+		}
+
+		enemyPlayerCamera.gameObject.SetActive(true); //enables the new enemy camera GO 
+		playerWeapon.targetPlayer = enemyPlayerCamera.GetComponentInParent<PlayerIdentity>(); // the player owner to the camera gets assigned to the player weapon component
+		AssignTargetTextureToEnemyCamera(true); //Assigns the render texture to the enemy camera
+	}
+
 
 	void AssignTargetTextureToEnemyCamera(bool assign)
 	{

@@ -32,7 +32,6 @@ public class GameManager : NetworkBehaviour
 
 	#endregion
 
-	[System.Obsolete]
 	void Update()
     {
         if (arenasSpawned) return;
@@ -46,7 +45,6 @@ public class GameManager : NetworkBehaviour
 
 
     [ClientRpc]
-	[System.Obsolete]
 	public void RpcSpawnArenas()
 	{
         float posX = -2.89f; //Increase 16.37
@@ -60,10 +58,11 @@ public class GameManager : NetworkBehaviour
             newArena.transform.localScale = new Vector3(11.57531f, 10.06353f, 16.32845f);
             GameObject enemySpawner = newArena.transform.Find("Enemy Spawn Point").gameObject;
 
-            //NetworkServer.Spawn(enemySpawner);
+            //CmdSpawnEnemySpawner(enemySpawner);
+            try { NetworkServer.Spawn(enemySpawner); } catch { }         
 
             PlayerIdentity currentPlayer = playerDictionary.Values.ElementAt(i); //Get current player
-            PlayerCameraBehaviour currentPlayerCamera = currentPlayer.transform.FindChild("Game Camera").GetComponent<PlayerCameraBehaviour>(); //Get current player camera
+            PlayerCameraBehaviour currentPlayerCamera = currentPlayer.transform.Find("Game Camera").GetComponent<PlayerCameraBehaviour>(); //Get current player camera
             PlayerWeapon currentPlayerWeapon = currentPlayer.GetComponent<PlayerWeapon>();
             currentPlayerCamera.gameObject.SetActive(true); //Activates camera
             currentPlayerCamera.transform.name = currentPlayer.transform.name + " camera"; //Renames camera
@@ -77,8 +76,6 @@ public class GameManager : NetworkBehaviour
             currentPlayerWeapon.FindOwnPlayerArena(); //The player weapon finds the closest clone spawn point
 
             posX += 19.37f;
-
-            NetworkServer.Spawn(enemySpawner);
         }
     }
 }

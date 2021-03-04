@@ -20,7 +20,7 @@ public class CloneBehaviour : NetworkBehaviour
     float timerToShoot = 0;
 
     [Header("Stats")]
-    bool isMoving = false;
+    bool isMoving;
     bool canMove = false;
 
     [SerializeField] Vector3 newPosition;
