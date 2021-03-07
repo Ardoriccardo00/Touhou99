@@ -11,6 +11,8 @@ public class PlayerHealth : NetworkBehaviour
     [Header("Variables")]
     [SerializeField] float maxHealth;
     [SerializeField] [SyncVar] float currentHealth = 0;
+    [SerializeField] float aodDamage = 20f;
+    [SerializeField] int enemyCollisionDamage = 20;
 
     //These delegate and event are created so the UI script can update the UI
     public delegate void HealthChangedDelegate(float currentHealth, float maxHealth);
@@ -60,4 +62,21 @@ public class PlayerHealth : NetworkBehaviour
             CmdTakeDamage(newdamage);
 		}
 	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+        if (collision.gameObject.tag == "Enemy")
+        {
+            print("Collided with enemy");
+            CmdTakeDamage(enemyCollisionDamage);
+        }
+    }
+
+	private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "AOD")
+        {
+            CmdTakeDamage(aodDamage * Time.deltaTime);
+        }
+    }
 }

@@ -8,6 +8,7 @@ public class Health : NetworkBehaviour
     [Header("Variables")]
     [SerializeField] float maxHealth;
     [SerializeField] [SyncVar] float currentHealth = 0;
+    [SerializeField] float aodDamage = 5f;
 
     public override void OnStartServer()
     {
@@ -49,7 +50,15 @@ public class Health : NetworkBehaviour
         }
     }
 
-    public void Die()
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		if(collision.gameObject.tag == "AOD")
+		{
+            CmdTakeDamage(aodDamage * Time.deltaTime);
+		}
+	}
+
+	public void Die()
 	{
         Destroy(gameObject);
         NetworkServer.Destroy(gameObject);

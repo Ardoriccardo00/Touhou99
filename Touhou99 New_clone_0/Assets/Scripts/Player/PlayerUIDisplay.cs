@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Mirror;
 using TMPro;
+using System;
 
 public class PlayerUIDisplay : NetworkBehaviour
 {
@@ -28,7 +29,7 @@ public class PlayerUIDisplay : NetworkBehaviour
 	[ClientRpc]
 	private void HandleHealthChange(float currentHealth, float maxHealth)
 	{
-		healthText.text = currentHealth + "/" + maxHealth;
+		healthText.text = Mathf.Round(currentHealth) + "/" + maxHealth;
 	}
 
 	[ClientRpc]

@@ -43,7 +43,6 @@ public class GameManager : NetworkBehaviour
 		}
 	}
 
-
     [ClientRpc]
 	public void RpcSpawnArenas()
 	{

@@ -32,7 +32,6 @@ public class EnemySpawner : NetworkBehaviour
 		NetworkServer.Spawn(newEnemy.gameObject);
 	}
 
-	//[Server]
 	void UpdateTimerOnServer()
 	{
 		if(timerToSpawn > 0f)
@@ -49,7 +48,7 @@ public class EnemySpawner : NetworkBehaviour
 			//print(newSpawnPoint);
 
 			//Generates a random enemy prefab to spawn
-			int enemyIndex = Random.Range(0, enemiesToSpawn.Length - 1);
+			int enemyIndex = Random.Range(0, enemiesToSpawn.Length);
 			CmdSpawnEnemy(enemyIndex, newSpawnPoint);
 
 			//Changes the timer value and resets it

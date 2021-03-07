@@ -9,6 +9,8 @@ TagManager:
   - Bullet Parent
   - CloneSpawnPoint
   - Arena
+  - Enemy
+  - AOD
   layers:
   - Default
   - TransparentFX

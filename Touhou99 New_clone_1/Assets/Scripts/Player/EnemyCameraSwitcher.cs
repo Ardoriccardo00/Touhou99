@@ -71,6 +71,11 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 
 	private void AssignEnemyCamera(int i, bool canOverwrite)
 	{
+		if(GameManager.playerDictionary.Count == 1)
+		{
+			return;
+		}
+
 		print("i =" + i);
 		DisableAllCameras(); //what it says
 		if(enemyPlayerCamera != null) AssignTargetTextureToEnemyCamera(false); //removes the render texture from the active enemy camera

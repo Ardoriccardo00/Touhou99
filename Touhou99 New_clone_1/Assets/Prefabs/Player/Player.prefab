@@ -383,7 +383,11 @@ MonoBehaviour:
   shootingDelay: 0.1
   maxBombPower: 100
   bombPower: 0
+  bombPowerToIncrease: 5
   targetPlayer: {fileID: 0}
+  playerArena: {fileID: 0}
+  cloneSpawnPoint: {fileID: 0}
+  enemySpawnPoint: {fileID: 0}
 --- !u!114 &329978501911080918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +406,7 @@ MonoBehaviour:
   healthText: {fileID: 4629780944701682202}
   maxHealth: 100
   currentHealth: 0
+  aodDamage: 20
 --- !u!114 &7671830233543119125
 MonoBehaviour:
   m_ObjectHideFlags: 0
