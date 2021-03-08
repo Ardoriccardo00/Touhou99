@@ -7,13 +7,15 @@ public enum EnemyType
 {
     fairy,
     shield,
-	exploder
+	exploder,
+	turret
 }
 
 public class Enemy : NetworkBehaviour
 {
 	[Header("general enemy")]
-    [SerializeField] EnemyType enemyType;
+
+	public EnemyType enemyType;
     [SerializeField] float moveSpeed = 5f;
 	[SerializeField] Vector2 movement;
     Rigidbody2D rb;
@@ -23,10 +25,29 @@ public class Enemy : NetworkBehaviour
 	[SerializeField] float timerToExplode;
 	[SerializeField] GameObject aodObject;
 
+	[Header("Turret")]
+	public PlayerIdentity targetPlayer;
+
 	private void Start()
 	{
         rb = GetComponent<Rigidbody2D>();
 		timerToExplode = maxTimerToExplode;
+
+		if(enemyType == EnemyType.turret)
+		{
+			float distanceToClosestPlayer = Mathf.Infinity;
+			GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Arena");
+
+			foreach (GameObject currentPlayer in allPlayers)
+			{
+				float distanceToCenter = (currentPlayer.transform.position - transform.position).sqrMagnitude;
+				if (distanceToCenter < distanceToClosestPlayer)
+				{
+					distanceToClosestPlayer = distanceToCenter;
+					targetPlayer = currentPlayer.GetComponent<PlayerIdentity>();					
+				}
+			}
+		}
 	}
 
 	private void Update()
@@ -47,10 +68,12 @@ public class Enemy : NetworkBehaviour
 					timerToExplode -= Time.deltaTime;
 
 					float timerPerc = timerToExplode / maxTimerToExplode * 100;
-					print(timerPerc);
 					GetComponent<SpriteRenderer>().color = new Color(timerPerc / 100, 0, 0);
 				} 
 				else Explode();
+				break;
+			case EnemyType.turret:
+				transform.LookAt(targetPlayer.transform);
 				break;
 		}
 	}

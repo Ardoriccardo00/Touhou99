@@ -26,7 +26,6 @@ public class Health : NetworkBehaviour
     {
         //SetHealth(currentHealth -= damageToDeal);
         currentHealth -= damageToDeal;
-        print("Took " + damageToDeal);
         if (currentHealth <= 0)
 		{
             Die();
@@ -38,10 +37,11 @@ public class Health : NetworkBehaviour
         print("Trigger");
         if (collision.tag == "Bullet")
         {
-            if(collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe != null)
+            if(collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe != null) //If the bullet was shot by a player
 			{
-                var bulletHitPlayer = collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe.GetComponent<PlayerWeapon>();
-                bulletHitPlayer.CmdIncreaseBomb(bulletHitPlayer.bombPowerToIncrease);
+                PlayerWeapon playerWhoShotBullet = collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe.GetComponent<PlayerWeapon>();
+                playerWhoShotBullet.CmdIncreaseBomb(playerWhoShotBullet.bombPowerToIncrease);
+                playerWhoShotBullet.PlayerKilledSomeone(GetComponent<Enemy>().enemyType);
             }
             
             var newdamage = collision.GetComponent<BulletBehaviour>().bulletDamage;

@@ -92,6 +92,21 @@ PrefabInstance:
       propertyPath: movement.y
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 5191077417603336069, guid: ee1461bc2547fa0418abc536562928c7,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191077417603336069, guid: ee1461bc2547fa0418abc536562928c7,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6399195
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191077417603336069, guid: ee1461bc2547fa0418abc536562928c7,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7902493773891019878, guid: ee1461bc2547fa0418abc536562928c7,
         type: 3}
       propertyPath: m_AssetId

@@ -52,7 +52,7 @@ public class PlayerHealth : NetworkBehaviour
 
 		else if(collision.tag == "Bullet")
 		{
-            if (collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe != null)
+            if (collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe != null) //This can't happen because players can't shoot themselves
             {
                 var bulletHitPlayer = collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe.GetComponent<PlayerWeapon>();
                 bulletHitPlayer.CmdIncreaseBomb(bulletHitPlayer.bombPowerToIncrease);

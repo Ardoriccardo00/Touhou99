@@ -141,58 +141,11 @@ public class PlayerWeapon : NetworkBehaviour
         }
     }
 
-    /*[Command]
-    void CmdBomb()
+    public void PlayerKilledSomeone(EnemyType type)
 	{
-        RpcBomb();
+		print(type);
+		if (targetPlayer == null) return;
+		targetPlayer.GetComponent<PlayerWeapon>().enemySpawnPoint.GetComponent<EnemySpawner>().CmdSpawnEnemy(type);
+		//Instantiate
 	}
-
-    [ClientRpc]
-    void RpcBomb()
-	{
-        CmdResetBombPower();
-        print("Boom!");
-	}
-
-    [Command]
-    void CmdIncreaseBombPower(float increase)
-	{
-        RpcIncreaseBombPower(increase);
-	}
-
-    [ClientRpc]
-    void RpcIncreaseBombPower(float increase)
-	{
-        bombPower += increase;
-        bombText.text = "Bomb: " + Mathf.RoundToInt(bombPower) + "%";
-    }
-
-    [Command]
-    void CmdResetBombPower()
-	{
-        RpcResetBombPower();
-	}
-
-    [ClientRpc]
-    void RpcResetBombPower()
-	{
-        bombPower = 0;
-        bombText.text = "Bomb: " + Mathf.RoundToInt(bombPower) + "%";
-    }
-
-    [Command]
-	public void CmdDamagePlayer(PlayerIdentity target, float damageDealt)
-	{
-		DamagePlayer(target, damageDealt);
-        CmdIncreaseBombPower(UnityEngine.Random.Range(1f, 5f));
-		//bombPower += UnityEngine.Random.Range(1f, 5f);
-        bombText.text = "Bomb: " + Mathf.RoundToInt(bombPower) + "%";
-    }
-
-    [ClientRpc]
-	public void DamagePlayer(PlayerIdentity player, float damage)
-	{
-		var targetPlayerHealth = player.GetComponent<Health>();
-		targetPlayerHealth.CmdDecreaseHealth(damage);
-	}*/
 }
