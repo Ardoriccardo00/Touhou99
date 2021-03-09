@@ -19,6 +19,8 @@ ScriptsOnlyBuild:
     - PlayerWeapon
     Mirror.Components.dll:
     - Mirror.NetworkTransform
+    Mirror.Editor.dll:
+    - Mirror.NetworkBehaviourInspector
     Mirror.dll:
     - Mirror.NetworkIdentity
     - Mirror.NetworkManagerHUD
@@ -80,6 +82,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11298}
+    - Class: 114
+      Script: {instanceID: 11372}
     - Class: 114
       Script: {instanceID: 11568}
     - Class: 114
@@ -692,7 +696,7 @@ ScriptsOnlyBuild:
     className: MatchGUI
   - hash:
       serializedVersion: 2
-      Hash: 33f2171c887b8900d639978941ec9060
+      Hash: 91c5ecfb72b9bd3b72683d91ab3bfcdf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy

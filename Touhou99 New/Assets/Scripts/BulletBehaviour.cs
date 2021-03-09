@@ -51,7 +51,7 @@ public class BulletBehaviour : NetworkBehaviour
 			NetworkServer.Destroy(gameObject);
 		}
 
-		switch (movingDirection)
+		/*switch (movingDirection)
 		{
 			case MovingDirection.up:
 				direction = Vector2.up;
@@ -67,6 +67,6 @@ public class BulletBehaviour : NetworkBehaviour
 				break;
 		}
 
-		rb.velocity = direction * moveSpeed * Time.deltaTime;
+		rb.velocity = direction * moveSpeed * Time.deltaTime;*/
 	}
 }

@@ -19,12 +19,12 @@ public class PlayerHealth : NetworkBehaviour
 
     public event HealthChangedDelegate EventHealthChanged;
 
-	public override void OnStartServer()
+	private void Start()
 	{
-		SetHealth(maxHealth);
-	}
+        SetHealth(maxHealth);
+    }
 
-	[ClientCallback]
+    [ClientCallback]
     private void Update()
     {
         if (!hasAuthority) return;

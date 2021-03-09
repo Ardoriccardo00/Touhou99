@@ -114,9 +114,10 @@ public class PlayerWeapon : NetworkBehaviour
 	[Command]
 	void CmdShoot()
 	{
-        var newbullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
-        newbullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
-        NetworkServer.Spawn(newbullet);
+        var newBullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
+        newBullet.GetComponent<Rigidbody2D>().AddForce(shootingPoint.up * 20f, ForceMode2D.Impulse);
+        newBullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
+        NetworkServer.Spawn(newBullet);
 	}
 
     [Command]

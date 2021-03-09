@@ -14,11 +14,15 @@ public enum EnemyType
 public class Enemy : NetworkBehaviour
 {
 	[Header("general enemy")]
-
 	public EnemyType enemyType;
     [SerializeField] float moveSpeed = 5f;
 	[SerializeField] Vector2 movement;
     Rigidbody2D rb;
+
+	[Header("Shooting")]
+	[SerializeField] BulletBehaviour bullet;
+	[SerializeField] Transform shootingPoint;
+	[SerializeField] float bulletForce = 20f;
 
 	[Header("Exploder")]
 	[SerializeField] float maxTimerToExplode = 3f;
@@ -27,18 +31,24 @@ public class Enemy : NetworkBehaviour
 
 	[Header("Turret")]
 	public PlayerIdentity targetPlayer;
+	[SerializeField] float timerMaxToShoot = 1f;
+	float timerToShoot;
+
+	[SerializeField] float timerBetweenShotsMax = 2f;
+	float timerBetweenShots;
 
 	private void Start()
 	{
         rb = GetComponent<Rigidbody2D>();
 		timerToExplode = maxTimerToExplode;
+		timerToShoot = timerMaxToShoot;
 
 		if(enemyType == EnemyType.turret)
 		{
 			float distanceToClosestPlayer = Mathf.Infinity;
-			GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Arena");
+			PlayerIdentity[] allPlayers = FindObjectsOfType<PlayerIdentity>();
 
-			foreach (GameObject currentPlayer in allPlayers)
+			foreach (PlayerIdentity currentPlayer in allPlayers)
 			{
 				float distanceToCenter = (currentPlayer.transform.position - transform.position).sqrMagnitude;
 				if (distanceToCenter < distanceToClosestPlayer)
@@ -72,11 +82,20 @@ public class Enemy : NetworkBehaviour
 				} 
 				else Explode();
 				break;
+
 			case EnemyType.turret:
-				transform.LookAt(targetPlayer.transform);
+				LookAtPlayer();
+				if (timerToShoot > 0) timerToShoot -= Time.deltaTime;
+				else
+				{
+					ShootBullet();
+					timerToShoot = timerMaxToShoot;
+				}				
 				break;
 		}
 	}
+
+	
 
 	private void FixedUpdate()
 	{
@@ -126,5 +145,21 @@ public class Enemy : NetworkBehaviour
 		//Spawn Area of damage
 	}
 
+	#endregion
+
+	#region Turret
+	private void LookAtPlayer()
+	{
+		Vector2 direction = targetPlayer.transform.position - transform.position;
+		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+		Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, moveSpeed * Time.deltaTime);
+	}
+
+	void ShootBullet()
+	{
+		BulletBehaviour newBullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
+		newBullet.GetComponent<Rigidbody2D>().AddForce(shootingPoint.up * 20f, ForceMode2D.Impulse);
+	}
 	#endregion
 }
