@@ -90,7 +90,7 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 		}
 
 		enemyPlayerCamera.gameObject.SetActive(true); //enables the new enemy camera GO 
-		playerWeapon.targetPlayer = enemyPlayerCamera.GetComponentInParent<PlayerIdentity>(); // the player owner to the camera gets assigned to the player weapon component
+		playerWeapon.SetTargetPlayer(enemyPlayerCamera.GetComponentInParent<PlayerWeapon>()); // the player owner to the camera gets assigned to the player weapon component
 		AssignTargetTextureToEnemyCamera(true); //Assigns the render texture to the enemy camera
 	}
 

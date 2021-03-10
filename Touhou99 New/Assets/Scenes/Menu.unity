@@ -183,95 +183,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: arenaCamera
-      value: 
-      objectReference: {fileID: 4643024661806086983, guid: 31f97205a902e1f47b8928fc9835b09b,
-        type: 3}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: arenaObject
-      value: 
-      objectReference: {fileID: 870991985274094890, guid: ed18627fa619c1f4c9664a3208d40ed2,
-        type: 3}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: offlineScene
-      value: Assets/Scenes/Menu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: spawnPointPrefab
-      value: 
-      objectReference: {fileID: 5900401050099429845, guid: b908b1f9f87eb354d9df5f8e794ccfed,
-        type: 3}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: playerSpawnMethod
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 6532645217900313904, guid: d7d57aea1b3e5c64283a1ca27378f92d,
-        type: 3}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 3131595737831050464, guid: ee1461bc2547fa0418abc536562928c7,
-        type: 3}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 6907740875436670692, guid: 0dbd27a8c200775449fc1acd35458412,
-        type: 3}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 1507313473673867113, guid: 34995e13925316f44bcbf106b7bc9c2b,
-        type: 3}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 7069755110260085739, guid: 1b8e27953dce3a341bd6be467e17de74,
-        type: 3}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[6]
-      value: 
-      objectReference: {fileID: 3606904819989797974, guid: acbbb53138087b64ca6e0bacc671db3d,
-        type: 3}
-    - target: {fileID: 2713113671741470229, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[7]
-      value: 
-      objectReference: {fileID: 6735625528860736199, guid: 00cb9a3a5bc447a4c8306c161f6750bf,
-        type: 3}
     - target: {fileID: 2713113671741470232, guid: d037fc7d7cd603d48904fef26c4869cd,
         type: 3}
       propertyPath: m_Name
       value: NetworkManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2713113671741470232, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014735301004080236, guid: d037fc7d7cd603d48904fef26c4869cd,
-        type: 3}
-      propertyPath: sceneId
-      value: 3582958538
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d037fc7d7cd603d48904fef26c4869cd, type: 3}

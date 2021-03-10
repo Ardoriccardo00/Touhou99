@@ -7,13 +7,15 @@ using System;
 
 public class PlayerWeapon : NetworkBehaviour
 {
+    [Header("Own Components")]
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootingPoint;
 
-    [SerializeField] CloneBehaviour clone;
-
+    [Header("UI")]
     [SerializeField] TextMeshProUGUI bombText;
 
+    [Header("Shooting and spawing")]
+    [SerializeField] CloneBehaviour clone;
     [SerializeField] float shootingDelay = 1f;
     float shootingDelayTimer = 0;
 
@@ -24,35 +26,19 @@ public class PlayerWeapon : NetworkBehaviour
     public delegate void BombPowerChangeDelegate(float bombPower, float maxBombPower);
     public event BombPowerChangeDelegate EventBombPowerChanged;
 
-    public PlayerIdentity targetPlayer;
-
     [Header("Arena Components")]
     public GameObject playerArena;
-    public GameObject cloneSpawnPoint;
-    public GameObject enemySpawnPoint;
+    public GameObject ownCloneSpawnPoint;
+    public EnemySpawner ownEnemySpawnPoint;
+
+    public PlayerWeapon targetPlayer;
+    public EnemySpawner targetPlayerEnemySpawnPoint;
+    public GameObject targetPlayerCloneSpawnPoint;
 
 	public override void OnStartServer()
 	{
         shootingDelayTimer = shootingDelay;
         bombText.text = "Bomb: " + Mathf.RoundToInt(bombPower) + "%";
-    }
-
-    public void FindOwnPlayerArena()
-    {
-        float distanceToClosestPoint = Mathf.Infinity;
-        GameObject[] allCenters = GameObject.FindGameObjectsWithTag("Arena");
-
-        foreach (GameObject currentCenter in allCenters)
-        {
-            float distanceToCenter = (currentCenter.transform.position - transform.position).sqrMagnitude;
-            if (distanceToCenter < distanceToClosestPoint)
-            {
-                distanceToClosestPoint = distanceToCenter;
-                playerArena = currentCenter;
-                cloneSpawnPoint = playerArena.transform.Find("Clone Spawn Point").gameObject;
-                cloneSpawnPoint = playerArena.transform.Find("Enemy Spawn Point").gameObject;
-            }
-        }
     }
 
     [ClientCallback]
@@ -80,10 +66,43 @@ public class PlayerWeapon : NetworkBehaviour
             {
                 CmdIncreaseBomb(100);
             }
+
+			if (Input.GetKeyDown(KeyCode.N))
+			{
+                CmdSendEnemyToTargetPlayer(EnemyType.shield);
+            }
         }
     }
 
-    [Server] 
+    public void FindOwnPlayerArena() //This functions find the own player arena, clone SP (spawn point) and own SP
+    {
+        float distanceToClosestPoint = Mathf.Infinity;
+        GameObject[] allCenters = GameObject.FindGameObjectsWithTag("Arena");
+
+        foreach (GameObject currentCenter in allCenters)
+        {
+            float distanceToCenter = (currentCenter.transform.position - transform.position).sqrMagnitude;
+            if (distanceToCenter < distanceToClosestPoint)
+            {
+                distanceToClosestPoint = distanceToCenter;
+                playerArena = currentCenter;
+                ownCloneSpawnPoint = playerArena.transform.Find("Clone Spawn Point").gameObject;
+                ownEnemySpawnPoint = playerArena.GetComponentInChildren<EnemySpawner>();
+            }
+        }
+    }
+
+    //[Command]
+    public void SetTargetPlayer(PlayerWeapon player) //Sets the target player and it's enemy spawn point
+	{
+        print("Set target player");
+        targetPlayer = player;
+        targetPlayerEnemySpawnPoint = targetPlayer.ownEnemySpawnPoint;
+        targetPlayerCloneSpawnPoint = targetPlayer.ownCloneSpawnPoint;
+    }
+
+	#region Shooting
+	[Server] 
     private void SetBomb(float value)
 	{
         bombPower = value;
@@ -101,15 +120,6 @@ public class PlayerWeapon : NetworkBehaviour
 	{
         SetBomb(0);
 	}
-
-	/*[Server]
-    private void ShootBullet()
-	{
-        SetBomb(bombPower += 1f);
-        var newbullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
-        newbullet.GetComponent<BulletBehaviour>().playerWhoShotMe = GetComponent<PlayerIdentity>();
-        Destroy(newbullet, 3f);
-    }*/
 
 	[Command]
 	void CmdShoot()
@@ -141,12 +151,18 @@ public class PlayerWeapon : NetworkBehaviour
             CmdResetBomb();
         }
     }
+	#endregion
 
-    public void PlayerKilledSomeone(EnemyType type)
+	public void PlayerKilledSomeone(EnemyType type)
 	{
 		print(type);
 		if (targetPlayer == null) return;
-		targetPlayer.GetComponent<PlayerWeapon>().enemySpawnPoint.GetComponent<EnemySpawner>().CmdSpawnEnemy(type);
-		//Instantiate
+        CmdSendEnemyToTargetPlayer(type);
+	}
+
+    [Command]
+    void CmdSendEnemyToTargetPlayer(EnemyType type)
+	{
+        targetPlayerEnemySpawnPoint.CmdSpawnEnemy(type);
 	}
 }

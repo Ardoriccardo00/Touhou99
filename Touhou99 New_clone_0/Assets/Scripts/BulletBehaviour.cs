@@ -12,21 +12,10 @@ public class BulletBehaviour : NetworkBehaviour
 	Transform bulletsPrefab;
 
 	[Header("Stats")]
-	[SerializeField] float moveSpeed = 1000;
-	Vector2 direction;
 	public float bulletDamage = 10;
-	[SerializeField] MovingDirection movingDirection;
 
 	[SerializeField] float timeToSurviveMax = 2f;
 	float timeToSurviveTimer = 0;
-
-	public enum MovingDirection
-	{
-		up,
-		down,
-		left,
-		right
-	}
 
 	private void Start()
 	{
@@ -50,23 +39,5 @@ public class BulletBehaviour : NetworkBehaviour
 			Destroy(gameObject);
 			NetworkServer.Destroy(gameObject);
 		}
-
-		/*switch (movingDirection)
-		{
-			case MovingDirection.up:
-				direction = Vector2.up;
-				break;
-			case MovingDirection.down:
-				direction = Vector2.down;
-				break;
-			case MovingDirection.left:
-				direction = Vector2.left;
-				break;
-			case MovingDirection.right:
-				direction = Vector2.right;
-				break;
-		}
-
-		rb.velocity = direction * moveSpeed * Time.deltaTime;*/
 	}
 }

@@ -19,8 +19,6 @@ ScriptsOnlyBuild:
     - PlayerWeapon
     Mirror.Components.dll:
     - Mirror.NetworkTransform
-    Mirror.Editor.dll:
-    - Mirror.NetworkBehaviourInspector
     Mirror.dll:
     - Mirror.NetworkIdentity
     - Mirror.NetworkManagerHUD
@@ -288,7 +286,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 303f58b4ee40bd116e95fa55b4fec826
+      Hash: 09d51b1cb1453dcd7f1c5278d59687a0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BulletBehaviour
@@ -408,7 +406,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 26441dbde2f2b54e0d556420b6b6df57
+      Hash: cc1152184145f08420b767311819dabe
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemySpawner
@@ -540,7 +538,7 @@ ScriptsOnlyBuild:
     className: PlayerGUI
   - hash:
       serializedVersion: 2
-      Hash: 43a9468a7bae5c9b75b04daa37feb671
+      Hash: afd3571e18b4dd745c7849420e852267
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerWeapon
@@ -696,7 +694,7 @@ ScriptsOnlyBuild:
     className: MatchGUI
   - hash:
       serializedVersion: 2
-      Hash: 91c5ecfb72b9bd3b72683d91ab3bfcdf
+      Hash: 9e3ae7b23be2223ced5f81694f03bedf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
@@ -1182,7 +1180,7 @@ ScriptsOnlyBuild:
     className: PlayerScore
   - hash:
       serializedVersion: 2
-      Hash: e46ccaaf603c68c8b43d501e0a30dcc8
+      Hash: 495a273a7c724ff496c384d8c9c37859
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CloneBehaviour

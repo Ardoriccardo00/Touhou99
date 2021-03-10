@@ -34,9 +34,6 @@ public class Enemy : NetworkBehaviour
 	[SerializeField] float timerMaxToShoot = 1f;
 	float timerToShoot;
 
-	[SerializeField] float timerBetweenShotsMax = 2f;
-	float timerBetweenShots;
-
 	private void Start()
 	{
         rb = GetComponent<Rigidbody2D>();
@@ -159,7 +156,7 @@ public class Enemy : NetworkBehaviour
 	void ShootBullet()
 	{
 		BulletBehaviour newBullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
-		newBullet.GetComponent<Rigidbody2D>().AddForce(shootingPoint.up * 20f, ForceMode2D.Impulse);
+		newBullet.GetComponent<Rigidbody2D>().AddForce(shootingPoint.up * bulletForce, ForceMode2D.Impulse);
 	}
 	#endregion
 }

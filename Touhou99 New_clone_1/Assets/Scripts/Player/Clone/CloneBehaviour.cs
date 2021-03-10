@@ -16,11 +16,11 @@ public class CloneBehaviour : NetworkBehaviour
     [SerializeField] float timerMaxBeforeMoving = 5f;
     float timerBeforeMoving = 0;
 
-    [SerializeField] float timerMaxToShoot = 5f;
+    //[SerializeField] float timerMaxToShoot = 5f;
     float timerToShoot = 0;
 
     [Header("Stats")]
-    bool isMoving;
+    bool isMoving = false;
     bool canMove = false;
 
     [SerializeField] Vector3 newPosition;

@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 371}
+  m_MinSize: {x: 875, y: 521}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -112,8 +112,8 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 578, y: 321}
-  m_MaxSize: {x: 12003, y: 8042}
+  m_MinSize: {x: 578, y: 471}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
   controlID: 66
 --- !u!114 &6
@@ -137,8 +137,8 @@ MonoBehaviour:
     y: 0
     width: 1263
     height: 947
-  m_MinSize: {x: 302, y: 321}
-  m_MaxSize: {x: 8002, y: 8042}
+  m_MinSize: {x: 302, y: 471}
+  m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
   controlID: 67
 --- !u!114 &7
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -239,16 +239,16 @@ MonoBehaviour:
     y: 642
     width: 1263
     height: 305
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
   - {fileID: 17}
   - {fileID: 18}
   - {fileID: 19}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -340,7 +340,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -400,9 +400,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 58e0fdff
-      m_LastClickedID: -139176
-      m_ExpandedIDs: eee0fdff4efefdff62fefdffd6fffdfff4fffdffd844feffc8d0ffff18d1ffffa4dbfffff4dbffff60e2ffff64e6ffffe8e8ffffb4f0ffffc8f0ffff2ef2ffff38f2ffff5efbffff
+      m_SelectedIDs: 4475ffff
+      m_LastClickedID: -35516
+      m_ExpandedIDs: 4e75ffffc475ffffd875ffff3a77ffff4077ffff528bffffa892ffff1e93ffff3293ffff9494ffff9a94ffff0a98ffff3aa4ffff32a6ffff78abffff08acffffa2aefffff2aeffff6eb2ffff92b4ffffe2b4ffff4cc8ffffe2c8ffff92d4ffff64e1ffff50f8ffff64f8ffffcaf9ffffd4f9ffff5efbffffc63e0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -462,9 +462,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -3.5999334, y: 0.7584332, z: -3.265625}
+    m_Target: {x: -0.14673945, y: 0.5452793, z: -3.265625}
     speed: 2
-    m_Value: {x: -3.5999334, y: 0.7584332, z: -3.265625}
+    m_Value: {x: -0.14673945, y: 0.5452793, z: -3.265625}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -606,11 +606,11 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Enemy
+    - Assets/Prefabs/World
   m_ViewMode: 1
   m_StartGridSize: 69
   m_LastFolders:
-  - Assets/Prefabs/Enemy
+  - Assets/Prefabs/World
   m_LastFoldersGridSize: 69
   m_LastProjectPath: H:\ARCHIVIO RICHI\Unity projects\Progetti\Touhou99\Touhou99
     New
@@ -618,9 +618,9 @@ MonoBehaviour:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 8}
-    m_SelectedIDs: 86390000
-    m_LastClickedID: 14726
-    m_ExpandedIDs: 000000006e3900007e39000000ca9a3b
+    m_SelectedIDs: 8e390000
+    m_LastClickedID: 14734
+    m_ExpandedIDs: 000000006e3900008039000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -673,9 +673,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 86390000
-    m_LastClickedInstanceID: 14726
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300000000000026460000c8390000b23900006e960000cc9700007e640100fa74000074850000f269000084620000a27c0000206c0000165c0000ae3f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -822,7 +822,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 24940
+  m_LastSelectedObjectID: -15486
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52

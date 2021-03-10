@@ -17,6 +17,8 @@ public class EnemySpawner : NetworkBehaviour
 	[SerializeField] float minTimeToSpawn = 1f;
 	[SerializeField] float maxTimeToSpawn = 5f;
 
+	[SerializeField] bool canSpawn = true;
+
 	private void Start()
 	{
 		timerToSpawn = timerToSpawnMax;
@@ -71,6 +73,7 @@ public class EnemySpawner : NetworkBehaviour
 		}
 		else
 		{
+			if (!canSpawn) return;
 			CmdSpawnEnemy(GetRandomEnemy());
 
 			//Changes the timer value and resets it
