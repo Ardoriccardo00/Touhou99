@@ -10,6 +10,7 @@ public class PlayerWeapon : NetworkBehaviour
     [Header("Own Components")]
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootingPoint;
+    public EnemyCameraSwitcher cameraSwitcher;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI bombText;
@@ -43,6 +44,7 @@ public class PlayerWeapon : NetworkBehaviour
 	{
         shootingDelayTimer = shootingDelay;
         bombText.text = "Bomb: " + Mathf.RoundToInt(bombPower) + "%";
+        cameraSwitcher.cameraSwitched += SetTargetPlayer;
     }
 
     [ClientCallback]
@@ -87,18 +89,20 @@ public class PlayerWeapon : NetworkBehaviour
                 playerArena = currentCenter;
                 ownCloneSpawnPoint = playerArena.transform.Find("Clone Spawn Point").gameObject;
                 ownEnemySpawnPoint = playerArena.GetComponentInChildren<EnemySpawner>();
-                ownEnemySpawnPoint.ownPlayer = this;
+                //ownEnemySpawnPoint.ownPlayer = this;
             }
         }
     }
 
-    //[Command]
     public void SetTargetPlayer(PlayerWeapon player) //Sets the target player and it's enemy spawn point
 	{
         print("Set target player");
         targetPlayer = player;
         targetPlayerEnemySpawnPoint = targetPlayer.ownEnemySpawnPoint;
         targetPlayerCloneSpawnPoint = targetPlayer.ownCloneSpawnPoint;
+
+        ownEnemySpawnPoint.CameraSwitcher_cameraSwitched(player);
+        //ownEnemySpawnPoint.targetPlayer = player;
     }
 
 	#region Shooting
