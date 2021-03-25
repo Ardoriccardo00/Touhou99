@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - ArenaCenter
     - BulletBehaviour
     - CloneBehaviour
+    - DestroyNM
     - Enemy
     - EnemyCameraSwitcher
     - EnemySpawner
@@ -25,8 +26,6 @@ ScriptsOnlyBuild:
     - kcp2k.KcpTransport
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.Rider.Editor.dll:
@@ -55,6 +54,27 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.RawImage
   sceneClasses:
+    Assets/Scenes/DestroyNM.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 12468}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
     Assets/Scenes/GameScene.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -93,25 +113,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12444}
     - Class: 114
-      Script: {instanceID: 12630}
+      Script: {instanceID: 12632}
     - Class: 114
-      Script: {instanceID: 12760}
+      Script: {instanceID: 12762}
     - Class: 114
-      Script: {instanceID: 12866}
+      Script: {instanceID: 12868}
     - Class: 114
-      Script: {instanceID: 12890}
+      Script: {instanceID: 12892}
     - Class: 114
-      Script: {instanceID: 13156}
+      Script: {instanceID: 13158}
     - Class: 114
-      Script: {instanceID: 13236}
+      Script: {instanceID: 13238}
     - Class: 114
-      Script: {instanceID: 13306}
+      Script: {instanceID: 13308}
     - Class: 114
-      Script: {instanceID: 13500}
+      Script: {instanceID: 13502}
     - Class: 114
-      Script: {instanceID: 13656}
+      Script: {instanceID: 13658}
     - Class: 114
-      Script: {instanceID: 13752}
+      Script: {instanceID: 13754}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -178,39 +198,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12444}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12474}
     - Class: 114
-      Script: {instanceID: 12516}
+      Script: {instanceID: 12518}
     - Class: 114
-      Script: {instanceID: 12866}
+      Script: {instanceID: 12868}
     - Class: 114
-      Script: {instanceID: 12890}
+      Script: {instanceID: 12892}
     - Class: 114
-      Script: {instanceID: 12904}
+      Script: {instanceID: 12906}
     - Class: 114
-      Script: {instanceID: 13030}
+      Script: {instanceID: 13032}
     - Class: 114
-      Script: {instanceID: 13156}
+      Script: {instanceID: 13158}
     - Class: 114
-      Script: {instanceID: 13236}
+      Script: {instanceID: 13238}
     - Class: 114
-      Script: {instanceID: 13306}
+      Script: {instanceID: 13308}
     - Class: 114
-      Script: {instanceID: 13404}
+      Script: {instanceID: 13406}
     - Class: 114
-      Script: {instanceID: 13468}
+      Script: {instanceID: 13470}
     - Class: 114
-      Script: {instanceID: 13500}
+      Script: {instanceID: 13502}
     - Class: 114
-      Script: {instanceID: 13510}
+      Script: {instanceID: 13512}
     - Class: 114
-      Script: {instanceID: 13656}
+      Script: {instanceID: 13658}
     - Class: 114
-      Script: {instanceID: 13688}
+      Script: {instanceID: 13690}
     - Class: 114
-      Script: {instanceID: 13752}
+      Script: {instanceID: 13754}
     - Class: 114
-      Script: {instanceID: 13844}
+      Script: {instanceID: 13846}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -728,6 +748,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Health
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DestroyNM
   - hash:
       serializedVersion: 2
       Hash: 417f7427b15b878750e94f9267ffe6db
@@ -1284,5 +1310,6 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/GameScene.unity
+  - Assets/Scenes/DestroyNM.unity
   playerPath: H:/ARCHIVIO RICHI/Unity projects/Progetti/Touhou99/Touhou99 New/Builds/Networking
     Tutorial.exe

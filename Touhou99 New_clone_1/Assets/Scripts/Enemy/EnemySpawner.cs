@@ -9,6 +9,7 @@ public class EnemySpawner : NetworkBehaviour
 
     [SerializeField] Enemy[] enemiesToSpawn;
 
+	public PlayerWeapon ownPlayer;
 
 	[Header("Timers")]
 	[SerializeField] float timerToSpawnMax = 1f;
@@ -63,6 +64,14 @@ public class EnemySpawner : NetworkBehaviour
 
 		var newEnemy = Instantiate(enemiesToSpawn[enemyIndex], newSpawnPoint, Quaternion.identity);
 		NetworkServer.Spawn(newEnemy.gameObject);
+
+		newEnemy.enemyHasDied += NewEnemy_enemyHasDied;
+	}
+
+	private void NewEnemy_enemyHasDied(EnemyType typeOfDeadEnemy)
+	{
+		print("Event happened, spawning" + typeOfDeadEnemy);
+		CmdSpawnEnemy(typeOfDeadEnemy);
 	}
 
 	void UpdateTimerOnServer()

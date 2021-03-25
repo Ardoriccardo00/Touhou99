@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
 
 public enum EnemyType
 {
@@ -15,6 +16,7 @@ public class Enemy : NetworkBehaviour
 {
 	[Header("general enemy")]
 	public EnemyType enemyType;
+	public PlayerWeapon playerWhoSentMe = null;
     [SerializeField] float moveSpeed = 5f;
 	[SerializeField] Vector2 movement;
     Rigidbody2D rb;
@@ -33,6 +35,9 @@ public class Enemy : NetworkBehaviour
 	public PlayerIdentity targetPlayer;
 	[SerializeField] float timerMaxToShoot = 1f;
 	float timerToShoot;
+
+	public delegate void OnEnemyDeath(EnemyType enemyType);
+	public event OnEnemyDeath enemyHasDied;
 
 	private void Start()
 	{
@@ -104,17 +109,21 @@ public class Enemy : NetworkBehaviour
 		rb.velocity = movement * moveSpeed * Time.deltaTime;
 	}
 
+	public void OnEnemyDeathEvent()
+	{
+		enemyHasDied?.Invoke(enemyType);
+		print("Enemy death invoke");
+	}
+
 	#region Collisons
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		switch (collision.gameObject.tag)
 	    {
 			case "Arena":
-				print("Collided with arena");
 				break;
 
 			case "Player":
-				print("Collided with player");
 				break;
 		}
 
@@ -157,6 +166,7 @@ public class Enemy : NetworkBehaviour
 	{
 		BulletBehaviour newBullet = Instantiate(bullet, shootingPoint.position, shootingPoint.rotation);
 		newBullet.GetComponent<Rigidbody2D>().AddForce(shootingPoint.up * bulletForce, ForceMode2D.Impulse);
+		newBullet.enemyWhoShotMe = this;
 	}
 	#endregion
 }

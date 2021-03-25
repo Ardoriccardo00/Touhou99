@@ -15,7 +15,7 @@ public class Health : NetworkBehaviour
         SetHealth(maxHealth);
     }
 
-    [Server]
+	[Server]
     private void SetHealth(float value)
     {
         currentHealth = value;
@@ -41,7 +41,7 @@ public class Health : NetworkBehaviour
 			{
                 PlayerWeapon playerWhoShotBullet = collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe.GetComponent<PlayerWeapon>();
                 playerWhoShotBullet.CmdIncreaseBomb(playerWhoShotBullet.bombPowerToIncrease);
-                playerWhoShotBullet.PlayerKilledSomeone(GetComponent<Enemy>().enemyType);
+                playerWhoShotBullet.PlayerKilledSomething();
             }
             
             var newdamage = collision.GetComponent<BulletBehaviour>().bulletDamage;
@@ -60,6 +60,11 @@ public class Health : NetworkBehaviour
 
 	public void Die()
 	{
+        if(gameObject.tag == "Enemy")
+		{
+            GetComponent<Enemy>().OnEnemyDeathEvent();
+		}
+
         Destroy(gameObject);
         NetworkServer.Destroy(gameObject);
 	}

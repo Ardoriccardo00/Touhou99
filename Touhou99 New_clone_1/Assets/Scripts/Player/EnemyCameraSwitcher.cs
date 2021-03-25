@@ -15,6 +15,9 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 
 	[SerializeField] PlayerWeapon playerWeapon;
 
+	public delegate void OnCameraSwitch(Camera cameraSwitched);
+	public event OnCameraSwitch cameraSwitched;
+
 	private void Awake()
 	{
 		rawImage = FindObjectOfType<RawImage>();
@@ -43,7 +46,7 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 		SwitchEnemyCamera(false);
 	}
 
-	void SwitchEnemyCamera(bool forward) //This function gets called whenever the player presses Q or E to switch the enemy cam to spy
+	public void SwitchEnemyCamera(bool forward) //This function gets called whenever the player presses Q or E to switch the enemy cam to spy
 	{
 		if (forward) //Forward determines if it should move to the next or previous camera
 		{
@@ -57,16 +60,6 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 		}
 
 		AssignEnemyCamera(0, false); //Doesn't overwrite so the int can be anything
-	}
-
-	void AssignRandomEnemyCamera()
-	{
-		if (cameraList.Count == 0) return;
-		var rand = Random.Range(1, cameraList.Count - 1);
-		print(cameraList.Count);
-		print("rand " + rand);
-
-		AssignEnemyCamera(rand, true); //Must overwrite, and the value is random
 	}
 
 	private void AssignEnemyCamera(int i, bool canOverwrite)

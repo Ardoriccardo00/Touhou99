@@ -57,8 +57,8 @@ public class GameManager : NetworkBehaviour
             newArena.transform.localScale = new Vector3(11.57531f, 10.06353f, 16.32845f);
             GameObject enemySpawner = newArena.transform.Find("Enemy Spawn Point").gameObject;
 
-            //CmdSpawnEnemySpawner(enemySpawner);
-            try { NetworkServer.Spawn(enemySpawner); } catch { }         
+            NetworkServer.Spawn(enemySpawner);
+            //CmdSpawnEnemySpawner(enemySpawner);      
 
             PlayerIdentity currentPlayer = playerDictionary.Values.ElementAt(i); //Get current player
             PlayerCameraBehaviour currentPlayerCamera = currentPlayer.transform.Find("Game Camera").GetComponent<PlayerCameraBehaviour>(); //Get current player camera
@@ -68,13 +68,26 @@ public class GameManager : NetworkBehaviour
             currentPlayerCamera.GetComponent<AudioListener>().enabled = true;
             currentPlayer.transform.position = newArena.GetComponentInChildren<ArenaCenter>().transform.position; //moves the player
             currentPlayerCamera.SetPosition(currentPlayer.transform.position); //Set the position of the child player camera
-            currentPlayer.GetComponent<EnemyCameraSwitcher>().CreateCameraList(); //Creates a list of cameras in the scene for all players
+            //currentPlayer.GetComponent<EnemyCameraSwitcher>().SwitchEnemyCamera(false); //Sets the camera i guess
             //currentPlayerCamera.transform.position = currentPlayer.transform.position; //Moves the camera
             currentPlayer.GetComponent<PlayerMovement>().enabled = true; //Enables player movement
             currentPlayerWeapon.enabled = true; //Enables Player weapon
             currentPlayerWeapon.FindOwnPlayerArena(); //The player weapon finds the closest clone spawn point
+            //currentPlayer.GetComponent<EnemyCameraSwitcher>().CreateCameraList(); //Creates a list of cameras in the scene for all players
 
             posX += 19.37f;
         }
+
+        RpcSetCameraLists();
     }
+
+    [ClientRpc]
+    void RpcSetCameraLists()
+	{
+		for (int i = 0; i < playerDictionary.Count; i++)
+		{
+            EnemyCameraSwitcher currentPlayer = playerDictionary.Values.ElementAt(i).GetComponent<EnemyCameraSwitcher>();
+            currentPlayer.CreateCameraList();
+        }
+	}
 }

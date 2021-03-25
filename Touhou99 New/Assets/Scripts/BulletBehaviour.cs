@@ -8,7 +8,8 @@ public class BulletBehaviour : NetworkBehaviour
 	[Header("Setup")]
     public Collider2D myCollider;
 	public Rigidbody2D rb;
-    public PlayerIdentity playerWhoShotMe;
+    public PlayerIdentity playerWhoShotMe = null;
+	public Enemy enemyWhoShotMe = null;
 	Transform bulletsPrefab;
 
 	[Header("Stats")]

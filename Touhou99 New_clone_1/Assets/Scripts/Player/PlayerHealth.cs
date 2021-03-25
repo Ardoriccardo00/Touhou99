@@ -13,6 +13,7 @@ public class PlayerHealth : NetworkBehaviour
     [SerializeField] [SyncVar] float currentHealth = 0;
     [SerializeField] float aodDamage = 20f;
     [SerializeField] int enemyCollisionDamage = 20;
+    [SyncVar] bool isDead = false;
 
     //These delegate and event are created so the UI script can update the UI
     public delegate void HealthChangedDelegate(float currentHealth, float maxHealth);
@@ -24,7 +25,7 @@ public class PlayerHealth : NetworkBehaviour
         SetHealth(maxHealth);
     }
 
-    [ClientCallback]
+    [ClientCallback] //Only clients can run it
     private void Update()
     {
         if (!hasAuthority) return;
@@ -36,7 +37,7 @@ public class PlayerHealth : NetworkBehaviour
     private void SetHealth(float value)
 	{
         currentHealth = value;
-        EventHealthChanged?.Invoke(currentHealth, maxHealth);
+        EventHealthChanged?.Invoke(currentHealth, maxHealth); //This is for the UI
 	}
 
     [Command]
@@ -52,14 +53,22 @@ public class PlayerHealth : NetworkBehaviour
 
 		else if(collision.tag == "Bullet")
 		{
-            if (collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe != null) //This can't happen because players can't shoot themselves
+            /*if (collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe != null) //This can't happen because players can't shoot themselves
             {
                 var bulletHitPlayer = collision.gameObject.GetComponent<BulletBehaviour>().playerWhoShotMe.GetComponent<PlayerWeapon>();
                 bulletHitPlayer.CmdIncreaseBomb(bulletHitPlayer.bombPowerToIncrease);
-            }
+            }*/
 
-            var newdamage = collision.GetComponent<BulletBehaviour>().bulletDamage;
-            CmdTakeDamage(newdamage);
+            if (collision.gameObject.GetComponent<BulletBehaviour>().enemyWhoShotMe != null)
+            {
+                var newdamage = collision.GetComponent<BulletBehaviour>().bulletDamage;
+                CmdTakeDamage(newdamage);
+                var playerResponsibleForMyDeath = collision.GetComponent<BulletBehaviour>().playerWhoShotMe;
+				if (isDead)
+				{
+                    playerResponsibleForMyDeath.GetComponent<PlayerWeapon>().playerKillCount++;
+				}
+            }            
 		}
 	}
 

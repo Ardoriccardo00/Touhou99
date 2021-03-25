@@ -20,7 +20,7 @@ public class PlayerWeapon : NetworkBehaviour
     float shootingDelayTimer = 0;
 
     [SerializeField] float maxBombPower = 100f;
-    [SyncVar] [SerializeField] [Range(0f, 100f)] public float bombPower = 0f;
+    [SerializeField] [Range(0f, 100f)] public float bombPower = 0f;
     public float bombPowerToIncrease = 5f;
 
     public delegate void BombPowerChangeDelegate(float bombPower, float maxBombPower);
@@ -31,9 +31,13 @@ public class PlayerWeapon : NetworkBehaviour
     public GameObject ownCloneSpawnPoint;
     public EnemySpawner ownEnemySpawnPoint;
 
-    public PlayerWeapon targetPlayer;
+    [SyncVar] public PlayerWeapon targetPlayer;
     public EnemySpawner targetPlayerEnemySpawnPoint;
     public GameObject targetPlayerCloneSpawnPoint;
+
+    [Header("Other")]
+    [SyncVar] public int eneyKillCount = 0;
+    [SyncVar] public int playerKillCount = 0;
 
 	public override void OnStartServer()
 	{
@@ -66,11 +70,6 @@ public class PlayerWeapon : NetworkBehaviour
             {
                 CmdIncreaseBomb(100);
             }
-
-			if (Input.GetKeyDown(KeyCode.N))
-			{
-                CmdSendEnemyToTargetPlayer(EnemyType.shield);
-            }
         }
     }
 
@@ -88,6 +87,7 @@ public class PlayerWeapon : NetworkBehaviour
                 playerArena = currentCenter;
                 ownCloneSpawnPoint = playerArena.transform.Find("Clone Spawn Point").gameObject;
                 ownEnemySpawnPoint = playerArena.GetComponentInChildren<EnemySpawner>();
+                ownEnemySpawnPoint.ownPlayer = this;
             }
         }
     }
@@ -153,16 +153,10 @@ public class PlayerWeapon : NetworkBehaviour
     }
 	#endregion
 
-	public void PlayerKilledSomeone(EnemyType type)
+	public void PlayerKilledSomething()
 	{
-		print(type);
-		if (targetPlayer == null) return;
-        CmdSendEnemyToTargetPlayer(type);
+        eneyKillCount++;
 	}
 
-    [Command]
-    void CmdSendEnemyToTargetPlayer(EnemyType type)
-	{
-        targetPlayerEnemySpawnPoint.CmdSpawnEnemy(type);
-	}
+    //Create player killed player
 }

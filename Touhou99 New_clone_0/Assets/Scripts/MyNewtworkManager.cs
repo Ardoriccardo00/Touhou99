@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 public class MyNewtworkManager : NetworkManager
 {
@@ -33,4 +34,23 @@ public class MyNewtworkManager : NetworkManager
 		//playerDisconnected();
 		base.OnClientDisconnect(conn);
 	}
+
+	/*public override void OnStopHost()
+	{
+		base.OnStopHost();
+		print("Stop host");
+		StopClient();
+	}
+
+	public override void OnStopServer()
+	{
+		base.OnStopServer();
+	}
+
+	public override void OnStopClient()
+	{
+		base.OnStopClient();
+		print("Stop client");
+		SceneManager.LoadScene(2);
+	}*/
 }
