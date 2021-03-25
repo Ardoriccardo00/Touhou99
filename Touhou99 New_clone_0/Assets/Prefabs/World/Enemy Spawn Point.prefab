@@ -246,9 +246,8 @@ MonoBehaviour:
   - {fileID: 7233961699930223738, guid: 1b8e27953dce3a341bd6be467e17de74, type: 3}
   - {fileID: 1338673653120534776, guid: 34995e13925316f44bcbf106b7bc9c2b, type: 3}
   - {fileID: 3780400066912844743, guid: acbbb53138087b64ca6e0bacc671db3d, type: 3}
-  targetPlayer: {fileID: 0}
-  targetPlayerSpawner: {fileID: 0}
-  timerToSpawnMax: 10
-  minTimeToSpawn: 10
-  maxTimeToSpawn: 10
+  ownPlayer: {fileID: 0}
+  timerToSpawnMax: 3
+  minTimeToSpawn: 5
+  maxTimeToSpawn: 1
   canSpawn: 1

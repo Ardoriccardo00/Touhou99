@@ -13,9 +13,9 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 	[SerializeField] RawImage rawImage;
 	[SerializeField] RenderTexture renderTexture;
 
-	//[SerializeField] PlayerWeapon playerWeapon;
+	[SerializeField] PlayerWeapon playerWeapon;
 
-	public delegate void OnCameraSwitch(PlayerWeapon ownerOfCameraSwitched);
+	public delegate void OnCameraSwitch(Camera cameraSwitched);
 	public event OnCameraSwitch cameraSwitched;
 
 	private void Awake()
@@ -83,10 +83,8 @@ public class EnemyCameraSwitcher : NetworkBehaviour
 		}
 
 		enemyPlayerCamera.gameObject.SetActive(true); //enables the new enemy camera GO 
-		cameraSwitched?.Invoke(enemyPlayerCamera.GetComponentInParent<PlayerWeapon>());
-		//playerWeapon.SetTargetPlayer(enemyPlayerCamera.GetComponentInParent<PlayerWeapon>()); // the player owner to the camera gets assigned to the player weapon component
+		playerWeapon.SetTargetPlayer(enemyPlayerCamera.GetComponentInParent<PlayerWeapon>()); // the player owner to the camera gets assigned to the player weapon component
 		AssignTargetTextureToEnemyCamera(true); //Assigns the render texture to the enemy camera
-		print("Camera assigned");
 	}
 
 

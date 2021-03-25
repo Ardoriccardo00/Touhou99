@@ -378,21 +378,16 @@ MonoBehaviour:
   syncInterval: 0.1
   bullet: {fileID: 2707099195782761001, guid: de4ddcaeba9323643a6007c87907f8cf, type: 3}
   shootingPoint: {fileID: 4054862541137635367}
-  cameraSwitcher: {fileID: 5697961978283198085}
-  bombText: {fileID: 3891084974560274944}
   clone: {fileID: 578510646674742281, guid: d7d57aea1b3e5c64283a1ca27378f92d, type: 3}
+  bombText: {fileID: 3891084974560274944}
   shootingDelay: 0.1
   maxBombPower: 100
   bombPower: 0
   bombPowerToIncrease: 5
-  playerArena: {fileID: 0}
-  ownCloneSpawnPoint: {fileID: 0}
-  ownEnemySpawnPoint: {fileID: 0}
   targetPlayer: {fileID: 0}
-  targetPlayerEnemySpawnPoint: {fileID: 0}
-  targetPlayerCloneSpawnPoint: {fileID: 0}
-  eneyKillCount: 0
-  playerKillCount: 0
+  playerArena: {fileID: 0}
+  cloneSpawnPoint: {fileID: 0}
+  enemySpawnPoint: {fileID: 0}
 --- !u!114 &329978501911080918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +407,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   aodDamage: 20
-  enemyCollisionDamage: 20
 --- !u!114 &7671830233543119125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +442,7 @@ MonoBehaviour:
   cameraIndex: 0
   rawImage: {fileID: 0}
   renderTexture: {fileID: 8400000, guid: 4808be84025f21d48a8ee554e5e22ee3, type: 2}
+  playerWeapon: {fileID: 5789906530429411028}
 --- !u!1 &5706391554369868940
 GameObject:
   m_ObjectHideFlags: 0
